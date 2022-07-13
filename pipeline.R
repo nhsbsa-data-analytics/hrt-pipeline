@@ -28,7 +28,93 @@ con <- con_nhsbsa(
   password = rstudioapi::askForPassword()
 )
 
+#get max month and full fy
+# bring in DIM.YEAR_MONTH_DIM
+ym_dim <- dplyr::tbl(con,
+                     from = dbplyr::in_schema("DIM", "YEAR_MONTH_DIM")) %>%
+  # shrink table to remove unnecessary data
+  dplyr::filter(
+    YEAR_MONTH >= 201501L,
+    YEAR_MONTH <= dplyr::sql(
+      "MGMT.PKG_PUBLIC_DWH_FUNCTIONS.f_get_latest_period('EPACT2')"
+    )
+  ) %>%
+  dplyr::select(
+    YEAR_MONTH,
+    FINANCIAL_YEAR
+  )  %>%
+  # add month counts for financial quarters and financial years to latest
+  # complete periods
+  dplyr::mutate(
+    FY_COUNT = dbplyr::win_over(
+      expr = dplyr::sql("count(distinct YEAR_MONTH)"),
+      partition = "FINANCIAL_YEAR",
+      con = con
+    )
+  )
+
+# extract latest available month of data
+ltst_month <- ym_dim %>%
+  dplyr::filter(YEAR_MONTH == max(YEAR_MONTH, na.rm = TRUE)) %>%
+  dplyr::pull(YEAR_MONTH)
+
+
+# extract latest available full financial year
+ltst_year <- ym_dim %>%
+  dplyr::filter(FY_COUNT == 12) %>%
+  dplyr::select(FINANCIAL_YEAR) %>%
+  dplyr::filter(
+    FINANCIAL_YEAR == max(FINANCIAL_YEAR, na.rm = TRUE)
+  ) %>%
+  dplyr::distinct() %>%
+  dplyr::pull(FINANCIAL_YEAR)
+
 # 4. extract data tables from fact table -----------------------------------------
+raw_data <- list()
+
+#national annual table
+  fact <- dplyr::tbl(con,
+                     from = "HRT_FACT_DIM") %>%
+    dplyr::mutate(
+      PATIENT_COUNT = case_when(
+        PATIENT_IDENTIFIED == "Y" ~ 1,
+        TRUE ~ 0
+      )
+    ) %>%
+    dplyr::group_by(
+      FINANCIAL_YEAR,
+      PATIENT_ID,
+      PATIENT_IDENTIFIED,
+      PATIENT_COUNT
+    ) %>%
+    dplyr::summarise(
+      ITEM_COUNT = sum(ITEM_COUNT, na.rm = T),
+      ITEM_PAY_DR_NIC = sum(ITEM_PAY_DR_NIC, na.rm = T),
+      .groups = "drop"
+    ) 
+  
+  fact_national <- fact %>%
+    dplyr::group_by(
+      FINANCIAL_YEAR,
+      PATIENT_IDENTIFIED
+    ) %>%
+    dplyr::summarise(
+      ITEM_COUNT = sum(ITEM_COUNT, na.rm = T),
+      ITEM_PAY_DR_NIC = sum(ITEM_PAY_DR_NIC, na.rm = T)/100,
+      PATIENT_COUNT = sum(PATIENT_COUNT, na.rm = T),
+      .groups = "drop"
+    ) %>%
+    dplyr::arrange(
+      FINANCIAL_YEAR,
+      desc(PATIENT_IDENTIFIED)
+    ) %>%
+    collect() %>%
+    filter(
+      FINANCIAL_YEAR <= ltst_year
+    )
+  
+
+  
 
 DBI::dbDisconnect(con)
 
