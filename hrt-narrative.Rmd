@@ -1,0 +1,165 @@
+---
+title: "Hormone replacement therapy (HRT)"
+pagetitle: HRT England monthly summary
+always_allow_html: true
+output:
+  word_document:
+    toc: yes
+    toc_depth: '3'
+  html_document:
+    anchor_sections: no
+    css: www/style.css
+    toc: yes
+    toc_depth: 3
+    toc_float:
+      collapsed: no
+---
+
+<script>
+   $(document).ready(function() {
+    $('#header').prepend('<img src=`r knitr::image_uri("www/bsa_logo.svg")` alt=\"NHSBSA logo\" style=\"position:relative; float: right; top: 0; right: 0; padding: 10px; width: 25%;\">');
+  });
+</script>
+
+  <style type="text/css">
+
+  body, td {
+    font-size: 16px;
+    font-family: sans-serif;
+  }
+</style>
+  <html lang="en">
+
+```{r setup, include=FALSE}
+# set code chunk options to disable echo by default
+knitr::opts_chunk$set(echo = FALSE,
+                      warning = FALSE,
+                      message = FALSE)
+
+```
+
+<main>
+
+# England April 2015 to MAX MONTH HERE {.toc-ignore}
+
+Published TBC
+
+## Key findings
+
+* key finding 1
+
+---
+
+## 1. Introduction
+### 1.1. Scope {.toc-ignore} 
+
+### 1.2. Definitions {.toc-ignore}
+
+Throughout this publication the term ‘item’, short for ‘prescription item’, means a single instance of a drug that is listed as a separate entry on a prescription form. For example, Fluoxetine 20mg tablets x56.
+
+In this release the term 'patient/s' is used to mean a unique, valid NHS number that has been captured from a prescription form and subsequently verified by the NHS Personal Demographics Service (PDS). Across 2020/21, use of the Electronic Prescription Service (EPS) increased considerably during the COVID-19 pandemic. As this process captures NHS numbers digitally rather than through scanned paper forms, this has naturally led to an increase in the proportions of identified patients for both 2020/21 and 2021/22 than seen in previous years.
+
+There are many costs incurred when a dispensing contractor fulfils a prescription, such as the single activity fee or controlled drug fees. The costs reported in this publication represent the basic price of the item and the quantity prescribed. This is sometimes called the 'Net Ingredient Cost' (NIC). The basic price is given either in the Drug Tariff or is determined from prices published by manufacturers, wholesalers or suppliers. Basic price is set out in Parts VIII and IX of the [Drug Tariff](https://www.nhsbsa.nhs.uk/pharmacies-gp-practices-and-appliance-contractors/drug-tariff). For any drugs not in Part VIII, the price is usually taken from the manufacturer, wholesaler or supplier of the product.
+
+### 1.3. Time periods {.toc-ignore}
+
+This publication presents data from April 2015 to MAX MONTH HERE, the most recent available.
+
+References to quarters in these statistics are:
+
+* Q1 refers to the first quarter (April to June) of the given financial year. For example, Q1 2020/21 refers to the period April 2020 to June 2020.
+* Q2 refers to the second quarter (July to September) of the given financial year. For example, Q2 2020/21 refers to the period July 2020 to September 2020.
+* Q3 refers to the third quarter (October to December) of the given financial year. For example, Q3 2020/21 refers to the period October 2020 to December 2020.
+* Q4 refers to the fourth quarter (January to March) of the given financial year. For example, Q4 2020/21 refers to the period January 2021 to March 2021.
+
+### 1.4. Patient identification {.toc-ignore}
+
+When the NHSBSA processes prescriptions, the NHS number of the patient is identified for most, but not all, prescriptions. The proportion of items for which a patient could be identified is shown in Table 1. This means that data relating to patient counts represents most, but not all, patients. 
+
+These statistics do not contain any personally identifiable data. More details on the statistical disclosure control applied to these statistics is available in section 5 of this summary. More information about how the NHSBSA protects personal information can be found in the [statement on confidentiality and access](https://www.nhsbsa.nhs.uk/policies-and-procedures).
+
+#### Table 1: The proportion of items for which an NHS number was recorded for listed BNF sections for previous 4 quarters
+
+```{r pat_ident_rates, out.width="100%"}
+
+```
+
+---
+
+## 2. Results and commentary
+
+## 3. Background
+
+### 3.1.  {.toc-ignore}
+
+### 3.2.  {.toc-ignore}
+
+## 4. About these statistics
+
+This publication is part of a series by the NHSBSA. To learn more about how this series compares to our other publications, you can view the Official Statistics guidance table on our [statistical collections page](https://www.nhsbsa.nhs.uk/statistical-collections). 
+
+### 4.1. Patient counts {.toc-ignore}
+
+The patient counts shown in these statistics should only be analysed at the level at which they are presented. Adding together any patient counts is likely to result in an overestimate of the number of patients. A patient will be included, or counted, in each category or time period in which they received relevant prescriptions. For example, if a patient received a prescription item for an antidepressant drug in Q1 2020/21, and another in Q2 2020/21 then adding together those totals would count that patient twice. For the same reason, data on patient counts for different BNF sections should not be added together.
+
+### 4.2. Averages {.toc-ignore}
+
+Where this document refers to 'average', this is the mean unless otherwise stated. This is calculated by adding the number of items/patients/months together and dividing this by the number of items/patients/months.
+
+### 4.3. Planned changes to this publication {.toc-ignore}
+
+This is an experimental official statistic release. Experimental statistics are newly developed or innovative statistics. These are published so that users and stakeholders can be involved in the assessment of their suitability and quality at an early stage. We will regularly be reviewing the methodology used within the statistics.
+
+---
+
+## 5. Statistical disclosure control
+
+Statistical disclosure control has been applied to these statistics. Patient count, items, and net ingredient cost (NIC) have been redacted in the supporting summary tables if they relate to fewer than 5 patients. Further information about our statistical disclosure control protocol [can be found on our website](https://www.nhsbsa.nhs.uk/policies-and-procedures).
+
+The high level figures in this statistical summary have been rounded where appropriate for clarity, in most cases to three significant figures. This is to make this narrative as accessible as possible to all readers. The summary tables released with this publication allow users to investigate this data at lower levels of granularity. Figures in the supplementary tables have not been rounded.
+
+---
+
+## 6. Accessibility
+
+If you need information on this website in a different format like accessible PDF, large print, easy read, audio recording or braille, you can contact us by:
+
+**Email**: nhsbsa.accessibility@nhs.net
+
+**Phone**: 0191 203 5318
+
+[Find out about call charges](https://www.nhsbsa.nhs.uk/contact-us/call-charges-and-phone-numbers)
+
+We’ll consider your request and get back to you in 5 working days.
+
+These contact details are only for accessibility queries. This inbox is not for technical queries or IT problems. If you have a query that is not about accessibility, go to the ‘Contact us’ section of this page.
+
+View our [Accessibility statement for Official Statistics Narratives](https://www.nhsbsa.nhs.uk/accessibility-statement-official-statistics-narratives).
+
+---
+
+## 7. Feedback and contact us
+
+Feedback is important to us; we welcome any questions and comments relating to these statistics. 
+
+You can complete a [short survey about this publication](https://wh1.snapsurveys.com/s.asp?k=159953889691) to help us improve the Official Statistics that we produce. All responses will remain anonymous and individuals will not be identifiable in any report that we produce.
+
+You can view our [privacy policy](https://www.nhsbsa.nhs.uk/our-policies/privacy) on our website to see how your data is used and stored.
+
+You can contact us by:
+
+**Email:** nhsbsa.statistics@nhs.net
+
+**You can also write to us at:**
+
+NHSBSA - Statistics  
+NHS Business Services Authority  
+Stella House  
+Goldcrest Way  
+Newburn Riverside  
+Newcastle upon Tyne  
+NE15 8NY
+
+**Responsible statistician:** Graham Platten
+
+</main>
