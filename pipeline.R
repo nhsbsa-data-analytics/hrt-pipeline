@@ -17,7 +17,7 @@ req_pkgs <- c("dplyr", "stringr", "data.table", "yaml", "openxlsx","rmarkdown",
 invisible(lapply(c(req_pkgs,  "nhsbsaR", "hrtR"), library, character.only = TRUE))
 
 # 2. set options ----------------------------------------------------------
-
+hrt_options()
 
 # 3. build fact table if new data available -------------------
 con <- con_nhsbsa(
@@ -71,6 +71,36 @@ ltst_year <- ym_dim %>%
 
 # 4. extract data tables from fact table -----------------------------------------
 raw_data <- list()
+
+#patient identification rates
+patient_identification_extract <- function(
+  con,
+  table = "HRT_FACT_DIM"
+) {
+fact_pi_overall <- dplyr::tbl(con,
+                      from = "HRT_FACT_DIM") %>% 
+  filter(
+    FINANCIAL_YEAR <= ltst_year
+  ) %>%
+  dplyr::group_by(FINANCIAL_YEAR,
+                  `BNF paragraph name` = PARAGRAPH_NAME,
+                  `BNF paragraph code` = PARAGRAPH_CODE,
+                  PATIENT_IDENTIFIED) %>% 
+  dplyr::summarise(ITEM_COUNT = sum(ITEM_COUNT, na.rm = T)) %>%
+  dplyr::arrange(FINANCIAL_YEAR) %>%
+  collect() %>%
+  tidyr::pivot_wider(names_from = PATIENT_IDENTIFIED,
+                     values_from = ITEM_COUNT) %>% 
+  mutate(RATE = Y/(Y+N) * 100,
+         `BNF paragraph code` = factor(`BNF paragraph code`, 
+                                     levels = c("060401","070201"))) %>%
+  dplyr::select(-Y, -N) %>% 
+  tidyr::pivot_wider(names_from = FINANCIAL_YEAR,
+                     values_from = RATE) %>% 
+  dplyr:: arrange(`BNF paragraph code`) 
+
+return(fact)
+}
 
 #national annual table
   fact <- dplyr::tbl(con,
