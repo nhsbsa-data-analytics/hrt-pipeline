@@ -14,7 +14,7 @@ req_pkgs <- c("dplyr", "stringr", "data.table", "yaml", "openxlsx","rmarkdown",
 # #
 #  devtools::install_github("nhsbsa-data-analytics/nhsbsaR")
 
-invisible(lapply(c(req_pkgs,  "nhsbsaR"), library, character.only = TRUE))
+invisible(lapply(c(req_pkgs,  "nhsbsaR", "hrtR"), library, character.only = TRUE))
 
 # 2. set options ----------------------------------------------------------
 
@@ -93,7 +93,7 @@ raw_data <- list()
       .groups = "drop"
     ) 
   
-  fact_national <- fact %>%
+  fact_national_annual <- fact %>%
     dplyr::group_by(
       FINANCIAL_YEAR,
       PATIENT_IDENTIFIED
@@ -113,7 +113,47 @@ raw_data <- list()
       FINANCIAL_YEAR <= ltst_year
     )
   
-
+  #national monthly table
+  fact <- dplyr::tbl(con,
+                     from = "HRT_FACT_DIM") %>%
+    dplyr::mutate(
+      PATIENT_COUNT = case_when(
+        PATIENT_IDENTIFIED == "Y" ~ 1,
+        TRUE ~ 0
+      )
+    ) %>%
+    dplyr::group_by(
+      FINANCIAL_YEAR,
+      YEAR_MONTH,
+      PATIENT_ID,
+      PATIENT_IDENTIFIED,
+      PATIENT_COUNT
+    ) %>%
+    dplyr::summarise(
+      ITEM_COUNT = sum(ITEM_COUNT, na.rm = T),
+      ITEM_PAY_DR_NIC = sum(ITEM_PAY_DR_NIC, na.rm = T),
+      .groups = "drop"
+    ) 
+  
+  fact_national_monthly <- fact %>%
+    dplyr::group_by(
+      FINANCIAL_YEAR,
+      YEAR_MONTH,
+      PATIENT_IDENTIFIED
+    ) %>%
+    dplyr::summarise(
+      ITEM_COUNT = sum(ITEM_COUNT, na.rm = T),
+      ITEM_PAY_DR_NIC = sum(ITEM_PAY_DR_NIC, na.rm = T)/100,
+      PATIENT_COUNT = sum(PATIENT_COUNT, na.rm = T),
+      .groups = "drop"
+    ) %>%
+    dplyr::arrange(
+      FINANCIAL_YEAR,
+      YEAR_MONTH,
+      desc(PATIENT_IDENTIFIED)
+    ) %>%
+    collect() 
+    
   
 
 DBI::dbDisconnect(con)
