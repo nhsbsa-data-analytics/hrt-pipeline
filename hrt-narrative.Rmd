@@ -40,7 +40,7 @@ knitr::opts_chunk$set(echo = FALSE,
 
 <main>
 
-# England April 2015 to MAX MONTH HERE {.toc-ignore}
+# England April 2015 to `r ltst_month_tidy` {.toc-ignore}
 
 Published TBC
 
@@ -53,6 +53,17 @@ Published TBC
 ## 1. Introduction
 ### 1.1. Scope {.toc-ignore} 
 
+This publication aims to describe the prescribing of medicines used to relieve symptoms of the menopause in England that are subsequently dispensed in the community in England, Scotland, Wales, Isle of Man or the Channel Islands by a pharmacy, appliance contractor, dispensing doctor, or have been personally administered by a GP practice. They do not include data on medicines used in secondary care, prisons, or issued by a private prescriber.
+
+The costs associated with the provision of these medicines are not discussed in this summary. However, they are available within the supporting summary tables that accompany this release.
+
+These statistics use the BNF therapeutic classifications defined in the British National Formulary (BNF) using the classification system prior to BNF edition 70. Each January the NHSBSA updates the classification of drugs within the BNF hierarchy which may involve some drugs changing classification between years of data. Two paragraphs of the British National Formulary (BNF) are covered within these statistics:
+
+* female sex hormones and their modulators
+* preparations for vaginal and vulval changes
+
+These medicines are classified by their primary therapeutic indication. However, it is possible that they can be prescribed for other reasons outside of this primary therapeutic indication. For example, the  treatment of gender dysphoria. The clinical indication of a prescription is not captured by NHSBSA during processing, and therefore we cannot determine the reason that a prescription was issued. 
+
 ### 1.2. Definitions {.toc-ignore}
 
 Throughout this publication the term ‘item’, short for ‘prescription item’, means a single instance of a drug that is listed as a separate entry on a prescription form. For example, Fluoxetine 20mg tablets x56.
@@ -63,14 +74,7 @@ There are many costs incurred when a dispensing contractor fulfils a prescriptio
 
 ### 1.3. Time periods {.toc-ignore}
 
-This publication presents data from April 2015 to MAX MONTH HERE, the most recent available.
-
-References to quarters in these statistics are:
-
-* Q1 refers to the first quarter (April to June) of the given financial year. For example, Q1 2020/21 refers to the period April 2020 to June 2020.
-* Q2 refers to the second quarter (July to September) of the given financial year. For example, Q2 2020/21 refers to the period July 2020 to September 2020.
-* Q3 refers to the third quarter (October to December) of the given financial year. For example, Q3 2020/21 refers to the period October 2020 to December 2020.
-* Q4 refers to the fourth quarter (January to March) of the given financial year. For example, Q4 2020/21 refers to the period January 2021 to March 2021.
+This publication presents data from April 2015 to `r ltst_month_tidy`, the most recent available.
 
 ### 1.4. Patient identification {.toc-ignore}
 
@@ -78,9 +82,21 @@ When the NHSBSA processes prescriptions, the NHS number of the patient is identi
 
 These statistics do not contain any personally identifiable data. More details on the statistical disclosure control applied to these statistics is available in section 5 of this summary. More information about how the NHSBSA protects personal information can be found in the [statement on confidentiality and access](https://www.nhsbsa.nhs.uk/policies-and-procedures).
 
-#### Table 1: The proportion of items for which an NHS number was recorded for listed BNF sections for previous 4 quarters
+#### Table 1: The proportion of items for which an NHS number was recorded for listed BNF paragraphs
 
 ```{r pat_ident_rates, out.width="100%"}
+raw_data$pi_table_annual %>%
+  mutate_if(is.numeric, round, 2) %>%
+  mutate_if(is.numeric, paste0, "%") %>%
+  DT::datatable(
+    rownames = FALSE,
+    options = list(dom = "t",
+                   columnDefs = list(list(orderable = FALSE,
+                                          targets = "_all"),
+                                     list(className = "dt-left", targets = 0:1),
+                                     list(className = "dt-right", 
+                                          targets = 2:ncol(raw_data$pi_table_annual)-1)))
+  )
 
 ```
 
@@ -88,11 +104,138 @@ These statistics do not contain any personally identifiable data. More details o
 
 ## 2. Results and commentary
 
+### Figure 1: Number of prescribed items and identified patients by financial year {.toc-ignore}
+
+```{r annual_summary, out.width="100%"}
+raw_data$national_annual %>%
+  dplyr::group_by(FINANCIAL_YEAR) %>% 
+  dplyr::summarise(`Prescribed items` = sum(ITEM_COUNT),
+                   `Identified patients` = sum(PATIENT_COUNT),
+                   .groups = "drop") %>% 
+  tidyr::pivot_longer(cols = c(`Identified patients`,`Prescribed items`),
+                      names_to = "measure",
+                      values_to = "value") %>% 
+  dplyr::mutate(value = signif(value, 3)) %>% 
+  dplyr::arrange(desc(measure)) %>%
+  group_chart_hc(
+    x = FINANCIAL_YEAR,
+    y = value,
+    group = measure,
+    type = "line",
+    marker = FALSE,
+    dlOn = FALSE,
+    xLab = "Financial year",
+    yLab = "Volume",
+    title = ""
+  ) %>% 
+  hc_tooltip(enabled = TRUE,
+             shared = TRUE,
+             sort = TRUE) %>% 
+  hc_legend(enabled = TRUE) 
+
+```
+
+### Figure 2: Number of prescribed items and identified patients by month {.toc-ignore}
+
+```{r monthly_summary, out.width="100%"}
+raw_data$national_monthly %>%
+  filter(YEAR_MONTH >= lt_st_month_min) %>%
+  dplyr::group_by(YEAR_MONTH) %>% 
+  dplyr::summarise(`Prescribed items` = sum(ITEM_COUNT),
+                   `Identified patients` = sum(PATIENT_COUNT),
+                   .groups = "drop") %>% 
+  tidyr::pivot_longer(cols = c(`Identified patients`,`Prescribed items`),
+                      names_to = "measure",
+                      values_to = "value") %>% 
+  dplyr::mutate(value = signif(value, 3)) %>% 
+  dplyr::arrange(desc(measure)) %>%
+  mutate(
+    YEAR_MONTH = base::as.Date(as.character(paste0(YEAR_MONTH,"01")), format = "%Y%m%d")
+  ) %>%
+  group_chart_hc(
+    x = YEAR_MONTH,
+    y = value,
+    group = measure,
+    type = "line",
+    marker = FALSE,
+    dlOn = FALSE,
+    xLab = "Month",
+    yLab = "Volume",
+    title = ""
+  ) %>% 
+  hc_tooltip(enabled = TRUE,
+             shared = TRUE,
+             sort = TRUE) %>% 
+  hc_legend(enabled = TRUE) %>%
+  hc_xAxis(type = "datetime")
+
+  
+```
+
+### Figure 3: Number of prescribed items and identified patients by financial year and BNF chapter {.toc-ignore}
+
+```{r, figures-side, fig.show="hold", out.width="50%"}
+chart_1 <- raw_data$national_par_annual %>%
+  filter(PARAGRAPH_CODE == "060401") %>%
+  dplyr::summarise(`Prescribed items` = sum(ITEM_COUNT),
+                   `Identified patients` = sum(PATIENT_COUNT),
+                   .groups = "drop") %>% 
+  tidyr::pivot_longer(cols = c(`Identified patients`,`Prescribed items`),
+                      names_to = "measure",
+                      values_to = "value") %>% 
+  dplyr::mutate(value = signif(value, 3)) %>% 
+  dplyr::arrange(desc(measure)) %>%
+  group_chart_hc(
+    x = FINANCIAL_YEAR,
+    y = value,
+    group = measure,
+    type = "line",
+    marker = FALSE,
+    dlOn = FALSE,
+    xLab = "Financial year",
+    yLab = "Volume",
+    title = "BNF Chapter - 060401"
+  ) %>% 
+  hc_tooltip(enabled = TRUE,
+             shared = TRUE,
+             sort = TRUE) %>% 
+  hc_legend(enabled = TRUE)
+
+chart_2 <- raw_data$national_par_annual %>%
+  filter(PARAGRAPH_CODE == "070201") %>%
+  dplyr::summarise(`Prescribed items` = sum(ITEM_COUNT),
+                   `Identified patients` = sum(PATIENT_COUNT),
+                   .groups = "drop") %>% 
+  tidyr::pivot_longer(cols = c(`Identified patients`,`Prescribed items`),
+                      names_to = "measure",
+                      values_to = "value") %>% 
+  dplyr::mutate(value = signif(value, 3)) %>% 
+  dplyr::arrange(desc(measure)) %>%
+  group_chart_hc(
+    x = FINANCIAL_YEAR,
+    y = value,
+    group = measure,
+    type = "line",
+    marker = FALSE,
+    dlOn = FALSE,
+    xLab = "Financial year",
+    yLab = "Volume",
+    title = "BNF Chapter - 070201"
+  ) %>% 
+  hc_tooltip(enabled = TRUE,
+             shared = TRUE,
+             sort = TRUE) %>% 
+  hc_legend(enabled = TRUE)
+
+hw_grid(chart_1, chart_2)
+
+```
+
 ## 3. Background
 
-### 3.1.  {.toc-ignore}
+### 3.1. Female sex hormones and their modulators  {.toc-ignore}
 
-### 3.2.  {.toc-ignore}
+### 3.2. Preparations for vaginal and vulval changes  {.toc-ignore}
 
 ## 4. About these statistics
 
