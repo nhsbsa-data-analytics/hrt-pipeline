@@ -53,7 +53,17 @@ Published TBC
 ## 1. Introduction
 ### 1.1. Scope {.toc-ignore} 
 
-This publication aims to describe the prescribing of medicines used to relieve symptoms of the menopause in England that are subsequently dispensed in the community in England, Scotland, Wales, Isle of Man or the Channel Islands by a pharmacy, appliance contractor, dispensing doctor, or have been personally administered by a GP practice. They do not include data on medicines used in secondary care, prisons, or issued by a private prescriber.
+Hormone replacement therapy (HRT) is a treatment to relieve symptoms of the menopause. It replaces hormones that are at a lower level as you approach the menopause.
+
+This publication aims to describe the prescribing of HRT medications in England that are subsequently dispensed in the community in England, Scotland, Wales, Isle of Man or the Channel Islands by a pharmacy, appliance contractor, dispensing doctor, or have been personally administered by a GP practice. They do not include data on medicines used in secondary care, prisons, or issued by a private prescriber.
+
+These statistics detail:
+
+* the total number of prescription items issued for drugs used in diabetes
+* the number of identified patients that have received prescribing for these drugs
+* demographic breakdowns of prescribing by age group
+* demographic breakdowns by sex
+* demographic breakdowns by a measure of deprivation.
 
 The costs associated with the provision of these medicines are not discussed in this summary. However, they are available within the supporting summary tables that accompany this release.
 
@@ -249,7 +259,15 @@ The patient counts shown in these statistics should only be analysed at the leve
 
 Where this document refers to 'average', this is the mean unless otherwise stated. This is calculated by adding the number of items/patients/months together and dividing this by the number of items/patients/months.
 
-### 4.3. Planned changes to this publication {.toc-ignore}
+### 4.3. Index of deprivation
+
+The English Indices of Deprivation 2019 have been used to provide a measure of patient deprivation. The English Indices of Deprivation are an official national measure of deprivation that follows an established methodological framework to capture a wide range of individuals’ living conditions.
+
+The reported IMD quintile, where 1 is the most deprived and 5 the least deprived, is derived from the lower-layer super output areas (LSOA) of the patient who received the medication. There are a number of items each year that we have reported as having an unknown IMD quintile. These are items that have been attributed to an patient who exclusively received their prescriptions via paper prescribing and not via the Electronic Prescription Service (EPS). LSOA is only captured for prescriptions via EPS. For those patients who recieved both paper prescribing and EPS we have imputed their LSOA from the latest available data.
+
+IMD quintile are calculated by ranking census LSOA from most deprived to least deprived and dividing them into 5 equal groups. These range from the most deprived 20% (quintile 1) of small areas nationally to the least deprived 20% (quintile 5) of small areas nationally.
+
+### 4.4. Planned changes to this publication {.toc-ignore}
 
 This is an experimental official statistic release. Experimental statistics are newly developed or innovative statistics. These are published so that users and stakeholders can be involved in the assessment of their suitability and quality at an early stage. We will regularly be reviewing the methodology used within the statistics.
 
