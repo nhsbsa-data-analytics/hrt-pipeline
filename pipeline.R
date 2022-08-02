@@ -159,6 +159,143 @@ raw_data$quintile_age_monthly <-
 DBI::dbDisconnect(con)
 
 # 5. data manipulation ----------------------------------------------------
+#basic hcart function
+basic_chart_hc <- function(
+    data,
+    x, 
+    y,
+    type = "line",
+    xLab = NULL,
+    yLab = NULL,
+    title = NULL,
+    seriesName = "Series 1",
+    color = "#005EB8",
+    dlOn = TRUE,
+    currency = FALSE,
+    alt_text = NULL
+) {
+  
+  `%>%` <- magrittr::`%>%`
+  
+  x <- rlang::enexpr(x)
+  y <- rlang::enexpr(y)
+  
+  font <- "Arial"
+  
+  if(currency == TRUE) {
+    
+    dlFormatter <- highcharter::JS(
+      paste0(
+        "function () {
+        
+        var ynum = this.point.", y," ;
+      
+        if(ynum >= 1000000000) {
+      
+        result = ynum.toLocaleString('en-GB', {maximumSignificantDigits: 4, minimumSignificantDigits: 4, style: 'currency', currency: 'GBP'});
+      
+          } else {
+      
+        result = ynum.toLocaleString('en-GB', {maximumSignificantDigits: 3, minimumSignificantDigits: 3, style: 'currency', currency: 'GBP'});
+      
+          }
+      
+      return result
+    
+        }"
+      )
+    )
+    
+  } else {
+    
+    dlFormatter <- highcharter::JS(
+      paste0(
+        "function () {
+      var ynum = this.point.", y," ;
+      
+      if(ynum >= 1000000000) {
+      
+      result = ynum.toLocaleString('en-GB', {maximumSignificantDigits: 4, minimumSignificantDigits: 4});
+      
+      } else {
+      
+       result = ynum.toLocaleString('en-GB', {maximumSignificantDigits: 3, minimumSignificantDigits: 3});
+      
+      }
+      
+      return result
+      
+    }"
+      )
+    )
+    
+  }
+  
+  # check chart type to set grid lines
+  gridlineColor <- ifelse(type == "line", "#e6e6e6", "transparent")
+  
+  # check chart type to turn on y axis labels
+  yLabels <- ifelse(type == "line", TRUE, FALSE)
+  
+  chart <- highcharter::highchart() %>% 
+    highcharter::hc_chart(style = list(fontFamily = font)) %>% 
+    # add only series
+    highcharter::hc_add_series(data = data,
+                               name = seriesName,
+                               color = color,
+                               type = type,
+                               highcharter::hcaes(x = !!x,
+                                                  y = !!y),
+                               groupPadding = 0.1,
+                               pointPadding = 0.05,
+                               dataLabels = list(enabled = dlOn,
+                                                 formatter = dlFormatter,
+                                                 style = list(textOutline = "none"))) %>% 
+    highcharter::hc_xAxis(type = "category",
+                          title = list(text = xLab)) %>% 
+    # turn off y axis and grid lines
+    highcharter::hc_yAxis(title = list(text = yLab),
+                          labels = list(enabled = yLabels),
+                          gridLineColor = gridlineColor,
+                          min = 0) %>% 
+    highcharter::hc_title(text = title,
+                          style = list(fontSize = "16px",
+                                       fontWeight = "bold")) %>% 
+    highcharter::hc_legend(enabled = FALSE) %>% 
+    highcharter::hc_tooltip(enabled = FALSE) %>% 
+    highcharter::hc_credits(enabled = TRUE) %>% 
+    highcharter::hc_caption(text = alt_text)
+  
+  return(chart)
+  
+}
+
+#icb pop data
+icb_population <- function(){
+temp <- tempfile()
+icb_url <-
+  utils::download.file(url = "https://www.england.nhs.uk/wp-content/uploads/2022/04/j-overall-weighted-populations-22-23.xlsx",
+                       temp,
+                       mode = "wb")
+
+df <- readxl::read_xlsx(temp,
+                        sheet = 5,
+                        range = "A4:U63",
+                        col_names = TRUE)
+
+data <- df %>%
+  filter(
+    !is.na(R22)
+  ) %>%
+  select(2,4) %>%
+  rename(
+    "ICB Code" = 1
+  )
+
+return(data)
+}
+
+icb_population <- icb_population()
 # imd pop data
 imd_population_age_gender <- imd_population()
 imd_population_age <- imd_population_age_gender %>%

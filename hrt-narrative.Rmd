@@ -95,7 +95,15 @@ These statistics do not contain any personally identifiable data. More details o
 #### Table 1: The proportion of items for which an NHS number was recorded for listed BNF paragraphs
 
 ```{r pat_ident_rates, out.width="100%"}
+#get column with max full fy data
+max_col <- grep(ltst_year, colnames(raw_data$pi_table_annual))
+#get this number plus previous 4
+seq <- seq(max_col - 4, max_col)
+#get number of columns
+cols <- length(seq) + 2
+
 raw_data$pi_table_annual %>%
+  select(1,2,unlist(as.numeric(seq))) %>%
   mutate_if(is.numeric, round, 2) %>%
   mutate_if(is.numeric, paste0, "%") %>%
   DT::datatable(
@@ -105,7 +113,7 @@ raw_data$pi_table_annual %>%
                                           targets = "_all"),
                                      list(className = "dt-left", targets = 0:1),
                                      list(className = "dt-right", 
-                                          targets = 2:ncol(raw_data$pi_table_annual)-1)))
+                                          targets = 2:cols-1)))
   )
 
 ```
@@ -145,6 +153,12 @@ raw_data$national_annual %>%
 
 ```
 
+Source: [Financial Year Summary Tables - National Totals table](https://nhsbsa-opendata.s3.eu-west-2.amazonaws.com/hrt/hrt_financial_year_2021_2022_v001.xlsx)
+
+There were 7.80 million HRT drug items prescribed in 2021/22. This was a 35.0% increase from 5.78 million items compared with the previous year. Prescribing of HRT items has been increasing since 2015/16, with 3.73 million more items prescribed in 2021/22 when compared to 2015/16, an increase of 91.3% over the period.
+
+There were an estimated 1.94 million identified patients who were prescribed at least one HRT item in 2021/22. This was a 30.5% increase from 1.49 million identified patients when compared with 2020/21. There were 526,000  more identified patients who received a HRT item in 2021/22 compared to 2015/16, an increase of 37.2%. However, it should be noted that this is likely to be an overestimate of the actual increase in patient numbers, as the proportion of patients who could be identified increased. In 2015/16, 93.9% of items were prescribed to identified patients, this increased by 5.29 percentage points in 2021/22 to 99.1% of items.
+
 ### Figure 2: Number of prescribed items and identified patients by month {.toc-ignore}
 
 ```{r monthly_summary, out.width="100%"}
@@ -182,11 +196,18 @@ raw_data$national_monthly %>%
   
 ```
 
+Source: [Monthly Summary Tables - National Totals table](https://nhsbsa-opendata.s3.eu-west-2.amazonaws.com/hrt/hrt_monthly_May_2022_v001.xlsx)
+
+There were 906,000 HRT drug items prescribed in May 2022. This was a 14.3% increase from 793,000 items compared with the previous month, and an increase of 367,000 (68.5%) from 538,000 items in May 2021. Prescribing of HRT items has been increasing since June 2020, with 442,000 more items prescribed in May 2022 when compared to June 2020, an increase of 95.2% over the period.
+
+There were an estimated 698,000 identified patients who were prescribed at least one HRT item in May 2022. This was a 13.1% increase from 617,000 identified patients when compared with the previous month. There were 313,000 more identified patients who received a HRT item in May 2022 compared to June 2020, an increase of 81.4%. However, it should be noted that this is likely to be an overestimate of the actual increase in patient numbers, as the proportion of patients who could be identified increased. In June 2020, 98.6% of items were prescribed to identified patients, this increased by 0.53 percentage points in May 2022 to 99.1% of items.
+
 ### Figure 3: Number of prescribed items and identified patients by financial year and BNF chapter {.toc-ignore}
 
 ```{r, figures-side, fig.show="hold", out.width="50%"}
 chart_1 <- raw_data$national_par_annual %>%
   filter(PARAGRAPH_CODE == "060401") %>%
+  group_by(FINANCIAL_YEAR) %>%
   dplyr::summarise(`Prescribed items` = sum(ITEM_COUNT),
                    `Identified patients` = sum(PATIENT_COUNT),
                    .groups = "drop") %>% 
@@ -209,10 +230,12 @@ chart_1 <- raw_data$national_par_annual %>%
   hc_tooltip(enabled = TRUE,
              shared = TRUE,
              sort = TRUE) %>% 
-  hc_legend(enabled = TRUE)
+  hc_legend(enabled = TRUE) %>%
+  hc_title(align = "left")
 
 chart_2 <- raw_data$national_par_annual %>%
   filter(PARAGRAPH_CODE == "070201") %>%
+  group_by(FINANCIAL_YEAR) %>%
   dplyr::summarise(`Prescribed items` = sum(ITEM_COUNT),
                    `Identified patients` = sum(PATIENT_COUNT),
                    .groups = "drop") %>% 
@@ -235,11 +258,220 @@ chart_2 <- raw_data$national_par_annual %>%
   hc_tooltip(enabled = TRUE,
              shared = TRUE,
              sort = TRUE) %>% 
-  hc_legend(enabled = TRUE)
+  hc_legend(enabled = TRUE)%>%
+  hc_title(align = "left")
+
 
 hw_grid(chart_1, chart_2)
 
 ```
+
+### Figure 4: Number of identified patients by financial year for selected BNF chemical substances {.toc-ignore}
+
+```{r annual_chem_sub, out.width="100%"}
+chart_data <- raw_data$chem_sub_annual %>%
+  filter(
+    CHEM_SUB_NAME %in% c("Estradiol", "Estriol", "Estradiol with progestogen", "Progesterone", "Norethisterone")
+  ) %>%
+  mutate(CHEM_SUB = paste0(CHEM_SUB_NAME, " - ", CHEM_SUB_CODE)) %>%
+  select(1, 12, 9) %>%
+  filter(
+    PATIENT_COUNT > 0
+    )
+
+chart_data %>%
+  group_chart_hc(
+    x = FINANCIAL_YEAR,
+    y = PATIENT_COUNT,
+    group = CHEM_SUB,
+    type = "line",
+    marker = FALSE,
+    dlOn = FALSE,
+    xLab = "Financial year",
+    yLab = "Volume",
+    title = ""
+  ) %>% 
+  hc_tooltip(enabled = TRUE,
+             shared = TRUE,
+             sort = TRUE) %>% 
+  hc_legend(enabled = TRUE)%>%
+  hc_title(align = "left")
+
+```
+
+### Figure 5: Number of prescribed items by financial year for selected BNF chemical substances {.toc-ignore}
+
+```{r chem_sub_items, out.width="100%"}
+chart_data <- raw_data$chem_sub_annual %>%
+  filter(
+    CHEM_SUB_NAME %in% c("Estradiol", "Estriol", "Estradiol with progestogen", "Progesterone", "Norethisterone")
+  ) %>%
+  mutate(CHEM_SUB = paste0(CHEM_SUB_NAME, " - ", CHEM_SUB_CODE)) %>%
+  filter(CHEM_SUB != "Estriol - 0604011M0") %>%
+  select(1, 12, 10) %>%
+  group_by(FINANCIAL_YEAR, CHEM_SUB) %>%
+  summarise(total = sum(ITEM_COUNT, na.rm = T))
+  
+  
+
+chart_data %>%
+  group_chart_hc(
+    x = FINANCIAL_YEAR,
+    y = total,
+    group = CHEM_SUB,
+    type = "line",
+    marker = FALSE,
+    dlOn = FALSE,
+    xLab = "Financial year",
+    yLab = "Volume",
+    title = ""
+  ) %>% 
+  hc_tooltip(enabled = TRUE,
+             shared = TRUE,
+             sort = TRUE) %>% 
+  hc_legend(enabled = TRUE)%>%
+  hc_title(align = "left")
+
+```
+
+### Table 2: Top 10 presentations by prescribed items in `r ltst_year`{.toc-ignore}
+
+``` {r top_pres_fy, out.width = "100%"}
+raw_data$presentation_annual %>%
+  filter(FINANCIAL_YEAR == ltst_year) %>%
+  top_n(10, ITEM_COUNT) %>%
+  arrange(desc(ITEM_COUNT)) %>%
+  select(9, 12, 13, 14, 15) %>%
+  rename(
+    "BNF Presentation Name" = 1,
+    "Unit of Measure" = 2,
+    "Total Quantity" = 3,
+    "Total Items" = 4,
+    "Total Net Ingredient Cost (GBP)" = 5
+  ) %>%
+  mutate(
+    `Total Quantity` = formatC(
+      signif(`Total Quantity`, 3),
+      big.mark = ",",
+      format = "d"
+    ),
+    `Total Items` = formatC(
+      signif(`Total Items`, 3),
+      big.mark = ",",
+      format = "d"
+    ),
+    `Total Net Ingredient Cost (GBP)` = formatC(
+      signif(`Total Net Ingredient Cost (GBP)`, 3),
+      big.mark = ",",
+      format = "d"
+    ),
+  ) %>%
+  DT::datatable(rownames = FALSE,
+                options = list(dom = "t",
+                               columnDefs = list(
+                                 list(orderable = FALSE,
+                                      targets = "_all"),
+                                 list(className = "dt-left", targets = 0:1),
+                                 list(className = "dt-right",
+                                      targets = 2:4)
+                               )))
+
+```
+
+### Table 3: Top 10 presentations by prescribed items in `r ltst_month_tidy` {.toc-ignore}
+
+```{r top_pres_month, out.width="100%"}
+raw_data$presentation_monthly %>%
+  filter(YEAR_MONTH == ltst_month) %>%
+  top_n(10, ITEM_COUNT) %>%
+  arrange(desc(ITEM_COUNT)) %>%
+  select(10, 13, 14, 15, 16) %>%
+  rename(
+    "BNF Presentation Name" = 1,
+    "Unit of Measure" = 2,
+    "Total Quantity" = 3,
+    "Total Items" = 4,
+    "Total Net Ingredient Cost (GBP)" = 5
+  ) %>%
+  mutate(
+    `Total Quantity` = formatC(
+      signif(`Total Quantity`, 3),
+      big.mark = ",",
+      format = "d"
+    ),
+    `Total Items` = formatC(
+      signif(`Total Items`, 3),
+      big.mark = ",",
+      format = "d"
+    ),
+    `Total Net Ingredient Cost (GBP)` = formatC(
+      signif(`Total Net Ingredient Cost (GBP)`, 3),
+      big.mark = ",",
+      format = "d"
+    ),
+  ) %>%
+  DT::datatable(rownames = FALSE,
+                options = list(dom = "t",
+                               columnDefs = list(
+                                 list(orderable = FALSE,
+                                      targets = "_all"),
+                                 list(className = "dt-left", targets = 0:1),
+                                 list(className = "dt-right",
+                                      targets = 2:4)
+                               )))
+```
+
+### Figure 6: Identified patients per 1,000 population by Integrated Care Board (ICB) in `r ltst_year` {.toc-ignore}
+
+```{r patients_per_100, out.width = "100%"}
+chart_data <- raw_data$icb_annual %>%
+  filter(
+    FINANCIAL_YEAR == ltst_year,
+    PATIENT_COUNT != 0
+  ) %>%
+  left_join(
+    icb_population,
+    by = c("STP_CODE" = "ICB Code")
+  ) %>%
+  select(1, 4,5,7,10) %>%
+  mutate(
+    PER_1000 = round(PATIENT_COUNT / `Projected population 2022/23` * 1000)
+  ) %>%
+  arrange(desc(PER_1000))
+
+
+
+chart <- basic_chart_hc(
+  chart_data,
+  x = STP_CODE,
+  y = PER_1000,
+  type = "column",
+  xLab = "ICB code",
+  yLab = "Patients",
+  title = ""
+) %>%
+  hc_tooltip(enabled = T,
+             formatter = JS("function(){
+                            var result = this.point.STP_NAME
+                            return result
+             }"))
+chart$x$hc_opts$series[[1]]$dataLabels$formatter <- JS("function(){
+                                                       var ynum = this.point.PER_1000;
+                                                       result = ynum.toFixed(0);
+                                                       return result
+}")
+
+chart$x$hc_opts$series[[1]]$dataLabels$allowOverlap <- TRUE
+chart
+```
+
+### Figure 7: Prescribed items per capita by Integrated Care Board (ICB) in `r ltst_year` {.toc-ignore}
+
+### Figure 8: Number of identified patients by age band in `r ltst_year` {.toc-ignore}
+
+### Figure 9: Number of identified patients by IMD quintile by financial year {.toc-ignore}
+
+### Figure 10: Proportion of patients under/over 50 by IMD quintile {.toc-ignore}
 
 ## 3. Background
 
