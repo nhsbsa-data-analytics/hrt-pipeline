@@ -430,16 +430,14 @@ chart_data <- raw_data$icb_annual %>%
     PATIENT_COUNT != 0
   ) %>%
   left_join(
-    icb_population,
-    by = c("STP_CODE" = "ICB Code")
+    stp_pop,
+    by = c("STP_CODE" = "STP21CDH")
   ) %>%
-  select(1, 4,5,7,10) %>%
+  select(1, 4,5,7,12) %>%
   mutate(
-    PER_1000 = round(PATIENT_COUNT / `Projected population 2022/23` * 1000)
+    PER_1000 = round(PATIENT_COUNT / POP * 1000, 1)
   ) %>%
   arrange(desc(PER_1000))
-
-
 
 chart <- basic_chart_hc(
   chart_data,
@@ -465,13 +463,240 @@ chart$x$hc_opts$series[[1]]$dataLabels$allowOverlap <- TRUE
 chart
 ```
 
-### Figure 7: Prescribed items per capita by Integrated Care Board (ICB) in `r ltst_year` {.toc-ignore}
+### Figure 7: Prescribed items per 1,000 population by Integrated Care Board (ICB) in `r ltst_year` {.toc-ignore}
+
+```{r items_per_1000, out.width="100%"}
+chart_data <- raw_data$icb_annual %>%
+  filter(
+    FINANCIAL_YEAR == ltst_year
+  ) %>%
+  group_by(
+    STP_NAME,
+    STP_CODE
+  ) %>%
+  summarise(
+    ITEM_COUNT = sum(ITEM_COUNT, na.rm = T),
+    .groups = "drop"
+  ) %>%
+  left_join(
+    stp_pop,
+    by = c("STP_CODE" = "STP21CDH")
+  ) %>%
+  select(1,2,  3, 6) %>%
+  mutate(
+    PER_1000 = round(ITEM_COUNT / POP * 1000, 1)
+  ) %>%
+  arrange(desc(PER_1000))
+
+chart <- basic_chart_hc(
+  chart_data,
+  x = STP_CODE,
+  y = PER_1000,
+  type = "column",
+  xLab = "ICB code",
+  yLab = "Items",
+  title = ""
+) %>%
+  hc_tooltip(enabled = T,
+             formatter = JS("function(){
+                            var result = this.point.STP_NAME
+                            return result
+             }"))
+chart$x$hc_opts$series[[1]]$dataLabels$formatter <- JS("function(){
+                                                       var ynum = this.point.PER_1000;
+                                                       result = ynum.toFixed(0);
+                                                       return result
+}")
+
+chart$x$hc_opts$series[[1]]$dataLabels$allowOverlap <- TRUE
+chart
+```
 
 ### Figure 8: Number of identified patients by age band in `r ltst_year` {.toc-ignore}
 
-### Figure 9: Number of identified patients by IMD quintile by financial year {.toc-ignore}
+```{r ageband_fy, out.width="100%"}
+chart_data <- raw_data$ageband_annual %>%
+  filter(
+    FINANCIAL_YEAR == ltst_year
+  ) %>%
+  filter(PATIENT_COUNT != 0)
+  
 
-### Figure 10: Proportion of patients under/over 50 by IMD quintile {.toc-ignore}
+chart <- basic_chart_hc(
+  chart_data,
+  x = AGE_BAND,
+  y = PATIENT_COUNT,
+  type = "column",
+  xLab = "Age band",
+  yLab = "Patients",
+  title = ""
+) %>%
+  hc_tooltip(enabled = F)
+
+
+chart$x$hc_opts$series[[1]]$dataLabels$allowOverlap <- TRUE
+chart
+```
+
+### Figure 9: Number of identified patients by IMD quintile in `r ltst_year` {.toc-ignore}
+
+``` {r imd_fy, out.width = "100%"}
+chart_data <- raw_data$quintile_annual %>%
+  filter(
+    FINANCIAL_YEAR == ltst_year
+  ) %>%
+  filter(PATIENT_COUNT != 0,
+         !is.na(IMD_QUINTILE)) %>%
+  mutate(
+    IMD_QUINTILE = case_when(
+      IMD_QUINTILE == 1 ~ as.character("1 - most deprived"),
+      IMD_QUINTILE == 5 ~ as.character("5 - least deprived"),
+      TRUE ~ as.character(IMD_QUINTILE)
+    )
+  )
+  
+
+chart <- basic_chart_hc(
+  chart_data,
+  x = IMD_QUINTILE,
+  y = PATIENT_COUNT,
+  type = "column",
+  xLab = "IMD quintile",
+  yLab = "Patients",
+  title = ""
+) %>%
+  hc_tooltip(enabled = F)
+
+
+chart$x$hc_opts$series[[1]]$dataLabels$allowOverlap <- TRUE
+chart
+```
+
+### Figure 10: Proportion of patients under/over 60 by IMD quintile {.toc-ignore}
+
+``` {r imd_age, out.width = "100%"}
+chart_data <- raw_data$quintile_age_annual %>%
+  filter(
+    FINANCIAL_YEAR == ltst_year
+  ) %>%
+  filter(PATIENT_COUNT != 0,
+         !is.na(IMD_QUINTILE),
+         AGE_BAND != "Unknown") %>%
+  mutate(
+    GROUP = case_when(
+      AGE_BAND <= "55-59" ~ "Under 60",
+      TRUE ~ "Over 60"
+    )
+  ) %>%
+  group_by(
+    GROUP,
+    IMD_QUINTILE
+  ) %>%
+  summarise(
+    PATIENT_COUNT = sum(PATIENT_COUNT),
+    .groups = "drop"
+  ) %>%
+  group_by(
+    IMD_QUINTILE
+  ) %>%
+  mutate(
+    PROP = PATIENT_COUNT / sum(PATIENT_COUNT) * 100
+  ) %>%
+  ungroup() %>%
+  mutate(
+    IMD_QUINTILE = case_when(
+      IMD_QUINTILE == 1 ~ as.character("1 - most deprived"),
+      IMD_QUINTILE == 5 ~ as.character("5 - least deprived"),
+      TRUE ~ as.character(IMD_QUINTILE)
+    )
+  ) %>%
+  arrange(
+    desc(GROUP)
+  )
+  
+
+group_chart_hc(
+  chart_data,
+  x = IMD_QUINTILE,
+  y = PROP,
+  group = GROUP,
+  type = "column",
+  marker = FALSE,
+  dlOn = FALSE,
+  xLab = "IMD quintile",
+  yLab = "%",
+  title = ""
+) %>% 
+  hc_tooltip(enabled = TRUE,
+             shared = TRUE,
+             sort = TRUE) %>% 
+  hc_legend(enabled = TRUE) %>%
+  hc_tooltip(
+    valueDecimals = 1,
+    valueSuffix = "%"
+  )
+```
+
+### Figure 11: Proportion of chargeable items by financial year {.toc-ignore}
+
+``` {r charge_fy, out.width = "100%"}
+group_chart_hc(
+  raw_data$exempt_annual,
+  x = FINANCIAL_YEAR,
+  y = PROP,
+  group = CHARGE_STATUS,
+  type = "column",
+  marker = FALSE,
+  dlOn = FALSE,
+  xLab = "Financial year",
+  yLab = "%",
+  title = ""
+) %>% 
+  hc_tooltip(enabled = TRUE,
+             shared = TRUE,
+             sort = TRUE) %>% 
+  hc_legend(enabled = TRUE) %>%
+  hc_tooltip(
+    valueDecimals = 1,
+    valueSuffix = "%"
+  ) %>%
+  hc_plotOptions(
+    column = list(
+      stacking = "normal"
+    )
+  )
+```
+
+### Figure 12: Proportion of chargeable items by month {.toc-ignore}
+
+``` {r exempt_monthly, out.width = "100%"}
+group_chart_hc(
+  raw_data$exempt_monthly,
+  x = YEAR_MONTH,
+  y = PROP,
+  group = CHARGE_STATUS,
+  type = "column",
+  marker = FALSE,
+  dlOn = FALSE,
+  xLab = "Month",
+  yLab = "%",
+  title = ""
+) %>% 
+  hc_tooltip(enabled = TRUE,
+             shared = TRUE,
+             sort = TRUE) %>% 
+  hc_legend(enabled = TRUE) %>%
+  hc_tooltip(
+    valueDecimals = 1,
+    valueSuffix = "%"
+  ) %>%
+  hc_plotOptions(
+    column = list(
+      stacking = "normal"
+    )
+  ) %>%
+  hc_xAxis(type = "datetime")
+```
 
 ## 3. Background
 
@@ -485,13 +710,13 @@ This publication is part of a series by the NHSBSA. To learn more about how this
 
 ### 4.1. Patient counts {.toc-ignore}
 
-The patient counts shown in these statistics should only be analysed at the level at which they are presented. Adding together any patient counts is likely to result in an overestimate of the number of patients. A patient will be included, or counted, in each category or time period in which they received relevant prescriptions. For example, if a patient received a prescription item for an antidepressant drug in Q1 2020/21, and another in Q2 2020/21 then adding together those totals would count that patient twice. For the same reason, data on patient counts for different BNF sections should not be added together.
+The patient counts shown in these statistics should only be analysed at the level at which they are presented. Adding together any patient counts is likely to result in an overestimate of the number of patients. A patient will be included, or counted, in each category or time period in which they received relevant prescriptions. For example, if a patient received a prescription item for HRT in January 2021, and another in February 2021 then adding together those totals would count that patient twice. For the same reason, data on patient counts for different BNF sections should not be added together.
 
 ### 4.2. Averages {.toc-ignore}
 
 Where this document refers to 'average', this is the mean unless otherwise stated. This is calculated by adding the number of items/patients/months together and dividing this by the number of items/patients/months.
 
-### 4.3. Index of deprivation
+### 4.3. Index of deprivation {.toc-ignore}
 
 The English Indices of Deprivation 2019 have been used to provide a measure of patient deprivation. The English Indices of Deprivation are an official national measure of deprivation that follows an established methodological framework to capture a wide range of individuals’ living conditions.
 
