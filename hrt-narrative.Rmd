@@ -762,6 +762,32 @@ group_chart_hc(
 
 HRT, which replaces the hormones that are at low levels, is the main medicine treatment for menopause and perimenopause symptoms.
 
+### 3.1. Guidance {.toc-ignore}
+
+In November 2015 the National Institute for Health and Care Excellence (NICE) [published guidance](https://www.nice.org.uk/guidance/ng23/evidence/full-guideline-pdf-559549261) which said that HRT is effective and is very safe; discrediting previous claims about the risks of the treatment. This may have led to patients coming forward who were previously put off by stories around the treatment. [Updated guidance](https://www.nice.org.uk/guidance/indevelopment/gid-ng10241) around this is due to be released 23 August 2022.
+
+### 3.2. Media {.toc-ignore}
+
+Women are talking more about the menopause and therefore finding out that help is available. High profile celebrities have talked about their experiences of the menopause. In May 2021 a HRT documentary featuring Davina McCall, “Davina McCall: Sex, Myths, and the Menopause” (Channel 4), aired. This has helped women realise that they should no longer suffer in silence and may explain some of the rise in demand for HRT.
+
+### 3.3. Shortages {.toc-ignore}
+
+[The Royal College of Obstetricians and Gynaecologists (RCOG)](https://www.rcog.org.uk/for-the-public/menopause-and-later-life/), the [British Menopause Society (BMS)](https://thebms.org.uk/) and the [Faculty of Sexual and Reproductive Healthcare (FSRH)](https://www.fsrh.org/home/) issued a [joint statement](https://patient.info/news-and-features/why-is-there-an-hrt-shortage-in-the-uk?msclkid=38fdee8ac73111ec93f0238731829617) in August 2019 highlighting concerns that some women across the UK were unable to obtain their prescriptions due to shortages of HRT products. A failure to deal with shortages, coupled with the impact of COVID-related global supply problems means that many women are extremely concerned about not being able to get access to this vital medication.
+
+Serious Shortage Protocols (SSPs) issued for three HRT products: 
+
+* Oestragel
+* Ovestin Cream 
+* Premique Low Dose 
+
+All were [limited to three months dispensing](https://www.gov.uk/government/news/three-month-limit-for-three-hrt-products-to-ensure-continued-access) in response to supply issues. Patients given a prescription covering longer than this three month period will only have to pay one prescription charge. These SSPs cover a period from 29 Apr 2022 to 29 Jul 2022, and are in addition to [other HRT products under SSPs](https://www.nhsbsa.nhs.uk/pharmacies-gp-practices-and-appliance-contractors/serious-shortage-protocols-ssps).
+
+### 3.4. Costs {.toc-ignore}
+
+Currently, a prescription for HRT costs £9.35 – or £18.70 if a woman needs two types of hormones. This is often only provided on a short-term basis, meaning that the cost has to be paid regularly, once a month or every three months.
+
+Pharmacy minister Maria Caulfield has clarified some arrangements for reducing the cost of hormone replacement therapy (HRT) prescriptions. In a [parliamentary answer](https://questions-statements.parliament.uk/written-questions/detail/2022-03-29/149441) to Stockton South MP Matt Vickers, she said that from April 2023, annual prescription prepayment certificate for HRTs will be available for the cost of two single prescription items at £18.70.
+
 ## 4. About these statistics
 
 This publication is part of a series by the NHSBSA. To learn more about how this series compares to our other publications, you can view the Official Statistics guidance table on our [statistical collections page](https://www.nhsbsa.nhs.uk/statistical-collections). 
