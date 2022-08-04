@@ -762,8 +762,6 @@ group_chart_hc(
 
 HRT, which replaces the hormones that are at low levels, is the main medicine treatment for menopause and perimenopause symptoms.
 
-
-
 ## 4. About these statistics
 
 This publication is part of a series by the NHSBSA. To learn more about how this series compares to our other publications, you can view the Official Statistics guidance table on our [statistical collections page](https://www.nhsbsa.nhs.uk/statistical-collections). 
