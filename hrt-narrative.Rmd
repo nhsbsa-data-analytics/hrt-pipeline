@@ -640,8 +640,34 @@ group_chart_hc(
 ### Figure 11: Proportion of chargeable items by financial year {.toc-ignore}
 
 ``` {r charge_fy, out.width = "100%"}
+chart_data <- raw_data$exempt_annual %>%
+  filter(
+    CHARGE_STATUS != "Null Charge Status"
+  ) %>%
+  mutate(
+    CHARGE_STATUS = case_when(
+      CHARGE_STATUS %in% c("Chargeable at Current Rate", "Chargeable at Previous Rate") ~ "Charged",
+      TRUE ~ CHARGE_STATUS
+    )
+  ) %>%
+  group_by(
+    FINANCIAL_YEAR,
+    CHARGE_STATUS
+  ) %>%
+  summarise(
+    ITEM_COUNT = sum(ITEM_COUNT, na.rm = T),
+    .groups = "drop"
+  ) %>%
+  group_by(
+    FINANCIAL_YEAR
+  ) %>%
+  mutate(
+    PROP = ITEM_COUNT / sum(ITEM_COUNT, na.rm = T) * 100
+  ) %>%
+  ungroup()
+
 group_chart_hc(
-  raw_data$exempt_annual,
+  chart_data,
   x = FINANCIAL_YEAR,
   y = PROP,
   group = CHARGE_STATUS,
@@ -670,15 +696,47 @@ group_chart_hc(
 ### Figure 12: Proportion of chargeable items by month {.toc-ignore}
 
 ``` {r exempt_monthly, out.width = "100%"}
+chart_data <- raw_data$exempt_monthly %>%
+  filter(
+    YEAR_MONTH >= lt_st_month_min
+  ) %>%
+  filter(
+    CHARGE_STATUS != "Null Charge Status"
+  ) %>%
+  mutate(
+    CHARGE_STATUS = case_when(
+      CHARGE_STATUS %in% c("Chargeable at Current Rate", "Chargeable at Previous Rate") ~ "Charged",
+      TRUE ~ CHARGE_STATUS
+    )
+  ) %>%
+  group_by(
+    YEAR_MONTH,
+    CHARGE_STATUS
+  ) %>%
+  summarise(
+    ITEM_COUNT = sum(ITEM_COUNT, na.rm = T),
+    .groups = "drop"
+  ) %>%
+  group_by(
+    YEAR_MONTH
+  ) %>%
+  mutate(
+    PROP = ITEM_COUNT / sum(ITEM_COUNT, na.rm = T) * 100
+  ) %>%
+  ungroup() %>%
+  mutate(
+    YEAR_MONTH = base::as.Date(as.character(paste0(YEAR_MONTH,"01")), format = "%Y%m%d")
+  )
+
 group_chart_hc(
-  raw_data$exempt_monthly,
+  chart_data,
   x = YEAR_MONTH,
   y = PROP,
   group = CHARGE_STATUS,
   type = "column",
   marker = FALSE,
   dlOn = FALSE,
-  xLab = "Month",
+  xLab = "Financial year",
   yLab = "%",
   title = ""
 ) %>% 
@@ -695,7 +753,9 @@ group_chart_hc(
       stacking = "normal"
     )
   ) %>%
-  hc_xAxis(type = "datetime")
+  hc_xAxis(
+    type = "datetime"
+  )
 ```
 
 ## 3. Background
