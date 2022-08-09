@@ -1,0 +1,892 @@
+---
+title: "Hormone replacement therapy (HRT)"
+pagetitle: HRT England monthly summary
+always_allow_html: true
+output:
+  word_document:
+    toc: yes
+    toc_depth: '3'
+  html_document:
+    anchor_sections: no
+    css: www/style.css
+    toc: yes
+    toc_depth: 3
+    toc_float:
+      collapsed: no
+---
+
+<script>
+   $(document).ready(function() {
+    $('#header').prepend('<img src=`r knitr::image_uri("www/bsa_logo.svg")` alt=\"NHSBSA logo\" style=\"position:relative; float: right; top: 0; right: 0; padding: 10px; width: 25%;\">');
+  });
+</script>
+
+  <style type="text/css">
+
+  body, td {
+    font-size: 16px;
+    font-family: sans-serif;
+  }
+</style>
+  <html lang="en">
+
+```{r setup, include=FALSE}
+# set code chunk options to disable echo by default
+knitr::opts_chunk$set(echo = FALSE,
+                      warning = FALSE,
+                      message = FALSE)
+
+```
+
+<main>
+
+# England April 2015 to `r ltst_month_tidy` {.toc-ignore}
+
+Published TBC
+
+## Key findings
+
+* key finding 1
+
+---
+
+## 1. Introduction
+### 1.1. Scope {.toc-ignore} 
+
+Hormone replacement therapy (HRT) is a treatment to relieve symptoms of the menopause. It replaces hormones that are at a lower level as you approach the menopause.
+
+This publication aims to describe the prescribing of HRT medications in England that are subsequently dispensed in the community in England, Scotland, Wales, Isle of Man or the Channel Islands by a pharmacy, appliance contractor, dispensing doctor, or have been personally administered by a GP practice. They do not include data on medicines used in secondary care, prisons, or issued by a private prescriber.
+
+These statistics detail:
+
+* the total number of prescription items issued for drugs used in diabetes
+* the number of identified patients that have received prescribing for these drugs
+* demographic breakdowns of prescribing by age group
+* demographic breakdowns by sex
+* demographic breakdowns by a measure of deprivation.
+
+The costs associated with the provision of these medicines are not discussed in this summary. However, they are available within the supporting summary tables that accompany this release.
+
+These statistics use the BNF therapeutic classifications defined in the British National Formulary (BNF) using the classification system prior to BNF edition 70. Each January the NHSBSA updates the classification of drugs within the BNF hierarchy which may involve some drugs changing classification between years of data. Two paragraphs of the British National Formulary (BNF) are covered within these statistics:
+
+* female sex hormones and their modulators
+* preparations for vaginal and vulval changes
+
+These medicines are classified by their primary therapeutic indication. However, it is possible that they can be prescribed for other reasons outside of this primary therapeutic indication. For example, the  treatment of gender dysphoria. The clinical indication of a prescription is not captured by NHSBSA during processing, and therefore we cannot determine the reason that a prescription was issued. 
+
+### 1.2. Definitions {.toc-ignore}
+
+Throughout this publication the term ‘item’, short for ‘prescription item’, means a single instance of a drug that is listed as a separate entry on a prescription form. For example, Fluoxetine 20mg tablets x56.
+
+In this release the term 'patient/s' is used to mean a unique, valid NHS number that has been captured from a prescription form and subsequently verified by the NHS Personal Demographics Service (PDS). Across 2020/21, use of the Electronic Prescription Service (EPS) increased considerably during the COVID-19 pandemic. As this process captures NHS numbers digitally rather than through scanned paper forms, this has naturally led to an increase in the proportions of identified patients for both 2020/21 and 2021/22 than seen in previous years.
+
+There are many costs incurred when a dispensing contractor fulfils a prescription, such as the single activity fee or controlled drug fees. The costs reported in this publication represent the basic price of the item and the quantity prescribed. This is sometimes called the 'Net Ingredient Cost' (NIC). The basic price is given either in the Drug Tariff or is determined from prices published by manufacturers, wholesalers or suppliers. Basic price is set out in Parts VIII and IX of the [Drug Tariff](https://www.nhsbsa.nhs.uk/pharmacies-gp-practices-and-appliance-contractors/drug-tariff). For any drugs not in Part VIII, the price is usually taken from the manufacturer, wholesaler or supplier of the product.
+
+### 1.3. Time periods {.toc-ignore}
+
+This publication presents data from April 2015 to `r ltst_month_tidy`, the most recent available.
+
+### 1.4. Patient identification {.toc-ignore}
+
+When the NHSBSA processes prescriptions, the NHS number of the patient is identified for most, but not all, prescriptions. The proportion of items for which a patient could be identified is shown in Table 1. This means that data relating to patient counts represents most, but not all, patients. 
+
+These statistics do not contain any personally identifiable data. More details on the statistical disclosure control applied to these statistics is available in section 5 of this summary. More information about how the NHSBSA protects personal information can be found in the [statement on confidentiality and access](https://www.nhsbsa.nhs.uk/policies-and-procedures).
+
+#### Table 1: The proportion of items for which an NHS number was recorded for listed BNF paragraphs
+
+```{r pat_ident_rates, out.width="100%"}
+#get column with max full fy data
+max_col <- grep(ltst_year, colnames(raw_data$pi_table_annual))
+#get this number plus previous 4
+seq <- seq(max_col - 4, max_col)
+#get number of columns
+cols <- length(seq) + 2
+
+raw_data$pi_table_annual %>%
+  select(1,2,unlist(as.numeric(seq))) %>%
+  mutate(across(where(is.numeric), ~ runif(1,80,100))) %>%
+  mutate_if(is.numeric, round, 2) %>%
+  mutate_if(is.numeric, paste0, "%") %>%
+  DT::datatable(
+    rownames = FALSE,
+    options = list(dom = "t",
+                   columnDefs = list(list(orderable = FALSE,
+                                          targets = "_all"),
+                                     list(className = "dt-left", targets = 0:1),
+                                     list(className = "dt-right", 
+                                          targets = 2:cols-1)))
+  )
+
+```
+
+---
+
+## 2. Results and commentary
+
+### Figure 1: Number of prescribed items and identified patients by financial year {.toc-ignore}
+
+```{r annual_summary, out.width="100%"}
+raw_data$national_annual %>%
+  dplyr::group_by(FINANCIAL_YEAR) %>% 
+  dplyr::summarise(`Prescribed items` = sum(ITEM_COUNT),
+                   `Identified patients` = sum(PATIENT_COUNT),
+                   .groups = "drop") %>% 
+  tidyr::pivot_longer(cols = c(`Identified patients`,`Prescribed items`),
+                      names_to = "measure",
+                      values_to = "value") %>% 
+  dplyr::mutate(value = signif(value, 3)) %>% 
+  dplyr::arrange(desc(measure)) %>%
+  mutate(across(where(is.numeric), ~ sample(1000000:2000000, n(), replace = TRUE))) %>%
+  group_chart_hc(
+    x = FINANCIAL_YEAR,
+    y = value,
+    group = measure,
+    type = "line",
+    marker = FALSE,
+    dlOn = FALSE,
+    xLab = "Financial year",
+    yLab = "Volume",
+    title = ""
+  ) %>% 
+  hc_tooltip(enabled = TRUE,
+             shared = TRUE,
+             sort = TRUE) %>% 
+  hc_legend(enabled = TRUE) 
+ 
+
+```
+
+Source: [Financial Year Summary Tables - National Totals table](https://nhsbsa-opendata.s3.eu-west-2.amazonaws.com/hrt/hrt_financial_year_2021_2022_v001.xlsx)
+
+NARRATIVE HERE
+
+### Figure 2: Number of prescribed items and identified patients by month {.toc-ignore}
+
+```{r monthly_summary, out.width="100%"}
+raw_data$national_monthly %>%
+    filter(YEAR_MONTH >= lt_st_month_min) %>%
+    dplyr::group_by(YEAR_MONTH) %>% 
+    dplyr::summarise(`Prescribed items` = sum(ITEM_COUNT),
+                     `Identified patients` = sum(PATIENT_COUNT),
+                     .groups = "drop") %>% 
+    tidyr::pivot_longer(cols = c(`Identified patients`,`Prescribed items`),
+                        names_to = "measure",
+                        values_to = "value") %>% 
+    dplyr::mutate(value = signif(value, 3)) %>% 
+    dplyr::arrange(desc(measure)) %>%
+    mutate(
+      YEAR_MONTH = base::as.Date(as.character(paste0(YEAR_MONTH,"01")), format = "%Y%m%d")
+    ) %>%
+    mutate(across(where(is.numeric), ~ sample(100000:700000, n(), replace = TRUE))) %>%
+    group_chart_hc(
+      x = YEAR_MONTH,
+      y = value,
+      group = measure,
+      type = "line",
+      marker = FALSE,
+      dlOn = FALSE,
+      xLab = "Month",
+      yLab = "Volume",
+      title = ""
+    ) %>% 
+    hc_tooltip(enabled = TRUE,
+               shared = TRUE,
+               sort = TRUE) %>% 
+    hc_legend(enabled = TRUE) %>%
+    hc_xAxis(type = "datetime")
+
+  
+```
+
+Source: [Monthly Summary Tables - National Totals table](https://nhsbsa-opendata.s3.eu-west-2.amazonaws.com/hrt/hrt_monthly_May_2022_v001.xlsx)
+
+NARRATIVE HERE
+
+### Figure 3: Number of prescribed items and identified patients by financial year and BNF chapter {.toc-ignore}
+
+```{r, figures-side, fig.show="hold", out.width="50%"}
+chart_1 <- raw_data$national_par_annual %>%
+  filter(PARAGRAPH_CODE == "060401") %>%
+  group_by(FINANCIAL_YEAR) %>%
+  dplyr::summarise(`Prescribed items` = sum(ITEM_COUNT),
+                   `Identified patients` = sum(PATIENT_COUNT),
+                   .groups = "drop") %>% 
+  tidyr::pivot_longer(cols = c(`Identified patients`,`Prescribed items`),
+                      names_to = "measure",
+                      values_to = "value") %>% 
+  dplyr::mutate(value = signif(value, 3)) %>% 
+  dplyr::arrange(desc(measure)) %>%
+  mutate(across(where(is.numeric), ~ sample(100000:700000, n(), replace = TRUE))) %>%
+  group_chart_hc(
+    x = FINANCIAL_YEAR,
+    y = value,
+    group = measure,
+    type = "line",
+    marker = FALSE,
+    dlOn = FALSE,
+    xLab = "Financial year",
+    yLab = "Volume",
+    title = "BNF Chapter - 060401"
+  ) %>% 
+  hc_tooltip(enabled = TRUE,
+             shared = TRUE,
+             sort = TRUE) %>% 
+  hc_legend(enabled = TRUE) %>%
+  hc_title(align = "left")
+
+chart_2 <- raw_data$national_par_annual %>%
+  filter(PARAGRAPH_CODE == "070201") %>%
+  group_by(FINANCIAL_YEAR) %>%
+  dplyr::summarise(`Prescribed items` = sum(ITEM_COUNT),
+                   `Identified patients` = sum(PATIENT_COUNT),
+                   .groups = "drop") %>% 
+  tidyr::pivot_longer(cols = c(`Identified patients`,`Prescribed items`),
+                      names_to = "measure",
+                      values_to = "value") %>% 
+  dplyr::mutate(value = signif(value, 3)) %>% 
+  dplyr::arrange(desc(measure)) %>%
+  mutate(across(where(is.numeric), ~ sample(100000:700000, n(), replace = TRUE))) %>%
+  group_chart_hc(
+    x = FINANCIAL_YEAR,
+    y = value,
+    group = measure,
+    type = "line",
+    marker = FALSE,
+    dlOn = FALSE,
+    xLab = "Financial year",
+    yLab = "Volume",
+    title = "BNF Chapter - 070201"
+  ) %>% 
+  hc_tooltip(enabled = TRUE,
+             shared = TRUE,
+             sort = TRUE) %>% 
+  hc_legend(enabled = TRUE)%>%
+  hc_title(align = "left")
+
+
+hw_grid(chart_1, chart_2)
+
+```
+
+NARRATIVE HERE
+
+### Figure 4: Number of identified patients by financial year for selected BNF chemical substances {.toc-ignore}
+
+```{r annual_chem_sub, out.width="100%"}
+chart_data <- raw_data$chem_sub_annual %>%
+    filter(
+      CHEM_SUB_NAME %in% c("Estradiol", "Estriol", "Estradiol with progestogen", "Progesterone", "Norethisterone")
+    ) %>%
+    mutate(CHEM_SUB = paste0(CHEM_SUB_NAME, " - ", CHEM_SUB_CODE)) %>%
+    select(1, 12, 9) %>%
+    filter(
+      PATIENT_COUNT > 0
+    ) %>%
+    mutate(across(where(is.numeric), ~ sample(1000000:2000000, n(), replace = TRUE)))
+
+chart_data %>%
+  group_chart_hc(
+    x = FINANCIAL_YEAR,
+    y = PATIENT_COUNT,
+    group = CHEM_SUB,
+    type = "line",
+    marker = FALSE,
+    dlOn = FALSE,
+    xLab = "Financial year",
+    yLab = "Volume",
+    title = ""
+  ) %>% 
+  hc_tooltip(enabled = TRUE,
+             shared = TRUE,
+             sort = TRUE) %>% 
+  hc_legend(enabled = TRUE)%>%
+  hc_title(align = "left")
+
+```
+
+NARRATIVE HERE
+
+### Figure 5: Number of prescribed items by financial year for selected BNF chemical substances {.toc-ignore}
+
+```{r chem_sub_items, out.width="100%"}
+chart_data <- raw_data$chem_sub_annual %>%
+  filter(
+    CHEM_SUB_NAME %in% c("Estradiol", "Estriol", "Estradiol with progestogen", "Progesterone", "Norethisterone")
+  ) %>%
+  mutate(CHEM_SUB = paste0(CHEM_SUB_NAME, " - ", CHEM_SUB_CODE)) %>%
+  filter(CHEM_SUB != "Estriol - 0604011M0") %>%
+  select(1, 12, 10) %>%
+  group_by(FINANCIAL_YEAR, CHEM_SUB) %>%
+  summarise(total = sum(ITEM_COUNT, na.rm = T)) %>%
+  mutate(across(where(is.numeric), ~ sample(1000000:2000000, n(), replace = TRUE)))
+  
+chart_data %>%
+  group_chart_hc(
+    x = FINANCIAL_YEAR,
+    y = total,
+    group = CHEM_SUB,
+    type = "line",
+    marker = FALSE,
+    dlOn = FALSE,
+    xLab = "Financial year",
+    yLab = "Volume",
+    title = ""
+  ) %>% 
+  hc_tooltip(enabled = TRUE,
+             shared = TRUE,
+             sort = TRUE) %>% 
+  hc_legend(enabled = TRUE)%>%
+  hc_title(align = "left")
+
+```
+
+NARRATIVE HERE
+
+### Table 2: Top 10 presentations by prescribed items in `r ltst_year`{.toc-ignore}
+
+``` {r top_pres_fy, out.width = "100%"}
+  raw_data$presentation_annual %>%
+    filter(FINANCIAL_YEAR == ltst_year) %>%
+    top_n(10, ITEM_COUNT) %>%
+    arrange(desc(ITEM_COUNT)) %>%
+    select(9, 12, 13, 14, 15) %>%
+    rename(
+      "BNF Presentation Name" = 1,
+      "Unit of Measure" = 2,
+      "Total Quantity" = 3,
+      "Total Items" = 4,
+      "Total Net Ingredient Cost (GBP)" = 5
+    ) %>%
+    mutate(across(where(is.numeric), ~ sample(1000000:2000000, n(), replace = TRUE))) %>%
+    mutate(
+      `Total Quantity` = formatC(
+        signif(`Total Quantity`, 3),
+        big.mark = ",",
+        format = "d"
+      ),
+      `Total Items` = formatC(
+        signif(`Total Items`, 3),
+        big.mark = ",",
+        format = "d"
+      ),
+      `Total Net Ingredient Cost (GBP)` = formatC(
+        signif(`Total Net Ingredient Cost (GBP)`, 3),
+        big.mark = ",",
+        format = "d"
+      ),
+    ) %>%
+    DT::datatable(rownames = FALSE,
+                  options = list(dom = "t",
+                                 columnDefs = list(
+                                   list(orderable = FALSE,
+                                        targets = "_all"),
+                                   list(className = "dt-left", targets = 0:1),
+                                   list(className = "dt-right",
+                                        targets = 2:4)
+                                 )))
+
+```
+
+NARRATIVE HERE
+
+### Table 3: Top 10 presentations by prescribed items in `r ltst_month_tidy` {.toc-ignore}
+
+```{r top_pres_month, out.width="100%"}
+raw_data$presentation_monthly %>%
+  filter(YEAR_MONTH == ltst_month) %>%
+  top_n(10, ITEM_COUNT) %>%
+  arrange(desc(ITEM_COUNT)) %>%
+  select(10, 13, 14, 15, 16) %>%
+  rename(
+    "BNF Presentation Name" = 1,
+    "Unit of Measure" = 2,
+    "Total Quantity" = 3,
+    "Total Items" = 4,
+    "Total Net Ingredient Cost (GBP)" = 5
+  ) %>%
+  mutate(across(where(is.numeric), ~ sample(1000000:2000000, n(), replace = TRUE))) %>%
+  mutate(
+    `Total Quantity` = formatC(
+      signif(`Total Quantity`, 3),
+      big.mark = ",",
+      format = "d"
+    ),
+    `Total Items` = formatC(
+      signif(`Total Items`, 3),
+      big.mark = ",",
+      format = "d"
+    ),
+    `Total Net Ingredient Cost (GBP)` = formatC(
+      signif(`Total Net Ingredient Cost (GBP)`, 3),
+      big.mark = ",",
+      format = "d"
+    ),
+  ) %>%
+  DT::datatable(rownames = FALSE,
+                options = list(dom = "t",
+                               columnDefs = list(
+                                 list(orderable = FALSE,
+                                      targets = "_all"),
+                                 list(className = "dt-left", targets = 0:1),
+                                 list(className = "dt-right",
+                                      targets = 2:4)
+                               )))
+```
+
+### Figure 6: Identified patients per 1,000 population by Integrated Care Board (ICB) in `r ltst_year` {.toc-ignore}
+
+```{r patients_per_100, out.width = "100%"}
+  chart_data <- raw_data$icb_annual %>%
+    filter(
+      FINANCIAL_YEAR == ltst_year,
+      PATIENT_COUNT != 0
+    ) %>%
+    left_join(
+      stp_pop,
+      by = c("STP_CODE" = "STP21CDH")
+    ) %>%
+    select(1, 4,5,7,12) %>%
+    mutate(PATIENT_COUNT = sample(100000:200000, n(), replace = TRUE)) %>%
+    mutate(
+      PER_1000 = round(PATIENT_COUNT / POP * 1000, 1)
+    ) %>%
+    arrange(desc(PER_1000))
+
+chart <- basic_chart_hc(
+  chart_data,
+  x = STP_CODE,
+  y = PER_1000,
+  type = "column",
+  xLab = "ICB code",
+  yLab = "Patients",
+  title = ""
+) %>%
+  hc_tooltip(enabled = T,
+             formatter = JS("function(){
+                            var result = this.point.STP_NAME
+                            return result
+             }"))
+chart$x$hc_opts$series[[1]]$dataLabels$formatter <- JS("function(){
+                                                       var ynum = this.point.PER_1000;
+                                                       result = ynum.toFixed(0);
+                                                       return result
+}")
+
+chart$x$hc_opts$series[[1]]$dataLabels$allowOverlap <- TRUE
+chart
+```
+
+NARRATIVE HERE
+
+### Figure 7: Prescribed items per 1,000 population by Integrated Care Board (ICB) in `r ltst_year` {.toc-ignore}
+
+```{r items_per_1000, out.width="100%"}
+chart_data <- raw_data$icb_annual %>%
+  filter(
+    FINANCIAL_YEAR == ltst_year
+  ) %>%
+  group_by(
+    STP_NAME,
+    STP_CODE
+  ) %>%
+  summarise(
+    ITEM_COUNT = sum(ITEM_COUNT, na.rm = T),
+    .groups = "drop"
+  ) %>%
+  left_join(
+    stp_pop,
+    by = c("STP_CODE" = "STP21CDH")
+  ) %>%
+  select(1,2, 3, 6) %>%
+  mutate(ITEM_COUNT = sample(100000:200000, n(), replace = TRUE)) %>%
+  mutate(
+    PER_1000 = round(ITEM_COUNT / POP * 1000, 1)
+  ) %>%
+  arrange(desc(PER_1000))
+
+chart <- basic_chart_hc(
+  chart_data,
+  x = STP_CODE,
+  y = PER_1000,
+  type = "column",
+  xLab = "ICB code",
+  yLab = "Items",
+  title = ""
+) %>%
+  hc_tooltip(enabled = T,
+             formatter = JS("function(){
+                            var result = this.point.STP_NAME
+                            return result
+             }"))
+chart$x$hc_opts$series[[1]]$dataLabels$formatter <- JS("function(){
+                                                       var ynum = this.point.PER_1000;
+                                                       result = ynum.toFixed(0);
+                                                       return result
+}")
+
+chart$x$hc_opts$series[[1]]$dataLabels$allowOverlap <- TRUE
+chart
+```
+
+### Figure 8: Number of identified patients by age band in `r ltst_year` {.toc-ignore}
+
+```{r ageband_fy, out.width="100%"}
+chart_data <- raw_data$ageband_annual %>%
+  filter(FINANCIAL_YEAR == ltst_year) %>%
+  filter(PATIENT_COUNT != 0) %>%
+  mutate(across(where(is.numeric), ~ sample(1000:750000, n(), replace = TRUE)))
+
+
+chart <- basic_chart_hc(
+  chart_data,
+  x = AGE_BAND,
+  y = PATIENT_COUNT,
+  type = "column",
+  xLab = "Age band",
+  yLab = "Patients",
+  title = ""
+) %>%
+  hc_tooltip(enabled = F)
+
+
+chart$x$hc_opts$series[[1]]$dataLabels$allowOverlap <- TRUE
+chart
+```
+
+NARRATIVE HERE
+
+### Figure 9: Number of identified patients by IMD quintile in `r ltst_year` {.toc-ignore}
+
+``` {r imd_fy, out.width = "100%"}
+chart_data <- raw_data$quintile_annual %>%
+  filter(FINANCIAL_YEAR == ltst_year) %>%
+  filter(PATIENT_COUNT != 0,!is.na(IMD_QUINTILE)) %>%
+  mutate(
+    IMD_QUINTILE = case_when(
+      IMD_QUINTILE == 1 ~ as.character("1 - most deprived"),
+      IMD_QUINTILE == 5 ~ as.character("5 - least deprived"),
+      TRUE ~ as.character(IMD_QUINTILE)
+    )
+  ) %>%
+  mutate(across(where(is.numeric), ~ sample(10000:750000, n(), replace = TRUE)))
+
+
+chart <- basic_chart_hc(
+  chart_data,
+  x = IMD_QUINTILE,
+  y = PATIENT_COUNT,
+  type = "column",
+  xLab = "IMD quintile",
+  yLab = "Patients",
+  title = ""
+) %>%
+  hc_tooltip(enabled = F)
+
+
+chart$x$hc_opts$series[[1]]$dataLabels$allowOverlap <- TRUE
+chart
+```
+
+NARRATIVE HERE
+
+### Figure 10: Proportion of patients under/over 60 by IMD quintile {.toc-ignore}
+
+``` {r imd_age, out.width = "100%"}
+  chart_data <- raw_data$quintile_age_annual %>%
+    filter(
+      FINANCIAL_YEAR == ltst_year
+    ) %>%
+    filter(PATIENT_COUNT != 0,
+           !is.na(IMD_QUINTILE),
+           AGE_BAND != "Unknown") %>%
+    mutate(
+      GROUP = case_when(
+        AGE_BAND <= "55-59" ~ "Under 60",
+        TRUE ~ "Over 60"
+      )
+    ) %>%
+    group_by(
+      GROUP,
+      IMD_QUINTILE
+    ) %>%
+    summarise(
+      PATIENT_COUNT = sum(PATIENT_COUNT),
+      .groups = "drop"
+    ) %>%
+    mutate(
+      IMD_QUINTILE = case_when(
+        IMD_QUINTILE == 1 ~ as.character("1 - most deprived"),
+        IMD_QUINTILE == 5 ~ as.character("5 - least deprived"),
+        TRUE ~ as.character(IMD_QUINTILE)
+      )
+    ) %>%
+    mutate(across(where(is.numeric), ~ sample(75000:750000, n(), replace = TRUE))) %>%
+    group_by(
+      IMD_QUINTILE
+    ) %>%
+    mutate(
+      PROP = PATIENT_COUNT / sum(PATIENT_COUNT) * 100
+    ) %>%
+    ungroup() %>%
+    arrange(
+      desc(GROUP)
+    )
+  
+  
+  group_chart_hc(
+    chart_data,
+    x = IMD_QUINTILE,
+    y = PROP,
+    group = GROUP,
+    type = "column",
+    marker = FALSE,
+    dlOn = FALSE,
+    xLab = "IMD quintile",
+    yLab = "%",
+    title = ""
+  ) %>% 
+    hc_tooltip(enabled = TRUE,
+               shared = TRUE,
+               sort = TRUE) %>% 
+    hc_legend(enabled = TRUE) %>%
+    hc_tooltip(
+      valueDecimals = 1,
+      valueSuffix = "%"
+    )%>%
+    hc_plotOptions(
+      column = list(
+        stacking = "normal"
+      )
+    )
+```
+
+### Figure 11: Proportion of chargeable items by financial year {.toc-ignore}
+
+``` {r charge_fy, out.width = "100%"}
+  chart_data <- raw_data$exempt_annual %>%
+    filter(
+      CHARGE_STATUS != "Null Charge Status"
+    ) %>%
+    mutate(
+      CHARGE_STATUS = case_when(
+        CHARGE_STATUS %in% c("Chargeable at Current Rate", "Chargeable at Previous Rate") ~ "Charged",
+        TRUE ~ CHARGE_STATUS
+      )
+    ) %>%
+    group_by(
+      FINANCIAL_YEAR,
+      CHARGE_STATUS
+    ) %>%
+    summarise(
+      ITEM_COUNT = sum(ITEM_COUNT, na.rm = T),
+      .groups = "drop"
+    ) %>%
+    mutate(across(where(is.numeric), ~ sample(75000:750000, n(), replace = TRUE))) %>%
+    group_by(
+      FINANCIAL_YEAR
+    ) %>%
+    mutate(
+      PROP = ITEM_COUNT / sum(ITEM_COUNT, na.rm = T) * 100
+    ) %>%
+    ungroup()
+  
+  group_chart_hc(
+    chart_data,
+    x = FINANCIAL_YEAR,
+    y = PROP,
+    group = CHARGE_STATUS,
+    type = "column",
+    marker = FALSE,
+    dlOn = FALSE,
+    xLab = "Financial year",
+    yLab = "%",
+    title = ""
+  ) %>% 
+    hc_tooltip(enabled = TRUE,
+               shared = TRUE,
+               sort = TRUE) %>% 
+    hc_legend(enabled = TRUE) %>%
+    hc_tooltip(
+      valueDecimals = 1,
+      valueSuffix = "%"
+    ) %>%
+    hc_plotOptions(
+      column = list(
+        stacking = "normal"
+      )
+    )
+```
+
+### Figure 12: Proportion of chargeable items by month {.toc-ignore}
+
+``` {r exempt_monthly, out.width = "100%"}
+chart_data <- raw_data$exempt_monthly %>%
+    filter(
+      YEAR_MONTH >= lt_st_month_min
+    ) %>%
+    filter(
+      CHARGE_STATUS != "Null Charge Status"
+    ) %>%
+    mutate(
+      CHARGE_STATUS = case_when(
+        CHARGE_STATUS %in% c("Chargeable at Current Rate", "Chargeable at Previous Rate") ~ "Charged",
+        TRUE ~ CHARGE_STATUS
+      )
+    ) %>%
+    group_by(
+      YEAR_MONTH,
+      CHARGE_STATUS
+    ) %>%
+    mutate(
+      YEAR_MONTH = base::as.Date(as.character(paste0(YEAR_MONTH,"01")), format = "%Y%m%d")
+    ) %>%
+    summarise(
+      ITEM_COUNT = sum(ITEM_COUNT, na.rm = T),
+      .groups = "drop"
+    ) %>%
+    mutate(across(where(is.numeric), ~ sample(75000:750000, n(), replace = TRUE))) %>%
+    group_by(
+      YEAR_MONTH
+    ) %>%
+    mutate(
+      PROP = ITEM_COUNT / sum(ITEM_COUNT, na.rm = T) * 100
+    ) %>%
+    ungroup() 
+  
+  group_chart_hc(
+    chart_data,
+    x = YEAR_MONTH,
+    y = PROP,
+    group = CHARGE_STATUS,
+    type = "column",
+    marker = FALSE,
+    dlOn = FALSE,
+    xLab = "Financial year",
+    yLab = "%",
+    title = ""
+  ) %>% 
+    hc_tooltip(enabled = TRUE,
+               shared = TRUE,
+               sort = TRUE) %>% 
+    hc_legend(enabled = TRUE) %>%
+    hc_tooltip(
+      valueDecimals = 1,
+      valueSuffix = "%"
+    ) %>%
+    hc_plotOptions(
+      column = list(
+        stacking = "normal"
+      )
+    ) %>%
+    hc_xAxis(
+      type = "datetime"
+    )
+```
+
+## 3. Background
+
+HRT, which replaces the hormones that are at low levels, is the main medicine treatment for menopause and perimenopause symptoms.
+
+### 3.1. Guidance {.toc-ignore}
+
+In November 2015 the National Institute for Health and Care Excellence (NICE) [published guidance](https://www.nice.org.uk/guidance/ng23/evidence/full-guideline-pdf-559549261) which said that HRT is effective and is very safe; discrediting previous claims about the risks of the treatment. This may have led to patients coming forward who were previously put off by stories around the treatment. [Updated guidance](https://www.nice.org.uk/guidance/indevelopment/gid-ng10241) around this is due to be released 23 August 2022.
+
+### 3.2. Media {.toc-ignore}
+
+Women are talking more about the menopause and therefore finding out that help is available. High profile celebrities have talked about their experiences of the menopause. In May 2021 a HRT documentary featuring Davina McCall, “Davina McCall: Sex, Myths, and the Menopause” (Channel 4), aired. This has helped women realise that they should no longer suffer in silence and may explain some of the rise in demand for HRT.
+
+### 3.3. Shortages {.toc-ignore}
+
+[The Royal College of Obstetricians and Gynaecologists (RCOG)](https://www.rcog.org.uk/for-the-public/menopause-and-later-life/), the [British Menopause Society (BMS)](https://thebms.org.uk/) and the [Faculty of Sexual and Reproductive Healthcare (FSRH)](https://www.fsrh.org/home/) issued a [joint statement](https://patient.info/news-and-features/why-is-there-an-hrt-shortage-in-the-uk?msclkid=38fdee8ac73111ec93f0238731829617) in August 2019 highlighting concerns that some women across the UK were unable to obtain their prescriptions due to shortages of HRT products. A failure to deal with shortages, coupled with the impact of COVID-related global supply problems means that many women are extremely concerned about not being able to get access to this vital medication.
+
+Serious Shortage Protocols (SSPs) issued for three HRT products: 
+
+* Oestragel
+* Ovestin Cream 
+* Premique Low Dose 
+
+All were [limited to three months dispensing](https://www.gov.uk/government/news/three-month-limit-for-three-hrt-products-to-ensure-continued-access) in response to supply issues. Patients given a prescription covering longer than this three month period will only have to pay one prescription charge. These SSPs cover a period from 29 Apr 2022 to 29 Jul 2022, and are in addition to [other HRT products under SSPs](https://www.nhsbsa.nhs.uk/pharmacies-gp-practices-and-appliance-contractors/serious-shortage-protocols-ssps).
+
+### 3.4. Costs {.toc-ignore}
+
+Currently, a prescription for HRT costs £9.35 – or £18.70 if a woman needs two types of hormones. This is often only provided on a short-term basis, meaning that the cost has to be paid regularly, once a month or every three months.
+
+Pharmacy minister Maria Caulfield has clarified some arrangements for reducing the cost of hormone replacement therapy (HRT) prescriptions. In a [parliamentary answer](https://questions-statements.parliament.uk/written-questions/detail/2022-03-29/149441) to Stockton South MP Matt Vickers, she said that from April 2023, annual prescription prepayment certificate for HRTs will be available for the cost of two single prescription items at £18.70.
+
+## 4. About these statistics
+
+This publication is part of a series by the NHSBSA. To learn more about how this series compares to our other publications, you can view the Official Statistics guidance table on our [statistical collections page](https://www.nhsbsa.nhs.uk/statistical-collections). 
+
+### 4.1. Patient counts {.toc-ignore}
+
+The patient counts shown in these statistics should only be analysed at the level at which they are presented. Adding together any patient counts is likely to result in an overestimate of the number of patients. A patient will be included, or counted, in each category or time period in which they received relevant prescriptions. For example, if a patient received a prescription item for HRT in January 2021, and another in February 2021 then adding together those totals would count that patient twice. For the same reason, data on patient counts for different BNF sections should not be added together.
+
+### 4.2. Averages {.toc-ignore}
+
+Where this document refers to 'average', this is the mean unless otherwise stated. This is calculated by adding the number of items/patients/months together and dividing this by the number of items/patients/months.
+
+### 4.3. Index of deprivation {.toc-ignore}
+
+The English Indices of Deprivation 2019 have been used to provide a measure of patient deprivation. The English Indices of Deprivation are an official national measure of deprivation that follows an established methodological framework to capture a wide range of individuals’ living conditions.
+
+The reported IMD quintile, where 1 is the most deprived and 5 the least deprived, is derived from the lower-layer super output areas (LSOA) of the patient who received the medication. There are a number of items each year that we have reported as having an unknown IMD quintile. These are items that have been attributed to an patient who exclusively received their prescriptions via paper prescribing and not via the Electronic Prescription Service (EPS). LSOA is only captured for prescriptions via EPS. For those patients who recieved both paper prescribing and EPS we have imputed their LSOA from the latest available data.
+
+IMD quintile are calculated by ranking census LSOA from most deprived to least deprived and dividing them into 5 equal groups. These range from the most deprived 20% (quintile 1) of small areas nationally to the least deprived 20% (quintile 5) of small areas nationally.
+
+### 4.4. Planned changes to this publication {.toc-ignore}
+
+This is an experimental official statistic release. Experimental statistics are newly developed or innovative statistics. These are published so that users and stakeholders can be involved in the assessment of their suitability and quality at an early stage. We will regularly be reviewing the methodology used within the statistics.
+
+---
+
+## 5. Statistical disclosure control
+
+Statistical disclosure control has been applied to these statistics. Patient count, items, and net ingredient cost (NIC) have been redacted in the supporting summary tables if they relate to fewer than 5 patients. Further information about our statistical disclosure control protocol [can be found on our website](https://www.nhsbsa.nhs.uk/policies-and-procedures).
+
+The high level figures in this statistical summary have been rounded where appropriate for clarity, in most cases to three significant figures. This is to make this narrative as accessible as possible to all readers. The summary tables released with this publication allow users to investigate this data at lower levels of granularity. Figures in the supplementary tables have not been rounded.
+
+---
+
+## 6. Accessibility
+
+If you need information on this website in a different format like accessible PDF, large print, easy read, audio recording or braille, you can contact us by:
+
+**Email**: nhsbsa.accessibility@nhs.net
+
+**Phone**: 0191 203 5318
+
+[Find out about call charges](https://www.nhsbsa.nhs.uk/contact-us/call-charges-and-phone-numbers)
+
+We’ll consider your request and get back to you in 5 working days.
+
+These contact details are only for accessibility queries. This inbox is not for technical queries or IT problems. If you have a query that is not about accessibility, go to the ‘Contact us’ section of this page.
+
+View our [Accessibility statement for Official Statistics Narratives](https://www.nhsbsa.nhs.uk/accessibility-statement-official-statistics-narratives).
+
+---
+
+## 7. Feedback and contact us
+
+Feedback is important to us; we welcome any questions and comments relating to these statistics. 
+
+You can complete a [short survey about this publication](https://wh1.snapsurveys.com/s.asp?k=159953889691) to help us improve the Official Statistics that we produce. All responses will remain anonymous and individuals will not be identifiable in any report that we produce.
+
+You can view our [privacy policy](https://www.nhsbsa.nhs.uk/our-policies/privacy) on our website to see how your data is used and stored.
+
+You can contact us by:
+
+**Email:** nhsbsa.statistics@nhs.net
+
+**You can also write to us at:**
+
+NHSBSA - Statistics  
+NHS Business Services Authority  
+Stella House  
+Goldcrest Way  
+Newburn Riverside  
+Newcastle upon Tyne  
+NE15 8NY
+
+**Responsible statistician:** Graham Platten
+
+</main>

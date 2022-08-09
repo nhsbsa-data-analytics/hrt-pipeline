@@ -41,7 +41,6 @@ con <- con_nhsbsa(
 #only run if need to build new fact table``
 #hrtR::create_fact(con)
 
-
 #get max month and full fy
 # bring in DIM.YEAR_MONTH_DIM
 ym_dim <- dplyr::tbl(con,
@@ -1554,6 +1553,10 @@ openxlsx::saveWorkbook(wb,
 rmarkdown::render("hrt-narrative.Rmd",
                   output_format = "html_document",
                   output_file = "outputs/hrt.html")
+
+rmarkdown::render("hrt-narrative-template.Rmd",
+                  output_format = "html_document",
+                  output_file = "outputs/hrt-template.html")
 
 rmarkdown::render("hrt-narrative.Rmd",
                   output_format = "word_document",
