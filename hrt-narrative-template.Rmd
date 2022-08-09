@@ -104,6 +104,7 @@ cols <- length(seq) + 2
 
 raw_data$pi_table_annual %>%
   select(1,2,unlist(as.numeric(seq))) %>%
+  mutate(across(where(is.numeric), ~ runif(1,80,100))) %>%
   mutate_if(is.numeric, round, 2) %>%
   mutate_if(is.numeric, paste0, "%") %>%
   DT::datatable(
@@ -135,6 +136,7 @@ raw_data$national_annual %>%
                       values_to = "value") %>% 
   dplyr::mutate(value = signif(value, 3)) %>% 
   dplyr::arrange(desc(measure)) %>%
+  mutate(across(where(is.numeric), ~ sample(1000000:2000000, n(), replace = TRUE))) %>%
   group_chart_hc(
     x = FINANCIAL_YEAR,
     y = value,
@@ -150,57 +152,55 @@ raw_data$national_annual %>%
              shared = TRUE,
              sort = TRUE) %>% 
   hc_legend(enabled = TRUE) 
+ 
 
 ```
 
 Source: [Financial Year Summary Tables - National Totals table](https://nhsbsa-opendata.s3.eu-west-2.amazonaws.com/hrt/hrt_financial_year_2021_2022_v001.xlsx)
 
-There were 7.80 million HRT drug items prescribed in 2021/22. This was a 35.0% increase from 5.78 million items compared with the previous year. Prescribing of HRT items has been increasing since 2015/16, with 3.73 million more items prescribed in 2021/22 when compared to 2015/16, an increase of 91.3% over the period.
-
-There were an estimated 1.94 million identified patients who were prescribed at least one HRT item in 2021/22. This was a 30.5% increase from 1.49 million identified patients when compared with 2020/21. There were 526,000  more identified patients who received a HRT item in 2021/22 compared to 2015/16, an increase of 37.2%. However, it should be noted that this is likely to be an overestimate of the actual increase in patient numbers, as the proportion of patients who could be identified increased. In 2015/16, 93.9% of items were prescribed to identified patients, this increased by 5.29 percentage points in 2021/22 to 99.1% of items.
+NARRATIVE HERE
 
 ### Figure 2: Number of prescribed items and identified patients by month {.toc-ignore}
 
 ```{r monthly_summary, out.width="100%"}
 raw_data$national_monthly %>%
-  filter(YEAR_MONTH >= lt_st_month_min) %>%
-  dplyr::group_by(YEAR_MONTH) %>% 
-  dplyr::summarise(`Prescribed items` = sum(ITEM_COUNT),
-                   `Identified patients` = sum(PATIENT_COUNT),
-                   .groups = "drop") %>% 
-  tidyr::pivot_longer(cols = c(`Identified patients`,`Prescribed items`),
-                      names_to = "measure",
-                      values_to = "value") %>% 
-  dplyr::mutate(value = signif(value, 3)) %>% 
-  dplyr::arrange(desc(measure)) %>%
-  mutate(
-    YEAR_MONTH = base::as.Date(as.character(paste0(YEAR_MONTH,"01")), format = "%Y%m%d")
-  ) %>%
-  group_chart_hc(
-    x = YEAR_MONTH,
-    y = value,
-    group = measure,
-    type = "line",
-    marker = FALSE,
-    dlOn = FALSE,
-    xLab = "Month",
-    yLab = "Volume",
-    title = ""
-  ) %>% 
-  hc_tooltip(enabled = TRUE,
-             shared = TRUE,
-             sort = TRUE) %>% 
-  hc_legend(enabled = TRUE) %>%
-  hc_xAxis(type = "datetime")
+    filter(YEAR_MONTH >= lt_st_month_min) %>%
+    dplyr::group_by(YEAR_MONTH) %>% 
+    dplyr::summarise(`Prescribed items` = sum(ITEM_COUNT),
+                     `Identified patients` = sum(PATIENT_COUNT),
+                     .groups = "drop") %>% 
+    tidyr::pivot_longer(cols = c(`Identified patients`,`Prescribed items`),
+                        names_to = "measure",
+                        values_to = "value") %>% 
+    dplyr::mutate(value = signif(value, 3)) %>% 
+    dplyr::arrange(desc(measure)) %>%
+    mutate(
+      YEAR_MONTH = base::as.Date(as.character(paste0(YEAR_MONTH,"01")), format = "%Y%m%d")
+    ) %>%
+    mutate(across(where(is.numeric), ~ sample(100000:700000, n(), replace = TRUE))) %>%
+    group_chart_hc(
+      x = YEAR_MONTH,
+      y = value,
+      group = measure,
+      type = "line",
+      marker = FALSE,
+      dlOn = FALSE,
+      xLab = "Month",
+      yLab = "Volume",
+      title = ""
+    ) %>% 
+    hc_tooltip(enabled = TRUE,
+               shared = TRUE,
+               sort = TRUE) %>% 
+    hc_legend(enabled = TRUE) %>%
+    hc_xAxis(type = "datetime")
 
   
 ```
 
 Source: [Monthly Summary Tables - National Totals table](https://nhsbsa-opendata.s3.eu-west-2.amazonaws.com/hrt/hrt_monthly_May_2022_v001.xlsx)
 
-There were 906,000 HRT drug items prescribed in May 2022. This was a 14.3% increase from 793,000 items compared with the previous month, and an increase of 367,000 (68.5%) from 538,000 items in May 2021. Prescribing of HRT items has been increasing since June 2020, with 442,000 more items prescribed in May 2022 when compared to June 2020, an increase of 95.2% over the period.
-
-There were an estimated 698,000 identified patients who were prescribed at least one HRT item in May 2022. This was a 13.1% increase from 617,000 identified patients when compared with the previous month. There were 313,000 more identified patients who received a HRT item in May 2022 compared to June 2020, an increase of 81.4%. However, it should be noted that this is likely to be an overestimate of the actual increase in patient numbers, as the proportion of patients who could be identified increased. In June 2020, 98.6% of items were prescribed to identified patients, this increased by 0.53 percentage points in May 2022 to 99.1% of items.
+NARRATIVE HERE
 
 ### Figure 3: Number of prescribed items and identified patients by financial year and BNF chapter {.toc-ignore}
 
@@ -216,6 +216,7 @@ chart_1 <- raw_data$national_par_annual %>%
                       values_to = "value") %>% 
   dplyr::mutate(value = signif(value, 3)) %>% 
   dplyr::arrange(desc(measure)) %>%
+  mutate(across(where(is.numeric), ~ sample(100000:700000, n(), replace = TRUE))) %>%
   group_chart_hc(
     x = FINANCIAL_YEAR,
     y = value,
@@ -244,6 +245,7 @@ chart_2 <- raw_data$national_par_annual %>%
                       values_to = "value") %>% 
   dplyr::mutate(value = signif(value, 3)) %>% 
   dplyr::arrange(desc(measure)) %>%
+  mutate(across(where(is.numeric), ~ sample(100000:700000, n(), replace = TRUE))) %>%
   group_chart_hc(
     x = FINANCIAL_YEAR,
     y = value,
@@ -266,18 +268,21 @@ hw_grid(chart_1, chart_2)
 
 ```
 
+NARRATIVE HERE
+
 ### Figure 4: Number of identified patients by financial year for selected BNF chemical substances {.toc-ignore}
 
 ```{r annual_chem_sub, out.width="100%"}
 chart_data <- raw_data$chem_sub_annual %>%
-  filter(
-    CHEM_SUB_NAME %in% c("Estradiol", "Estriol", "Estradiol with progestogen", "Progesterone", "Norethisterone")
-  ) %>%
-  mutate(CHEM_SUB = paste0(CHEM_SUB_NAME, " - ", CHEM_SUB_CODE)) %>%
-  select(1, 12, 9) %>%
-  filter(
-    PATIENT_COUNT > 0
-    )
+    filter(
+      CHEM_SUB_NAME %in% c("Estradiol", "Estriol", "Estradiol with progestogen", "Progesterone", "Norethisterone")
+    ) %>%
+    mutate(CHEM_SUB = paste0(CHEM_SUB_NAME, " - ", CHEM_SUB_CODE)) %>%
+    select(1, 12, 9) %>%
+    filter(
+      PATIENT_COUNT > 0
+    ) %>%
+    mutate(across(where(is.numeric), ~ sample(1000000:2000000, n(), replace = TRUE)))
 
 chart_data %>%
   group_chart_hc(
@@ -299,6 +304,8 @@ chart_data %>%
 
 ```
 
+NARRATIVE HERE
+
 ### Figure 5: Number of prescribed items by financial year for selected BNF chemical substances {.toc-ignore}
 
 ```{r chem_sub_items, out.width="100%"}
@@ -310,10 +317,9 @@ chart_data <- raw_data$chem_sub_annual %>%
   filter(CHEM_SUB != "Estriol - 0604011M0") %>%
   select(1, 12, 10) %>%
   group_by(FINANCIAL_YEAR, CHEM_SUB) %>%
-  summarise(total = sum(ITEM_COUNT, na.rm = T))
+  summarise(total = sum(ITEM_COUNT, na.rm = T)) %>%
+  mutate(across(where(is.numeric), ~ sample(1000000:2000000, n(), replace = TRUE)))
   
-  
-
 chart_data %>%
   group_chart_hc(
     x = FINANCIAL_YEAR,
@@ -334,49 +340,54 @@ chart_data %>%
 
 ```
 
+NARRATIVE HERE
+
 ### Table 2: Top 10 presentations by prescribed items in `r ltst_year`{.toc-ignore}
 
 ``` {r top_pres_fy, out.width = "100%"}
-raw_data$presentation_annual %>%
-  filter(FINANCIAL_YEAR == ltst_year) %>%
-  top_n(10, ITEM_COUNT) %>%
-  arrange(desc(ITEM_COUNT)) %>%
-  select(9, 12, 13, 14, 15) %>%
-  rename(
-    "BNF Presentation Name" = 1,
-    "Unit of Measure" = 2,
-    "Total Quantity" = 3,
-    "Total Items" = 4,
-    "Total Net Ingredient Cost (GBP)" = 5
-  ) %>%
-  mutate(
-    `Total Quantity` = formatC(
-      signif(`Total Quantity`, 3),
-      big.mark = ",",
-      format = "d"
-    ),
-    `Total Items` = formatC(
-      signif(`Total Items`, 3),
-      big.mark = ",",
-      format = "d"
-    ),
-    `Total Net Ingredient Cost (GBP)` = formatC(
-      signif(`Total Net Ingredient Cost (GBP)`, 3),
-      big.mark = ",",
-      format = "d"
-    ),
-  ) %>%
-  DT::datatable(rownames = FALSE,
-                options = list(dom = "t",
-                               columnDefs = list(
-                                 list(orderable = FALSE,
-                                      targets = "_all"),
-                                 list(className = "dt-left", targets = 0:1),
-                                 list(className = "dt-right",
-                                      targets = 2:4)
-                               )))
+  raw_data$presentation_annual %>%
+    filter(FINANCIAL_YEAR == ltst_year) %>%
+    top_n(10, ITEM_COUNT) %>%
+    arrange(desc(ITEM_COUNT)) %>%
+    select(9, 12, 13, 14, 15) %>%
+    rename(
+      "BNF Presentation Name" = 1,
+      "Unit of Measure" = 2,
+      "Total Quantity" = 3,
+      "Total Items" = 4,
+      "Total Net Ingredient Cost (GBP)" = 5
+    ) %>%
+    mutate(across(where(is.numeric), ~ sample(1000000:2000000, n(), replace = TRUE))) %>%
+    mutate(
+      `Total Quantity` = formatC(
+        signif(`Total Quantity`, 3),
+        big.mark = ",",
+        format = "d"
+      ),
+      `Total Items` = formatC(
+        signif(`Total Items`, 3),
+        big.mark = ",",
+        format = "d"
+      ),
+      `Total Net Ingredient Cost (GBP)` = formatC(
+        signif(`Total Net Ingredient Cost (GBP)`, 3),
+        big.mark = ",",
+        format = "d"
+      ),
+    ) %>%
+    DT::datatable(rownames = FALSE,
+                  options = list(dom = "t",
+                                 columnDefs = list(
+                                   list(orderable = FALSE,
+                                        targets = "_all"),
+                                   list(className = "dt-left", targets = 0:1),
+                                   list(className = "dt-right",
+                                        targets = 2:4)
+                                 )))
 
 ```
+
+NARRATIVE HERE
 
 ### Table 3: Top 10 presentations by prescribed items in `r ltst_month_tidy` {.toc-ignore}
 
@@ -393,6 +404,7 @@ raw_data$presentation_monthly %>%
     "Total Items" = 4,
     "Total Net Ingredient Cost (GBP)" = 5
   ) %>%
+  mutate(across(where(is.numeric), ~ sample(1000000:2000000, n(), replace = TRUE))) %>%
   mutate(
     `Total Quantity` = formatC(
       signif(`Total Quantity`, 3),
@@ -424,20 +436,21 @@ raw_data$presentation_monthly %>%
 ### Figure 6: Identified patients per 1,000 population by Integrated Care Board (ICB) in `r ltst_year` {.toc-ignore}
 
 ```{r patients_per_100, out.width = "100%"}
-chart_data <- raw_data$icb_annual %>%
-  filter(
-    FINANCIAL_YEAR == ltst_year,
-    PATIENT_COUNT != 0
-  ) %>%
-  left_join(
-    stp_pop,
-    by = c("STP_CODE" = "STP21CDH")
-  ) %>%
-  select(1, 4,5,7,12) %>%
-  mutate(
-    PER_1000 = round(PATIENT_COUNT / POP * 1000, 1)
-  ) %>%
-  arrange(desc(PER_1000))
+  chart_data <- raw_data$icb_annual %>%
+    filter(
+      FINANCIAL_YEAR == ltst_year,
+      PATIENT_COUNT != 0
+    ) %>%
+    left_join(
+      stp_pop,
+      by = c("STP_CODE" = "STP21CDH")
+    ) %>%
+    select(1, 4,5,7,12) %>%
+    mutate(PATIENT_COUNT = sample(100000:200000, n(), replace = TRUE)) %>%
+    mutate(
+      PER_1000 = round(PATIENT_COUNT / POP * 1000, 1)
+    ) %>%
+    arrange(desc(PER_1000))
 
 chart <- basic_chart_hc(
   chart_data,
@@ -463,6 +476,8 @@ chart$x$hc_opts$series[[1]]$dataLabels$allowOverlap <- TRUE
 chart
 ```
 
+NARRATIVE HERE
+
 ### Figure 7: Prescribed items per 1,000 population by Integrated Care Board (ICB) in `r ltst_year` {.toc-ignore}
 
 ```{r items_per_1000, out.width="100%"}
@@ -482,7 +497,8 @@ chart_data <- raw_data$icb_annual %>%
     stp_pop,
     by = c("STP_CODE" = "STP21CDH")
   ) %>%
-  select(1,2,  3, 6) %>%
+  select(1,2, 3, 6) %>%
+  mutate(ITEM_COUNT = sample(100000:200000, n(), replace = TRUE)) %>%
   mutate(
     PER_1000 = round(ITEM_COUNT / POP * 1000, 1)
   ) %>%
@@ -516,11 +532,10 @@ chart
 
 ```{r ageband_fy, out.width="100%"}
 chart_data <- raw_data$ageband_annual %>%
-  filter(
-    FINANCIAL_YEAR == ltst_year
-  ) %>%
-  filter(PATIENT_COUNT != 0)
-  
+  filter(FINANCIAL_YEAR == ltst_year) %>%
+  filter(PATIENT_COUNT != 0) %>%
+  mutate(across(where(is.numeric), ~ sample(1000:750000, n(), replace = TRUE)))
+
 
 chart <- basic_chart_hc(
   chart_data,
@@ -538,23 +553,23 @@ chart$x$hc_opts$series[[1]]$dataLabels$allowOverlap <- TRUE
 chart
 ```
 
+NARRATIVE HERE
+
 ### Figure 9: Number of identified patients by IMD quintile in `r ltst_year` {.toc-ignore}
 
 ``` {r imd_fy, out.width = "100%"}
 chart_data <- raw_data$quintile_annual %>%
-  filter(
-    FINANCIAL_YEAR == ltst_year
-  ) %>%
-  filter(PATIENT_COUNT != 0,
-         !is.na(IMD_QUINTILE)) %>%
+  filter(FINANCIAL_YEAR == ltst_year) %>%
+  filter(PATIENT_COUNT != 0,!is.na(IMD_QUINTILE)) %>%
   mutate(
     IMD_QUINTILE = case_when(
       IMD_QUINTILE == 1 ~ as.character("1 - most deprived"),
       IMD_QUINTILE == 5 ~ as.character("5 - least deprived"),
       TRUE ~ as.character(IMD_QUINTILE)
     )
-  )
-  
+  ) %>%
+  mutate(across(where(is.numeric), ~ sample(10000:750000, n(), replace = TRUE)))
+
 
 chart <- basic_chart_hc(
   chart_data,
@@ -572,190 +587,200 @@ chart$x$hc_opts$series[[1]]$dataLabels$allowOverlap <- TRUE
 chart
 ```
 
+NARRATIVE HERE
+
 ### Figure 10: Proportion of patients under/over 60 by IMD quintile {.toc-ignore}
 
 ``` {r imd_age, out.width = "100%"}
-chart_data <- raw_data$quintile_age_annual %>%
-  filter(
-    FINANCIAL_YEAR == ltst_year
-  ) %>%
-  filter(PATIENT_COUNT != 0,
-         !is.na(IMD_QUINTILE),
-         AGE_BAND != "Unknown") %>%
-  mutate(
-    GROUP = case_when(
-      AGE_BAND <= "55-59" ~ "Under 60",
-      TRUE ~ "Over 60"
+  chart_data <- raw_data$quintile_age_annual %>%
+    filter(
+      FINANCIAL_YEAR == ltst_year
+    ) %>%
+    filter(PATIENT_COUNT != 0,
+           !is.na(IMD_QUINTILE),
+           AGE_BAND != "Unknown") %>%
+    mutate(
+      GROUP = case_when(
+        AGE_BAND <= "55-59" ~ "Under 60",
+        TRUE ~ "Over 60"
+      )
+    ) %>%
+    group_by(
+      GROUP,
+      IMD_QUINTILE
+    ) %>%
+    summarise(
+      PATIENT_COUNT = sum(PATIENT_COUNT),
+      .groups = "drop"
+    ) %>%
+    mutate(
+      IMD_QUINTILE = case_when(
+        IMD_QUINTILE == 1 ~ as.character("1 - most deprived"),
+        IMD_QUINTILE == 5 ~ as.character("5 - least deprived"),
+        TRUE ~ as.character(IMD_QUINTILE)
+      )
+    ) %>%
+    mutate(across(where(is.numeric), ~ sample(75000:750000, n(), replace = TRUE))) %>%
+    group_by(
+      IMD_QUINTILE
+    ) %>%
+    mutate(
+      PROP = PATIENT_COUNT / sum(PATIENT_COUNT) * 100
+    ) %>%
+    ungroup() %>%
+    arrange(
+      desc(GROUP)
     )
-  ) %>%
-  group_by(
-    GROUP,
-    IMD_QUINTILE
-  ) %>%
-  summarise(
-    PATIENT_COUNT = sum(PATIENT_COUNT),
-    .groups = "drop"
-  ) %>%
-  group_by(
-    IMD_QUINTILE
-  ) %>%
-  mutate(
-    PROP = PATIENT_COUNT / sum(PATIENT_COUNT) * 100
-  ) %>%
-  ungroup() %>%
-  mutate(
-    IMD_QUINTILE = case_when(
-      IMD_QUINTILE == 1 ~ as.character("1 - most deprived"),
-      IMD_QUINTILE == 5 ~ as.character("5 - least deprived"),
-      TRUE ~ as.character(IMD_QUINTILE)
-    )
-  ) %>%
-  arrange(
-    desc(GROUP)
-  )
   
-
-group_chart_hc(
-  chart_data,
-  x = IMD_QUINTILE,
-  y = PROP,
-  group = GROUP,
-  type = "column",
-  marker = FALSE,
-  dlOn = FALSE,
-  xLab = "IMD quintile",
-  yLab = "%",
-  title = ""
-) %>% 
-  hc_tooltip(enabled = TRUE,
-             shared = TRUE,
-             sort = TRUE) %>% 
-  hc_legend(enabled = TRUE) %>%
-  hc_tooltip(
-    valueDecimals = 1,
-    valueSuffix = "%"
-  )
+  
+  group_chart_hc(
+    chart_data,
+    x = IMD_QUINTILE,
+    y = PROP,
+    group = GROUP,
+    type = "column",
+    marker = FALSE,
+    dlOn = FALSE,
+    xLab = "IMD quintile",
+    yLab = "%",
+    title = ""
+  ) %>% 
+    hc_tooltip(enabled = TRUE,
+               shared = TRUE,
+               sort = TRUE) %>% 
+    hc_legend(enabled = TRUE) %>%
+    hc_tooltip(
+      valueDecimals = 1,
+      valueSuffix = "%"
+    )%>%
+    hc_plotOptions(
+      column = list(
+        stacking = "normal"
+      )
+    )
 ```
 
 ### Figure 11: Proportion of chargeable items by financial year {.toc-ignore}
 
 ``` {r charge_fy, out.width = "100%"}
-chart_data <- raw_data$exempt_annual %>%
-  filter(
-    CHARGE_STATUS != "Null Charge Status"
-  ) %>%
-  mutate(
-    CHARGE_STATUS = case_when(
-      CHARGE_STATUS %in% c("Chargeable at Current Rate", "Chargeable at Previous Rate") ~ "Charged",
-      TRUE ~ CHARGE_STATUS
+  chart_data <- raw_data$exempt_annual %>%
+    filter(
+      CHARGE_STATUS != "Null Charge Status"
+    ) %>%
+    mutate(
+      CHARGE_STATUS = case_when(
+        CHARGE_STATUS %in% c("Chargeable at Current Rate", "Chargeable at Previous Rate") ~ "Charged",
+        TRUE ~ CHARGE_STATUS
+      )
+    ) %>%
+    group_by(
+      FINANCIAL_YEAR,
+      CHARGE_STATUS
+    ) %>%
+    summarise(
+      ITEM_COUNT = sum(ITEM_COUNT, na.rm = T),
+      .groups = "drop"
+    ) %>%
+    mutate(across(where(is.numeric), ~ sample(75000:750000, n(), replace = TRUE))) %>%
+    group_by(
+      FINANCIAL_YEAR
+    ) %>%
+    mutate(
+      PROP = ITEM_COUNT / sum(ITEM_COUNT, na.rm = T) * 100
+    ) %>%
+    ungroup()
+  
+  group_chart_hc(
+    chart_data,
+    x = FINANCIAL_YEAR,
+    y = PROP,
+    group = CHARGE_STATUS,
+    type = "column",
+    marker = FALSE,
+    dlOn = FALSE,
+    xLab = "Financial year",
+    yLab = "%",
+    title = ""
+  ) %>% 
+    hc_tooltip(enabled = TRUE,
+               shared = TRUE,
+               sort = TRUE) %>% 
+    hc_legend(enabled = TRUE) %>%
+    hc_tooltip(
+      valueDecimals = 1,
+      valueSuffix = "%"
+    ) %>%
+    hc_plotOptions(
+      column = list(
+        stacking = "normal"
+      )
     )
-  ) %>%
-  group_by(
-    FINANCIAL_YEAR,
-    CHARGE_STATUS
-  ) %>%
-  summarise(
-    ITEM_COUNT = sum(ITEM_COUNT, na.rm = T),
-    .groups = "drop"
-  ) %>%
-  group_by(
-    FINANCIAL_YEAR
-  ) %>%
-  mutate(
-    PROP = ITEM_COUNT / sum(ITEM_COUNT, na.rm = T) * 100
-  ) %>%
-  ungroup()
-
-group_chart_hc(
-  chart_data,
-  x = FINANCIAL_YEAR,
-  y = PROP,
-  group = CHARGE_STATUS,
-  type = "column",
-  marker = FALSE,
-  dlOn = FALSE,
-  xLab = "Financial year",
-  yLab = "%",
-  title = ""
-) %>% 
-  hc_tooltip(enabled = TRUE,
-             shared = TRUE,
-             sort = TRUE) %>% 
-  hc_legend(enabled = TRUE) %>%
-  hc_tooltip(
-    valueDecimals = 1,
-    valueSuffix = "%"
-  ) %>%
-  hc_plotOptions(
-    column = list(
-      stacking = "normal"
-    )
-  )
 ```
 
 ### Figure 12: Proportion of chargeable items by month {.toc-ignore}
 
 ``` {r exempt_monthly, out.width = "100%"}
 chart_data <- raw_data$exempt_monthly %>%
-  filter(
-    YEAR_MONTH >= lt_st_month_min
-  ) %>%
-  filter(
-    CHARGE_STATUS != "Null Charge Status"
-  ) %>%
-  mutate(
-    CHARGE_STATUS = case_when(
-      CHARGE_STATUS %in% c("Chargeable at Current Rate", "Chargeable at Previous Rate") ~ "Charged",
-      TRUE ~ CHARGE_STATUS
+    filter(
+      YEAR_MONTH >= lt_st_month_min
+    ) %>%
+    filter(
+      CHARGE_STATUS != "Null Charge Status"
+    ) %>%
+    mutate(
+      CHARGE_STATUS = case_when(
+        CHARGE_STATUS %in% c("Chargeable at Current Rate", "Chargeable at Previous Rate") ~ "Charged",
+        TRUE ~ CHARGE_STATUS
+      )
+    ) %>%
+    group_by(
+      YEAR_MONTH,
+      CHARGE_STATUS
+    ) %>%
+    mutate(
+      YEAR_MONTH = base::as.Date(as.character(paste0(YEAR_MONTH,"01")), format = "%Y%m%d")
+    ) %>%
+    summarise(
+      ITEM_COUNT = sum(ITEM_COUNT, na.rm = T),
+      .groups = "drop"
+    ) %>%
+    mutate(across(where(is.numeric), ~ sample(75000:750000, n(), replace = TRUE))) %>%
+    group_by(
+      YEAR_MONTH
+    ) %>%
+    mutate(
+      PROP = ITEM_COUNT / sum(ITEM_COUNT, na.rm = T) * 100
+    ) %>%
+    ungroup() 
+  
+  group_chart_hc(
+    chart_data,
+    x = YEAR_MONTH,
+    y = PROP,
+    group = CHARGE_STATUS,
+    type = "column",
+    marker = FALSE,
+    dlOn = FALSE,
+    xLab = "Financial year",
+    yLab = "%",
+    title = ""
+  ) %>% 
+    hc_tooltip(enabled = TRUE,
+               shared = TRUE,
+               sort = TRUE) %>% 
+    hc_legend(enabled = TRUE) %>%
+    hc_tooltip(
+      valueDecimals = 1,
+      valueSuffix = "%"
+    ) %>%
+    hc_plotOptions(
+      column = list(
+        stacking = "normal"
+      )
+    ) %>%
+    hc_xAxis(
+      type = "datetime"
     )
-  ) %>%
-  group_by(
-    YEAR_MONTH,
-    CHARGE_STATUS
-  ) %>%
-  summarise(
-    ITEM_COUNT = sum(ITEM_COUNT, na.rm = T),
-    .groups = "drop"
-  ) %>%
-  group_by(
-    YEAR_MONTH
-  ) %>%
-  mutate(
-    PROP = ITEM_COUNT / sum(ITEM_COUNT, na.rm = T) * 100
-  ) %>%
-  ungroup() %>%
-  mutate(
-    YEAR_MONTH = base::as.Date(as.character(paste0(YEAR_MONTH,"01")), format = "%Y%m%d")
-  )
-
-group_chart_hc(
-  chart_data,
-  x = YEAR_MONTH,
-  y = PROP,
-  group = CHARGE_STATUS,
-  type = "column",
-  marker = FALSE,
-  dlOn = FALSE,
-  xLab = "Financial year",
-  yLab = "%",
-  title = ""
-) %>% 
-  hc_tooltip(enabled = TRUE,
-             shared = TRUE,
-             sort = TRUE) %>% 
-  hc_legend(enabled = TRUE) %>%
-  hc_tooltip(
-    valueDecimals = 1,
-    valueSuffix = "%"
-  ) %>%
-  hc_plotOptions(
-    column = list(
-      stacking = "normal"
-    )
-  ) %>%
-  hc_xAxis(
-    type = "datetime"
-  )
 ```
 
 ## 3. Background

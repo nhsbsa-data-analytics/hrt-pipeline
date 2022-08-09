@@ -155,10 +155,19 @@ raw_data$quintile_age_annual <-
 raw_data$quintile_age_monthly <-
   quintile_age_extract(con, time_frame = "Monthly")
 
+#exemption category data
+raw_data$exempt_annual <- exemption_extract(con, time_frame = "FY")
+
+raw_data$exempt_monthly <- exemption_extract(con, time_frame = "Monthly")
+
 # disconnect from DWH
 DBI::dbDisconnect(con)
 
 # 5. data manipulation ----------------------------------------------------
+
+# get stp population
+stp_pop <- ons_stp_pop()
+
 # imd pop data
 imd_population_age_gender <- imd_population()
 imd_population_age <- imd_population_age_gender %>%
@@ -356,6 +365,32 @@ quintile_age_annual <- raw_data$quintile_age_annual %>%
     "Total Net Ingredient Cost (GBP)" = 8
   )
 
+exemption_annual <- raw_data$exempt_annual %>%
+  apply_sdc() %>%
+  select(1,2,3,4,5,6,10,11,12) %>%
+  mutate(
+    CHARGE_STATUS = case_when(
+      CHARGE_STATUS == "Null Charge Status" ~ "Unknown",
+      TRUE ~ CHARGE_STATUS
+    ),
+    EXEMPT_CAT = case_when(
+      CHARGE_STATUS %in% c("Chargeable at Current Rate", "Chargeable at Previous Rate") ~ "None",
+      is.na(EXEMPT_CAT) ~ "Unknown",
+      TRUE ~ EXEMPT_CAT
+    )
+  ) %>%
+  rename(
+    "Financial Year" = 1,
+    "Charge Status Code" = 2,
+    "Charge Status" = 3,
+    "Exemption Category Code" = 4,
+    "Exemption Category" = 5,
+    "Identified Patient Flag" = 6,
+    "Total Identified Patients" = 7,
+    "Total Items" = 8,
+    "Total Net Ingredient Cost (GBP)" = 9
+  )
+
 # monthly
 pi_data_monthly <- raw_data$pi_excel_monthly %>%
   apply_sdc() %>%
@@ -534,6 +569,34 @@ quintile_age_monthly <- raw_data$quintile_age_monthly %>%
     "Total Items" = 7,
     "Total Net Ingredient Cost (GBP)" = 8
   )
+
+exemption_monthly <- raw_data$exempt_monthly %>%
+  apply_sdc() %>%
+  select(1,2,3,4,5,6,7,12,13,14) %>%
+  mutate(
+    CHARGE_STATUS = case_when(
+      CHARGE_STATUS == "Null Charge Status" ~ "Unknown",
+      TRUE ~ CHARGE_STATUS
+    ),
+    EXEMPT_CAT = case_when(
+      CHARGE_STATUS %in% c("Chargeable at Current Rate", "Chargeable at Previous Rate") ~ "None",
+      is.na(EXEMPT_CAT) ~ "Unknown",
+      TRUE ~ EXEMPT_CAT
+    )
+  ) %>%
+  rename(
+    "Financial Year" = 1,
+    "Year Month" = 2,
+    "Charge Status Code" = 3,
+    "Charge Status" = 4,
+    "Exemption Category Code" = 5,
+    "Exemption Category" = 6,
+    "Identified Patient Flag" = 7,
+    "Total Identified Patients" = 8,
+    "Total Items" = 9,
+    "Total Net Ingredient Cost (GBP)" = 10
+  )
+
 # 6. write data to .xlsx --------------------------------------------------
 
 # FY Excel
@@ -550,7 +613,8 @@ sheetNames <- c(
   "Sex",
   "Age_Band",
   "IMD_Quintile",
-  "IMD_Quintile_Age"
+  "IMD_Quintile_Age",
+  "Exemption_Categories"
 )
 
 wb <- create_wb(sheetNames)
@@ -984,6 +1048,42 @@ format_data(wb,
             "right",
             "#,##0.00")
 
+#### Exemption categories annual
+# write data to sheet
+write_sheet(
+  wb,
+  "Exemption_Categories",
+  paste0(
+    "Hormone replacement therapy - England - 2015/2016 to ",
+    ltst_year,
+    " - Totals by exemption category"
+  ),
+  c(
+    "1. Field definitions can be found on the 'Metadata' tab.",
+    "2. Statistical disclosure control has been applied to cells containing 5 or fewer patients or items. These cells will appear blank.",
+    "3. A charge status is 'Unknown' when an item prescribed in England but has been dispensed in Scotland"),
+  exemption_annual,
+  14
+)
+
+format_data(wb,
+            "Exemption_Categories",
+            c("A", "B", "C", "D", "E", "F", "G"),
+            "left",
+            "")
+
+format_data(wb,
+            "Exemption_Categories",
+            c("H", "I"),
+            "right",
+            "#,##0")
+
+format_data(wb,
+            "Exemption_Categories",
+            c("J"),
+            "right",
+            "#,##0.00")
+
 #save file into outputs folder
 openxlsx::saveWorkbook(wb,
                        paste0(
@@ -1006,7 +1106,8 @@ sheetNames <- c(
   "Sex",
   "Age_Band",
   "IMD_Quintile",
-  "IMD_Quintile_Age"
+  "IMD_Quintile_Age",
+  "Exemption_Categories"
 )
 
 wb <- create_wb(sheetNames)
@@ -1400,9 +1501,49 @@ format_data(wb,
             "right",
             "#,##0.00")
 
+#### Exemption categories monthly
+# write data to sheet
+write_sheet(
+  wb,
+  "Exemption_Categories",
+  paste0(
+    "Hormone replacement therapy - England - 2015/2016 to ",
+    ltst_year,
+    " - Totals by exemption category"
+  ),
+  c(
+    "1. Field definitions can be found on the 'Metadata' tab.",
+    "2. Statistical disclosure control has been applied to cells containing 5 or fewer patients or items. These cells will appear blank.",
+    "3. A charge status is 'Unknown' when an item prescribed in England but has been dispensed in Scotland"),
+  exemption_monthly,
+  14
+)
+
+format_data(wb,
+            "Exemption_Categories",
+            c("A", "B", "C", "D", "E", "F", "G", "H"),
+            "left",
+            "")
+
+format_data(wb,
+            "Exemption_Categories",
+            c("I", "J"),
+            "right",
+            "#,##0")
+
+format_data(wb,
+            "Exemption_Categories",
+            c("K"),
+            "right",
+            "#,##0.00")
+
 #save file into outputs folder
 openxlsx::saveWorkbook(wb,
-                       paste0("outputs/hrt_monthly_", gsub(" ", "_", ltst_month_tidy), "_v001.xlsx"),
+                       paste0(
+                         "outputs/hrt_monthly_",
+                         gsub(" ", "_", ltst_month_tidy),
+                         "_v001.xlsx"
+                       ),
                        overwrite = TRUE)
 
 # 7. automate narratives --------------------------------------------------
@@ -1412,6 +1553,10 @@ openxlsx::saveWorkbook(wb,
 rmarkdown::render("hrt-narrative.Rmd",
                   output_format = "html_document",
                   output_file = "outputs/hrt.html")
+
+rmarkdown::render("hrt-narrative-template.Rmd",
+                  output_format = "html_document",
+                  output_file = "outputs/hrt-template.html")
 
 rmarkdown::render("hrt-narrative.Rmd",
                   output_format = "word_document",
