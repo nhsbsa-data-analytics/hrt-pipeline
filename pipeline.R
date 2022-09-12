@@ -1068,19 +1068,19 @@ write_sheet(
 
 format_data(wb,
             "Exemption_Categories",
-            c("A", "B", "C", "D", "E", "F", "G"),
+            c("A", "B", "C", "D", "E", "F"),
             "left",
             "")
 
 format_data(wb,
             "Exemption_Categories",
-            c("H", "I"),
+            c("G", "H"),
             "right",
             "#,##0")
 
 format_data(wb,
             "Exemption_Categories",
-            c("J"),
+            c("I"),
             "right",
             "#,##0.00")
 
