@@ -646,6 +646,7 @@ chart_data <- raw_data$exempt_annual %>%
   ) %>%
   mutate(
     CHARGE_STATUS = case_when(
+      EXEMPT_CAT == "Pre-Payment Certificate" ~ "Used PPC",
       CHARGE_STATUS %in% c("Chargeable at Current Rate", "Chargeable at Previous Rate") ~ "Charged",
       TRUE ~ CHARGE_STATUS
     )
@@ -705,6 +706,7 @@ chart_data <- raw_data$exempt_monthly %>%
   ) %>%
   mutate(
     CHARGE_STATUS = case_when(
+      EXEMPT_CAT == "Pre-Payment Certificate" ~ "Used PPC",
       CHARGE_STATUS %in% c("Chargeable at Current Rate", "Chargeable at Previous Rate") ~ "Charged",
       TRUE ~ CHARGE_STATUS
     )
