@@ -59,7 +59,7 @@ This publication aims to describe the prescribing of HRT medications in England 
 
 These statistics detail:
 
-* the total number of prescription items issued for drugs used in diabetes
+* the total number of prescription items issued for drugs used in HRT
 * the number of identified patients that have received prescribing for these drugs
 * demographic breakdowns of prescribing by age group
 * demographic breakdowns by sex
