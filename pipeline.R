@@ -1554,9 +1554,9 @@ rmarkdown::render("hrt-narrative.Rmd",
                   output_format = "html_document",
                   output_file = "outputs/hrt.html")
 
-rmarkdown::render("hrt-narrative-template.Rmd",
-                  output_format = "html_document",
-                  output_file = "outputs/hrt-template.html")
+#rmarkdown::render("hrt-narrative-template.Rmd",
+#                  output_format = "html_document",
+#                  output_file = "outputs/hrt-template.html")
 
 rmarkdown::render("hrt-narrative.Rmd",
                   output_format = "word_document",
