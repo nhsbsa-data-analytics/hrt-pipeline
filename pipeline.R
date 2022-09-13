@@ -610,7 +610,7 @@ sheetNames <- c(
   "Chemical_Substance",
   "Presentations",
   "ICB",
-  "Sex",
+  #"Sex",
   "Age_Band",
   "IMD_Quintile",
   "IMD_Quintile_Age",
@@ -901,40 +901,40 @@ format_data(wb,
 
 #### Sex annual
 # write data to sheet
-write_sheet(
-  wb,
-  "Sex",
-  paste0(
-    "Hormone replacement therapy - England - 2015/2016 to ",
-    ltst_year,
-    " - Totals by sex"
-  ),
-  c(
-    "1. Field definitions can be found on the 'Metadata' tab.",
-    "2. Statistical disclosure control has been applied to cells containing 5 or fewer patients or items. These cells will appear blank.",
-    "3. It is possible for a patient to be codified with gender 'unknown' or 'indeterminate'. Due to the low number of patients that these two groups contain the NHSBSA has decided to group these classifications together."
-  ),
-  gender_annual,
-  14
-)
+# write_sheet(
+#   wb,
+#   "Sex",
+#   paste0(
+#     "Hormone replacement therapy - England - 2015/2016 to ",
+#     ltst_year,
+#     " - Totals by sex"
+#   ),
+#   c(
+#     "1. Field definitions can be found on the 'Metadata' tab.",
+#     "2. Statistical disclosure control has been applied to cells containing 5 or fewer patients or items. These cells will appear blank.",
+#     "3. It is possible for a patient to be codified with gender 'unknown' or 'indeterminate'. Due to the low number of patients that these two groups contain the NHSBSA has decided to group these classifications together."
+#   ),
+#   gender_annual,
+#   14
+# )
 
-format_data(wb,
-            "Sex",
-            c("A", "B", "C"),
-            "left",
-            "")
+# format_data(wb,
+#             "Sex",
+#             c("A", "B", "C"),
+#             "left",
+#             "")
 
-format_data(wb,
-            "Sex",
-            c("D", "E"),
-            "right",
-            "#,##0")
+# format_data(wb,
+#             "Sex",
+#             c("D", "E"),
+#             "right",
+#             "#,##0")
 
-format_data(wb,
-            "Sex",
-            c("F"),
-            "right",
-            "#,##0.00")
+# format_data(wb,
+#             "Sex",
+#             c("F"),
+#             "right",
+#             "#,##0.00")
 
 #### Age annual
 # write data to sheet
@@ -1103,7 +1103,7 @@ sheetNames <- c(
   "Chemical_Substance",
   "Presentations",
   "ICB",
-  "Sex",
+  #"Sex",
   "Age_Band",
   "IMD_Quintile",
   "IMD_Quintile_Age",
@@ -1356,40 +1356,40 @@ format_data(wb,
 
 #### Sex monthly
 # write data to sheet
-write_sheet(
-  wb,
-  "Sex",
-  paste0(
-    "Hormone replacement therapy - England - April 2015 to ",
-    ltst_month_tidy,
-    " - Monthly totals by sex"
-  ),
-  c(
-    "1. Field definitions can be found on the 'Metadata' tab.",
-    "2. Statistical disclosure control has been applied to cells containing 5 or fewer patients or items. These cells will appear blank.",
-    "3. It is possible for a patient to be codified with gender 'unknown' or 'indeterminate'. Due to the low number of patients that these two groups contain the NHSBSA has decided to group these classifications together."
-  ),
-  gender_monthly,
-  14
-)
+# write_sheet(
+#   wb,
+#   "Sex",
+#   paste0(
+#     "Hormone replacement therapy - England - April 2015 to ",
+#     ltst_month_tidy,
+#     " - Monthly totals by sex"
+#   ),
+#   c(
+#     "1. Field definitions can be found on the 'Metadata' tab.",
+#     "2. Statistical disclosure control has been applied to cells containing 5 or fewer patients or items. These cells will appear blank.",
+#     "3. It is possible for a patient to be codified with gender 'unknown' or 'indeterminate'. Due to the low number of patients that these two groups contain the NHSBSA has decided to group these classifications together."
+#   ),
+#   gender_monthly,
+#   14
+# )
 
-format_data(wb,
-            "Sex",
-            c("A", "B", "C", "D"),
-            "left",
-            "")
+# format_data(wb,
+#             "Sex",
+#             c("A", "B", "C", "D"),
+#             "left",
+#             "")
 
-format_data(wb,
-            "Sex",
-            c("E", "F"),
-            "right",
-            "#,##0")
+# format_data(wb,
+#             "Sex",
+#             c("E", "F"),
+#             "right",
+#             "#,##0")
 
-format_data(wb,
-            "Sex",
-            c("G"),
-            "right",
-            "#,##0.00")
+# format_data(wb,
+#             "Sex",
+#             c("G"),
+#             "right",
+#             "#,##0.00")
 
 #### Age monthly
 # write data to sheet
