@@ -771,13 +771,35 @@ HRT, which replaces the hormones that are at low levels, is the main medicine tr
 
 The menopause is a biological stage in a woman's life that occurs when she stops menstruating and reaches the end of her natural reproductive life. This is not usually abrupt, but a gradual process during which women experience perimenopause before reaching postmenopause. Usually it is defined as having occurred when a woman has not had a period for 12 consecutive months (for women reaching menopause naturally).
 
+As well as a change in their menstrual cycle women may experience a variety of symptoms associated with menopause such as hot flushes and sweats, low mood, vaginal dryness, low sexual desire etc.
+
+Most women (8 out of 10) experience some symptoms, typically lasting about 4 years after the last period, but continuing for up to 12 years in about 10% of women. Prolonged lack of oestrogen affects the bones and cardiovascular system and postmenopausal women are at increased risk of a number of long-term conditions, such as osteoporosis.
+
 ### 3.1. Female sex hormones and their modulators {.toc-ignore}
 
-narrative
+For women without a uterus, oestrogen-only HRT is appropriate. For women with a uterus, oestrogen plus progestogen HRT is recommended. A progestogen should be prescribed to reduce the risk of cystic hyperplasia of the endometrium and possible transformation to cancer.
+
+Continuous combined preparations are not suitable for use in the perimenopause or within 12 months of the last menstrual period; women who use such preparations may bleed irregularly in the early stages of treatment
+
+HRT with small doses of an oestrogen (together with a progestogen in women with a uterus) is appropriate for alleviating menopausal symptoms such as vaginal atrophy or vasomotor instability.
+
+You can find out more information on [sex hormones](https://bnf.nice.org.uk/treatment-summaries/sex-hormones/) on the NICE website.
 
 ### 3.2. Preparations for vaginal and vulval changes {.toc-ignore}
 
-narrative
+Preparations for vaginal and vulval changes are used to treat the symptoms of vaginal atrophy related to oestrogen deficiency in postmenopausal women. Treatment is continued for as long as needed to relieve symptoms and reviewed initially at 3 months, then at least annually.
+
+There are non-hormonal vaginal moisturisers available. Menopausal women with vaginal dryness can use vaginal moisturisers and lubricants alone or in addition to vaginal oestrogen.
+
+You can find out more information on [vaginal and vulval conditions](https://bnf.nice.org.uk/treatment-summaries/vaginal-and-vulval-conditions/) on the NICE website.
+
+3.3. Gina 10 microgram vaginal tablets {.toc-ignore}
+
+Pharmacists in the UK can now dispense the hormone replacement therapy (HRT) drug Gina 10 microgram vaginal tablets without a prescription.
+
+Gina 10 microgram vaginal tablets is a locally acting oestrogen HRT and the only treatment available without a prescription that is clinically proven to target and treat the cause of vaginal atrophy and its associated symptoms after the menopause.
+
+As Gina 10 microgram vaginal tablets are sold over the counter, the NHSBSA does not hold any data on volumes, costs etc.
 
 ## 4. About these statistics
 
