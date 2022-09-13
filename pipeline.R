@@ -1550,7 +1550,7 @@ openxlsx::saveWorkbook(wb,
 
 # 8. render markdowns ------------------------------------------------------
 
-rmarkdown::render("hrt-narrative.Rmd",
+rmarkdown::render("hrt-narrative_v2.Rmd",
                   output_format = "html_document",
                   output_file = "outputs/hrt.html")
 
