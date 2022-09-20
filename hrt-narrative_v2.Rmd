@@ -395,6 +395,10 @@ chart_data %>%
 
 Source: [Financial Year Summary Tables - Chemical Substance table table](https://nhsbsa-opendata.s3.eu-west-2.amazonaws.com/hrt/hrt_financial_year_2022_2023_YTD_June_2022_v001.xlsx)
 
+Between 2015/16 and 2021/22 Estradiol (0604011G0) was the chemical substance which had the largest increase in the number of items prescribed. This was an increase of 216% or 1.59 million items from 736,000 in 2015/16 to 2.33 million in 2021/22.
+
+Between 2015/16 and 2021/22 Norethisterone (0604011G0) was the chemical substance which had the largest decrease in the number of items prescribed. This was a decrease of 83.1% or 463,000 items from 558,000 in 2015/16 to 94,200 in 2021/22.
+
 ### Table 2: Top 10 presentations by prescribed items in `r ltst_year`{.toc-ignore}
 
 ``` {r top_pres_fy, out.width = "100%"}
@@ -936,7 +940,7 @@ View our [Accessibility statement for Official Statistics Narratives](https://ww
 
 Feedback is important to us; we welcome any questions and comments relating to these statistics. 
 
-You can complete a [short survey about this publication](https://wh1.snapsurveys.com/s.asp?k=159953889691) to help us improve the Official Statistics that we produce. All responses will remain anonymous and individuals will not be identifiable in any report that we produce.
+You can complete a [short survey about this publication](https://online1.snapsurveys.com/Official_Statistics_Feedback) to help us improve the Official Statistics that we produce. All responses will remain anonymous and individuals will not be identifiable in any report that we produce.
 
 You can view our [privacy policy](https://www.nhsbsa.nhs.uk/our-policies/privacy) on our website to see how your data is used and stored.
 
