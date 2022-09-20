@@ -1,6 +1,9 @@
 # pipeline.R --------------------------------------------------------------
 # This script is used to run the RAP for the HRT publication
 
+#set max month needed
+max_month <- as.numeric(202206L)
+
 # 1. install required packages --------------------------------------------
 req_pkgs <-
   c(
@@ -38,8 +41,8 @@ con <- con_nhsbsa(
   password = rstudioapi::askForPassword()
 )
 
-#only run if need to build new fact table``
-#hrtR::create_fact(con)
+#only run if need to build new fact table
+#hrtR::create_fact(con, to = max_month)
 
 #get max month and full fy
 # bring in DIM.YEAR_MONTH_DIM
@@ -63,9 +66,7 @@ ym_dim <- dplyr::tbl(con,
   ))
 
 # extract latest available month of data
-ltst_month <- ym_dim %>%
-  dplyr::filter(YEAR_MONTH == max(YEAR_MONTH, na.rm = TRUE)) %>%
-  dplyr::pull(YEAR_MONTH)
+ltst_month <- max_month
 
 # use ltst_month to automate tidy date
 ltst_month_tidy <- as.character(paste0(ltst_month, "01"))
@@ -125,6 +126,13 @@ raw_data$presentation_annual <-
 raw_data$presentation_monthly <-
   presentation_extract(con, time_frame = "Monthly")
 
+# data by presentation with ssp flag
+raw_data$ssp_annual <- 
+  ssp_extract(con, time_frame = "FY")
+
+raw_data$ssp_monthly <- 
+  ssp_extract(con, time_frame = "Monthly")
+
 # icb level data
 raw_data$icb_annual <- icb_extract(con, time_frame = "FY")
 
@@ -181,6 +189,12 @@ imd_population <- imd_population_age_gender %>%
 # annual
 pi_data_annual <- raw_data$pi_excel_annual %>%
   apply_sdc() %>%
+  dplyr::mutate(
+    FINANCIAL_YEAR = case_when(
+      FINANCIAL_YEAR == max(FINANCIAL_YEAR) ~ paste0(FINANCIAL_YEAR, " (YTD ", ltst_month_tidy, ")"),
+      TRUE ~ FINANCIAL_YEAR
+    )
+  ) %>%
   select(FINANCIAL_YEAR,
          sdc_RATE) %>%
   rename("Financial Year" = 1,
@@ -193,6 +207,12 @@ national_data <- raw_data$national_annual %>%
          ITEM_COUNT,
          ITEM_PAY_DR_NIC) %>%
   apply_sdc() %>%
+  dplyr::mutate(
+    FINANCIAL_YEAR = case_when(
+      FINANCIAL_YEAR == max(FINANCIAL_YEAR) ~ paste0(FINANCIAL_YEAR, " (YTD ", ltst_month_tidy, ")"),
+      TRUE ~ FINANCIAL_YEAR
+    )
+  ) %>%
   select(1, 2, 6, 7, 8) %>%
   dplyr::rename(
     "Financial Year" = 1,
@@ -218,6 +238,12 @@ nat_pop_data <- national_data %>%
 paragraph_annual <- raw_data$national_par_annual %>%
   apply_sdc() %>%
   select(1, 2, 3, 4, 5, 6, 10, 11, 12) %>%
+  dplyr::mutate(
+    FINANCIAL_YEAR = case_when(
+      FINANCIAL_YEAR == max(FINANCIAL_YEAR) ~ paste0(FINANCIAL_YEAR, " (YTD ", ltst_month_tidy, ")"),
+      TRUE ~ FINANCIAL_YEAR
+    )
+  ) %>%
   rename(
     "Financial Year" = 1,
     "BNF Section Name" = 2,
@@ -228,11 +254,17 @@ paragraph_annual <- raw_data$national_par_annual %>%
     "Total Identified Patients" = 7,
     "Total Items" = 8,
     "Total Net Ingredient Cost (GBP)" = 9
-  )
+  ) 
 
 chem_sub_annual <- raw_data$chem_sub_annual %>%
   apply_sdc() %>%
   select(1, 2, 3, 4, 5, 6, 7, 8, 12, 13, 14) %>%
+  dplyr::mutate(
+    FINANCIAL_YEAR = case_when(
+      FINANCIAL_YEAR == max(FINANCIAL_YEAR) ~ paste0(FINANCIAL_YEAR, " (YTD ", ltst_month_tidy, ")"),
+      TRUE ~ FINANCIAL_YEAR
+    )
+  ) %>%
   rename(
     "Financial Year" = 1,
     "BNF Section Name" = 2,
@@ -250,6 +282,44 @@ chem_sub_annual <- raw_data$chem_sub_annual %>%
 presentation_annual <- raw_data$presentation_annual %>%
   apply_sdc() %>%
   select(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 16, 17, 18) %>%
+  dplyr::mutate(
+    FINANCIAL_YEAR = case_when(
+      FINANCIAL_YEAR == max(FINANCIAL_YEAR) ~ paste0(FINANCIAL_YEAR, " (YTD ", ltst_month_tidy, ")"),
+      TRUE ~ FINANCIAL_YEAR
+    )
+  ) %>%
+  rename(
+    "Financial Year" = 1,
+    "BNF Section Name" = 2,
+    "BNF Section Code" = 3,
+    "BNF Paragraph Name" = 4,
+    "BNF Paragraph Code" = 5,
+    "Chemical Subtance" = 6,
+    "Chemical Substance Code" = 7,
+    "BNF Presentation Code" = 8,
+    "BNF Presentation Name" = 9,
+    "Generic BNF Presentation Code" = 10,
+    "Generic BNF Presentation Name" = 11,
+    "Unit of Measure" = 12,
+    "Total Quantity" = 13,
+    "Total Items" = 14,
+    "Total Net Ingredient Cost (GBP)" = 15
+  ) %>%
+  mutate(
+    `Cost Per Item (GBP)` = `Total Net Ingredient Cost (GBP)` / `Total Items`,
+    `Cost Per Quantity (GBP)` = `Total Net Ingredient Cost (GBP)` / `Total Quantity`,
+    `Quantity Per Item` = `Total Quantity` / `Total Items`
+  )
+
+ssp_annual <- raw_data$ssp_annual %>%
+  apply_sdc() %>%
+  select(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 16, 17, 18) %>%
+  dplyr::mutate(
+    FINANCIAL_YEAR = case_when(
+      FINANCIAL_YEAR == max(FINANCIAL_YEAR) ~ paste0(FINANCIAL_YEAR, " (YTD ", ltst_month_tidy, ")"),
+      TRUE ~ FINANCIAL_YEAR
+    )
+  ) %>%
   rename(
     "Financial Year" = 1,
     "BNF Section Name" = 2,
@@ -276,6 +346,12 @@ presentation_annual <- raw_data$presentation_annual %>%
 icb_annual <- raw_data$icb_annual %>%
   apply_sdc() %>%
   select(1, 2, 3, 4, 5, 6, 10, 11, 12) %>%
+  dplyr::mutate(
+    FINANCIAL_YEAR = case_when(
+      FINANCIAL_YEAR == max(FINANCIAL_YEAR) ~ paste0(FINANCIAL_YEAR, " (YTD ", ltst_month_tidy, ")"),
+      TRUE ~ FINANCIAL_YEAR
+    )
+  ) %>%
   rename(
     "Financial Year" = 1,
     "NHS England Region Name" = 2,
@@ -291,6 +367,12 @@ icb_annual <- raw_data$icb_annual %>%
 gender_annual <- raw_data$gender_annual %>%
   apply_sdc() %>%
   select(1, 2, 3, 7, 8, 9) %>%
+  dplyr::mutate(
+    FINANCIAL_YEAR = case_when(
+      FINANCIAL_YEAR == max(FINANCIAL_YEAR) ~ paste0(FINANCIAL_YEAR, " (YTD ", ltst_month_tidy, ")"),
+      TRUE ~ FINANCIAL_YEAR
+    )
+  ) %>%
   rename(
     "Financial Year" = 1,
     "Sex" = 2,
@@ -303,6 +385,12 @@ gender_annual <- raw_data$gender_annual %>%
 ageband_annual <- raw_data$ageband_annual %>%
   apply_sdc() %>%
   select(1, 2, 3, 7, 8, 9) %>%
+  dplyr::mutate(
+    FINANCIAL_YEAR = case_when(
+      FINANCIAL_YEAR == max(FINANCIAL_YEAR) ~ paste0(FINANCIAL_YEAR, " (YTD ", ltst_month_tidy, ")"),
+      TRUE ~ FINANCIAL_YEAR
+    )
+  ) %>%
   rename(
     "Financial Year" = 1,
     "Age Band" = 2,
@@ -315,6 +403,12 @@ ageband_annual <- raw_data$ageband_annual %>%
 quintile_annual <- raw_data$quintile_annual %>%
   apply_sdc() %>%
   select(1, 2, 3, 8, 9, 10) %>%
+  dplyr::mutate(
+    FINANCIAL_YEAR = case_when(
+      FINANCIAL_YEAR == max(FINANCIAL_YEAR) ~ paste0(FINANCIAL_YEAR, " (YTD ", ltst_month_tidy, ")"),
+      TRUE ~ FINANCIAL_YEAR
+    )
+  ) %>%
   left_join(imd_population,
             by = c("IMD_QUINTILE" = "IMD_QUINTILE")) %>%
   mutate(`Patients per 1,000 Population` = sdc_PATIENT_COUNT / POPULATION * 1000) %>%
@@ -341,6 +435,12 @@ quintile_annual <- raw_data$quintile_annual %>%
 quintile_age_annual <- raw_data$quintile_age_annual %>%
   apply_sdc() %>%
   select(1, 2, 3, 4, 9, 10, 11) %>%
+  dplyr::mutate(
+    FINANCIAL_YEAR = case_when(
+      FINANCIAL_YEAR == max(FINANCIAL_YEAR) ~ paste0(FINANCIAL_YEAR, " (YTD ", ltst_month_tidy, ")"),
+      TRUE ~ FINANCIAL_YEAR
+    )
+  ) %>%
   left_join(imd_population_age,
             by = c("IMD_QUINTILE" = "IMD_QUINTILE",
                    "AGE_BAND" = "AGE_BAND")) %>%
@@ -368,6 +468,12 @@ quintile_age_annual <- raw_data$quintile_age_annual %>%
 exemption_annual <- raw_data$exempt_annual %>%
   apply_sdc() %>%
   select(1,2,3,4,5,6,10,11,12) %>%
+  dplyr::mutate(
+    FINANCIAL_YEAR = case_when(
+      FINANCIAL_YEAR == max(FINANCIAL_YEAR) ~ paste0(FINANCIAL_YEAR, " (YTD ", ltst_month_tidy, ")"),
+      TRUE ~ FINANCIAL_YEAR
+    )
+  ) %>%
   mutate(
     CHARGE_STATUS = case_when(
       CHARGE_STATUS == "Null Charge Status" ~ "Unknown",
@@ -458,6 +564,33 @@ chem_sub_monthly <- raw_data$chem_sub_monthly %>%
   )
 
 presentation_monthly <- raw_data$presentation_monthly %>%
+  apply_sdc() %>%
+  select(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 18, 19, 20) %>%
+  rename(
+    "Financial Year" = 1,
+    "Year Month" = 2,
+    "BNF Section Name" = 3,
+    "BNF Section Code" = 4,
+    "BNF Paragraph Name" = 5,
+    "BNF Paragraph Code" = 7,
+    "Chemical Subtance" = 7,
+    "Chemical Substance Code" = 8,
+    "BNF Presentation Code" = 9,
+    "BNF Presentation Name" = 10,
+    "Generic BNF Presentation Code" = 11,
+    "Generic BNF Presentation Name" = 12,
+    "Unit of Measure" = 13,
+    "Total Quantity" = 14,
+    "Total Items" = 15,
+    "Total Net Ingredient Cost (GBP)" = 16
+  ) %>%
+  mutate(
+    `Cost Per Item (GBP)` = `Total Net Ingredient Cost (GBP)` / `Total Items`,
+    `Cost Per Quantity (GBP)` = `Total Net Ingredient Cost (GBP)` / `Total Quantity`,
+    `Quantity Per Item` = `Total Quantity` / `Total Items`
+  )
+
+ssp_monthly <- raw_data$ssp_monthly %>%
   apply_sdc() %>%
   select(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 18, 19, 20) %>%
   rename(
@@ -599,6 +732,9 @@ exemption_monthly <- raw_data$exempt_monthly %>%
 
 # 6. write data to .xlsx --------------------------------------------------
 
+# build max fy ytd for sheet titles
+ltst_year_ytd <- paste0(max(raw_data$national_annual$FINANCIAL_YEAR), " (YTD ", ltst_month_tidy, ")")
+
 # FY Excel
 # create wb object
 # create list of sheetnames needed (overview and metadata created automatically)
@@ -609,6 +745,7 @@ sheetNames <- c(
   "BNF_Paragraph",
   "Chemical_Substance",
   "Presentations",
+  "SSP",
   "ICB",
   #"Sex",
   "Age_Band",
@@ -656,14 +793,14 @@ write_sheet(
   "Patient_Identification",
   paste0(
     "Hormone replacement therapy - England - 2015/2016 to ",
-    ltst_year,
+    ltst_year_ytd,
     " - Proportion of items for which an NHS number was recorded (%)"
   ),
   c(
     "1. The below proportions reflect the percentage of prescription items where a NHS number was recorded."
   ),
   pi_data_annual,
-  14
+  30
 )
 
 #left align columns A
@@ -687,12 +824,12 @@ write_sheet(
   "National_Total",
   paste0(
     "Hormone replacement therapy - England - 2015/2016 to ",
-    ltst_year,
+    ltst_year_ytd,
     " - Yearly totals split by identified patients"
   ),
   c("1. Field definitions can be found on the 'Metadata' tab."),
   national_data,
-  14
+  30
 )
 
 #left align columns A
@@ -722,7 +859,7 @@ write_sheet(
   "National_Population",
   paste0(
     "Hormone replacement therapy - England - 2015/2016 to ",
-    ltst_year,
+    ltst_year_ytd,
     " - Population totals split by financial year"
   ),
   c(
@@ -730,7 +867,7 @@ write_sheet(
     "2. ONS population estimates taken from https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/populationestimates."
   ),
   nat_pop_data,
-  14
+  30
 )
 
 #left align columns A
@@ -760,7 +897,7 @@ write_sheet(
   "BNF_Paragraph",
   paste0(
     "Hormone replacement therapy - England - 2015/2016 to ",
-    ltst_year,
+    ltst_year_ytd,
     " - Yearly totals split by BNF paragraph and identified patients"
   ),
   c(
@@ -768,7 +905,7 @@ write_sheet(
     "2. Statistical disclosure control has been applied to cells containing 5 or fewer patients or items. These cells will appear blank."
   ),
   paragraph_annual,
-  14
+  30
 )
 
 format_data(wb,
@@ -796,7 +933,7 @@ write_sheet(
   "Chemical_Substance",
   paste0(
     "Hormone replacement therapy - England - 2015/2016 to ",
-    ltst_year,
+    ltst_year_ytd,
     " - Yearly totals split by chemical substance and identified patients"
   ),
   c(
@@ -804,7 +941,7 @@ write_sheet(
     "2. Statistical disclosure control has been applied to cells containing 5 or fewer patients or items. These cells will appear blank."
   ),
   chem_sub_annual,
-  14
+  30
 )
 
 format_data(wb,
@@ -825,14 +962,14 @@ format_data(wb,
             "right",
             "#,##0.00")
 
-#### presentations substance annual
+#### presentations annual
 # write data to sheet
 write_sheet(
   wb,
   "Presentations",
   paste0(
     "Hormone replacement therapy - England - 2015/2016 to ",
-    ltst_year,
+    ltst_year_ytd,
     " - Yearly totals split by presentation"
   ),
   c(
@@ -840,7 +977,7 @@ write_sheet(
     "2. Statistical disclosure control has been applied to cells containing 5 or fewer items. These cells will appear blank."
   ),
   presentation_annual,
-  14
+  30
 )
 
 format_data(
@@ -863,6 +1000,45 @@ format_data(wb,
             "right",
             "#,##0.00")
 
+#### ssp substance annual
+# write data to sheet
+write_sheet(
+  wb,
+  "SSP",
+  paste0(
+    "Hormone replacement therapy - England - 2015/2016 to ",
+    ltst_year_ytd,
+    " - Yearly totals for precribing which has been flagged under Serious Shortage Protocols (SSP) split by presentation"
+  ),
+  c(
+    "1. Field definitions can be found on the 'Metadata' tab.",
+    "2. Statistical disclosure control has been applied to cells containing 5 or fewer items. These cells will appear blank.",
+    "3. These figures will be included as part of the totals on the 'Presentations' tab."
+  ),
+  ssp_annual,
+  30
+)
+
+format_data(
+  wb,
+  "SSP",
+  c("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L"),
+  "left",
+  ""
+)
+
+format_data(wb,
+            "SSP",
+            c("M", "N"),
+            "right",
+            "#,##0")
+
+format_data(wb,
+            "SSP",
+            c("O", "P", "Q", "R"),
+            "right",
+            "#,##0.00")
+
 #### ICB annual
 # write data to sheet
 write_sheet(
@@ -870,7 +1046,7 @@ write_sheet(
   "ICB",
   paste0(
     "Hormone replacement therapy - England - 2015/2016 to ",
-    ltst_year,
+    ltst_year_ytd,
     " - Yearly totals split by ICB, BNF Paragraph and identified patients"
   ),
   c(
@@ -878,7 +1054,7 @@ write_sheet(
     "2. Statistical disclosure control has been applied to cells containing 5 or fewer patients or items. These cells will appear blank."
   ),
   icb_annual,
-  14
+  30
 )
 
 format_data(wb,
@@ -943,7 +1119,7 @@ write_sheet(
   "Age_Band",
   paste0(
     "Hormone replacement therapy - England - 2015/2016 to ",
-    ltst_year,
+    ltst_year_ytd,
     " - Totals by age band"
   ),
   c(
@@ -951,7 +1127,7 @@ write_sheet(
     "2. Statistical disclosure control has been applied to cells containing 5 or fewer patients or items. These cells will appear blank."
   ),
   ageband_annual,
-  14
+  30
 )
 
 format_data(wb,
@@ -979,7 +1155,7 @@ write_sheet(
   "IMD_Quintile",
   paste0(
     "Hormone replacement therapy - England - 2015/2016 to ",
-    ltst_year,
+    ltst_year_ytd,
     " - Totals by IMD quintile"
   ),
   c(
@@ -989,7 +1165,7 @@ write_sheet(
     "4. ONS population estimates taken from https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/populationestimates/adhocs/13773populationsbyindexofmultipledeprivationimddecileenglandandwales2020/populationbyimdenglandandwales2020.xlsx"
   ),
   quintile_annual,
-  14
+  30
 )
 
 format_data(wb,
@@ -1017,7 +1193,7 @@ write_sheet(
   "IMD_Quintile_Age",
   paste0(
     "Hormone replacement therapy - England - 2015/2016 to ",
-    ltst_year,
+    ltst_year_ytd,
     " - Totals by IMD quintile and age band"
   ),
   c(
@@ -1027,7 +1203,7 @@ write_sheet(
     "4. ONS population estimates taken from https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/populationestimates/adhocs/13773populationsbyindexofmultipledeprivationimddecileenglandandwales2020/populationbyimdenglandandwales2020.xlsx"
   ),
   quintile_age_annual,
-  14
+  30
 )
 
 format_data(wb,
@@ -1055,7 +1231,7 @@ write_sheet(
   "Exemption_Categories",
   paste0(
     "Hormone replacement therapy - England - 2015/2016 to ",
-    ltst_year,
+    ltst_year_ytd,
     " - Totals by exemption category"
   ),
   c(
@@ -1063,7 +1239,7 @@ write_sheet(
     "2. Statistical disclosure control has been applied to cells containing 5 or fewer patients or items. These cells will appear blank.",
     "3. A charge status is 'Unknown' when an item prescribed in England but has been dispensed in Scotland"),
   exemption_annual,
-  14
+  30
 )
 
 format_data(wb,
@@ -1088,7 +1264,11 @@ format_data(wb,
 openxlsx::saveWorkbook(wb,
                        paste0(
                          "outputs/hrt_financial_year_",
-                         gsub("/", "_", ltst_year),
+                         paste0(
+                         gsub("/", "_", max(raw_data$national_annual$FINANCIAL_YEAR)),
+                         "_YTD_", 
+                         gsub(" ", "_", ltst_month_tidy)
+                         ),
                          "_v001.xlsx"
                        ),
                        overwrite = TRUE)
@@ -1102,6 +1282,7 @@ sheetNames <- c(
   "BNF_Paragraph",
   "Chemical_Substance",
   "Presentations",
+  "SSP",
   "ICB",
   #"Sex",
   "Age_Band",
@@ -1280,7 +1461,7 @@ format_data(wb,
             "right",
             "#,##0.00")
 
-#### presentations substance monthly
+#### presentations monthly
 # write data to sheet
 write_sheet(
   wb,
@@ -1314,6 +1495,45 @@ format_data(wb,
 
 format_data(wb,
             "Presentations",
+            c("P", "Q", "R", "S"),
+            "right",
+            "#,##0.00")
+
+#### ssp monthly
+# write data to sheet
+write_sheet(
+  wb,
+  "SSP",
+  paste0(
+    "Hormone replacement therapy - England - April 2015 to ",
+    ltst_month_tidy,
+    " - Monthly totals for precribing which has been flagged under Serious Shortage Protocols (SSP) split by presentation"
+  ),
+  c(
+    "1. Field definitions can be found on the 'Metadata' tab.",
+    "2. Statistical disclosure control has been applied to cells containing 5 or fewer items. These cells will appear blank.",
+    "3. These figures will be included as part of the totals on the 'Presentations' tab."
+  ),
+  ssp_monthly,
+  14
+)
+
+format_data(
+  wb,
+  "SSP",
+  c("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M"),
+  "left",
+  ""
+)
+
+format_data(wb,
+            "SSP",
+            c("N", "O"),
+            "right",
+            "#,##0")
+
+format_data(wb,
+            "SSP",
             c("P", "Q", "R", "S"),
             "right",
             "#,##0.00")

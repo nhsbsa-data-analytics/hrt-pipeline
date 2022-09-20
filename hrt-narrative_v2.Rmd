@@ -62,7 +62,6 @@ These statistics detail:
 * the total number of prescription items issued for drugs used in HRT
 * the number of identified patients that have received prescribing for these drugs
 * demographic breakdowns of prescribing by age group
-* demographic breakdowns by sex
 * demographic breakdowns by a measure of deprivation.
 
 The costs associated with the provision of these medicines are not discussed in this summary. However, they are available within the supporting summary tables that accompany this release.
@@ -95,26 +94,29 @@ These statistics do not contain any personally identifiable data. More details o
 #### Table 1: The proportion of items for which an NHS number was recorded for listed BNF paragraphs
 
 ```{r pat_ident_rates, out.width="100%"}
-#get column with max full fy data
-max_col <- grep(ltst_year, colnames(raw_data$pi_table_annual))
+max_col <- ncol(raw_data$pi_table_annual)
 #get this number plus previous 4
 seq <- seq(max_col - 4, max_col)
 #get number of columns
 cols <- length(seq) + 2
 
+names(raw_data$pi_table_annual)[max_col] <- paste0(
+  names(raw_data$pi_table_annual)[max_col], " (YTD ", ltst_month_tidy,")"
+)
+
 raw_data$pi_table_annual %>%
-  select(1,2,unlist(as.numeric(seq))) %>%
+  select(1, 2, unlist(as.numeric(seq))) %>%
   mutate_if(is.numeric, round, 2) %>%
   mutate_if(is.numeric, paste0, "%") %>%
-  DT::datatable(
-    rownames = FALSE,
-    options = list(dom = "t",
-                   columnDefs = list(list(orderable = FALSE,
-                                          targets = "_all"),
-                                     list(className = "dt-left", targets = 0:1),
-                                     list(className = "dt-right", 
-                                          targets = 2:cols-1)))
-  )
+  DT::datatable(rownames = FALSE,
+                options = list(dom = "t",
+                               columnDefs = list(
+                                 list(orderable = FALSE,
+                                      targets = "_all"),
+                                 list(className = "dt-left", targets = 0:1),
+                                 list(className = "dt-right",
+                                      targets = 2:cols - 1)
+                               )))
 
 ```
 
@@ -126,6 +128,12 @@ raw_data$pi_table_annual %>%
 
 ```{r annual_summary, out.width="100%"}
 raw_data$national_annual %>%
+  dplyr::mutate(
+    FINANCIAL_YEAR = case_when(
+      FINANCIAL_YEAR == max(FINANCIAL_YEAR) ~ paste0(FINANCIAL_YEAR, "<br>(YTD ", ltst_month_tidy, ")"),
+      TRUE ~ FINANCIAL_YEAR
+    )
+  ) %>%
   dplyr::group_by(FINANCIAL_YEAR) %>% 
   dplyr::summarise(`Prescribed items` = sum(ITEM_COUNT),
                    `Identified patients` = sum(PATIENT_COUNT),
@@ -149,7 +157,8 @@ raw_data$national_annual %>%
   hc_tooltip(enabled = TRUE,
              shared = TRUE,
              sort = TRUE) %>% 
-  hc_legend(enabled = TRUE) 
+  hc_legend(enabled = TRUE)
+ 
 
 ```
 
@@ -206,6 +215,12 @@ There were an estimated 698,000 identified patients who were prescribed at least
 
 ```{r, figures-side, fig.show="hold", out.width="50%"}
 chart_1 <- raw_data$national_par_annual %>%
+    dplyr::mutate(
+    FINANCIAL_YEAR = case_when(
+      FINANCIAL_YEAR == max(FINANCIAL_YEAR) ~ paste0(FINANCIAL_YEAR, "<br>(YTD ", ltst_month_tidy, ")"),
+      TRUE ~ FINANCIAL_YEAR
+    )
+  ) %>%
   filter(PARAGRAPH_CODE == "060401") %>%
   group_by(FINANCIAL_YEAR) %>%
   dplyr::summarise(`Prescribed items` = sum(ITEM_COUNT),
@@ -234,6 +249,12 @@ chart_1 <- raw_data$national_par_annual %>%
   hc_title(align = "left")
 
 chart_2 <- raw_data$national_par_annual %>%
+    dplyr::mutate(
+    FINANCIAL_YEAR = case_when(
+      FINANCIAL_YEAR == max(FINANCIAL_YEAR) ~ paste0(FINANCIAL_YEAR, "<br>(YTD ", ltst_month_tidy, ")"),
+      TRUE ~ FINANCIAL_YEAR
+    )
+  ) %>%
   filter(PARAGRAPH_CODE == "070201") %>%
   group_by(FINANCIAL_YEAR) %>%
   dplyr::summarise(`Prescribed items` = sum(ITEM_COUNT),
@@ -270,6 +291,12 @@ hw_grid(chart_1, chart_2)
 
 ```{r annual_chem_sub, out.width="100%"}
 chart_data <- raw_data$chem_sub_annual %>%
+    dplyr::mutate(
+    FINANCIAL_YEAR = case_when(
+      FINANCIAL_YEAR == max(FINANCIAL_YEAR) ~ paste0(FINANCIAL_YEAR, "<br>(YTD ", ltst_month_tidy, ")"),
+      TRUE ~ FINANCIAL_YEAR
+    )
+  ) %>%
   filter(
     CHEM_SUB_NAME %in% c("Estradiol", "Estriol", "Estradiol with progestogen", "Progesterone", "Norethisterone")
   ) %>%
@@ -303,6 +330,12 @@ chart_data %>%
 
 ```{r chem_sub_items, out.width="100%"}
 chart_data <- raw_data$chem_sub_annual %>%
+    dplyr::mutate(
+    FINANCIAL_YEAR = case_when(
+      FINANCIAL_YEAR == max(FINANCIAL_YEAR) ~ paste0(FINANCIAL_YEAR, "<br>(YTD ", ltst_month_tidy, ")"),
+      TRUE ~ FINANCIAL_YEAR
+    )
+  ) %>%
   filter(
     CHEM_SUB_NAME %in% c("Estradiol", "Estriol", "Estradiol with progestogen", "Progesterone", "Norethisterone")
   ) %>%
@@ -572,7 +605,7 @@ chart$x$hc_opts$series[[1]]$dataLabels$allowOverlap <- TRUE
 chart
 ```
 
-### Figure 10: Proportion of patients under/over 60 by IMD quintile {.toc-ignore}
+### Figure 10: Proportion of patients under/over 60 by IMD quintile in `r ltst_year` {.toc-ignore}
 
 ``` {r imd_age, out.width = "100%"}
 chart_data <- raw_data$quintile_age_annual %>%
@@ -646,6 +679,12 @@ group_chart_hc(
 
 ``` {r charge_fy, out.width = "100%"}
 chart_data <- raw_data$exempt_annual %>%
+      dplyr::mutate(
+    FINANCIAL_YEAR = case_when(
+      FINANCIAL_YEAR == max(FINANCIAL_YEAR) ~ paste0(FINANCIAL_YEAR, "<br>(YTD ", ltst_month_tidy, ")"),
+      TRUE ~ FINANCIAL_YEAR
+    )
+  ) %>%
   filter(
     CHARGE_STATUS != "Null Charge Status"
   ) %>%
@@ -793,13 +832,25 @@ There are non-hormonal vaginal moisturisers available. Menopausal women with vag
 
 You can find out more information on [vaginal and vulval conditions](https://bnf.nice.org.uk/treatment-summaries/vaginal-and-vulval-conditions/) on the NICE website.
 
-3.3. Gina 10 microgram vaginal tablets {.toc-ignore}
+### 3.3. Gina 10 microgram vaginal tablets {.toc-ignore}
 
 Pharmacists in the UK can now dispense the hormone replacement therapy (HRT) drug Gina 10 microgram vaginal tablets without a prescription.
 
 Gina 10 microgram vaginal tablets is a locally acting oestrogen HRT and the only treatment available without a prescription that is clinically proven to target and treat the cause of vaginal atrophy and its associated symptoms after the menopause.
 
 As Gina 10 microgram vaginal tablets are sold over the counter, the NHSBSA does not hold any data on volumes, costs etc.
+
+### 3.4. Shortages {.toc-ignore}
+
+[The Royal College of Obstetricians and Gynaecologists (RCOG)](https://www.rcog.org.uk/for-the-public/menopause-and-later-life/), the [British Menopause Society (BMS)](https://thebms.org.uk/) and the [Faculty of Sexual and Reproductive Healthcare (FSRH)](https://www.fsrh.org/home/) issued a [joint statement](https://patient.info/news-and-features/why-is-there-an-hrt-shortage-in-the-uk?msclkid=38fdee8ac73111ec93f0238731829617) in August 2019 highlighting concerns that some women across the UK were unable to obtain their prescriptions due to shortages of HRT products. A failure to deal with shortages, coupled with the impact of COVID-related global supply problems means that many women are extremely concerned about not being able to get access to this vital medication.
+
+Serious Shortage Protocols (SSPs) issued for three HRT products: 
+
+* Oestragel
+* Ovestin Cream 
+* Premique Low Dose 
+
+All were [limited to three months dispensing](https://www.gov.uk/government/news/three-month-limit-for-three-hrt-products-to-ensure-continued-access) in response to supply issues. Patients given a prescription covering longer than this three month period will only have to pay one prescription charge. These SSPs cover a period from 29 Apr 2022 to 29 Jul 2022, and are in addition to [other HRT products under SSPs](https://www.nhsbsa.nhs.uk/pharmacies-gp-practices-and-appliance-contractors/serious-shortage-protocols-ssps).
 
 ## 4. About these statistics
 
