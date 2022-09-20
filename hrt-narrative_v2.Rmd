@@ -293,6 +293,20 @@ hw_grid(chart_1, chart_2)
 
 ```
 
+Source: [Monthly Summary Tables - BNF Paragraph table](https://nhsbsa-opendata.s3.eu-west-2.amazonaws.com/hrt/hrt_monthly_June_2022_v001.xlsx)
+
+There were 5.75 million female sex hormones and their modulators items prescribed in 2021/22. This was a 41.1% increase from 4.07 million items compared with the previous year. Prescribing of female sex hormones and their modulators items has been increasing since 2015/16, with 2.80 million more items prescribed in 2021/22 when compared to 2015/16, an increase of 94.7% over the period.
+
+There were an estimated 1.36 million identified patients who were prescribed at least one female sex hormones and their modulators item in 2021/22. This was a 38.8% increase from 983,000 identified patients when compared with 2020/21. There were 358,000 more identified patients who received a female sex hormones and their modulators item in 2021/22 compared to 2015/16, an increase of 35.6%. 
+
+From April 2022 to June 2022 were 1.98 million female sex hormones and their modulators items prescribed. This is 804,000 more items than the period April 2021 to June 2021, a 68.3% increase.
+
+There were 2.05 million preparations for vaginal and vulval changes items prescribed in 2021/22. This was a 20.4% increase from 1.71 million items compared with the previous year. Prescribing of preparations for vaginal and vulval changes items has been increasing since 2015/16, with 928,000 more items prescribed in 2021/22 when compared to 2015/16, an increase of 82.4% over the period.
+
+There were an estimated 682,000 identified patients who were prescribed at least one preparations for vaginal and vulval changes item in 2021/22. This was a 22.5% increase from 556,000 identified patients when compared with 2020/21. There were 250,000 more identified patients who received a preparations for vaginal and vulval changes item in 2021/22 compared to 2015/16, an increase of 58.1%. 
+
+From April 2022 to June 2022 were 587,000 million preparations for vaginal and vulval changes  items prescribed. This is 116,000 more items than the period April 2021 to June 2021, a 24.6% increase.
+
 ### Figure 4: Number of identified patients by financial year for selected BNF chemical substances {.toc-ignore}
 
 ```{r annual_chem_sub, out.width="100%"}
@@ -880,7 +894,7 @@ IMD quintile are calculated by ranking census LSOA from most deprived to least d
 
 ### 4.4. Planned changes to this publication {.toc-ignore}
 
-This is an experimental official statistic release. Experimental statistics are newly developed or innovative statistics. These are published so that users and stakeholders can be involved in the assessment of their suitability and quality at an early stage. We will regularly be reviewing the methodology used within the statistics.
+This is an ad hoc official statistic release, a one off publication to help inform users and stakeholders about the prescribing of HRT medications in England.
 
 ---
 
