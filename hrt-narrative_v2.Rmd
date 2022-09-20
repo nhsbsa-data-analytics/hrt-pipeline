@@ -166,11 +166,13 @@ raw_data$national_annual %>%
 
 ```
 
-Source: [Financial Year Summary Tables - National Totals table](https://nhsbsa-opendata.s3.eu-west-2.amazonaws.com/hrt/hrt_financial_year_2021_2022_v001.xlsx)
+Source: [Financial Year Summary Tables - National Totals table](https://nhsbsa-opendata.s3.eu-west-2.amazonaws.com/hrt/hrt_financial_year_2022_2023_YTD_June_2022_v001.xlsx)
 
 There were 7.80 million HRT drug items prescribed in 2021/22. This was a 35.0% increase from 5.78 million items compared with the previous year. Prescribing of HRT items has been increasing since 2015/16, with 3.73 million more items prescribed in 2021/22 when compared to 2015/16, an increase of 91.3% over the period.
 
 There were an estimated 1.94 million identified patients who were prescribed at least one HRT item in 2021/22. This was a 30.5% increase from 1.49 million identified patients when compared with 2020/21. There were 526,000  more identified patients who received a HRT item in 2021/22 compared to 2015/16, an increase of 37.2%. However, it should be noted that this is likely to be an overestimate of the actual increase in patient numbers, as the proportion of patients who could be identified increased. In 2015/16, 93.9% of items were prescribed to identified patients, this increased by 5.29 percentage points in 2021/22 to 99.1% of items.
+
+From April 2022 to June 2022 were 2.57 million HRT drug items prescribed. This is 920,000 more items than the period April 2021 to June 2021, a 55.8% increase.
 
 ### Figure 2: Number of prescribed items and identified patients by month {.toc-ignore}
 
@@ -209,11 +211,11 @@ raw_data$national_monthly %>%
   
 ```
 
-Source: [Monthly Summary Tables - National Totals table](https://nhsbsa-opendata.s3.eu-west-2.amazonaws.com/hrt/hrt_monthly_May_2022_v001.xlsx)
+Source: [Monthly Summary Tables - National Totals table](https://nhsbsa-opendata.s3.eu-west-2.amazonaws.com/hrt/hrt_monthly_June_2022_v001.xlsx)
 
-There were 906,000 HRT drug items prescribed in May 2022. This was a 14.3% increase from 793,000 items compared with the previous month, and an increase of 367,000 (68.5%) from 538,000 items in May 2021. Prescribing of HRT items has been increasing since June 2020, with 442,000 more items prescribed in May 2022 when compared to June 2020, an increase of 95.2% over the period.
+There were 870,000 HRT drug items prescribed in June 2022. This was a 4.02% decrease from 906,000 items compared with the previous month, and an increase of 270,000 (45.1%) from 600,000 items in June 2021. Prescribing of HRT items has been increasing since July 2020, with 409,000 more items prescribed in June 2022 when compared to July 2020, an increase of 82.4% over the period.
 
-There were an estimated 698,000 identified patients who were prescribed at least one HRT item in May 2022. This was a 13.1% increase from 617,000 identified patients when compared with the previous month. There were 313,000 more identified patients who received a HRT item in May 2022 compared to June 2020, an increase of 81.4%. However, it should be noted that this is likely to be an overestimate of the actual increase in patient numbers, as the proportion of patients who could be identified increased. In June 2020, 98.6% of items were prescribed to identified patients, this increased by 0.53 percentage points in May 2022 to 99.1% of items.
+There were an estimated 665,000 identified patients who were prescribed at least one HRT item in June 2022. This was a 4.34% decrease from 695,000 identified patients when compared with the previous month. There were 251,000 more identified patients who received a HRT item in June 2022 compared to July 2020, an increase of 60.7%. 
 
 ### Figure 3: Number of prescribed items and identified patients by financial year and BNF chapter {.toc-ignore}
 
