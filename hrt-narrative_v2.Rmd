@@ -293,7 +293,7 @@ hw_grid(chart_1, chart_2)
 
 ```
 
-Source: [Monthly Summary Tables - BNF Paragraph table](https://nhsbsa-opendata.s3.eu-west-2.amazonaws.com/hrt/hrt_monthly_June_2022_v001.xlsx)
+Source: [Financial Year Summary Tables - BNF Paragraph table](https://nhsbsa-opendata.s3.eu-west-2.amazonaws.com/hrt/hrt_financial_year_2022_2023_YTD_June_2022_v001.xlsx)
 
 There were 5.75 million female sex hormones and their modulators items prescribed in 2021/22. This was a 41.1% increase from 4.07 million items compared with the previous year. Prescribing of female sex hormones and their modulators items has been increasing since 2015/16, with 2.80 million more items prescribed in 2021/22 when compared to 2015/16, an increase of 94.7% over the period.
 
@@ -346,6 +346,12 @@ chart_data %>%
 
 ```
 
+Source: [Financial Year Summary Tables - Chemical Substance table table](https://nhsbsa-opendata.s3.eu-west-2.amazonaws.com/hrt/hrt_financial_year_2022_2023_YTD_June_2022_v001.xlsx)
+
+Between 2015/16 and 2021/22 Estradiol (0604011G0) was the chemical substance which had the largest increase in identified patients who were prescribed at least one item. This was an increase of 175% or 330,000 patients from 188,000 in 2015/16 to 518,000 in 2021/22.
+
+Between 2015/16 and 2021/22 Norethisterone (0604011G0) was the chemical substance which had the largest decrease in identified patients who were prescribed at least one item. This was a decrease of 79.0% or 284,000 patients from 361,000 in 2015/16 to 75,900 in 2021/22.
+
 ### Figure 5: Number of prescribed items by financial year for selected BNF chemical substances {.toc-ignore}
 
 ```{r chem_sub_items, out.width="100%"}
@@ -386,6 +392,8 @@ chart_data %>%
   hc_title(align = "left")
 
 ```
+
+Source: [Financial Year Summary Tables - Chemical Substance table table](https://nhsbsa-opendata.s3.eu-west-2.amazonaws.com/hrt/hrt_financial_year_2022_2023_YTD_June_2022_v001.xlsx)
 
 ### Table 2: Top 10 presentations by prescribed items in `r ltst_year`{.toc-ignore}
 
