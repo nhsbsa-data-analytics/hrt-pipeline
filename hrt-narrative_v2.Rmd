@@ -75,13 +75,11 @@ These medicines are classified by their primary therapeutic indication. However,
 
 ### 1.2. Definitions {.toc-ignore}
 
-Throughout this publication the term ‘item’, short for ‘prescription item’, means a single instance of a drug that is listed as a separate entry on a prescription form. For example, Fluoxetine 20mg tablets x56.
+Throughout this publication the term ‘item’, short for ‘prescription item’, means a single instance of a drug that is listed as a separate entry on a prescription form. For example, Fluoxetine 20mg tablets x56. The term 'quantity' refers to the physical quanity of any items which have been prescribed. For example, Fluoxetine 20mg tablets x56 would be counted as one item but the quantity would be 56. 
 
 In this release the term 'patient/s' is used to mean a unique, valid NHS number that has been captured from a prescription form and subsequently verified by the NHS Personal Demographics Service (PDS). Across 2020/21, use of the Electronic Prescription Service (EPS) increased considerably during the COVID-19 pandemic. As this process captures NHS numbers digitally rather than through scanned paper forms, this has naturally led to an increase in the proportions of identified patients for both 2020/21 and 2021/22 than seen in previous years.
 
 Where patients are identified, their age is calculated on 30 September of the given financial year to assign them to a single age band. For patients where date of birth has not been captured, they have been included in a category of unknown.
-
-Sex information was not available from PDS for a number of patients in each year, typically less than 0.01%. This may be because it was not disclosed by the patient or not recorded by the organisation that collected the data.
 
 There are many costs incurred when a dispensing contractor fulfils a prescription, such as the single activity fee or controlled drug fees. The costs reported in this publication represent the basic price of the item and the quantity prescribed. This is sometimes called the 'Net Ingredient Cost' (NIC). The basic price is given either in the Drug Tariff or is determined from prices published by manufacturers, wholesalers or suppliers. Basic price is set out in Parts VIII and IX of the [Drug Tariff](https://www.nhsbsa.nhs.uk/pharmacies-gp-practices-and-appliance-contractors/drug-tariff). For any drugs not in Part VIII, the price is usually taken from the manufacturer, wholesaler or supplier of the product.
 
@@ -105,7 +103,7 @@ seq <- seq(max_col - 4, max_col)
 cols <- length(seq) + 2
 
 names(raw_data$pi_table_annual)[max_col] <- paste0(
-  names(raw_data$pi_table_annual)[max_col], " (YTD ", ltst_month_tidy,")"
+  substr(names(raw_data$pi_table_annual)[max_col],1,9), " (YTD ", ltst_month_tidy,")"
 )
 
 raw_data$pi_table_annual %>%
@@ -350,7 +348,7 @@ Source: [Financial Year Summary Tables - Chemical Substance table table](https:/
 
 Between 2015/16 and 2021/22 Estradiol (0604011G0) was the chemical substance which had the largest increase in identified patients who were prescribed at least one item. This was an increase of 175% or 330,000 patients from 188,000 in 2015/16 to 518,000 in 2021/22.
 
-Between 2015/16 and 2021/22 Norethisterone (0604011G0) was the chemical substance which had the largest decrease in identified patients who were prescribed at least one item. This was a decrease of 79.0% or 284,000 patients from 361,000 in 2015/16 to 75,900 in 2021/22.
+Between 2015/16 and 2021/22 Norethisterone (0604012P0) was the chemical substance which had the largest decrease in identified patients who were prescribed at least one item. This was a decrease of 79.0% or 284,000 patients from 361,000 in 2015/16 to 75,900 in 2021/22.
 
 ### Figure 5: Number of prescribed items by financial year for selected BNF chemical substances {.toc-ignore}
 
@@ -397,7 +395,7 @@ Source: [Financial Year Summary Tables - Chemical Substance table table](https:/
 
 Between 2015/16 and 2021/22 Estradiol (0604011G0) was the chemical substance which had the largest increase in the number of items prescribed. This was an increase of 216% or 1.59 million items from 736,000 in 2015/16 to 2.33 million in 2021/22.
 
-Between 2015/16 and 2021/22 Norethisterone (0604011G0) was the chemical substance which had the largest decrease in the number of items prescribed. This was a decrease of 83.1% or 463,000 items from 558,000 in 2015/16 to 94,200 in 2021/22.
+Between 2015/16 and 2021/22 Norethisterone (0604012P0) was the chemical substance which had the largest decrease in the number of items prescribed. This was a decrease of 83.1% or 463,000 items from 558,000 in 2015/16 to 94,200 in 2021/22.
 
 ### Table 2: Top 10 presentations by prescribed items in `r ltst_year`{.toc-ignore}
 
@@ -443,6 +441,10 @@ raw_data$presentation_annual %>%
 
 ```
 
+Source: [Financial Year Summary Tables - Presentations table table](https://nhsbsa-opendata.s3.eu-west-2.amazonaws.com/hrt/hrt_financial_year_2022_2023_YTD_June_2022_v001.xlsx)
+
+In 2021/22 Vagifem 10 microgram vaginal tablets had the most prescribed items at 589,00 totals items. This is a 79.1% increase of 260,000 items since 2015/16.
+
 ### Table 3: Top 10 presentations by prescribed items in `r ltst_month_tidy` {.toc-ignore}
 
 ```{r top_pres_month, out.width="100%"}
@@ -485,6 +487,10 @@ raw_data$presentation_monthly %>%
                                       targets = 2:4)
                                )))
 ```
+
+In June 2022 Utrogestan 100mg capsules had the most prescribed items at 65,400 totals items. This is a 79.1% increase of 260,000 items since 2015/16. Utrogestan 100mg capsules have seen an upward trend in the number of items prescribed since April 2015 when 832 items were prescribed. 
+
+Source: [Financial Year Summary Tables - Presentations table table](https://nhsbsa-opendata.s3.eu-west-2.amazonaws.com/hrt/hrt_financial_year_2022_2023_YTD_June_2022_v001.xlsx)
 
 ### Figure 6: Identified patients per 1,000 population by Integrated Care Board (ICB) in `r ltst_year` {.toc-ignore}
 
