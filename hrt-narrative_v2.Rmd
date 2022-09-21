@@ -874,6 +874,12 @@ group_chart_hc(
 
 Source: [Monthly Summary Tables - Exemption Categories table table](https://nhsbsa-opendata.s3.eu-west-2.amazonaws.com/hrt/hrt_monthly_June_2022_v001.xlsx)
 
+In the period July 2020 to June 2022 there has been a steady increase in the proportion of HRT items which have been prescribed to patients who paid in full for their prescriptions. This has increased by 4.45 percentage points from 26.2% in July 2020 to 30.6% in June 2022. 
+
+There has been a steady decline in the proportion of HRT items prescribed to a patient using a PPC in the period July 2020 to June 2022. This decreased by 5.63 percentage points from 15.1% in July 2020 to 9.49% in June 2022.
+
+!!NEED TO CHECK THIS AGAINST OVERALL PRESCRIBING AND ADD NOTE IF THIS MATCHES/GOES AGAINST OVERALL PRESCRIBING TRENDS IN THE PERIODS!!
+
 ## 3. Background
 
 HRT, which replaces the hormones that are at low levels, is the main medicine treatment for menopause and perimenopause symptoms.
