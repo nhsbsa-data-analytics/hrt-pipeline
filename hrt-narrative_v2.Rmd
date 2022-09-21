@@ -733,6 +733,10 @@ group_chart_hc(
   )
 ```
 
+Source: [Financial Year Summary Tables - IMD Quintile Age table table](https://nhsbsa-opendata.s3.eu-west-2.amazonaws.com/hrt/hrt_financial_year_2022_2023_YTD_June_2022_v001.xlsx)
+
+In 2021/22 there were 190,000 identified patients under the age of 60 in the most deprived areas who were prescribed at most one HRT item. This was 76.6% of the total identified patients in the least deprived areas. In the least deprived areas 308,000 identified patients were under 60. This was 64.6% of the total identified patients in the least deprived area who were prescribed at least one HRT item.
+
 ### Figure 11: Proportion of chargeable items by financial year {.toc-ignore}
 
 ``` {r charge_fy, out.width = "100%"}
@@ -795,6 +799,8 @@ group_chart_hc(
     )
   )
 ```
+
+Source: [Financial Year Summary Tables - Exemption Categories table table](https://nhsbsa-opendata.s3.eu-west-2.amazonaws.com/hrt/hrt_financial_year_2022_2023_YTD_June_2022_v001.xlsx)
 
 ### Figure 12: Proportion of chargeable items by month {.toc-ignore}
 
