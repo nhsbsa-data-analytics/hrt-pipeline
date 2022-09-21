@@ -619,7 +619,7 @@ chart
 
 Source: [Financial Year Summary Tables - Age Band table table](https://nhsbsa-opendata.s3.eu-west-2.amazonaws.com/hrt/hrt_financial_year_2022_2023_YTD_June_2022_v001.xlsx)
 
-The most common group to receive prescribing for dependency forming medicines in 2021/22 patients aged 50 to 54 with 437,000 identified patients, 22.7% of all patients. The next most common groups were patients aged 55 to 59 with 356,000 and 18.5% of identified patients, and patients 45 to 49 with 246,000 and 12.8% of identified patients.
+The most common group to receive prescribing for HRT in 2021/22 patients aged 50 to 54 with 437,000 identified patients, 22.7% of all patients. The next most common groups were patients aged 55 to 59 with 356,000 and 18.5% of identified patients, and patients 45 to 49 with 246,000 and 12.8% of identified patients.
 
 More information on how we calculate a patient’s age can be found in section 4 of this summary.
 
@@ -656,6 +656,12 @@ chart <- basic_chart_hc(
 chart$x$hc_opts$series[[1]]$dataLabels$allowOverlap <- TRUE
 chart
 ```
+
+Source: [Financial Year Summary Tables - IMD Quintile table table](https://nhsbsa-opendata.s3.eu-west-2.amazonaws.com/hrt/hrt_financial_year_2022_2023_YTD_June_2022_v001.xlsx)
+
+In 2021/22, there were 477,000 identified patients prescribed HRT medicines in the least deprived areas in England, 92.7% more than the 248,000 identified patients that received prescribing from in the more deprived areas. In general, more people were prescribed dependency forming medicines in more deprived areas in 2021/22. This pattern has remained consistent since 2015/16.
+
+The English Indices of Deprivation have been used to provide a measure of patient deprivation. The deprivation quintiles reported are those of the patient. More information on this measure can be found in section 4 of this summary.
 
 ### Figure 10: Proportion of patients under/over 60 by IMD quintile in `r ltst_year` {.toc-ignore}
 
