@@ -534,6 +534,10 @@ chart$x$hc_opts$series[[1]]$dataLabels$allowOverlap <- TRUE
 chart
 ```
 
+Source: [Financial Year Summary Tables - ICB table table](https://nhsbsa-opendata.s3.eu-west-2.amazonaws.com/hrt/hrt_financial_year_2022_2023_YTD_June_2022_v001.xlsx)
+
+In 2021/22 NHS North East London Integrated Care Board was the ICB with the lowest number of identified patients who received at least one HRT item per 1,000 residents. In 2021/22 the five ICBs under the London NHS Region were all in the lowest eight ICBs in terms of identified patients per 1,000 population who received HRT prescribing. 
+
 ### Figure 7: Prescribed items per 1,000 population by Integrated Care Board (ICB) in `r ltst_year` {.toc-ignore}
 
 ```{r items_per_1000, out.width="100%"}
@@ -582,6 +586,10 @@ chart$x$hc_opts$series[[1]]$dataLabels$formatter <- JS("function(){
 chart$x$hc_opts$series[[1]]$dataLabels$allowOverlap <- TRUE
 chart
 ```
+
+Source: [Financial Year Summary Tables - ICB table table](https://nhsbsa-opendata.s3.eu-west-2.amazonaws.com/hrt/hrt_financial_year_2022_2023_YTD_June_2022_v001.xlsx)
+
+In 2021/22 NHS North East London Integrated Care Board was the ICB with the lowest number of HRT items prescribed per 1,000 residents. In 2021/22 the five ICBs under the London NHS Region were all in the lowest twelve ICBs in terms of items prescribed per 1,000 population who received HRT prescribing. 
 
 ### Figure 8: Number of identified patients by age band in `r ltst_year` {.toc-ignore}
 
