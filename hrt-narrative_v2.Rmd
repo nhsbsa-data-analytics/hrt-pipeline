@@ -802,6 +802,10 @@ group_chart_hc(
 
 Source: [Financial Year Summary Tables - Exemption Categories table table](https://nhsbsa-opendata.s3.eu-west-2.amazonaws.com/hrt/hrt_financial_year_2022_2023_YTD_June_2022_v001.xlsx)
 
+The proportion of HRT items which were prescribed to a patient who was using a Pre-Payment Certificate (PPC) showed a steady increase from 10.2% in 2015/16 to 15.0% in 2020/21. There was then a 3.45 percentage points decrease in the proportion of HRT items prescribed to patients using a PPC to 11.5% in 2021/22. This trend has then continued into 2022/23 where there was a further decrease of 1.84 percentages points to 9.70% in the period April 2022 to June 2023.
+
+!!NEED TO CHECK THIS AGAINST OVERALL PRESCRIBING AND ADD NOTE IF THIS MATCHES/GOES AGAINST OVERALL PRESCRIBING TRENDS IN THE PERIODS!!
+
 ### Figure 12: Proportion of chargeable items by month {.toc-ignore}
 
 ``` {r exempt_monthly, out.width = "100%"}
@@ -867,6 +871,8 @@ group_chart_hc(
     type = "datetime"
   )
 ```
+
+Source: [Monthly Summary Tables - Exemption Categories table table](https://nhsbsa-opendata.s3.eu-west-2.amazonaws.com/hrt/hrt_monthly_June_2022_v001.xlsx)
 
 ## 3. Background
 
