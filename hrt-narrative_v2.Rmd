@@ -617,6 +617,12 @@ chart$x$hc_opts$series[[1]]$dataLabels$allowOverlap <- TRUE
 chart
 ```
 
+Source: [Financial Year Summary Tables - Age Band table table](https://nhsbsa-opendata.s3.eu-west-2.amazonaws.com/hrt/hrt_financial_year_2022_2023_YTD_June_2022_v001.xlsx)
+
+The most common group to receive prescribing for dependency forming medicines in 2021/22 patients aged 50 to 54 with 437,000 identified patients, 22.7% of all patients. The next most common groups were patients aged 55 to 59 with 356,000 and 18.5% of identified patients, and patients 45 to 49 with 246,000 and 12.8% of identified patients.
+
+More information on how we calculate a patient’s age can be found in section 4 of this summary.
+
 ### Figure 9: Number of identified patients by IMD quintile in `r ltst_year` {.toc-ignore}
 
 ``` {r imd_fy, out.width = "100%"}
@@ -906,11 +912,15 @@ This publication is part of a series by the NHSBSA. To learn more about how this
 
 The patient counts shown in these statistics should only be analysed at the level at which they are presented. Adding together any patient counts is likely to result in an overestimate of the number of patients. A patient will be included, or counted, in each category or time period in which they received relevant prescriptions. For example, if a patient received a prescription item for HRT in January 2021, and another in February 2021 then adding together those totals would count that patient twice. For the same reason, data on patient counts for different BNF sections should not be added together.
 
-### 4.2. Averages {.toc-ignore}
+### 4.2. Patient age {.toc-ignore}
+
+The age of patients used in these statistics is derived from data provided by the NHS Personal Demographics Service (PDS) for NHS numbers that have been successfully verified by them. A patient’s age, used to assign them to an age group, has been calculated on 30 September for the given financial year. It is possible that a patient’s PDS information may change over the course of the year, in these cases patients may be subject to multiple counting in these analyses.
+
+### 4.3. Averages {.toc-ignore}
 
 Where this document refers to 'average', this is the mean unless otherwise stated. This is calculated by adding the number of items/patients/months together and dividing this by the number of items/patients/months.
 
-### 4.3. Index of deprivation {.toc-ignore}
+### 4.4. Index of deprivation {.toc-ignore}
 
 The English Indices of Deprivation 2019 have been used to provide a measure of patient deprivation. The English Indices of Deprivation are an official national measure of deprivation that follows an established methodological framework to capture a wide range of individuals’ living conditions.
 
@@ -918,7 +928,7 @@ The reported IMD quintile, where 1 is the most deprived and 5 the least deprived
 
 IMD quintile are calculated by ranking census LSOA from most deprived to least deprived and dividing them into 5 equal groups. These range from the most deprived 20% (quintile 1) of small areas nationally to the least deprived 20% (quintile 5) of small areas nationally.
 
-### 4.4. Planned changes to this publication {.toc-ignore}
+### 4.5. Planned changes to this publication {.toc-ignore}
 
 This is an ad hoc official statistic release, a one off publication to help inform users and stakeholders about the prescribing of HRT medications in England.
 
