@@ -1,6 +1,8 @@
 ---
 title: "Hormone replacement therapy (HRT) - England"
-pagetitle: Background Information and methodology
+pagetitle: "Background Information and methodology"
+author: "Background Information and methodology"
+date: October 2022
 always_allow_html: true
 output:
   word_document:
@@ -40,11 +42,87 @@ knitr::opts_chunk$set(echo = FALSE,
 
 <main>
 
-# Document release note {.toc-ignore}
+## Document release note {.toc-ignore}
 
+```{r relase_notes, out.width="100%"}
+release_notes <- data.frame(
+  "Document details name" = "Hormone Replacement Therapy – Background Information and Methodology",
+  "Version number" = "v001",
+  "Description" = "Document providing background information and details on methodologies used for the ad hoc Hormone Replacement Therapy Official Statistic publication.",
+  check.names = FALSE
+) 
+
+kableExtra::kable(release_notes) %>%
+kable_styling(bootstrap_options = "bordered")
+```
+Document name: Hormone Replacement Therapy – Background Information and Methodology
+
+```{r revision_notes, out.width="100%"}
+revision_notes <- data.frame(
+  "Revision details revision number" = " ",
+  "Revision date" = " ",
+  "Revision description" = " ",
+  "Page number" = " ",
+  "Previous page number" = " ",
+  "Action taken" = " ",
+  "Addenda / new page"= " ",
+  check.names = FALSE
+) 
+
+kableExtra::kable(revision_notes) %>%
+kable_styling(bootstrap_options = "bordered")
+```
 ---
 
 ## 1. Background information
+
+The HRT ad-hoc publication has been developed in response to current supply issues of HRT. The publication has been developed to provide assistance to colleagues in dealing with requests for data relating to HRT. The publication will help address the supply issues and aid the Menopause Taskforce in ensuring all women have the correct access to HRT. The formation of the Menopause Taskforce comes ahead of the formation of the first government-led Women’s Health Strategy for England to tackle the gender health gap.
+
+Millions of women go through the menopause every year, with the majority experiencing symptoms that can be severe, such as low mood, anxiety, hot flushes and difficulty sleeping, and have a negative impact on everyday life.
+
+The taskforce will tackle issues surrounding the menopause including increasing access to treatment, and ending the taboos and stigmas that still surround conversations about the menopause, including in the workplace.
+
+The publication shows the volumes of prescription items and unique patients for a subset of drugs that have been classified as being used primarily for the treatment of menopause and perimenopause symptoms. These drugs are described by the British National Formulary (BNF) sections:
+
+* BNF paragraph 6.4.1 – Female sex hormones and their modulators
+* BNF paragraph 7.2.1 – Preparations for vaginal and vulval changes
+
+These sections are held in the same structure of the BNF prior to the release of version 70.
+
+This publication can have a wide range of uses including informing government or local NHS policy, and allowing public scrutiny of national and regional prescribing habits.
+Prescription data is a long-standing administrative source of data that has been used by commissioners, providers, government, academia, industry, and media to inform local and national policy, in academic research, to monitor medicine uptake, and allow public scrutiny of prescribing habits. It is collected by the NHS Business Services Authority (NHSBSA) for the operational purpose of reimbursing and remunerating dispensing contractors for the costs of supplying drugs and devices, along with essential and advanced services, to NHS patients. The data that forms the basis of these statistics is collected as a by-product of this process.
+
+### 1.1. How prescription data is collected  {.toc-ignore}
+
+Data is collected from the submission of prescriptions by dispensing contractors to the NHSBSA. These prescriptions can be issued by GPs and other authorised prescribers such as nurses, dentists, and allied health professionals. Prescriptions that are issued by hospitals can also be dispensed in the community and submitted for reimbursement. Prescriptions that are issued in hospitals and fulfilled by the hospital pharmacy or dispensary are not included in this data.
+
+Prescriptions can be issued as either a paper form or as an electronic message using the Electronic Prescription Service (EPS). EPS prescriptions make up most of prescribing and dispensing activity carried out in England, accounting for 88% of all prescriptions dispensed in England during 2021 (Source – NHSBSA Enterprise Data Warehouse). EPS messages are submitted by the dispensing contractor once the prescription has been fulfilled and issued to the patient. The message is initially sent to the [NHS Spine](https://digital.nhs.uk/services/spine), maintained by NHS Digital, and then sent to the NHSBSA for processing. Paper prescriptions are compiled by the dispensing contractor and sent to the NHSBSA at the end of each month by secure courier. These paper prescriptions are then scanned and transformed into digital images, which are passed through intelligent character recognition (ICR) to extract the relevant data from them. Most paper forms go through ICR without any manual intervention. However, there are cases where operator intervention is required to accurately capture information from the prescription form. This manual intervention can be required for many reasons, such as if a form is handwritten or information is obscured by a pharmacy stamp.
+
+After this processing for the reimbursement and remuneration of dispensing contractors, data is extracted from the NHSBSA transactional systems alongside data from the NHSBSA drug and organisational databases and loaded in to the NHSBSA Enterprise Data Warehouse (EDW). During this extract, load and transform (ELT) process a series of business logic is applied to the data to make it easier to use and more useful than if it were to be kept in its raw form. The EDW is the source used by many of our reporting systems and data extracts, including ePACT2, eDEN, eOPS, the English Prescribing Dataset (EPD), and Official Statistics publications.
+
+### 1.2. Drug data held by the NHSBSA  {.toc-ignore}
+
+The NHSBSA has a single drug database that is used for both the reimbursement and reporting of drugs, appliances, and medical devices. Before March 2020 the NHSBSA maintained two drug databases that were difficult to align and reconcile. These were combined and the legacy system decommissioned by the ‘One Drug Database’ project. This database is called Common Drug Reference (CDR) and holds all drug related information, including BNF classification, SNOMED CT, price and much more. This database is also the basis for the [NHS Dictionary of Medicines and Devices (DM+D)](https://www.nhsbsa.nhs.uk/pharmacies-gp-practices-and-appliance-contractors/dictionary-medicines-and-devices-dmd), which the NHSBSA maintain with support from NHS Digital. 
+
+Drugs are held on CDR at an individual pack level. For example, Paracetamol 500mg tablets 16 pack and Paracetamol 500mg tablets 32 pack have separate entries in the database, along with separate entries for each supplier of the pack and any proprietary versions. 
+
+The NHSBSA holds drug and prescription data at a pack level and uses this information for the correct reimbursement of dispensing contractors. However, the most granular data that we release in our reporting systems and other data outputs, including these statistics, is at a product level.
+
+#### 1.2.1. British National Formulary (BNF) hierarchy  {.toc-ignore}
+
+These statistics use the therapeutic classifications defined in the BNF to group medicines together based on their primary therapeutic indication. The NHSBSA uses and maintains the classification system of the BNF implemented prior to the release of edition 70, including the six pseudo BNF chapters (18 to 23) created by NHS Prescription Services used to classify products that fall outside of chapters 1 to 15. Most of the presentations held in these pseudo chapters are dressings, appliances, and medical devices. Each January the NHSBSA updates the classification of drugs within the BNF hierarchy which may involve some drugs changing BNF codes and moving within the hierarchy.
+
+The BNF has multiple levels, in descending order from the largest grouping to smallest they are chapter, section, paragraph, sub-paragraph, chemical substance, product, and individual presentation. Presentations in chapters 20 to 23 do not have assigned BNF paragraphs, sub-paragraphs, chemical substances, or products.
+
+### 1.3. Other data held by the NHSBSA  {.toc-ignore}
+
+#### 1.3.1 Personal Demographic Service data  {.toc-ignore}
+
+The Personal Demographic Service (PDS) is a part of NHS Digital that holds information that allows healthcare professionals to identify patients and match them to their health records. This includes information such as NHS number, date of birth, gender, registered address and registered GP practice.
+
+Each month when data is loaded into the NHSBSA Data & Insight Data Warehouse, NHS numbers that have been captured are sent to PDS to verify them. That list includes all NHS numbers that were scanned in that month and previously verified NHS numbers that have a birthday in that month. Details held by PDS are returned to the NHSBSA, including updates to previously verified NHS numbers.
+
+As this process takes time new and updated verified data from PDS is loaded into the NHSBSA Data & Insight Data Warehouse the month after the NHS numbers were first scanned. For example, a new NHS number received in January and subsequently verified would be classed as ‘not verified’ in January and ‘verified’ in February. In February the additional information about that patient such as gender and age would become available.
 
 ## 2. Methodology
 
