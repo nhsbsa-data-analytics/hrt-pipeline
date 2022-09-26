@@ -802,9 +802,7 @@ group_chart_hc(
 
 Source: [Financial Year Summary Tables - Exemption Categories table table](https://nhsbsa-opendata.s3.eu-west-2.amazonaws.com/hrt/hrt_financial_year_2022_2023_YTD_June_2022_v001.xlsx)
 
-The proportion of HRT items which were prescribed to a patient who was using a Pre-Payment Certificate (PPC) showed a steady increase from 10.2% in 2015/16 to 15.0% in 2020/21. There was then a 3.45 percentage points decrease in the proportion of HRT items prescribed to patients using a PPC to 11.5% in 2021/22. This trend has then continued into 2022/23 where there was a further decrease of 1.84 percentages points to 9.70% in the period April 2022 to June 2023.
-
-!!NEED TO CHECK THIS AGAINST OVERALL PRESCRIBING AND ADD NOTE IF THIS MATCHES/GOES AGAINST OVERALL PRESCRIBING TRENDS IN THE PERIODS!!
+The proportion of HRT items which were prescribed to a patient who was using a Pre-Payment Certificate (PPC) showed a steady increase from 10.2% in 2015/16 to 15.0% in 2020/21. There was then a 3.45 percentage points decrease in the proportion of HRT items prescribed to patients using a PPC to 11.5% in 2021/22. This trend has then continued into 2022/23 where there was a further decrease of 1.84 percentages points to 9.70% in the period April 2022 to June 2023. This is consistent with overall prescribing where the proportion of items prescribed to patients using a PPC has been declining since 2019/20.
 
 ### Figure 12: Proportion of chargeable items by month {.toc-ignore}
 
@@ -874,11 +872,9 @@ group_chart_hc(
 
 Source: [Monthly Summary Tables - Exemption Categories table table](https://nhsbsa-opendata.s3.eu-west-2.amazonaws.com/hrt/hrt_monthly_June_2022_v001.xlsx)
 
-In the period July 2020 to June 2022 there has been a steady increase in the proportion of HRT items which have been prescribed to patients who paid in full for their prescriptions. This has increased by 4.45 percentage points from 26.2% in July 2020 to 30.6% in June 2022. 
+In the period July 2020 to June 2022 there has been a steady increase in the proportion of HRT items which have been prescribed to patients who paid in full for their prescriptions. This has increased by 4.45 percentage points from 26.2% in July 2020 to 30.6% in June 2022. This differs from the pattern seen in overall prescribing where the proportion of items prescribed to patients who paid in full for their prescriptions has been consistent since July 2020.
 
-There has been a steady decline in the proportion of HRT items prescribed to a patient using a PPC in the period July 2020 to June 2022. This decreased by 5.63 percentage points from 15.1% in July 2020 to 9.49% in June 2022.
-
-!!NEED TO CHECK THIS AGAINST OVERALL PRESCRIBING AND ADD NOTE IF THIS MATCHES/GOES AGAINST OVERALL PRESCRIBING TRENDS IN THE PERIODS!!
+There has been a steady decline in the proportion of HRT items prescribed to a patient using a PPC in the period July 2020 to June 2022. This decreased by 5.63 percentage points from 15.1% in July 2020 to 9.49% in June 2022. This is consistent with overall prescribing where the proportion of items prescribed to patients using a PPC has been declining since July 2020.
 
 ## 3. Background
 

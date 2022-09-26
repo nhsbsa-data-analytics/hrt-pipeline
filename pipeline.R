@@ -762,7 +762,6 @@ meta_fields <- c(
   "BNF Paragraph Name",
   "Financial Year",
   "Year Month",
-  "Financial Quarter",
   "Identified Patient",
   "Total Items",
   "Total Net Ingredient Cost (GBP)",
@@ -775,7 +774,6 @@ meta_descs <-
     "The name given to a British National Formulary (BNF) paragraph. This is the next broadest grouping of the BNF therapeutical classification system after section, below chapter.",
     "The financial year to which the data belongs.",
     "The year and month to which the data belongs, denoted in YYYYMM format.",
-    "The financial quarter to which the data belongs.",
     "This shows where an item has been attributed to an NHS number that has been verified by the Personal Demographics Service (PDS).",
     "The number of prescription items dispensed. 'Items' is the number of times a product appears on a prescription form. Prescription forms include both paper prescriptions and electronic messages.",
     "Total Net Ingredient Cost is the amount that would be paid using the basic price of the prescribed drug or appliance and the quantity prescribed. Sometimes called the 'Net Ingredient Cost' (NIC). The basic price is given either in the Drug Tariff or is determined from prices published by manufacturers, wholesalers or suppliers. Basic price is set out in Parts 8 and 9 of the Drug Tariff. For any drugs or appliances not in Part 8, the price is usually taken from the manufacturer, wholesaler or supplier of the product. This is given in GBP (£).",
@@ -797,7 +795,8 @@ write_sheet(
     " - Proportion of items for which an NHS number was recorded (%)"
   ),
   c(
-    "1. The below proportions reflect the percentage of prescription items where a NHS number was recorded."
+    "1. Field definitions can be found on the 'Metadata' tab.",
+    "2. The below proportions reflect the percentage of prescription items where a NHS number was recorded."
   ),
   pi_data_annual,
   30
@@ -863,8 +862,9 @@ write_sheet(
     " - Population totals split by financial year"
   ),
   c(
-    "1. Some cells in this table are empty because ONS population estimates for 2021/2022 were not available prior to publication.",
-    "2. ONS population estimates taken from https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/populationestimates."
+    "1. Field definitions can be found on the 'Metadata' tab.",
+    "2. Some cells in this table are empty because ONS population estimates for 2021/2022 were not available prior to publication.",
+    "3. ONS population estimates taken from https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/populationestimates."
   ),
   nat_pop_data,
   30
@@ -1299,7 +1299,6 @@ meta_fields <- c(
   "BNF Paragraph Name",
   "Financial Year",
   "Year Month",
-  "Financial Quarter",
   "Identified Patient",
   "Total Items",
   "Total Net Ingredient Cost (GBP)",
@@ -1312,7 +1311,6 @@ meta_descs <-
     "The name given to a British National Formulary (BNF) paragraph. This is the next broadest grouping of the BNF therapeutical classification system after section, below chapter.",
     "The financial year to which the data belongs.",
     "The year and month to which the data belongs, denoted in YYYYMM format.",
-    "The financial quarter to which the data belongs.",
     "This shows where an item has been attributed to an NHS number that has been verified by the Personal Demographics Service (PDS).",
     "The number of prescription items dispensed. 'Items' is the number of times a product appears on a prescription form. Prescription forms include both paper prescriptions and electronic messages.",
     "Total Net Ingredient Cost is the amount that would be paid using the basic price of the prescribed drug or appliance and the quantity prescribed. Sometimes called the 'Net Ingredient Cost' (NIC). The basic price is given either in the Drug Tariff or is determined from prices published by manufacturers, wholesalers or suppliers. Basic price is set out in Parts 8 and 9 of the Drug Tariff. For any drugs or appliances not in Part 8, the price is usually taken from the manufacturer, wholesaler or supplier of the product. This is given in GBP (£).",
@@ -1334,7 +1332,8 @@ write_sheet(
     " - Proportion of items for which an NHS number was recorded (%)"
   ),
   c(
-    "1. The below proportions reflect the percentage of prescription items where a NHS number was recorded."
+    "1. Field definitions can be found on the 'Metadata' tab.",
+    "2. The below proportions reflect the percentage of prescription items where a NHS number was recorded."
   ),
   pi_data_monthly,
   14
@@ -1772,7 +1771,9 @@ openxlsx::saveWorkbook(wb,
 
 rmarkdown::render("hrt-narrative_v2.Rmd",
                   output_format = "html_document",
-                  output_file = "outputs/hrt.html")
+                  output_file = paste0("outputs/hrt_",
+                                       gsub(" ", "_", ltst_month_tidy),
+                                       "_v001.html"))
 
 #rmarkdown::render("hrt-narrative-template.Rmd",
 #                  output_format = "html_document",
