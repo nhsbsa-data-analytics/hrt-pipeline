@@ -1265,9 +1265,9 @@ openxlsx::saveWorkbook(wb,
                        paste0(
                          "outputs/hrt_financial_year_",
                          paste0(
-                         gsub("/", "_", max(raw_data$national_annual$FINANCIAL_YEAR)),
-                         "_YTD_", 
-                         gsub(" ", "_", ltst_month_tidy)
+                           gsub("/", "_", max(raw_data$national_annual$FINANCIAL_YEAR)),
+                           "_YTD_", 
+                           gsub(" ", "_", ltst_month_tidy)
                          ),
                          "_v001.xlsx"
                        ),
