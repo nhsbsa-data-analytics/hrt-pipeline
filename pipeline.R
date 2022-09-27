@@ -1769,7 +1769,7 @@ openxlsx::saveWorkbook(wb,
 
 # 8. render markdowns ------------------------------------------------------
 
-rmarkdown::render("hrt-narrative_v2.Rmd",
+rmarkdown::render("hrt-narrative.Rmd",
                   output_format = "html_document",
                   output_file = paste0("outputs/hrt_",
                                        gsub(" ", "_", ltst_month_tidy),
