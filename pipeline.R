@@ -17,7 +17,9 @@ req_pkgs <-
     "lubridate",
     "dbplyr",
     "tidyr",
-    "readxl"
+    "readxl",
+    "DT",
+    "kableExtra"
   )
 
 #utils::install.packages(req_pkgs, dependencies = TRUE)

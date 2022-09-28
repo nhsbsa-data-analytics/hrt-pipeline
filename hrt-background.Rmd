@@ -132,9 +132,133 @@ As this process takes time new and updated verified data from PDS is loaded into
 
 ## 5. Revisions
 
+Any revisions that we make to these statistics will be made in line with our [Revisions and Corrections policy](https://www.nhsbsa.nhs.uk/policies-and-procedures). Any significant errors that are identified within these statistics after their publication that would result in the contradiction of conclusions previously drawn from the data will be notified of prominently on our website and any other platforms that host these statistics, corrected as soon as possible, and communicated clearly to users and stakeholders.
+
 ## 6. Related statistics, comparability and useful resources
 
+### 6.1 NHSBSA Open Data Portal {.toc-ignore}
+
+The [NHSBSA Open Data Portal](https://opendata.nhsbsa.net/) is the platform where we host our open data products, including the presentation level data tables released as part of these statistics.
+
+Items prescribed for dependency forming medicines are also available to view at presentation level through our annual [Prescription Cost Analysis publication](https://www.nhsbsa.nhs.uk/statistical-collections/prescription-cost-analysis-england), which takes a dispensing view and covers all items prescribed throughout the UK but dispensed in the community in England only.
+
+### 6.2 Code of Practice for Statistics {.toc-ignore}
+
+These statistics have been produced in compliance of the Code of Practice for Statistics. You can find more on the code of practice and its pillars, principles and practices from the [UK Statistics Authority website](https://code.statisticsauthority.gov.uk/).
+
 ## 7. Quality of the statistics
+
+We aim to provide users of this publication with an evidence-based assessment of its quality and the quality of the data from which it is produced. We do so to demonstrate our commitment to comply with the UK Statistics Authority’s (UKSA) Code of Practice for Statistics, particularly the pillar of Quality and its principles.
+
+**Q1 Suitable data sources** – Statistics should be based on the most appropriate data to meet intended uses. The impact of any data limitations for use should be assessed, minimised, and explained.
+
+**Q2 Sound methods** – Producers of statistics and data should use the best available methods and recognised standards and be open about their decisions.
+
+**Q3 Assured quality** – Producers of statistics and data should explain clearly how they assure themselves that statistics and data are accurate, reliable, coherent, and timely.
+
+This is an assessment of the quality of these statistics against the European standard for quality reporting and its dimensions specific to statistical outputs, particularly:
+
+*	Relevance
+*	Accuracy and reliability
+*	Timeliness and punctuality
+*	Accessibility
+*	Coherence and comparability
+
+These principles guide us and are complimented by the UKSA’s regulatory standard for the Quality Assurance of Administrative Data (QAAD). You can view our QAAD assessment of prescription data on [our website](https://www.nhsbsa.nhs.uk/statistical-collections).
+
+### 7.1. Relevance {.toc-ignore}
+
+***This dimension covers the degree to which the product meets user need in both coverage and content***
+
+The Hormone Replacement Therapy publication, released as an ad-hoc publication, summarises the number of items prescribed for drugs used in the treatment of menopause and perimenopause symptoms. The statistics also give patient breakdowns including by 5-year age band, and IMD decile. These statistics cover from financial year 2015/16 onwards, allowing the analysis of long-term trends in prescribing. We believe that they can used to inform policy decisions at a national and local level, by the public to scrutinise prescribing habits, and by academia and applied health researchers for matters relating to public health. The NHSBSA also routinely receives Freedom of Information requests and parliamentary questions about this subject matter. 
+
+We will be gathering feedback from users of these statistics on an on-going basis to help shape them and ensure that they remain relevant and of use.
+
+### 7.2 Accuracy and Reliability {.toc-ignore}
+
+***This dimension covers the statistics proximity between an estimate and the unknown true value***
+
+#### 7.2.1. Accuracy  {.toc-ignore}
+
+These statistics are derived from data collected during processing activities carried out by the NHSBSA to reimburse dispensing contractors for providing services to NHS patients. Prescriptions are scanned and subject to rigorous automatic and manual validation processes to ensure accurate payments are made to dispensing contractors. Where electronic prescriptions are used the scope for manual intervention and input into data is reduced dramatically.
+
+The figures used are collected as an essential part of the process of reimbursing dispensing contractors (mainly pharmacists and dispensing doctors) for medicines supplied. All prescriptions which are dispensed in England need to be submitted to the NHSBSA if the dispenser is to be reimbursed, and so coverage should be complete. Due to the manual processes involved in the processing of prescriptions there may be random inaccuracies in capturing prescription information which are then reflected in the data. NHS Prescription Services, a division of NHSBSA, internally quality assures the data that is captured from prescriptions to a 99.70% level via a statistically valid random sample of 50,000 items that are reprocessed monthly. The latest reported [Prescription Processing Information Accuracy](https://www.nhsbsa.nhs.uk/pharmacies-gp-practices-and-appliance-contractors/payments-and-pricing/how-we-process-prescriptions) from NHS Prescriptions services, which covers the 12 month period March 2021 to February 2022 is 99.92%.
+
+#### 7.2.2. Reliability {.toc-ignore}
+
+As there is a manual data entry element to this system then inevitably some small errors may occur in the data. The NHSBSA and NHS Prescription Services take measures to minimise these errors. This includes the presence of a permanent dedicated accuracy team within NHS Prescription services which provides feedback to operators around any errors identified to help prevent regular occurrence.
+
+### 7.3. Timeliness and punctuality {.toc-ignore}
+
+***Timeliness refers to the time gap between publication and the reference period. Punctuality refers to the gap between planned and actual publication dates***
+
+The Hormone Replacement Therapy publication is an ad-hoc publication. The date of release for the publication will be announced in advance in line with our statistical release calendar.
+
+### 7.4. Accessibility and clarity {.toc-ignore}
+
+***Accessibility is the ease with which users can access the data, also reflecting the format in which the data are available and the availability of supporting information. Clarity refers to the quality and sufficiency of the metadata, illustrations, and accompanying advice***
+
+The statistical summary narrative for this publication is presented as an HTML webpage, with supporting documentation also released in HTML format. Summary data and additional analysis is presented in tables in Excel files.
+
+The R code used to produce the publication will also be made available from the [NHSBSA GitHub](https://github.com/nhsbsa-data-analytics) in due course.
+
+**Clarity**
+
+A glossary of terms is included in this document.
+
+### 7.5. Coherence and comparability {.toc-ignore}
+
+***Coherence is the degree to which data have been derived from different sources or methods but refer to the same topic or similar. Comparability is the degree to which data can be compared over time and domain***
+
+The Hormone Replacement Therapy publication is the only statistics available on the prescribing of drugs used in the treatment of menopause and perimenopause symptoms that have been dispensed in the community. The statistics are all derived from the same administrative data source with the same methodology applied to all data points.
+
+The figures released in these statistics relating to item counts and total costs can be recreated from the English Prescribing Dataset (EPD) administrative data feed, available from the NHSBSA Open Data Portal (ODP). NHSBSA Information Services provide this data feed, and this feed is not an official statistic.
+
+Comparability with other publications produced by the NHSBSA can be determined using the [Official Statistics guidance table](https://www.nhsbsa.nhs.uk/statistical-collections), which is maintained with the release of each new publication. This table shows how all of the NHSBSA’s publications compare across a range of measures to help users identify the best publication for their needs or understand where differences in figures may occur.
+
+#### 7.5.1. Comparisons over time {.toc-ignore}
+
+In order to allow for comparisons to be made over time these statistics cover the whole period for which data is available, from financial year 2015/16 onwards.
+
+Changes to the figures over time should be interpreted in the wider context of the prescribing system as a whole, including in the availability of medicines, release of new medicines, their costs and changing prescribing guidelines. All medicines are shown by their latest BNF classification, as described in section 2 – methodology.
+
+**Trade-offs between output quality components**
+
+***This dimension describes the extent to which different aspects of quality are balanced against each other***
+
+The main trade-off in this publication is the balance between timeliness and data quality. Sufficient time is allowed from the data being made available to allow for the information to be produced and quality assured. 
+
+We are releasing this ad-hoc Official Statistic to allow users to begin analysing them, however we intend to introduce further data cleansing in the future that will improve the quality and accuracy of these statistics. This will be introduced once the data cleansing can be done in a timely manner and will not impact the release of the publication. The impact expected to be a small amount of reclassification – that will not impact most of the main conclusions or user’s analysis.
+
+**Assessment of user needs and perceptions**
+
+***This dimension covers the processes for finding out about users and uses and their views on the statistical products***
+
+Alongside the release of these statistics the NHSBSA will also be releasing a continuous feedback survey, allowing users to quickly tell us their thoughts on the content and utility of these statistics. This feedback, along with feedback gathered from other routes such as direct contact, will be used to shape the content and style of future Hormone Replacement Therapy publications and other statistical products from the NHSBSA.
+
+**Performance, cost and respondent burden**
+
+***This dimension describes the effectiveness, efficiency and economy of the statistical output***
+
+There is no respondent burden for Hormone Replacement Therapy data, as all data are extracted from existing NHSBSA information and transactional systems.
+
+This release has been developed with a reproducible analytical pipeline (RAP) in mind and RAP principles applied where possible. This development has been done in R and the code used will be made publicly available at the [NHSBSA GitHub](https://github.com/nhsbsa-data-analytics). Further development is planned to the RAP used for this publication to automate as many tasks as possible.
+
+**Confidentiality, transparency and security**
+
+***The procedures and policy used to ensure sound confidentiality, security and transparent practices***
+
+Trustworthy statistics and the data behind them are an important part of well informed decision making, and are vital to support improvement across the wider health and social care system. It is accepted, however, that where statistics provide information on small numbers of individuals, the NHS Business Services Authority have a duty under data protection law to avoid directly or indirectly revealing any personal details. In addition, NHSBSA staff members are required to adhere to relevant NHS data confidentiality guidelines.
+
+The NHSBSA has robust confidentiality and security policies that were adhered to during the production of these statistics. More information on these policies and how we follow them can be found in our [Confidentiality and Access Statement](https://www.nhsbsa.nhs.uk/sites/default/files/2021-05/Confidentiality_and_Access_Statement_v002.pdf).
+
+A risk assessment around potential disclosure of personal identifiable information through these statistics was carried out during their production. In line with the NHSBSA’s Statistical Disclosure Control Policy, patient counts less than five, or item and cost information where a patient count of less than five can be inferred, have been redacted. 
+
+**Quality assurance of administrative data**
+
+In addition to the assessment, we have followed the Quality Assurance of Administrative Data (QAAD) toolkit, as described by the Office for Statistics Regulation (OSR). Using the toolkit, we established the level of assurance we are seeking (or “benchmark”) for each source. The assurance levels are set as basic, enhanced, or comprehensive depending on the risk of quality concerns for that source, based on various factors.
+
+We have made a judgement about the suitability of the administrative data for use in producing this publication, this is designed to be pragmatic and proportionate. The QAAD assessment for prescription data can be found on the [NHSBSA website](https://www.nhsbsa.nhs.uk/statistical-collections).
 
 ## 8. Glossary of terms used in these statistics
 
