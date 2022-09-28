@@ -1682,7 +1682,7 @@ write_sheet(
     "1. Field definitions can be found on the 'Metadata' tab.",
     "2. The figures in this table relate to prescribing of HRT medications in England that are subsequently dispensed in the community in England, Scotland, Wales, Isle of Man or the Channel Islands by a pharmacy, appliance contractor, dispensing doctor, or have been personally administered by a GP practice. They do not include data on medicines used in secondary care, prisons, or issued by a private prescriber.",
     "3. Statistical disclosure control has been applied to cells containing 5 or fewer patients or items. These cells will appear blank.",
-    "4. Where a patient's lower-layer super output areas (LSOA) has not been able to to be matched, is not available, or the patient has not been identified the records are reported as 'unknown' IMD decile.",
+    "4. Where a patient's lower-layer super output areas (LSOA) has not been able to to be matched, is not available, or the patient has not been identified the records are reported as 'unknown' IMD decile."
   ),
   quintile_monthly,
   14
@@ -1720,7 +1720,7 @@ write_sheet(
     "1. Field definitions can be found on the 'Metadata' tab.",
     "2. The figures in this table relate to prescribing of HRT medications in England that are subsequently dispensed in the community in England, Scotland, Wales, Isle of Man or the Channel Islands by a pharmacy, appliance contractor, dispensing doctor, or have been personally administered by a GP practice. They do not include data on medicines used in secondary care, prisons, or issued by a private prescriber.",
     "3. Statistical disclosure control has been applied to cells containing 5 or fewer patients or items. These cells will appear blank.",
-    "4. Where a patient's lower-layer super output areas (LSOA) has not been able to to be matched, is not available, or the patient has not been identified the records are reported as 'unknown' IMD decile.",
+    "4. Where a patient's lower-layer super output areas (LSOA) has not been able to to be matched, is not available, or the patient has not been identified the records are reported as 'unknown' IMD decile."
   ),
   quintile_age_monthly,
   14
