@@ -140,7 +140,7 @@ Any revisions that we make to these statistics will be made in line with our [Re
 
 The [NHSBSA Open Data Portal](https://opendata.nhsbsa.net/) is the platform where we host our open data products, including the presentation level data tables released as part of these statistics.
 
-Items prescribed for dependency forming medicines are also available to view at presentation level through our annual [Prescription Cost Analysis publication](https://www.nhsbsa.nhs.uk/statistical-collections/prescription-cost-analysis-england), which takes a dispensing view and covers all items prescribed throughout the UK but dispensed in the community in England only.
+Items prescribed for Hormone Replacement Therapy are also available to view at presentation level through our annual [Prescription Cost Analysis publication](https://www.nhsbsa.nhs.uk/statistical-collections/prescription-cost-analysis-england), which takes a dispensing view and covers all items prescribed throughout the UK but dispensed in the community in England only.
 
 ### 6.2 Code of Practice for Statistics {.toc-ignore}
 
@@ -261,6 +261,51 @@ In addition to the assessment, we have followed the Quality Assurance of Adminis
 We have made a judgement about the suitability of the administrative data for use in producing this publication, this is designed to be pragmatic and proportionate. The QAAD assessment for prescription data can be found on the [NHSBSA website](https://www.nhsbsa.nhs.uk/statistical-collections).
 
 ## 8. Glossary of terms used in these statistics
+
+### Age {.toc-ignore}
+A patient’s age, and therefore 5-year age band, has been calculated at 30 September for the given financial year. This age has been calculated using the patient date of birth shared with the NHSBSA from PDS.
+
+### British National Formulary (BNF) {.toc-ignore}
+
+Dependency Forming Medicine data uses the therapeutic classifications defined in the British National Formulary (BNF) using the classification system prior to edition 70. NHS Prescription Services have created pseudo BNF chapters for items not included in BNF chapters 1 to 15. The majority of such items are dressings and appliances, which have been classified into six pseudo BNF chapters (18 to 23).
+Information on why a drug is prescribed is not available in this dataset. Since drugs can be prescribed to treat more than one condition, it may not be possible to separate the different conditions for which a drug may have been prescribed.
+
+The BNF has multiple levels, in descending order from largest grouping to smallest: chapter, section, paragraph, sub-paragraph, chemical substance, product, presentation. Presentations in chapters 20-23 do not have an assigned BNF paragraph, sub-paragraph, chemical substance or product.
+
+### Chemical substance {.toc-ignore}
+
+A chemical substance is the name of the main active ingredient in a drug. Appliances do not hold a true chemical substance. It is determined by the British National Formulary (BNF) for drugs, or the NHSBSA for appliances. For example, Amoxicillin.
+
+### Cost {.toc-ignore}
+
+In British pound sterling (GBP). The amount that would be paid using the basic price of the prescribed drug or appliance and the quantity prescribed, sometimes called 'Net Ingredient Cost' (NIC). The basic price is given either in the Drug Tariff or is determined from prices published by manufacturers, wholesalers, or suppliers. Basic price is set out in Parts VIII and IX of the Drug Tariff. For any drugs or appliances not in Part VIII, the price is usually taken from the manufacturer, wholesaler, or supplier of the product.
+
+### Dispensed in the community {.toc-ignore}
+
+When a prescription item is dispensed in the community this means that it has been dispensed by a community pharmacy or other dispensing contractor. This does not include medicines dispensed within hospitals and prisons.
+
+### Dispensing contractor / dispenser {.toc-ignore}
+
+A dispensing contractor or dispenser can be a community pharmacy or appliance contractor (a dispenser that specialises in dispensing dressing, appliances and medical devices).
+
+Prescriptions can also be dispensed by the dispensary of a dispensing practice or personally administered at a practice. Dispensing practices usually exist in more rural areas where the need for a dispenser is deemed necessary but it is not deemed financially viable to establish a community pharmacy.
+
+### Identified patients {.toc-ignore}
+
+An identified patient is where an NHS number captured by the NHSBSA during prescription processing activities has been successfully matched to an NHS number held by the Personal Demographic Service (PDS), and PDS data, such as date of birth and gender, returned to the NHSBSA.
+
+### Integrated Care Board (ICB) {.toc-ignore}
+
+Integrated care boards (ICBs) are a statutory NHS organisation responsible for developing a plan in collaboration with NHS trusts/foundation trusts and other system partners for meeting the health needs of the population, managing the NHS budget and arranging for the provision of health services in the defined area. They took over the functions of Clinical Commissioning Groups (CCG) in July 2022.
+
+### Items {.toc-ignore}
+The term Items refers to the number of times a product appears on a prescription form. Prescription forms include both paper prescriptions and electronic messages.
+
+### Prescription/prescription form {.toc-ignore}
+A prescription (also referenced as a prescription form) has two incarnations: a paper form, and an electronic prescription available via EPS. A paper prescription can hold up to a maximum of ten items. A single electronic prescription can hold a maximum of four items.
+
+### Presentation {.toc-ignore}
+A presentation is the name given to the specific type, strength, and pharmaceutical formulation of a drug or the specific type of an appliance. For example, Paracetamol 500mg tablets.
 
 ## 9. Feedback and contact us
 
