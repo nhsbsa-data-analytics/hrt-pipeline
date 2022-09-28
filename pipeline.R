@@ -798,7 +798,8 @@ write_sheet(
   ),
   c(
     "1. Field definitions can be found on the 'Metadata' tab.",
-    "2. The below proportions reflect the percentage of prescription items where a NHS number was recorded."
+    "2. The figures in this table relate to prescribing of HRT medications in England that are subsequently dispensed in the community in England, Scotland, Wales, Isle of Man or the Channel Islands by a pharmacy, appliance contractor, dispensing doctor, or have been personally administered by a GP practice. They do not include data on medicines used in secondary care, prisons, or issued by a private prescriber.",
+    "3. The below proportions reflect the percentage of prescription items where a NHS number was recorded."
   ),
   pi_data_annual,
   30
@@ -828,7 +829,8 @@ write_sheet(
     ltst_year_ytd,
     " - Yearly totals split by identified patients"
   ),
-  c("1. Field definitions can be found on the 'Metadata' tab."),
+  c("1. Field definitions can be found on the 'Metadata' tab.",
+    "2. The figures in this table relate to prescribing of HRT medications in England that are subsequently dispensed in the community in England, Scotland, Wales, Isle of Man or the Channel Islands by a pharmacy, appliance contractor, dispensing doctor, or have been personally administered by a GP practice. They do not include data on medicines used in secondary care, prisons, or issued by a private prescriber."),
   national_data,
   30
 )
@@ -865,8 +867,9 @@ write_sheet(
   ),
   c(
     "1. Field definitions can be found on the 'Metadata' tab.",
-    "2. Some cells in this table are empty because ONS population estimates for 2021/2022 were not available prior to publication.",
-    "3. ONS population estimates taken from https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/populationestimates."
+    "2. The figures in this table relate to prescribing of HRT medications in England that are subsequently dispensed in the community in England, Scotland, Wales, Isle of Man or the Channel Islands by a pharmacy, appliance contractor, dispensing doctor, or have been personally administered by a GP practice. They do not include data on medicines used in secondary care, prisons, or issued by a private prescriber.",
+    "3. Some cells in this table are empty because ONS population estimates for 2021/2022 were not available prior to publication.",
+    "4. ONS population estimates taken from https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/populationestimates."
   ),
   nat_pop_data,
   30
@@ -904,7 +907,8 @@ write_sheet(
   ),
   c(
     "1. Field definitions can be found on the 'Metadata' tab.",
-    "2. Statistical disclosure control has been applied to cells containing 5 or fewer patients or items. These cells will appear blank."
+    "2. The figures in this table relate to prescribing of HRT medications in England that are subsequently dispensed in the community in England, Scotland, Wales, Isle of Man or the Channel Islands by a pharmacy, appliance contractor, dispensing doctor, or have been personally administered by a GP practice. They do not include data on medicines used in secondary care, prisons, or issued by a private prescriber.",
+    "3. Statistical disclosure control has been applied to cells containing 5 or fewer patients or items. These cells will appear blank."
   ),
   paragraph_annual,
   30
@@ -940,7 +944,8 @@ write_sheet(
   ),
   c(
     "1. Field definitions can be found on the 'Metadata' tab.",
-    "2. Statistical disclosure control has been applied to cells containing 5 or fewer patients or items. These cells will appear blank."
+    "2. The figures in this table relate to prescribing of HRT medications in England that are subsequently dispensed in the community in England, Scotland, Wales, Isle of Man or the Channel Islands by a pharmacy, appliance contractor, dispensing doctor, or have been personally administered by a GP practice. They do not include data on medicines used in secondary care, prisons, or issued by a private prescriber.",
+    "3. Statistical disclosure control has been applied to cells containing 5 or fewer patients or items. These cells will appear blank."
   ),
   chem_sub_annual,
   30
@@ -976,7 +981,8 @@ write_sheet(
   ),
   c(
     "1. Field definitions can be found on the 'Metadata' tab.",
-    "2. Statistical disclosure control has been applied to cells containing 5 or fewer items. These cells will appear blank."
+    "2. The figures in this table relate to prescribing of HRT medications in England that are subsequently dispensed in the community in England, Scotland, Wales, Isle of Man or the Channel Islands by a pharmacy, appliance contractor, dispensing doctor, or have been personally administered by a GP practice. They do not include data on medicines used in secondary care, prisons, or issued by a private prescriber.",
+    "3. Statistical disclosure control has been applied to cells containing 5 or fewer items. These cells will appear blank."
   ),
   presentation_annual,
   30
@@ -1014,8 +1020,9 @@ write_sheet(
   ),
   c(
     "1. Field definitions can be found on the 'Metadata' tab.",
-    "2. Statistical disclosure control has been applied to cells containing 5 or fewer items. These cells will appear blank.",
-    "3. These figures will be included as part of the totals on the 'Presentations' tab."
+    "2. The figures in this table relate to prescribing of HRT medications in England that are subsequently dispensed in the community in England, Scotland, Wales, Isle of Man or the Channel Islands by a pharmacy, appliance contractor, dispensing doctor, or have been personally administered by a GP practice. They do not include data on medicines used in secondary care, prisons, or issued by a private prescriber.",
+    "3. Statistical disclosure control has been applied to cells containing 5 or fewer items. These cells will appear blank.",
+    "4. These figures will be included as part of the totals on the 'Presentations' tab."
   ),
   ssp_annual,
   30
@@ -1053,7 +1060,8 @@ write_sheet(
   ),
   c(
     "1. Field definitions can be found on the 'Metadata' tab.",
-    "2. Statistical disclosure control has been applied to cells containing 5 or fewer patients or items. These cells will appear blank."
+    "2. The figures in this table relate to prescribing of HRT medications in England that are subsequently dispensed in the community in England, Scotland, Wales, Isle of Man or the Channel Islands by a pharmacy, appliance contractor, dispensing doctor, or have been personally administered by a GP practice. They do not include data on medicines used in secondary care, prisons, or issued by a private prescriber.",
+    "3. Statistical disclosure control has been applied to cells containing 5 or fewer patients or items. These cells will appear blank."
   ),
   icb_annual,
   30
@@ -1126,7 +1134,8 @@ write_sheet(
   ),
   c(
     "1. Field definitions can be found on the 'Metadata' tab.",
-    "2. Statistical disclosure control has been applied to cells containing 5 or fewer patients or items. These cells will appear blank."
+    "2. The figures in this table relate to prescribing of HRT medications in England that are subsequently dispensed in the community in England, Scotland, Wales, Isle of Man or the Channel Islands by a pharmacy, appliance contractor, dispensing doctor, or have been personally administered by a GP practice. They do not include data on medicines used in secondary care, prisons, or issued by a private prescriber.",
+    "3. Statistical disclosure control has been applied to cells containing 5 or fewer patients or items. These cells will appear blank."
   ),
   ageband_annual,
   30
@@ -1162,9 +1171,10 @@ write_sheet(
   ),
   c(
     "1. Field definitions can be found on the 'Metadata' tab.",
-    "2. Statistical disclosure control has been applied to cells containing 5 or fewer patients or items. These cells will appear blank.",
-    "3. Where a patient's postcode has not been able to to be matched to NSPL or the patient has not been identified the records are reported as 'unknown' IMD decile.",
-    "4. ONS population estimates taken from https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/populationestimates/adhocs/13773populationsbyindexofmultipledeprivationimddecileenglandandwales2020/populationbyimdenglandandwales2020.xlsx"
+    "2. The figures in this table relate to prescribing of HRT medications in England that are subsequently dispensed in the community in England, Scotland, Wales, Isle of Man or the Channel Islands by a pharmacy, appliance contractor, dispensing doctor, or have been personally administered by a GP practice. They do not include data on medicines used in secondary care, prisons, or issued by a private prescriber.",
+    "3. Statistical disclosure control has been applied to cells containing 5 or fewer patients or items. These cells will appear blank.",
+    "4. Where a patient's lower-layer super output areas (LSOA) has not been able to to be matched, is not available, or the patient has not been identified the records are reported as 'unknown' IMD decile.",
+    "5. ONS population estimates taken from https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/populationestimates/adhocs/13773populationsbyindexofmultipledeprivationimddecileenglandandwales2020/populationbyimdenglandandwales2020.xlsx"
   ),
   quintile_annual,
   30
@@ -1200,9 +1210,10 @@ write_sheet(
   ),
   c(
     "1. Field definitions can be found on the 'Metadata' tab.",
-    "2. Statistical disclosure control has been applied to cells containing 5 or fewer patients or items. These cells will appear blank.",
-    "3. Where a patient's postcode has not been able to to be matched to NSPL or the patient has not been identified the records are reported as 'unknown' IMD decile.",
-    "4. ONS population estimates taken from https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/populationestimates/adhocs/13773populationsbyindexofmultipledeprivationimddecileenglandandwales2020/populationbyimdenglandandwales2020.xlsx"
+    "2. The figures in this table relate to prescribing of HRT medications in England that are subsequently dispensed in the community in England, Scotland, Wales, Isle of Man or the Channel Islands by a pharmacy, appliance contractor, dispensing doctor, or have been personally administered by a GP practice. They do not include data on medicines used in secondary care, prisons, or issued by a private prescriber.",
+    "3. Statistical disclosure control has been applied to cells containing 5 or fewer patients or items. These cells will appear blank.",
+    "4. Where a patient's lower-layer super output areas (LSOA) has not been able to to be matched, is not available, or the patient has not been identified the records are reported as 'unknown' IMD decile.",
+    "5. ONS population estimates taken from https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/populationestimates/adhocs/13773populationsbyindexofmultipledeprivationimddecileenglandandwales2020/populationbyimdenglandandwales2020.xlsx"
   ),
   quintile_age_annual,
   30
@@ -1238,8 +1249,9 @@ write_sheet(
   ),
   c(
     "1. Field definitions can be found on the 'Metadata' tab.",
-    "2. Statistical disclosure control has been applied to cells containing 5 or fewer patients or items. These cells will appear blank.",
-    "3. A charge status is 'Unknown' when an item prescribed in England but has been dispensed in Scotland"),
+    "2. The figures in this table relate to prescribing of HRT medications in England that are subsequently dispensed in the community in England, Scotland, Wales, Isle of Man or the Channel Islands by a pharmacy, appliance contractor, dispensing doctor, or have been personally administered by a GP practice. They do not include data on medicines used in secondary care, prisons, or issued by a private prescriber.",
+    "3. Statistical disclosure control has been applied to cells containing 5 or fewer patients or items. These cells will appear blank.",
+    "4. A charge status is 'Unknown' when an item prescribed in England but has been dispensed in Scotland"),
   exemption_annual,
   30
 )
@@ -1335,7 +1347,8 @@ write_sheet(
   ),
   c(
     "1. Field definitions can be found on the 'Metadata' tab.",
-    "2. The below proportions reflect the percentage of prescription items where a NHS number was recorded."
+    "2. The figures in this table relate to prescribing of HRT medications in England that are subsequently dispensed in the community in England, Scotland, Wales, Isle of Man or the Channel Islands by a pharmacy, appliance contractor, dispensing doctor, or have been personally administered by a GP practice. They do not include data on medicines used in secondary care, prisons, or issued by a private prescriber.",
+    "3. The below proportions reflect the percentage of prescription items where a NHS number was recorded."
   ),
   pi_data_monthly,
   14
@@ -1365,7 +1378,8 @@ write_sheet(
     ltst_month_tidy,
     " - Monthly totals split by identified patients"
   ),
-  c("1. Field definitions can be found on the 'Metadata' tab."),
+  c("1. Field definitions can be found on the 'Metadata' tab.",
+    "2. The figures in this table relate to prescribing of HRT medications in England that are subsequently dispensed in the community in England, Scotland, Wales, Isle of Man or the Channel Islands by a pharmacy, appliance contractor, dispensing doctor, or have been personally administered by a GP practice. They do not include data on medicines used in secondary care, prisons, or issued by a private prescriber."),
   national_data_monthly,
   14
 )
@@ -1402,7 +1416,8 @@ write_sheet(
   ),
   c(
     "1. Field definitions can be found on the 'Metadata' tab.",
-    "2. Statistical disclosure control has been applied to cells containing 5 or fewer patients or items. These cells will appear blank."
+    "2. The figures in this table relate to prescribing of HRT medications in England that are subsequently dispensed in the community in England, Scotland, Wales, Isle of Man or the Channel Islands by a pharmacy, appliance contractor, dispensing doctor, or have been personally administered by a GP practice. They do not include data on medicines used in secondary care, prisons, or issued by a private prescriber.",
+    "3. Statistical disclosure control has been applied to cells containing 5 or fewer patients or items. These cells will appear blank."
   ),
   paragraph_monthly,
   14
@@ -1438,7 +1453,8 @@ write_sheet(
   ),
   c(
     "1. Field definitions can be found on the 'Metadata' tab.",
-    "2. Statistical disclosure control has been applied to cells containing 5 or fewer patients or items. These cells will appear blank."
+    "2. The figures in this table relate to prescribing of HRT medications in England that are subsequently dispensed in the community in England, Scotland, Wales, Isle of Man or the Channel Islands by a pharmacy, appliance contractor, dispensing doctor, or have been personally administered by a GP practice. They do not include data on medicines used in secondary care, prisons, or issued by a private prescriber.",
+    "3. Statistical disclosure control has been applied to cells containing 5 or fewer patients or items. These cells will appear blank."
   ),
   chem_sub_monthly,
   14
@@ -1474,7 +1490,8 @@ write_sheet(
   ),
   c(
     "1. Field definitions can be found on the 'Metadata' tab.",
-    "2. Statistical disclosure control has been applied to cells containing 5 or fewer items. These cells will appear blank."
+    "2. The figures in this table relate to prescribing of HRT medications in England that are subsequently dispensed in the community in England, Scotland, Wales, Isle of Man or the Channel Islands by a pharmacy, appliance contractor, dispensing doctor, or have been personally administered by a GP practice. They do not include data on medicines used in secondary care, prisons, or issued by a private prescriber.",
+    "3. Statistical disclosure control has been applied to cells containing 5 or fewer items. These cells will appear blank."
   ),
   presentation_monthly,
   14
@@ -1512,8 +1529,9 @@ write_sheet(
   ),
   c(
     "1. Field definitions can be found on the 'Metadata' tab.",
-    "2. Statistical disclosure control has been applied to cells containing 5 or fewer items. These cells will appear blank.",
-    "3. These figures will be included as part of the totals on the 'Presentations' tab."
+    "2. The figures in this table relate to prescribing of HRT medications in England that are subsequently dispensed in the community in England, Scotland, Wales, Isle of Man or the Channel Islands by a pharmacy, appliance contractor, dispensing doctor, or have been personally administered by a GP practice. They do not include data on medicines used in secondary care, prisons, or issued by a private prescriber.",
+    "3. Statistical disclosure control has been applied to cells containing 5 or fewer items. These cells will appear blank.",
+    "4. These figures will be included as part of the totals on the 'Presentations' tab."
   ),
   ssp_monthly,
   14
@@ -1551,7 +1569,8 @@ write_sheet(
   ),
   c(
     "1. Field definitions can be found on the 'Metadata' tab.",
-    "2. Statistical disclosure control has been applied to cells containing 5 or fewer patients or items. These cells will appear blank."
+    "2. The figures in this table relate to prescribing of HRT medications in England that are subsequently dispensed in the community in England, Scotland, Wales, Isle of Man or the Channel Islands by a pharmacy, appliance contractor, dispensing doctor, or have been personally administered by a GP practice. They do not include data on medicines used in secondary care, prisons, or issued by a private prescriber.",
+    "3. Statistical disclosure control has been applied to cells containing 5 or fewer patients or items. These cells will appear blank."
   ),
   icb_monthly,
   14
@@ -1624,7 +1643,8 @@ write_sheet(
   ),
   c(
     "1. Field definitions can be found on the 'Metadata' tab.",
-    "2. Statistical disclosure control has been applied to cells containing 5 or fewer patients or items. These cells will appear blank."
+    "2. The figures in this table relate to prescribing of HRT medications in England that are subsequently dispensed in the community in England, Scotland, Wales, Isle of Man or the Channel Islands by a pharmacy, appliance contractor, dispensing doctor, or have been personally administered by a GP practice. They do not include data on medicines used in secondary care, prisons, or issued by a private prescriber.",
+    "3. Statistical disclosure control has been applied to cells containing 5 or fewer patients or items. These cells will appear blank."
   ),
   ageband_monthly,
   14
@@ -1660,8 +1680,9 @@ write_sheet(
   ),
   c(
     "1. Field definitions can be found on the 'Metadata' tab.",
-    "2. Statistical disclosure control has been applied to cells containing 5 or fewer patients or items. These cells will appear blank.",
-    "3. Where a patient's postcode has not been able to to be matched to NSPL or the patient has not been identified the records are reported as 'unknown' IMD decile."
+    "2. The figures in this table relate to prescribing of HRT medications in England that are subsequently dispensed in the community in England, Scotland, Wales, Isle of Man or the Channel Islands by a pharmacy, appliance contractor, dispensing doctor, or have been personally administered by a GP practice. They do not include data on medicines used in secondary care, prisons, or issued by a private prescriber.",
+    "3. Statistical disclosure control has been applied to cells containing 5 or fewer patients or items. These cells will appear blank.",
+    "4. Where a patient's lower-layer super output areas (LSOA) has not been able to to be matched, is not available, or the patient has not been identified the records are reported as 'unknown' IMD decile.",
   ),
   quintile_monthly,
   14
@@ -1697,8 +1718,9 @@ write_sheet(
   ),
   c(
     "1. Field definitions can be found on the 'Metadata' tab.",
-    "2. Statistical disclosure control has been applied to cells containing 5 or fewer patients or items. These cells will appear blank.",
-    "3. Where a patient's postcode has not been able to to be matched to NSPL or the patient has not been identified the records are reported as 'unknown' IMD decile."
+    "2. The figures in this table relate to prescribing of HRT medications in England that are subsequently dispensed in the community in England, Scotland, Wales, Isle of Man or the Channel Islands by a pharmacy, appliance contractor, dispensing doctor, or have been personally administered by a GP practice. They do not include data on medicines used in secondary care, prisons, or issued by a private prescriber.",
+    "3. Statistical disclosure control has been applied to cells containing 5 or fewer patients or items. These cells will appear blank.",
+    "4. Where a patient's lower-layer super output areas (LSOA) has not been able to to be matched, is not available, or the patient has not been identified the records are reported as 'unknown' IMD decile.",
   ),
   quintile_age_monthly,
   14
@@ -1734,8 +1756,9 @@ write_sheet(
   ),
   c(
     "1. Field definitions can be found on the 'Metadata' tab.",
-    "2. Statistical disclosure control has been applied to cells containing 5 or fewer patients or items. These cells will appear blank.",
-    "3. A charge status is 'Unknown' when an item prescribed in England but has been dispensed in Scotland"),
+    "2. The figures in this table relate to prescribing of HRT medications in England that are subsequently dispensed in the community in England, Scotland, Wales, Isle of Man or the Channel Islands by a pharmacy, appliance contractor, dispensing doctor, or have been personally administered by a GP practice. They do not include data on medicines used in secondary care, prisons, or issued by a private prescriber.",
+    "3. Statistical disclosure control has been applied to cells containing 5 or fewer patients or items. These cells will appear blank.",
+    "4. A charge status is 'Unknown' when an item prescribed in England but has been dispensed in Scotland"),
   exemption_monthly,
   14
 )
