@@ -1806,7 +1806,9 @@ rmarkdown::render("hrt-narrative.Rmd",
 
 rmarkdown::render("hrt-narrative.Rmd",
                   output_format = "word_document",
-                  output_file = "outputs/hrt.docx")
+                  output_file = paste0("outputs/hrt_",
+                                       gsub(" ", "_", ltst_month_tidy),
+                                       "_v001.docx"))
 
 rmarkdown::render("hrt-background.Rmd",
                   output_format = "html_document",
