@@ -136,8 +136,6 @@ raw_data$pi_table_annual %>%
 
 ```
 
-Source: [Financial Year Summary Tables - Patient Identification table](https://nhsbsa-opendata.s3.eu-west-2.amazonaws.com/hrt/hrt_financial_year_2022_2023_YTD_June_2022_v001.xlsx)
-
 ---
 
 ## 2. Results and commentary
