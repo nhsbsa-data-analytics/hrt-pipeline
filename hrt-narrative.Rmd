@@ -122,7 +122,7 @@ names(raw_data$pi_table_annual)[max_col] <- paste0(
 
 raw_data$pi_table_annual %>%
   select(1, 2, unlist(as.numeric(seq))) %>%
-  mutate_if(is.numeric, round, 2) %>%
+  mutate_if(is.numeric, signif, 3) %>%
   mutate_if(is.numeric, paste0, "%") %>%
   DT::datatable(rownames = FALSE,
                 options = list(dom = "t",
@@ -135,6 +135,8 @@ raw_data$pi_table_annual %>%
                                )))
 
 ```
+
+Source: [Financial Year Summary Tables - Patient Identification table](https://nhsbsa-opendata.s3.eu-west-2.amazonaws.com/hrt/hrt_financial_year_2022_2023_YTD_June_2022_v001.xlsx)
 
 ---
 
