@@ -48,7 +48,7 @@ Published 6 October 2022
 
 * In 2021/22, there were 7.80 million items for HRT prescribed in England, a 91.3% increase from 2015/16.
 
-* There were 1.93 million identified patients that were prescribed HRT in England in 2021/22. This was a 30.5% increase from 1.48 million identified patients in 2020/21, and an 37.2% increase from 1.40 million in 2015/16.
+* There were 1.93 million identified patients that were prescribed HRT in England in 2021/22. This was a 30.5% increase from 1.48 million identified patients in 2020/21, and a 37.2% increase from 1.40 million in 2015/16.
 
 * The most common group to receive prescribing for HRT in 2021/22 was patients aged 50 to 54 with 437,000 identified patients. The next most common groups were patients aged 55 to 59 and patients 45 to 49
 
@@ -173,14 +173,30 @@ raw_data$national_annual %>%
   hc_tooltip(enabled = TRUE,
              shared = TRUE,
              sort = TRUE) %>% 
-  hc_legend(enabled = TRUE)
+  hc_legend(enabled = TRUE)%>%
+  hc_xAxis(
+    plotLines = list(
+      list(
+        value = 6,
+        color = "grey",
+        width = 1,
+        dashStyle = "dash",
+        label = list(
+          rotation = 0,
+          text = "<b>Note:</b> The figures <br>beyond this point <br>represent<br>prescribing in <br>April 2022 to <br>June 2022 only",
+          style = list(
+            fontSize = "10px"
+          )
+        )
+      ))
+  )
  
 
 ```
 
 Source: [Financial Year Summary Tables - National Totals table](https://nhsbsa-opendata.s3.eu-west-2.amazonaws.com/hrt/hrt_financial_year_2022_2023_YTD_June_2022_v001.xlsx)
 
-There were 7.80 million HRT drug items prescribed in 2021/22. This was a 35.0% increase from 5.78 million items compared with the previous year. Prescribing of HRT items has been increasing since 2015/16, with 3.73 million more items prescribed in 2021/22 when compared to 2015/16, an increase of 91.3% over the period.
+There were 7.80 million HRT drug items prescribed in 2021/22. This was a 35.0% increase from 5.78 million items compared with the previous year. Prescribing of HRT drug items has been increasing since 2015/16, with 3.73 million more items prescribed in 2021/22 when compared to 2015/16, an increase of 91.3% over the period.
 
 There were an estimated 1.93 million identified patients who were prescribed at least one HRT item in 2021/22. This was a 30.5% increase from 1.48 million identified patients when compared with 2020/21. There were 523,000 more identified patients who received a HRT item in 2021/22 compared to 2015/16, an increase of 37.2%. However, it should be noted that this is likely to be an overestimate of the actual increase in patient numbers, as the proportion of patients who could be identified increased. In 2015/16, 93.5% of items were prescribed to identified patients, this increased by 5.24 percentage points in 2021/22 to 98.7% of items.
 
@@ -225,7 +241,7 @@ raw_data$national_monthly %>%
 
 Source: [Monthly Summary Tables - National Totals table](https://nhsbsa-opendata.s3.eu-west-2.amazonaws.com/hrt/hrt_monthly_June_2022_v001.xlsx)
 
-There were 870,000 HRT drug items prescribed in June 2022. This was a 4.02% decrease from 906,000 items compared with the previous month, and an increase of 270,000 (45.1%) from 600,000 items in June 2021. Prescribing of HRT items has been increasing since July 2020, with 373,000 more items prescribed in June 2022 when compared to July 2020, an increase of 75.1% over the period.
+There were 870,000 HRT drug items prescribed in June 2022. This was a 4.02% decrease from 906,000 items compared with the previous month, and an increase of 270,000 (45.1%) from 600,000 items in June 2021. Prescribing of HRT drug items has been increasing since July 2020, with 373,000 more items prescribed in June 2022 when compared to July 2020, an increase of 75.1% over the period.
 
 There were an estimated 665,000 identified patients who were prescribed at least one HRT item in June 2022. This was a 4.34% decrease from 695,000 identified patients when compared with the previous month. There were 251,000 more identified patients who received a HRT item in June 2022 compared to July 2020, an increase of 60.7%. 
 
@@ -264,7 +280,23 @@ chart_1 <- raw_data$national_par_annual %>%
              shared = TRUE,
              sort = TRUE) %>% 
   hc_legend(enabled = TRUE) %>%
-  hc_title(align = "left")
+  hc_title(align = "left") %>%
+    hc_xAxis(
+    plotLines = list(
+      list(
+        value = 6,
+        color = "grey",
+        width = 1,
+        dashStyle = "dash",
+        label = list(
+          rotation = 0,
+          text = "<b>Note:</b> The figures <br>beyond this point <br>represent<br>prescribing in <br>April 2022 to <br>June 2022 only",
+          style = list(
+            fontSize = "10px"
+          )
+        )
+      ))
+  )
 
 chart_2 <- raw_data$national_par_annual %>%
     dplyr::mutate(
@@ -298,7 +330,23 @@ chart_2 <- raw_data$national_par_annual %>%
              shared = TRUE,
              sort = TRUE) %>% 
   hc_legend(enabled = TRUE)%>%
-  hc_title(align = "left")
+  hc_title(align = "left") %>%
+    hc_xAxis(
+    plotLines = list(
+      list(
+        value = 6,
+        color = "grey",
+        width = 1,
+        dashStyle = "dash",
+        label = list(
+          rotation = 0,
+          text = "<b>Note:</b> The figures <br>beyond this point <br>represent<br>prescribing in <br>April 2022 to <br>June 2022 only",
+          style = list(
+            fontSize = "10px"
+          )
+        )
+      ))
+  )
 
 
 hw_grid(chart_1, chart_2)
@@ -311,7 +359,7 @@ There were 5.75 million female sex hormones and their modulators items prescribe
 
 There were an estimated 1.36 million identified patients who were prescribed at least one female sex hormones and their modulators item in 2021/22. This was a 38.8% increase from 983,000 identified patients when compared with 2020/21. There were 358,000 more identified patients who received a female sex hormones and their modulators item in 2021/22 compared to 2015/16, an increase of 35.6%. 
 
-From April 2022 to June 2022 were 1.98 million female sex hormones and their modulators items prescribed. This is 804,000 more items than the period April 2021 to June 2021, a 68.3% increase.
+From April 2022 to June 2022 there were 1.98 million female sex hormones and their modulators items prescribed. This is 804,000 more items than the period April 2021 to June 2021, a 68.3% increase.
 
 There were 2.05 million preparations for vaginal and vulval changes items prescribed in 2021/22. This was a 20.4% increase from 1.71 million items compared with the previous year. Prescribing of preparations for vaginal and vulval changes items has been increasing since 2015/16, with 928,000 more items prescribed in 2021/22 when compared to 2015/16, an increase of 82.4% over the period.
 
@@ -355,7 +403,24 @@ chart_data %>%
              shared = TRUE,
              sort = TRUE) %>% 
   hc_legend(enabled = TRUE)%>%
-  hc_title(align = "left")
+  hc_title(align = "left") %>%
+    hc_xAxis(
+    plotLines = list(
+      list(
+        value = 6,
+        color = "grey",
+        width = 1,
+        dashStyle = "dash",
+        label = list(
+          rotation = 0,
+          text = "<b>Note:</b> The figures <br>beyond this point <br>represent<br>prescribing in <br>April 2022 to <br>June 2022 only",
+          style = list(
+            fontSize = "10px"
+          )
+        )
+      ))
+  )%>%
+  hc_colors(c("#003087", "#41B6E6", "#006747", "#78BE20", "#330072", "#AE2573"))
 
 ```
 
@@ -403,7 +468,24 @@ chart_data %>%
              shared = TRUE,
              sort = TRUE) %>% 
   hc_legend(enabled = TRUE)%>%
-  hc_title(align = "left")
+  hc_title(align = "left") %>%
+    hc_xAxis(
+    plotLines = list(
+      list(
+        value = 6,
+        color = "grey",
+        width = 1,
+        dashStyle = "dash",
+        label = list(
+          rotation = 0,
+          text = "<b>Note:</b> The figures <br>beyond this point <br>represent<br>prescribing in <br>April 2022 to <br>June 2022 only",
+          style = list(
+            fontSize = "10px"
+          )
+        )
+      ))
+  )%>%
+  hc_colors(c("#003087", "#41B6E6", "#006747", "#78BE20", "#330072", "#AE2573"))
 
 ```
 
@@ -459,7 +541,7 @@ raw_data$presentation_annual %>%
 
 Source: [Financial Year Summary Tables - Presentations table](https://nhsbsa-opendata.s3.eu-west-2.amazonaws.com/hrt/hrt_financial_year_2022_2023_YTD_June_2022_v001.xlsx)
 
-In 2021/22 Vagifem 10 microgram vaginal tablets had the most prescribed items at 589,000 totals items. This is a 79.1% increase of 260,000 items since 2015/16.
+In 2021/22 Vagifem 10 microgram vaginal tablets had the most prescribed items at 589,000 total items. This is a 79.1% increase of 260,000 items since 2015/16.
 
 ### Table 3: Top 10 presentations by prescribed items in `r ltst_month_tidy` {.toc-ignore}
 
@@ -552,7 +634,7 @@ chart
 
 Source: [Financial Year Summary Tables - ICB table](https://nhsbsa-opendata.s3.eu-west-2.amazonaws.com/hrt/hrt_financial_year_2022_2023_YTD_June_2022_v001.xlsx)
 
-In 2021/22 NHS North East London Integrated Care Board was the ICB with the lowest number of identified patients who received at least one HRT item per 1,000 residents. In 2021/22 the five ICBs under the London NHS Region were all in the lowest eight ICBs in terms of identified patients per 1,000 population who received HRT prescribing. 
+In 2021/22 NHS North East London Integrated Care Board was the ICB with the lowest number of identified patients who received at least one HRT item per 1,000 residents. In 2021/22 the five ICBs under the London NHS Region were all in the lowest ten ICBs in terms of identified patients per 1,000 population who received HRT prescribing. 
 
 ### Figure 7: Prescribed items per 1,000 population by Integrated Care Board (ICB) in `r ltst_year` {.toc-ignore}
 
@@ -605,7 +687,7 @@ chart
 
 Source: [Financial Year Summary Tables - ICB table](https://nhsbsa-opendata.s3.eu-west-2.amazonaws.com/hrt/hrt_financial_year_2022_2023_YTD_June_2022_v001.xlsx)
 
-In 2021/22 NHS North East London Integrated Care Board was the ICB with the lowest number of HRT items prescribed per 1,000 residents. In 2021/22 the five ICBs under the London NHS Region were all in the lowest twelve ICBs in terms of items prescribed per 1,000 population who received HRT prescribing. 
+In 2021/22 NHS North East London Integrated Care Board was the ICB with the lowest number of HRT drug items prescribed per 1,000 residents. In 2021/22 the five ICBs under the London NHS Region were all in the lowest fifteen ICBs in terms of items prescribed per 1,000 population who received HRT prescribing. 
 
 ### Figure 8: Number of identified patients by age band in `r ltst_year` {.toc-ignore}
 
@@ -635,7 +717,7 @@ chart
 
 Source: [Financial Year Summary Tables - Age Band table](https://nhsbsa-opendata.s3.eu-west-2.amazonaws.com/hrt/hrt_financial_year_2022_2023_YTD_June_2022_v001.xlsx)
 
-The most common group to receive prescribing for HRT in 2021/22 patients aged 50 to 54 with 437,000 identified patients, 22.7% of all patients. The next most common groups were patients aged 55 to 59 with 356,000 and 18.5% of identified patients, and patients 45 to 49 with 246,000 and 12.8% of identified patients.
+The most common group to receive prescribing for HRT in 2021/22 was patients aged 50 to 54 with 437,000 identified patients, 22.7% of all patients. The next most common groups were patients aged 55 to 59 with 356,000 and 18.5% of identified patients, and patients 45 to 49 with 246,000 and 12.8% of identified patients.
 
 More information on how we calculate a patient’s age can be found in section 4 of this summary.
 
@@ -675,9 +757,9 @@ chart
 
 Source: [Financial Year Summary Tables - IMD Quintile table](https://nhsbsa-opendata.s3.eu-west-2.amazonaws.com/hrt/hrt_financial_year_2022_2023_YTD_June_2022_v001.xlsx)
 
-In 2021/22, there were 477,000 identified patients prescribed HRT medicines in the least deprived areas in England, 92.6% more than the 248,000 identified patients that received prescribing from in the more deprived areas. In general, more people were prescribed dependency forming medicines in more deprived areas in 2021/22. This pattern has remained consistent since 2015/16.
+In 2021/22, there were 477,000 identified patients prescribed HRT medicines in the least deprived areas in England, 92.6% more than the 248,000 identified patients that received prescribing from in the more deprived areas. In general, more people were prescribed HRT medicines in the least deprived areas in 2021/22. This pattern has remained consistent since 2015/16.
 
-The English Indices of Deprivation have been used to provide a measure of patient deprivation. The deprivation quintiles reported are those of the patient. More information on this measure can be found in section 4 of this summary.
+The English Indices of Deprivation have been used to provide a measure of patient deprivation. The deprivation quintiles reported are those where the patient lives. More information on this measure can be found in section 4 of this summary.
 
 ### Figure 10: Proportion of patients under/over 60 by IMD quintile in `r ltst_year` {.toc-ignore}
 
@@ -818,7 +900,7 @@ group_chart_hc(
 
 Source: [Financial Year Summary Tables - Exemption Categories table](https://nhsbsa-opendata.s3.eu-west-2.amazonaws.com/hrt/hrt_financial_year_2022_2023_YTD_June_2022_v001.xlsx)
 
-The proportion of HRT items which were prescribed to a patient who was using a Pre-Payment Certificate (PPC) showed a steady increase from 10.2% in 2015/16 to 15.0% in 2020/21. There was then a 3.45 percentage points decrease in the proportion of HRT items prescribed to patients using a PPC to 11.5% in 2021/22. This trend has then continued into 2022/23 where there was a further decrease of 1.83 percentage points to 9.70% in the period April 2022 to June 2023. This is consistent with overall prescribing where the proportion of items prescribed to patients using a PPC has been declining since 2019/20.
+The proportion of HRT drug items which were prescribed to patients who were using a Pre-Payment Certificate (PPC) showed a steady increase from 10.2% in 2015/16 to 15.0% in 2020/21. There was then a 3.45 percentage points decrease in the proportion of HRT drug items prescribed to patients using a PPC to 11.5% in 2021/22. This trend has then continued into 2022/23 where there was a further decrease of 1.83 percentage points to 9.70% in the period April 2022 to June 2023. This is consistent with overall prescribing where the proportion of items prescribed to patients using a PPC has been declining since 2019/20.
 
 ### Figure 12: Proportion of chargeable items by month {.toc-ignore}
 
@@ -888,9 +970,9 @@ group_chart_hc(
 
 Source: [Monthly Summary Tables - Exemption Categories table](https://nhsbsa-opendata.s3.eu-west-2.amazonaws.com/hrt/hrt_monthly_June_2022_v001.xlsx)
 
-In the period July 2020 to June 2022 there has been a steady increase in the proportion of HRT items which have been prescribed to patients who paid in full for their prescriptions. This has increased by 4.45 percentage points from 26.2% in July 2020 to 30.6% in June 2022. This differs from the pattern seen in overall prescribing where the proportion of items prescribed to patients who paid in full for their prescriptions has been consistent since July 2020.
+In the period July 2020 to June 2022 there has been a steady increase in the proportion of HRT drug items which have been prescribed to patients who paid in full for their prescriptions. This has increased by 4.45 percentage points from 26.2% in July 2020 to 30.6% in June 2022. This differs from the pattern seen in overall prescribing where the proportion of items prescribed to patients who paid in full for their prescriptions has been consistent since July 2020.
 
-There has been a steady decline in the proportion of HRT items prescribed to a patient using a PPC in the period July 2020 to June 2022. This decreased by 5.63 percentage points from 15.1% in July 2020 to 9.49% in June 2022. This is consistent with overall prescribing where the proportion of items prescribed to patients using a PPC has been declining since July 2020.
+There has been a steady decline in the proportion of HRT drug items prescribed to a patient using a PPC in the period July 2020 to June 2022. This decreased by 5.63 percentage points from 15.1% in July 2020 to 9.49% in June 2022. This is consistent with overall prescribing where the proportion of items prescribed to patients using a PPC has been declining since July 2020.
 
 ## 3. Background
 
@@ -898,17 +980,17 @@ HRT, which replaces the hormones that are at low levels, is the main medicine tr
 
 The menopause is a biological stage in a woman's life that occurs when she stops menstruating and reaches the end of her natural reproductive life. This is not usually abrupt, but a gradual process during which women experience perimenopause before reaching postmenopause. Usually it is defined as having occurred when a woman has not had a period for 12 consecutive months (for women reaching menopause naturally).
 
-As well as a change in their menstrual cycle women may experience a variety of symptoms associated with menopause such as hot flushes and sweats, low mood, vaginal dryness, low sexual desire etc.
+As well as a change in their menstrual cycle women may experience a variety of symptoms associated with menopause such as hot flushes and sweats, low mood, vaginal dryness, low sexual desire, and others.
 
-Most women (8 out of 10) experience some symptoms, typically lasting about 4 years after the last period, but continuing for up to 12 years in about 10% of women. Prolonged lack of oestrogen affects the bones and cardiovascular system and postmenopausal women are at increased risk of a number of long-term conditions, such as osteoporosis.
+Most women (8 out of 10) experience some symptoms, typically lasting about 4 years after the last period, but continuing for up to 12 years in about 10% of women. Prolonged lack of the hormone oestrogen affects the bones and cardiovascular system and postmenopausal women are at increased risk of a number of long-term conditions, such as osteoporosis.
 
 ### 3.1. Female sex hormones and their modulators {.toc-ignore}
 
-For women without a uterus, oestrogen-only HRT is appropriate. For women with a uterus, oestrogen plus progestogen HRT is recommended. A progestogen should be prescribed to reduce the risk of cystic hyperplasia of the endometrium and possible transformation to cancer.
+For women without a uterus, oestrogen-only HRT is appropriate. For women with a uterus, oestrogen plus progestogen HRT is recommended. A progestogen should be prescribed to reduce the risk of cystic hyperplasia of the endometrium, a thickening of the endometrium, and possible transformation to cancer. 
 
 Continuous combined preparations are not suitable for use in the perimenopause or within 12 months of the last menstrual period; women who use such preparations may bleed irregularly in the early stages of treatment
 
-HRT with small doses of an oestrogen (together with a progestogen in women with a uterus) is appropriate for alleviating menopausal symptoms such as vaginal atrophy or vasomotor instability.
+HRT with small doses of an oestrogen (together with a progestogen in women with a uterus) is considered appropriate for alleviating menopausal symptoms such as vaginal atrophy or vasomotor instability.
 
 You can find out more information on [sex hormones](https://bnf.nice.org.uk/treatment-summaries/sex-hormones/) on the NICE website.
 
@@ -924,15 +1006,15 @@ You can find out more information on [vaginal and vulval conditions](https://bnf
 
 Pharmacists in the UK can now dispense the hormone replacement therapy (HRT) drug Gina 10 microgram vaginal tablets without a prescription.
 
-Gina 10 microgram vaginal tablets is a locally acting oestrogen HRT and the only treatment available without a prescription that is clinically proven to target and treat the cause of vaginal atrophy and its associated symptoms after the menopause.
+Gina 10 microgram vaginal tablets are a locally acting oestrogen HRT and the only treatment available without a prescription that is clinically proven to target and treat the cause of vaginal atrophy and its associated symptoms after the menopause.
 
-As Gina 10 microgram vaginal tablets are sold over the counter, the NHSBSA does not hold any data on volumes, costs etc.
+As Gina 10 microgram vaginal tablets are sold over the counter, the NHSBSA does not hold any data on volumes, costs, or other measures.
 
 ### 3.4. Shortages {.toc-ignore}
 
 [The Royal College of Obstetricians and Gynaecologists (RCOG)](https://www.rcog.org.uk/for-the-public/menopause-and-later-life/), the [British Menopause Society (BMS)](https://thebms.org.uk/) and the [Faculty of Sexual and Reproductive Healthcare (FSRH)](https://www.fsrh.org/home/) issued a [joint statement](https://patient.info/news-and-features/why-is-there-an-hrt-shortage-in-the-uk?msclkid=38fdee8ac73111ec93f0238731829617) in August 2019 highlighting concerns that some women across the UK were unable to obtain their prescriptions due to shortages of HRT products. A failure to deal with shortages, coupled with the impact of COVID-related global supply problems means that many women are extremely concerned about not being able to get access to this vital medication.
 
-Serious Shortage Protocols (SSPs) issued for three HRT products: 
+Serious Shortage Protocols (SSPs) were subsequently issued for three HRT products: 
 
 * Oestragel
 * Ovestin Cream 
@@ -942,7 +1024,7 @@ All were [limited to three months dispensing](https://www.gov.uk/government/news
 
 ## 4. About these statistics
 
-This publication is part of a series by the NHSBSA. To learn more about how this series compares to our other publications, you can view the Official Statistics guidance table on our [statistical collections page](https://www.nhsbsa.nhs.uk/statistical-collections). 
+This publication is a one of publication by the NHSBSA. To learn more about how this publication compares to our other publications, you can view the Official Statistics guidance table on our [statistical collections page](https://www.nhsbsa.nhs.uk/statistical-collections). 
 
 ### 4.1. Patient counts {.toc-ignore}
 
@@ -962,7 +1044,7 @@ The English Indices of Deprivation 2019 have been used to provide a measure of p
 
 The reported IMD quintile, where 1 is the most deprived and 5 the least deprived, is derived from the lower-layer super output areas (LSOA) of the patient who received the medication. There are a number of items each year that we have reported as having an unknown IMD quintile. These are items that have been attributed to an patient who exclusively received their prescriptions via paper prescribing and not via the Electronic Prescription Service (EPS). LSOA is only captured for prescriptions via EPS. For those patients who received both paper prescribing and EPS we have imputed their LSOA from the latest available data.
 
-IMD quintile are calculated by ranking census LSOA from most deprived to least deprived and dividing them into 5 equal groups. These range from the most deprived 20% (quintile 1) of small areas nationally to the least deprived 20% (quintile 5) of small areas nationally.
+IMD quintiles are calculated by ranking census LSOA from most deprived to least deprived and dividing them into 5 equal groups. These range from the most deprived 20% (quintile 1) of small areas nationally to the least deprived 20% (quintile 5) of small areas nationally.
 
 ### 4.5. Planned changes to this publication {.toc-ignore}
 
