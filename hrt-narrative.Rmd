@@ -48,13 +48,11 @@ Published 6 October 2022
 
 * In 2021/22, there were 7.80 million items for HRT prescribed in England, a 91.3% increase from 2015/16.
 
-* There were 1.93 million identified patients that were prescribed HRT in England in 2021/22. This was a 30.5% increase from 1.48 million identified patients in 2020/21, and a 37.2% increase from 1.40 million in 2015/16.
+* There were an estimated 1.93 million identified patients that were prescribed HRT in England in 2021/22. This was a 30.5% increase from an estimated 1.48 million identified patients in 2020/21, and a 37.2% increase from 1.40 million in 2015/16.
 
-* The most common group to receive prescribing for HRT in 2021/22 was patients aged 50 to 54 with 437,000 identified patients. The next most common groups were patients aged 55 to 59 and patients 45 to 49
+* Areas of greater deprivation had the lowest number of estimated identified patients who were being prescribed HRT in 2021/22, alomst twice as many patients receiving prescribing in the least deprived areas of the country compared to the most deprived.
 
-* Areas of greater deprivation had the lowest number of identified patients who were being prescribed HRT in 2021/22, with 92.6% more patients receiving prescribing in the least deprived areas of the country compared to the most deprived.
-
-* A greater proportion of identified patients from the most deprived areas of the country who received HRT prescribing in 2021/22 were under the age of 60. A total of 76.6% of total identified patients in the most deprived areas were under 60, 64.6% of identified patients from the least deprived areas were under 60.
+* A greater proportion of the estimated identified patients from the most deprived areas of the country who received HRT prescribing in 2021/22 were under the age of 60. A total of 76.6% of total the estimated identified patients in the most deprived areas were under 60, 64.6% of the estimated identified patients from the least deprived areas were under 60.
 
 ---
 
@@ -63,11 +61,11 @@ Published 6 October 2022
 
 Hormone replacement therapy (HRT) is a treatment to relieve symptoms of the menopause. It replaces hormones that are at a lower level as you approach the menopause.
 
-This publication will help address the supply issues and aid the Menopause Taskforce in ensuring all women have the correct access to HRT. The formation of the Menopause Taskforce comes ahead of the formation of the first government-led [Women’s Health Strategy for England](https://www.gov.uk/government/publications/womens-health-strategy-for-england/womens-health-strategy-for-england#menopause) to tackle the gender health gap.
-
 Millions of women go through the menopause every year, with the majority experiencing symptoms that can be severe, such as low mood, anxiety, hot flushes and difficulty sleeping, and have a negative impact on everyday life.
 
-The taskforce will tackle issues surrounding the menopause including increasing access to treatment, and ending the taboos and stigmas that still surround conversations about the menopause, including in the workplace.
+The menopause is a key area of the first government-led [Women's Health Strategy for England](https://www.gov.uk/government/publications/womens-health-strategy-for-england/womens-health-strategy-for-england#menopause), created to tackle the gender health gap. This publication has been released to support the work being undertaken by the UK Menopause Taskforce, the NHS Menopause Pathway Improvement Programme, and to help address HRT supply chain issues and shortages
+
+The UK Menopause Taskforce will tackle issues surrounding the menopause including increasing access to treatment, and ending the taboos and stigmas that still surround conversations about the menopause, including in the workplace.
 
 This publication aims to describe the prescribing of HRT medications in England that are subsequently dispensed in the community in England, Scotland, Wales, Isle of Man or the Channel Islands by a pharmacy, appliance contractor, dispensing doctor, or have been personally administered by a GP practice. They do not include data on medicines used in secondary care, prisons, or issued by a private prescriber.
 
@@ -82,14 +80,16 @@ The costs associated with the provision of these medicines are not discussed in 
 
 These statistics use the BNF therapeutic classifications defined in the British National Formulary (BNF) using the classification system prior to BNF edition 70. Each January the NHSBSA updates the classification of drugs within the BNF hierarchy which may involve some drugs changing classification between years of data. Two paragraphs of the British National Formulary (BNF) are covered within these statistics:
 
-* female sex hormones and their modulators
-* preparations for vaginal and vulval changes
+* 6.4.1 - female sex hormones and their modulators
+* 7.2.1 - preparations for vaginal and vulval changes
+
+There is not one singular definition of HRT medications many other products may be used in the treatment of the menopause that are not included in these statistics.
 
 These medicines are classified by their primary therapeutic indication. However, it is possible that they can be prescribed for other reasons outside of this primary therapeutic indication. For example, the  treatment of gender dysphoria. The clinical indication of a prescription is not captured by NHSBSA during processing, and therefore we cannot determine the reason that a prescription was issued. 
 
 ### 1.2. Definitions {.toc-ignore}
 
-Throughout this publication the term ‘item’, short for ‘prescription item’, means a single instance of a drug that is listed as a separate entry on a prescription form. For example, Fluoxetine 20mg tablets x56. The term 'quantity' refers to the physical quantity of any items which have been prescribed. For example, Fluoxetine 20mg tablets x56 would be counted as one item but the quantity would be 56. 
+Throughout this publication the term ‘item’, short for ‘prescription item’, means a single instance of a drug that is listed as a separate entry on a prescription form. For example, Norethisterone 5mg tablets x28. The term 'quantity' refers to the physical quantity of any items which have been prescribed. For example, Norethisterone 5mg tablets x28 would be counted as one item but the quantity would be 28. 
 
 In this release the term 'patient/s' is used to mean a unique, valid NHS number that has been captured from a prescription form and subsequently verified by the NHS Personal Demographics Service (PDS). Across 2020/21, use of the Electronic Prescription Service (EPS) increased considerably during the COVID-19 pandemic. As this process captures NHS numbers digitally rather than through scanned paper forms, this has naturally led to an increase in the proportions of identified patients for both 2020/21 and 2021/22 than seen in previous years.
 
@@ -99,7 +99,7 @@ There are many costs incurred when a dispensing contractor fulfils a prescriptio
 
 ### 1.3. Time periods {.toc-ignore}
 
-This publication presents data from April 2015 to `r ltst_month_tidy`, the most recent available.
+This publication presents data from April 2015 to `r ltst_month_tidy`, the most recent available. The data is available in tables at both a monthly and a financial year level. The most recent financial year, 2022/23, shows a year to date view of the figures.
 
 ### 1.4. Patient identification {.toc-ignore}
 
@@ -131,7 +131,7 @@ raw_data$pi_table_annual %>%
                                       targets = "_all"),
                                  list(className = "dt-left", targets = 0:1),
                                  list(className = "dt-right",
-                                      targets = 2:cols - 1)
+                                      targets = 3:cols - 1)
                                )))
 
 ```
@@ -140,7 +140,7 @@ raw_data$pi_table_annual %>%
 
 ## 2. Results and commentary
 
-### Figure 1: Number of prescribed items and identified patients by financial year {.toc-ignore}
+### Figure 1: Number of prescribed items and estimated identified patients by financial year {.toc-ignore}
 
 ```{r annual_summary, out.width="100%"}
 raw_data$national_annual %>%
@@ -200,9 +200,9 @@ There were 7.80 million HRT drug items prescribed in 2021/22. This was a 35.0% i
 
 There were an estimated 1.93 million identified patients who were prescribed at least one HRT item in 2021/22. This was a 30.5% increase from 1.48 million identified patients when compared with 2020/21. There were 523,000 more identified patients who received a HRT item in 2021/22 compared to 2015/16, an increase of 37.2%. However, it should be noted that this is likely to be an overestimate of the actual increase in patient numbers, as the proportion of patients who could be identified increased. In 2015/16, 93.5% of items were prescribed to identified patients, this increased by 5.24 percentage points in 2021/22 to 98.7% of items.
 
-From April 2022 to June 2022 were 2.57 million HRT drug items prescribed. This is 920,000 more items than the period April 2021 to June 2021, a 55.8% increase.
+From April 2022 to June 2022 there were 2.57 million HRT drug items prescribed. This is 920,000 more items than the same period in the previous year, a 55.8% increase.
 
-### Figure 2: Number of prescribed items and identified patients by month {.toc-ignore}
+### Figure 2: Number of prescribed items and estimated identified patients by month {.toc-ignore}
 
 ```{r monthly_summary, out.width="100%"}
 raw_data$national_monthly %>%
@@ -243,13 +243,13 @@ Source: [Monthly Summary Tables - National Totals table](https://nhsbsa-opendata
 
 There were 870,000 HRT drug items prescribed in June 2022. This was a 4.02% decrease from 906,000 items compared with the previous month, and an increase of 270,000 (45.1%) from 600,000 items in June 2021. Prescribing of HRT drug items has been increasing since July 2020, with 373,000 more items prescribed in June 2022 when compared to July 2020, an increase of 75.1% over the period.
 
-There were an estimated 665,000 identified patients who were prescribed at least one HRT item in June 2022. This was a 4.34% decrease from 695,000 identified patients when compared with the previous month. There were 251,000 more identified patients who received a HRT item in June 2022 compared to July 2020, an increase of 60.7%. 
+There were an estimated 665,000 identified patients who were prescribed at least one HRT item in June 2022. This was a 4.34% decrease from 695,000 identified patients when compared with the previous month. There were 251,000 more identified patients who received an HRT item in June 2022 compared to July 2020, an increase of 60.7%. 
 
-### Figure 3: Number of prescribed items and identified patients by financial year and BNF paragraph {.toc-ignore}
+### Figure 3: Number of prescribed items and estimated identified patients by financial year and BNF paragraph {.toc-ignore}
 
 ```{r, figures-side, fig.show="hold", out.width="50%"}
-chart_1 <- raw_data$national_par_annual %>%
-    dplyr::mutate(
+chart_1_data <- raw_data$national_par_annual %>%
+  dplyr::mutate(
     FINANCIAL_YEAR = case_when(
       FINANCIAL_YEAR == max(FINANCIAL_YEAR) ~ paste0(FINANCIAL_YEAR, "<br>(YTD ", ltst_month_tidy, ")"),
       TRUE ~ FINANCIAL_YEAR
@@ -264,7 +264,9 @@ chart_1 <- raw_data$national_par_annual %>%
                       names_to = "measure",
                       values_to = "value") %>% 
   dplyr::mutate(value = signif(value, 3)) %>% 
-  dplyr::arrange(desc(measure)) %>%
+  dplyr::arrange(desc(measure))
+
+chart_1 <- chart_1_data %>%
   group_chart_hc(
     x = FINANCIAL_YEAR,
     y = value,
@@ -274,14 +276,15 @@ chart_1 <- raw_data$national_par_annual %>%
     dlOn = FALSE,
     xLab = "Financial year",
     yLab = "Volume",
-    title = "BNF Chapter - 060401"
+    title = "BNF Paragraph - 060401"
   ) %>% 
   hc_tooltip(enabled = TRUE,
              shared = TRUE,
              sort = TRUE) %>% 
   hc_legend(enabled = TRUE) %>%
   hc_title(align = "left") %>%
-    hc_xAxis(
+  hc_yAxis(max = max(chart_1_data$value)) %>%
+  hc_xAxis(
     plotLines = list(
       list(
         value = 6,
@@ -298,8 +301,8 @@ chart_1 <- raw_data$national_par_annual %>%
       ))
   )
 
-chart_2 <- raw_data$national_par_annual %>%
-    dplyr::mutate(
+chart_2_data <- raw_data$national_par_annual %>%
+  dplyr::mutate(
     FINANCIAL_YEAR = case_when(
       FINANCIAL_YEAR == max(FINANCIAL_YEAR) ~ paste0(FINANCIAL_YEAR, "<br>(YTD ", ltst_month_tidy, ")"),
       TRUE ~ FINANCIAL_YEAR
@@ -314,7 +317,9 @@ chart_2 <- raw_data$national_par_annual %>%
                       names_to = "measure",
                       values_to = "value") %>% 
   dplyr::mutate(value = signif(value, 3)) %>% 
-  dplyr::arrange(desc(measure)) %>%
+  dplyr::arrange(desc(measure))
+
+chart_2 <- chart_2_data %>%
   group_chart_hc(
     x = FINANCIAL_YEAR,
     y = value,
@@ -324,14 +329,15 @@ chart_2 <- raw_data$national_par_annual %>%
     dlOn = FALSE,
     xLab = "Financial year",
     yLab = "Volume",
-    title = "BNF Chapter - 070201"
+    title = "BNF Paragraph - 070201"
   ) %>% 
   hc_tooltip(enabled = TRUE,
              shared = TRUE,
              sort = TRUE) %>% 
   hc_legend(enabled = TRUE)%>%
   hc_title(align = "left") %>%
-    hc_xAxis(
+  hc_yAxis(max = max(chart_1_data$value)) %>%
+  hc_xAxis(
     plotLines = list(
       list(
         value = 6,
@@ -367,7 +373,7 @@ There were an estimated 682,000 identified patients who were prescribed at least
 
 From April 2022 to June 2022 were 587,000 million preparations for vaginal and vulval changes  items prescribed. This is 116,000 more items than the period April 2021 to June 2021, a 24.6% increase.
 
-### Figure 4: Number of identified patients by financial year for selected BNF chemical substances {.toc-ignore}
+### Figure 4: Estimated Number of identified patients by financial year for selected BNF chemical substances {.toc-ignore}
 
 ```{r annual_chem_sub, out.width="100%"}
 chart_data <- raw_data$chem_sub_annual %>%
@@ -420,15 +426,15 @@ chart_data %>%
         )
       ))
   )%>%
-  hc_colors(c("#003087", "#41B6E6", "#006747", "#78BE20", "#330072", "#AE2573"))
+  hc_colors(c("#ED8B00", "#41B6E6", "#006747", "#78BE20", "#003087", "#AE2573"))
 
 ```
 
 Source: [Financial Year Summary Tables - Chemical Substance table](https://nhsbsa-opendata.s3.eu-west-2.amazonaws.com/hrt/hrt_financial_year_2022_2023_YTD_June_2022_v001.xlsx)
 
-Between 2015/16 and 2021/22 Estradiol (0604011G0) was the chemical substance which had the largest increase in identified patients who were prescribed at least one item. This was an increase of 214% or 403,000 patients from 188,000 in 2015/16 to 592,000 in 2021/22.
+Between 2015/16 and 2021/22 Estradiol (0604011G0) was the chemical substance which had the largest increase in estimated identified patients who were prescribed at least one item. This was an increase of 214% or 403,000 patients from 188,000 in 2015/16 to 592,000 in 2021/22.
 
-Between 2015/16 and 2021/22 Norethisterone (0604012P0) was the chemical substance which had the largest decrease in identified patients who were prescribed at least one item. This was a decrease of 55.0% or 199,000 patients from 361,000 in 2015/16 to 162,000 in 2021/22.
+Between 2015/16 and 2021/22 Norethisterone (0604012P0) was the chemical substance which had the largest decrease in estimated identified patients who were prescribed at least one item. This was a decrease of 55.0% or 199,000 patients from 361,000 in 2015/16 to 162,000 in 2021/22.
 
 ### Figure 5: Number of prescribed items by financial year for selected BNF chemical substances {.toc-ignore}
 
@@ -485,7 +491,7 @@ chart_data %>%
         )
       ))
   )%>%
-  hc_colors(c("#003087", "#41B6E6", "#006747", "#78BE20", "#330072", "#AE2573"))
+  hc_colors(c("#ED8B00", "#41B6E6", "#006747", "#78BE20", "#003087", "#AE2573"))
 
 ```
 
@@ -496,6 +502,8 @@ Between 2015/16 and 2021/22 Estradiol (0604011G0) was the chemical substance whi
 Between 2015/16 and 2021/22 Norethisterone (0604012P0) was the chemical substance which had the largest decrease in the number of items prescribed. This was a decrease of 50.5% or 282,000 items from 558,000 in 2015/16 to 276,000 in 2021/22.
 
 ### Table 2: Top 10 presentations by prescribed items in `r ltst_year`{.toc-ignore}
+
+Pharmaceutical presentations can come in many forms including tablets, capsules, patches, gels, creams and more. Please see the definition of items and quantity given in section 1.2 to help interpret this table.
 
 ``` {r top_pres_fy, out.width = "100%"}
 raw_data$presentation_annual %>%
@@ -535,9 +543,11 @@ raw_data$presentation_annual %>%
 
 Source: [Financial Year Summary Tables - Presentations table](https://nhsbsa-opendata.s3.eu-west-2.amazonaws.com/hrt/hrt_financial_year_2022_2023_YTD_June_2022_v001.xlsx)
 
-In 2021/22 Vagifem 10 microgram vaginal tablets had the most prescribed items at 589,000 total items. This is a 79.1% increase of 260,000 items since 2015/16.
+In 2021/22 Vagifem 10 microgram vaginal tablets had the most prescribed items with 589,000 total items. This is a 79.1% increase of 260,000 items since 2015/16. Vagifem 10microgram vaginal tablets also had the most prescribed items in 2020/21 with 521,000 total items.
 
 ### Table 3: Top 10 presentations by prescribed items in `r ltst_month_tidy` {.toc-ignore}
+
+Pharmaceutical presentations can come in many forms including tablets, capsules, patches, gels, creams and more. Please see the definition of items and quantity given in section 1.2 to help interpret this table.
 
 ```{r top_pres_month, out.width="100%"}
 raw_data$presentation_monthly %>%
@@ -578,9 +588,9 @@ In June 2022 Utrogestan 100mg capsules had the most prescribed items at 65,400 t
 
 Source: [Financial Year Summary Tables - Presentations table](https://nhsbsa-opendata.s3.eu-west-2.amazonaws.com/hrt/hrt_financial_year_2022_2023_YTD_June_2022_v001.xlsx)
 
-### Figure 6: Identified patients per 1,000 population by Integrated Care Board (ICB) in `r ltst_year` {.toc-ignore}
+### Figure 6: Estimated number of identified patients per 1,000 population by Integrated Care Board (ICB) in `r ltst_year` {.toc-ignore}
 
-```{r patients_per_100, out.width = "100%"}
+```{r patients_per_1000, out.width = "100%"}
 chart_data <- raw_data$icb_annual %>%
   filter(
     FINANCIAL_YEAR == ltst_year,
@@ -606,78 +616,30 @@ chart <- basic_chart_hc(
   title = ""
 ) %>%
   hc_tooltip(enabled = T,
+             useHTML = TRUE,
              formatter = JS("function(){
-                            var result = this.point.STP_NAME
+                            var result = this.point.STP_NAME + '<br><b>Patients:</b> ' + this.point.PER_1000.toFixed(0)
                             return result
-             }"))
-chart$x$hc_opts$series[[1]]$dataLabels$formatter <- JS("function(){
-                                                       var ynum = this.point.PER_1000;
-                                                       result = ynum.toFixed(0);
-                                                       return result
-}")
+             }")) %>%
+  hc_yAxis(
+    labels = list(
+      enabled = T
+    )
+  )
+chart$x$hc_opts$series[[1]]$dataLabels$enabled  <- FALSE
 
-chart$x$hc_opts$series[[1]]$dataLabels$allowOverlap <- TRUE
 chart
 ```
 
 Source: [Financial Year Summary Tables - ICB table](https://nhsbsa-opendata.s3.eu-west-2.amazonaws.com/hrt/hrt_financial_year_2022_2023_YTD_June_2022_v001.xlsx)
 
-In 2021/22 NHS North East London Integrated Care Board was the ICB with the lowest number of identified patients who received at least one HRT item per 1,000 residents. In 2021/22 the five ICBs under the London NHS Region were all in the lowest ten ICBs in terms of identified patients per 1,000 population who received HRT prescribing. 
+The figures in Figure 6 have been calculated using the by joining the [Office for National Statistics (ONS) Mid-2020 Population Estimates for 2021 Clinical Commissioning Groups in England](https://www.ons.gov.uk/file?uri=%2fpeoplepopulationandcommunity%2fpopulationandmigration%2fpopulationestimates%2fdatasets%2fclinicalcommissioninggroupmidyearpopulationestimates%2fmid2020sape23dt6a/sape23dt6amid2020ccg2021estimatesunformatted.xlsx) to our data to obatain the estimated population of each ICB.
 
-### Figure 7: Prescribed items per 1,000 population by Integrated Care Board (ICB) in `r ltst_year` {.toc-ignore}
+In 2021/22 NHS North East London Integrated Care Board was the ICB with the lowest estimated number of identified patients who received at least one HRT item per 1,000 residents. In 2021/22 the five ICBs under the London NHS Region were all in the lowest ten ICBs in terms of identified patients per 1,000 population who received HRT prescribing. 
 
-```{r items_per_1000, out.width="100%"}
-chart_data <- raw_data$icb_annual %>%
-  filter(
-    FINANCIAL_YEAR == ltst_year
-  ) %>%
-  group_by(
-    STP_NAME,
-    STP_CODE
-  ) %>%
-  summarise(
-    ITEM_COUNT = sum(ITEM_COUNT, na.rm = T),
-    .groups = "drop"
-  ) %>%
-  left_join(
-    stp_pop,
-    by = c("STP_CODE" = "STP21CDH")
-  ) %>%
-  select(1,2,  3, 6) %>%
-  mutate(
-    PER_1000 = round(ITEM_COUNT / POP * 1000, 1)
-  ) %>%
-  arrange(desc(PER_1000))
+NHS Dorset Integrated Care Board was the ICB with the highest estimated number of identified patients who received at least one HRT item per 1,000 residents in 2021/22 with an estimated 50 patients per 1,000 population.
 
-chart <- basic_chart_hc(
-  chart_data,
-  x = STP_CODE,
-  y = PER_1000,
-  type = "column",
-  xLab = "ICB code",
-  yLab = "Items",
-  title = ""
-) %>%
-  hc_tooltip(enabled = T,
-             formatter = JS("function(){
-                            var result = this.point.STP_NAME
-                            return result
-             }"))
-chart$x$hc_opts$series[[1]]$dataLabels$formatter <- JS("function(){
-                                                       var ynum = this.point.PER_1000;
-                                                       result = ynum.toFixed(0);
-                                                       return result
-}")
-
-chart$x$hc_opts$series[[1]]$dataLabels$allowOverlap <- TRUE
-chart
-```
-
-Source: [Financial Year Summary Tables - ICB table](https://nhsbsa-opendata.s3.eu-west-2.amazonaws.com/hrt/hrt_financial_year_2022_2023_YTD_June_2022_v001.xlsx)
-
-In 2021/22 NHS North East London Integrated Care Board was the ICB with the lowest number of HRT drug items prescribed per 1,000 residents. In 2021/22 the five ICBs under the London NHS Region were all in the lowest fifteen ICBs in terms of items prescribed per 1,000 population who received HRT prescribing. 
-
-### Figure 8: Number of identified patients by age band in `r ltst_year` {.toc-ignore}
+### Figure 7: Estimated number of identified patients by age band in `r ltst_year` {.toc-ignore}
 
 ```{r ageband_fy, out.width="100%"}
 chart_data <- raw_data$ageband_annual %>%
@@ -705,11 +667,11 @@ chart
 
 Source: [Financial Year Summary Tables - Age Band table](https://nhsbsa-opendata.s3.eu-west-2.amazonaws.com/hrt/hrt_financial_year_2022_2023_YTD_June_2022_v001.xlsx)
 
-The most common group to receive prescribing for HRT in 2021/22 was patients aged 50 to 54 with 437,000 identified patients, 22.7% of all patients. The next most common groups were patients aged 55 to 59 with 356,000 and 18.5% of identified patients, and patients 45 to 49 with 246,000 and 12.8% of identified patients.
+The most common group to receive prescribing for HRT in 2021/22 was patients aged 50 to 54 with an estimated 437,000 identified patients, 22.7% of all patients. The next most common groups were patients aged 55 to 59 with 356,000 and 18.5% of identified patients, and patients 45 to 49 with 246,000 and 12.8% of identified patients.
 
 More information on how we calculate a patient’s age can be found in section 4 of this summary.
 
-### Figure 9: Number of identified patients by IMD quintile in `r ltst_year` {.toc-ignore}
+### Figure 8: Estimated number of identified patients by IMD quintile in `r ltst_year` {.toc-ignore}
 
 ``` {r imd_fy, out.width = "100%"}
 chart_data <- raw_data$quintile_annual %>%
@@ -745,11 +707,11 @@ chart
 
 Source: [Financial Year Summary Tables - IMD Quintile table](https://nhsbsa-opendata.s3.eu-west-2.amazonaws.com/hrt/hrt_financial_year_2022_2023_YTD_June_2022_v001.xlsx)
 
-In 2021/22, there were 477,000 identified patients prescribed HRT medicines in the least deprived areas in England, 92.6% more than the 248,000 identified patients that received prescribing from in the more deprived areas. In general, more people were prescribed HRT medicines in the least deprived areas in 2021/22. This pattern has remained consistent since 2015/16.
+In 2021/22, there were an estimated 477,000 identified patients prescribed HRT medicines in the least deprived areas in England, 92.6% more than the 248,000 identified patients that received prescribing from in the more deprived areas. In general, more people were prescribed HRT medicines in the least deprived areas in 2021/22. This pattern has remained consistent since 2015/16.
 
-The English Indices of Deprivation have been used to provide a measure of patient deprivation. The deprivation quintiles reported are those where the patient lives. More information on this measure can be found in section 4 of this summary.
+The English Indices of Deprivation have been used to provide a measure of patient deprivation. The deprivation quintiles reported are those of the patient's registered address. More information on this measure can be found in section 4 of this summary.
 
-### Figure 10: Proportion of patients under/over 60 by IMD quintile in `r ltst_year` {.toc-ignore}
+### Figure 9: Proportion of patients under/over 60 by IMD quintile in `r ltst_year` {.toc-ignore}
 
 ``` {r imd_age, out.width = "100%"}
 chart_data <- raw_data$quintile_age_annual %>%
@@ -790,7 +752,7 @@ chart_data <- raw_data$quintile_age_annual %>%
   arrange(
     desc(GROUP)
   )
-  
+
 
 group_chart_hc(
   chart_data,
@@ -801,7 +763,7 @@ group_chart_hc(
   marker = FALSE,
   dlOn = FALSE,
   xLab = "IMD quintile",
-  yLab = "%",
+  yLab = "Proportion (%)",
   title = ""
 ) %>% 
   hc_tooltip(enabled = TRUE,
@@ -816,18 +778,19 @@ group_chart_hc(
     column = list(
       stacking = "normal"
     )
-  )
+  ) %>%
+  hc_colors(c("#ED8B00", "#005EB8"))
 ```
 
 Source: [Financial Year Summary Tables - IMD Quintile Age table](https://nhsbsa-opendata.s3.eu-west-2.amazonaws.com/hrt/hrt_financial_year_2022_2023_YTD_June_2022_v001.xlsx)
 
-In 2021/22 there were 190,000 identified patients under the age of 60 in the most deprived areas who were prescribed at most one HRT item. This was 76.6% of the total identified patients in the least deprived areas. In the least deprived areas 308,000 identified patients were under 60. This was 64.6% of the total identified patients in the least deprived area who were prescribed at least one HRT item.
+In 2021/22 there were an estimated 190,000 identified patients under the age of 60 in the most deprived areas who were prescribed at least one HRT item. This was 76.6% of the total identified patients in the most deprived areas. In the least deprived areas 308,000 identified patients were under 60. This was 64.6% of the total identified patients in the least deprived area who were prescribed at least one HRT item.
 
-### Figure 11: Proportion of chargeable items by financial year {.toc-ignore}
+### Figure 10: Proportion of chargeable items by financial year {.toc-ignore}
 
 ``` {r charge_fy, out.width = "100%"}
 chart_data <- raw_data$exempt_annual %>%
-      dplyr::mutate(
+  dplyr::mutate(
     FINANCIAL_YEAR = case_when(
       FINANCIAL_YEAR == max(FINANCIAL_YEAR) ~ paste0(FINANCIAL_YEAR, "<br>(YTD ", ltst_month_tidy, ")"),
       TRUE ~ FINANCIAL_YEAR
@@ -864,7 +827,7 @@ group_chart_hc(
   x = FINANCIAL_YEAR,
   y = PROP,
   group = CHARGE_STATUS,
-  type = "column",
+  type = "area",
   marker = FALSE,
   dlOn = FALSE,
   xLab = "Financial year",
@@ -880,17 +843,20 @@ group_chart_hc(
     valueSuffix = "%"
   ) %>%
   hc_plotOptions(
-    column = list(
+    area = list(
       stacking = "normal"
     )
-  )
+  )%>%
+  hc_colors(c("#ED8B00", "#003087", "#41B6E6"))
 ```
 
 Source: [Financial Year Summary Tables - Exemption Categories table](https://nhsbsa-opendata.s3.eu-west-2.amazonaws.com/hrt/hrt_financial_year_2022_2023_YTD_June_2022_v001.xlsx)
 
-The proportion of HRT drug items which were prescribed to patients who were using a Pre-Payment Certificate (PPC) showed a steady increase from 10.2% in 2015/16 to 15.0% in 2020/21. There was then a 3.45 percentage points decrease in the proportion of HRT drug items prescribed to patients using a PPC to 11.5% in 2021/22. This trend has then continued into 2022/23 where there was a further decrease of 1.83 percentage points to 9.70% in the period April 2022 to June 2023. This is consistent with overall prescribing where the proportion of items prescribed to patients using a PPC has been declining since 2019/20.
+In England, most working-age adults have to pay prescription charges and any items dispensed to this group are counted as chargeable. Certain groups are exempt from paying for their NHS prescriptions, for example those over the age of 60, and some prescribed items are always free, including contraceptives. If a patient regularly pays prescription charges, a Prescription Pre-Payment certificate (PPC) could save them money as they can pay one up front cost either annually or for a 3 month period. 
 
-### Figure 12: Proportion of chargeable items by month {.toc-ignore}
+The proportion of HRT drug items which were prescribed to patients who were using a PPC showed a steady increase from 10.2% in 2015/16 to 15.0% in 2020/21. There was a 3.45 percentage point decrease in the proportion of HRT drug items prescribed to patients using a PPC to 11.5% in 2021/22. This trend has continued into 2022/23 where there was a further decrease of 1.83 percentage points to 9.70% in the period April 2022 to June 2023. This is consistent with overall prescribing where the proportion of items prescribed to patients using a PPC has been declining since 2019/20.
+
+### Figure 11: Proportion of chargeable items by month July 2020 to June 2022 {.toc-ignore}
 
 ``` {r exempt_monthly, out.width = "100%"}
 chart_data <- raw_data$exempt_monthly %>%
@@ -931,11 +897,11 @@ group_chart_hc(
   x = YEAR_MONTH,
   y = PROP,
   group = CHARGE_STATUS,
-  type = "column",
+  type = "area",
   marker = FALSE,
   dlOn = FALSE,
   xLab = "Month",
-  yLab = "%",
+  yLab = "Proportion (%)",
   title = ""
 ) %>% 
   hc_tooltip(enabled = TRUE,
@@ -947,13 +913,14 @@ group_chart_hc(
     valueSuffix = "%"
   ) %>%
   hc_plotOptions(
-    column = list(
+    area = list(
       stacking = "normal"
     )
   ) %>%
   hc_xAxis(
     type = "datetime"
-  )
+  ) %>%
+  hc_colors(c("#ED8B00", "#003087", "#41B6E6"))
 ```
 
 Source: [Monthly Summary Tables - Exemption Categories table](https://nhsbsa-opendata.s3.eu-west-2.amazonaws.com/hrt/hrt_monthly_June_2022_v001.xlsx)
@@ -964,17 +931,17 @@ There has been a steady decline in the proportion of HRT drug items prescribed t
 
 ## 3. Background
 
-HRT, which replaces the hormones that are at low levels, is the main medicine treatment for menopause and perimenopause symptoms.
+HRT, which replaces the hormones that are at low levels, is the main medicine treatment for menopause and perimenopause symptoms. More information on the menopause is available on the [NHS website](https://www.nhs.uk/conditions/menopause/). 
 
 The menopause is a biological stage in a woman's life that occurs when she stops menstruating and reaches the end of her natural reproductive life. This is not usually abrupt, but a gradual process during which women experience perimenopause before reaching postmenopause. Usually it is defined as having occurred when a woman has not had a period for 12 consecutive months (for women reaching menopause naturally).
 
 As well as a change in their menstrual cycle women may experience a variety of symptoms associated with menopause such as hot flushes and sweats, low mood, vaginal dryness, low sexual desire, and others.
 
-Most women (8 out of 10) experience some symptoms, typically lasting about 4 years after the last period, but continuing for up to 12 years in about 10% of women. Prolonged lack of the hormone oestrogen affects the bones and cardiovascular system and postmenopausal women are at increased risk of a number of long-term conditions, such as osteoporosis.
+Most women (8 out of 10 (Source: [Menopause and me](https://www.menopauseandme.co.uk/en-gb/menopause-and-me/stages-and-symptoms-of-menopause/menopause))) experience some symptoms, typically lasting about 4 years after the last period, but continuing for up to 12 years in about 10% of women. Prolonged lack of the hormone oestrogen affects the bones and cardiovascular system and postmenopausal women are at increased risk of a number of long-term conditions, such as osteoporosis.
 
 ### 3.1. Female sex hormones and their modulators {.toc-ignore}
 
-For women without a uterus, oestrogen-only HRT is appropriate. For women with a uterus, oestrogen plus progestogen HRT is recommended. A progestogen should be prescribed to reduce the risk of cystic hyperplasia of the endometrium, a thickening of the endometrium, and possible transformation to cancer. 
+Oestrogen-only HRT is usually only recommended for women who have had their womb removed during a hysterectomy. For women with a uterus, oestrogen plus progestogen HRT is recommended. A progestogen should be prescribed to reduce the risk of cystic hyperplasia of the endometrium, a thickening of the endometrium, and possible transformation to cancer. 
 
 Continuous combined preparations are not suitable for use in the perimenopause or within 12 months of the last menstrual period; women who use such preparations may bleed irregularly in the early stages of treatment
 
@@ -996,7 +963,7 @@ Pharmacists in the UK can now dispense the hormone replacement therapy (HRT) dru
 
 Gina 10 microgram vaginal tablets are a locally acting oestrogen HRT and the only treatment available without a prescription that is clinically proven to target and treat the cause of vaginal atrophy and its associated symptoms after the menopause.
 
-As Gina 10 microgram vaginal tablets are sold over the counter, the NHSBSA does not hold any data on volumes, costs, or other measures.
+As Gina 10 microgram vaginal tablets is a proprietary equivalent of Estradiol 10microgram pessaries which is sold over the counter, the NHSBSA does not hold any data on volumes, costs, or other measures. Data when a patient has received a prescription of the generic Estradiol 10microgram pessaries are available in these statistics. 
 
 ### 3.4. Shortages {.toc-ignore}
 
@@ -1012,7 +979,7 @@ All were [limited to three months dispensing](https://www.gov.uk/government/news
 
 ## 4. About these statistics
 
-This publication is a one of publication by the NHSBSA. To learn more about how this publication compares to our other publications, you can view the Official Statistics guidance table on our [statistical collections page](https://www.nhsbsa.nhs.uk/statistical-collections). 
+This publication is a one-off ad-hoc publication by the NHSBSA. To learn more about how this publication compares to our other publications, you can view the Official Statistics guidance table on our [statistical collections page](https://www.nhsbsa.nhs.uk/statistical-collections). 
 
 Further information on the methodology used in this publication and further background information is available in our [Background Information and Methodology](https://nhsbsa-opendata.s3.eu-west-2.amazonaws.com/hrt/hrt-background-info-methodology-v001.html) supporting document.
 
@@ -1032,13 +999,9 @@ Where this document refers to 'average', this is the mean unless otherwise state
 
 The English Indices of Deprivation 2019 have been used to provide a measure of patient deprivation. The English Indices of Deprivation are an official national measure of deprivation that follows an established methodological framework to capture a wide range of individuals’ living conditions.
 
-The reported IMD quintile, where 1 is the most deprived and 5 the least deprived, is derived from the lower-layer super output areas (LSOA) of the patient who received the medication. There are a number of items each year that we have reported as having an unknown IMD quintile. These are items that have been attributed to an patient who exclusively received their prescriptions via paper prescribing and not via the Electronic Prescription Service (EPS). LSOA is only captured for prescriptions via EPS. For those patients who received both paper prescribing and EPS we have imputed their LSOA from the latest available data.
+The reported IMD quintile, where 1 is the most deprived and 5 the least deprived, is derived from the lower-layer super output areas (LSOA) of the registered address of the patient who received the medication. There are a number of items each year that we have reported as having an unknown IMD quintile. These are items that have been attributed to an patient who exclusively received their prescriptions via paper prescribing and not via the Electronic Prescription Service (EPS). LSOA is only captured for prescriptions via EPS. For those patients who received both paper prescribing and EPS we have imputed their LSOA from the latest available data. As EPS increased considerably during 2020/21 historical data has much higher rates of patients with a LSOA which has been reported as 'Unknown'.
 
 IMD quintiles are calculated by ranking census LSOA from most deprived to least deprived and dividing them into 5 equal groups. These range from the most deprived 20% (quintile 1) of small areas nationally to the least deprived 20% (quintile 5) of small areas nationally.
-
-### 4.5. Planned changes to this publication {.toc-ignore}
-
-This is an ad hoc official statistic release, a one off publication to help inform users and stakeholders about the prescribing of HRT medications in England.
 
 ---
 

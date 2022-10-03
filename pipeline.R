@@ -574,7 +574,7 @@ presentation_monthly <- raw_data$presentation_monthly %>%
     "BNF Section Name" = 3,
     "BNF Section Code" = 4,
     "BNF Paragraph Name" = 5,
-    "BNF Paragraph Code" = 7,
+    "BNF Paragraph Code" = 6,
     "Chemical Subtance" = 7,
     "Chemical Substance Code" = 8,
     "BNF Presentation Code" = 9,
