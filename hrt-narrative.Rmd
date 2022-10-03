@@ -502,13 +502,12 @@ raw_data$presentation_annual %>%
   filter(FINANCIAL_YEAR == ltst_year) %>%
   top_n(10, ITEM_COUNT) %>%
   arrange(desc(ITEM_COUNT)) %>%
-  select(9, 12, 13, 14, 15) %>%
+  select(9, 12, 13, 14) %>%
   rename(
     "BNF Presentation Name" = 1,
     "Unit of Measure" = 2,
     "Total Quantity" = 3,
-    "Total Items" = 4,
-    "Total Net Ingredient Cost (GBP)" = 5
+    "Total Items" = 4
   ) %>%
   mutate(
     `Total Quantity` = formatC(
@@ -520,12 +519,7 @@ raw_data$presentation_annual %>%
       signif(`Total Items`, 3),
       big.mark = ",",
       format = "d"
-    ),
-    `Total Net Ingredient Cost (GBP)` = formatC(
-      signif(`Total Net Ingredient Cost (GBP)`, 3),
-      big.mark = ",",
-      format = "d"
-    ),
+    )
   ) %>%
   DT::datatable(rownames = FALSE,
                 options = list(dom = "t",
@@ -534,7 +528,7 @@ raw_data$presentation_annual %>%
                                       targets = "_all"),
                                  list(className = "dt-left", targets = 0:1),
                                  list(className = "dt-right",
-                                      targets = 2:4)
+                                      targets = 2:3)
                                )))
 
 ```
@@ -550,13 +544,12 @@ raw_data$presentation_monthly %>%
   filter(YEAR_MONTH == ltst_month) %>%
   top_n(10, ITEM_COUNT) %>%
   arrange(desc(ITEM_COUNT)) %>%
-  select(10, 13, 14, 15, 16) %>%
+  select(10, 13, 14, 15) %>%
   rename(
     "BNF Presentation Name" = 1,
     "Unit of Measure" = 2,
     "Total Quantity" = 3,
-    "Total Items" = 4,
-    "Total Net Ingredient Cost (GBP)" = 5
+    "Total Items" = 4
   ) %>%
   mutate(
     `Total Quantity` = formatC(
@@ -568,12 +561,7 @@ raw_data$presentation_monthly %>%
       signif(`Total Items`, 3),
       big.mark = ",",
       format = "d"
-    ),
-    `Total Net Ingredient Cost (GBP)` = formatC(
-      signif(`Total Net Ingredient Cost (GBP)`, 3),
-      big.mark = ",",
-      format = "d"
-    ),
+    )
   ) %>%
   DT::datatable(rownames = FALSE,
                 options = list(dom = "t",
@@ -582,7 +570,7 @@ raw_data$presentation_monthly %>%
                                       targets = "_all"),
                                  list(className = "dt-left", targets = 0:1),
                                  list(className = "dt-right",
-                                      targets = 2:4)
+                                      targets = 2:3)
                                )))
 ```
 
@@ -1025,6 +1013,8 @@ All were [limited to three months dispensing](https://www.gov.uk/government/news
 ## 4. About these statistics
 
 This publication is a one of publication by the NHSBSA. To learn more about how this publication compares to our other publications, you can view the Official Statistics guidance table on our [statistical collections page](https://www.nhsbsa.nhs.uk/statistical-collections). 
+
+Further information on the methodology used in this publication and further background information is available in our [Background Information and Methodology](https://nhsbsa-opendata.s3.eu-west-2.amazonaws.com/hrt/hrt-background-info-methodology-v001.html) supporting document.
 
 ### 4.1. Patient counts {.toc-ignore}
 

@@ -1817,3 +1817,4 @@ rmarkdown::render("hrt-background.Rmd",
 rmarkdown::render("hrt-background.Rmd",
                   output_format = "word_document",
                   output_file = "outputs/hrt-background-info-methodology-v001.docx")
+
