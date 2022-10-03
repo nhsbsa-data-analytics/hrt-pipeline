@@ -292,7 +292,7 @@ chart_1 <- raw_data$national_par_annual %>%
           rotation = 0,
           text = "<b>Note:</b> The figures <br>beyond this point <br>represent<br>prescribing in <br>April 2022 to <br>June 2022 only",
           style = list(
-            fontSize = "10px"
+            fontSize = "8px"
           )
         )
       ))
@@ -342,7 +342,7 @@ chart_2 <- raw_data$national_par_annual %>%
           rotation = 0,
           text = "<b>Note:</b> The figures <br>beyond this point <br>represent<br>prescribing in <br>April 2022 to <br>June 2022 only",
           style = list(
-            fontSize = "10px"
+            fontSize = "8px"
           )
         )
       ))

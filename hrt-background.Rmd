@@ -1,7 +1,7 @@
 ---
 title: "Hormone replacement therapy (HRT) - England"
-pagetitle: "Background Information and methodology"
-author: "Background Information and methodology"
+pagetitle: "Background Information and Methodology"
+author: "Background Information and Methodology"
 date: October 2022
 always_allow_html: true
 output:
@@ -82,7 +82,7 @@ Millions of women go through the menopause every year, with the majority experie
 
 Most women (8 out of 10) experience some symptoms, typically lasting about 4 years after the last period, but continuing for up to 12 years in about 10% of women. Prolonged lack of oestrogen affects the bones and cardiovascular system and postmenopausal women are at increased risk of a number of long-term conditions, such as osteoporosis.
 
-The taskforce will tackle issues surrounding the menopause including increasing access to treatment, and ending the taboos and stigmas that still surround conversations about the menopause, including in the workplace.
+The taskforce will tackle issues surrounding the menopause including increasing access to treatment, and will try to end the taboos and stigmas that still surround conversations about the menopause, including in the workplace.
 
 The publication shows the volumes of prescription items and unique patients for a subset of drugs that have been classified as being used primarily for the treatment of menopause and perimenopause symptoms. These drugs are described by the British National Formulary (BNF) sections:
 
@@ -132,7 +132,7 @@ As this process takes time new and updated verified data from PDS is loaded into
 
 #### 2.1.1. Drug classification {.toc-ignore}
 
-In these statistics the two BNF paragraphs were chosen as they include medications which are prescribed for the treatment for menopause and perimenopause symptoms.
+In these statistics the two BNF paragraphs were chosen as they include the majority of the medications which are prescribed for the treatment for menopause and perimenopause symptoms.
 
 ### 2.2 Patient details {.toc-ignore}
 
@@ -144,7 +144,7 @@ There are some inconsistencies within the PDS data that is held within the NHSBS
 
 #### 2.2.2. Patient deprivation {.toc-ignore}
 
-[The English Indices of Deprivation 2019](https://www.gov.uk/government/statistics/english-indices-of-deprivation-2019) have been used in these statistics as a measure of the level of deprivation of the areas in which prescriptions have been issued. In particular, that headline Index of Multiple Deprivation (IMD) is included. IMD data has been joined to the lower-layer super output area (LSOA) 2011. This combined dataset has then been joined to prescription data using the LSOA of the patient that received the item. The LSOAs are analysed in groups, or ‘quintiles’ each representing 20% of the areas from the deprivation scores, from 1 as the most deprived to 5 as the least deprived. The measure of deprivation reported in these statistics is the IMD quintile of the area in which the patient resides.
+[The English Indices of Deprivation 2019](https://www.gov.uk/government/statistics/english-indices-of-deprivation-2019) have been used in these statistics as a measure of the level of deprivation of the areas in which prescriptions have been issued. In particular, that headline Index of Multiple Deprivation (IMD) is included. IMD data has been joined to the lower-layer super output area (LSOA) 2011. This combined dataset has then been joined to prescription data using the LSOA of the patient that received the item. The LSOAs are analysed in groups, or ‘quintiles’ each representing 20% of the areas from the deprivation scores, from 1 as the most deprived to 5 as the least deprived. The measure of deprivation reported in these statistics is the IMD quintile of the area in which the patient lives.
 
 Where a patient’s LSOA has not been able to be matched or was not available, the records are reported as ‘unknown’ IMD decile.
 
@@ -166,7 +166,7 @@ The main strength of these statistics is the completeness of the dataset and acc
 
 These statistics exclude prescriptions that were issued but not presented for dispensing and prescriptions that were not submitted to the NHSBSA for processing and reimbursement. Prescriptions issued and dispensed in prisons, hospitals and private prescriptions are also excluded.
 
-Pharmacists in the UK can now dispense the hormone replacement therapy (HRT) drug Gina 10 microgram vaginal tablets without a prescription. As Gina 10 microgram vaginal tablets are sold over the counter, the NHSBSA does not hold any data on volumes, costs or patient counts.
+Pharmacists in the UK can now dispense the hormone replacement therapy (HRT) drug Gina 10 microgram vaginal tablets without a prescription. As Gina 10 microgram vaginal tablets are sold over the counter, the NHSBSA does not hold any data on volumes, costs or patient counts the the product.
 
 Additional patient information received from PDS for matched NHS numbers is not returned until after the monthly ETL process for prescription data into the NHSBSA Data & Insight Data Warehouse is complete, and so the year in progress monthly patient counts may include some unverified data and subsequently be revised in a later publication.
 
@@ -184,7 +184,7 @@ Any revisions that we make to these statistics will be made in line with our [Re
 
 The [NHSBSA Open Data Portal](https://opendata.nhsbsa.net/) is the platform where we host our open data products, including the presentation level data tables released as part of these statistics.
 
-Items prescribed for Hormone Replacement Therapy are also available to view at presentation level through our annual [Prescription Cost Analysis publication](https://www.nhsbsa.nhs.uk/statistical-collections/prescription-cost-analysis-england), which takes a dispensing view and covers all items prescribed throughout the UK but dispensed in the community in England only.
+Items prescribed for Hormone Replacement Therapy are also available to view at presentation level through our annual [Prescription Cost Analysis (PCA) publication](https://www.nhsbsa.nhs.uk/statistical-collections/prescription-cost-analysis-england), which takes a dispensing view and covers all items prescribed throughout the UK but dispensed in the community in England only. The figures in the PCA publication are not directly comparable to this publication as the HRT publication is based around medicines prescribed in England wheras the PCA publication focuses on medicines dispended in England.
 
 ### 6.2 Code of Practice for Statistics {.toc-ignore}
 
@@ -236,7 +236,7 @@ As there is a manual data entry element to this system then inevitably some smal
 
 ***Timeliness refers to the time gap between publication and the reference period. Punctuality refers to the gap between planned and actual publication dates***
 
-The Hormone Replacement Therapy publication is an ad hoc publication. The date of release for the publication will be announced in advance in line with our statistical release calendar.
+The Hormone Replacement Therapy publication is an ad hoc publication. The date of release for the publication will be announced in advance in line with our statistical release calendar. The publication uses year-to-date figures for the 2022/23 financial year. This allows the inclusion of the most recent data available and reduces lag between the time the data is a avaiable and the publication date.
 
 ### 7.4. Accessibility and clarity {.toc-ignore}
 
@@ -254,9 +254,9 @@ A glossary of terms is included in this document.
 
 ***Coherence is the degree to which data have been derived from different sources or methods but refer to the same topic or similar. Comparability is the degree to which data can be compared over time and domain***
 
-The Hormone Replacement Therapy publication is the only statistics available on the prescribing of drugs used in the treatment of menopause and perimenopause symptoms that have been dispensed in the community. The statistics are all derived from the same administrative data source with the same methodology applied to all data points.
+The Hormone Replacement Therapy publication are the only publicly accessible statistics available on the prescribing of drugs used in the treatment of menopause and perimenopause symptoms that have been dispensed in the community. The statistics are all derived from the same administrative data source with the same methodology applied to all data points.
 
-The figures released in these statistics relating to item counts and total costs can be recreated from the English Prescribing Dataset (EPD) administrative data feed, available from the NHSBSA Open Data Portal (ODP). NHSBSA Information Services provide this data feed, and this feed is not an official statistic.
+The figures released in these statistics relating to item counts and total costs can be recreated from the [English Prescribing Dataset (EPD)](https://opendata.nhsbsa.net/dataset/english-prescribing-data-epd) administrative data feed, available from the NHSBSA Open Data Portal (ODP). NHSBSA Information Services provide this data feed, and this feed is not an official statistic.
 
 Comparability with other publications produced by the NHSBSA can be determined using the [Official Statistics guidance table](https://www.nhsbsa.nhs.uk/statistical-collections), which is maintained with the release of each new publication. This table shows how all of the NHSBSA’s publications compare across a range of measures to help users identify the best publication for their needs or understand where differences in figures may occur.
 
@@ -278,7 +278,7 @@ We are releasing this ad hoc Official Statistic to allow users to begin analysin
 
 ***This dimension covers the processes for finding out about users and uses and their views on the statistical products***
 
-Alongside the release of these statistics the NHSBSA will also be releasing a continuous feedback survey, allowing users to quickly tell us their thoughts on the content and utility of these statistics. This feedback, along with feedback gathered from other routes such as direct contact, will be used to shape the content and style of future Hormone Replacement Therapy publications and other statistical products from the NHSBSA.
+Alongside the release of these statistics the NHSBSA will also be releasing a continuous feedback survey, allowing users to quickly tell us their thoughts on the content and utility of these statistics. This survey can be found in the feedback and contact us section at the end of this document .This feedback, along with feedback gathered from other routes such as direct contact, will be used to shape the content and style of future Hormone Replacement Therapy publications and other statistical products from the NHSBSA.
 
 **Performance, cost and respondent burden**
 
@@ -340,7 +340,7 @@ An identified patient is where an NHS number captured by the NHSBSA during presc
 
 ### Integrated Care Board (ICB) {.toc-ignore}
 
-Integrated care boards (ICBs) are a statutory NHS organisation responsible for developing a plan in collaboration with NHS trusts/foundation trusts and other system partners for meeting the health needs of the population, managing the NHS budget and arranging for the provision of health services in the defined area. They took over the functions of Clinical Commissioning Groups (CCG) in July 2022.
+Integrated care boards (ICBs) are a statutory NHS organisation responsible for developing a plan in collaboration with NHS trusts/foundation trusts and other system partners for meeting the health needs of the population, managing the NHS budget and arranging for the provision of health services in the defined area. They took over the functions of Sustainability and Transformation Partnerships (STPs) in July 2022.
 
 ### Items {.toc-ignore}
 The term Items refers to the number of times a product appears on a prescription form. Prescription forms include both paper prescriptions and electronic messages.
@@ -362,6 +362,8 @@ calculated by multiplying Quantity by Items. For example, if 2 items of Amoxicil
 Feedback is important to us; we welcome any questions and comments relating to these statistics. 
 
 Please quote ‘HRT – Background and Methodology Note’ in the subject title of any correspondence.
+
+You can complete a [short survey about this publication](https://online1.snapsurveys.com/Official_Statistics_Feedback) to help us improve the Official Statistics that we produce. All responses will remain anonymous and individuals will not be identifiable in any report that we produce.
 
 You can view our [privacy policy](https://www.nhsbsa.nhs.uk/our-policies/privacy) on our website to see how your data is used and stored.
 
