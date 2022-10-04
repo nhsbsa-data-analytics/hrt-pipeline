@@ -279,47 +279,60 @@ chem_sub_annual <- raw_data$chem_sub_annual %>%
     "Total Net Ingredient Cost (GBP)" = 11
   )
 
-presentation_annual <- raw_data$presentation_annual %>%
-  #apply_sdc() %>%
-  #select(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 16, 17, 18) %>%
-  dplyr::mutate(
-    FINANCIAL_YEAR = case_when(
-      FINANCIAL_YEAR == max(FINANCIAL_YEAR) ~ paste0(FINANCIAL_YEAR, " (YTD ", ltst_month_tidy, ")"),
-      TRUE ~ FINANCIAL_YEAR
-    )
-  ) %>%
-  rename(
-    "Financial Year" = 1,
-    "BNF Section Name" = 2,
-    "BNF Section Code" = 3,
-    "BNF Paragraph Name" = 4,
-    "BNF Paragraph Code" = 5,
-    "Chemical Subtance" = 6,
-    "Chemical Substance Code" = 7,
-    "BNF Presentation Code" = 8,
-    "BNF Presentation Name" = 9,
-    "Generic BNF Presentation Code" = 10,
-    "Generic BNF Presentation Name" = 11,
-    "Unit of Measure" = 12,
-    "Total Quantity" = 13,
-    "Total Items" = 14,
-    "Total Net Ingredient Cost (GBP)" = 15
-  ) %>%
+presentation_annual_raw <- raw_data$presentation_annual %>%
   mutate(
-    `Cost Per Item (GBP)` = `Total Net Ingredient Cost (GBP)` / `Total Items`,
-    `Cost Per Quantity (GBP)` = `Total Net Ingredient Cost (GBP)` / `Total Quantity`,
-    `Quantity Per Item` = `Total Quantity` / `Total Items`
+    UNIT_OF_MEASURE = case_when(
+      BNF_CODE == "0702010F0AAAEAE" ~ "gram",
+      BNF_CODE == "0702010G0AAAEAE" ~ "device",
+      TRUE ~ UNIT_OF_MEASURE
+    )
   )
 
-ssp_annual <- raw_data$ssp_annual %>%
-  #apply_sdc() %>%
-  #select(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 16, 17, 18) %>%
+#build UOM lookup to impute missing values
+lookup <- presentation_annual_raw %>%
+  filter(UNIT_OF_MEASURE != "UNKNOWN") %>%
+  select(BNF_CODE, UNIT_OF_MEASURE) %>%
+  unique() %>%
+  rename("IMP_UOM" = 2)
+
+
+presentation_annual <- presentation_annual_raw %>%
   dplyr::mutate(
     FINANCIAL_YEAR = case_when(
       FINANCIAL_YEAR == max(FINANCIAL_YEAR) ~ paste0(FINANCIAL_YEAR, " (YTD ", ltst_month_tidy, ")"),
       TRUE ~ FINANCIAL_YEAR
     )
   ) %>%
+  left_join(
+    lookup, by = c("BNF_CODE" = "BNF_CODE")
+  ) %>%
+  mutate(
+    UNIT_OF_MEASURE = case_when(
+      UNIT_OF_MEASURE == "UNKNOWN" ~ IMP_UOM,
+      TRUE ~ UNIT_OF_MEASURE
+    )
+  ) %>%
+  select(-IMP_UOM) %>%
+  group_by(
+    FINANCIAL_YEAR, 
+    SECTION_NAME,
+    SECTION_CODE,
+    PARAGRAPH_NAME,
+    PARAGRAPH_CODE,
+    CHEM_SUB_NAME,
+    CHEM_SUB_CODE,
+    BNF_CODE,
+    BNF_NAME,
+    GENERIC_BNF_CODE,
+    GENENRIC_BNF_NAME,
+    UNIT_OF_MEASURE
+  ) %>%
+  summarise(
+    TOTAL_QTY = sum(TOTAL_QTY, na.rm = T),
+    ITEM_COUNT = sum(ITEM_COUNT, na.rm = T),
+    ITEM_PAY_DR_NIC = sum(ITEM_PAY_DR_NIC, na.rm = T)
+  ) %>%
+  ungroup() %>%
   rename(
     "Financial Year" = 1,
     "BNF Section Name" = 2,
@@ -417,7 +430,7 @@ quintile_annual <- raw_data$quintile_annual %>%
   ) %>%
   left_join(imd_population,
             by = c("IMD_QUINTILE" = "IMD_QUINTILE")) %>%
-  mutate(`Patients per 1,000 Population` = sdc_PATIENT_COUNT / POPULATION * 1000) %>%
+  mutate(`Patients per 1,000 Population` = PATIENT_COUNT / POPULATION * 1000) %>%
   mutate(
     IMD_QUINTILE = case_when(
       is.na(IMD_QUINTILE) ~ as.character("Unknown"),
@@ -426,16 +439,15 @@ quintile_annual <- raw_data$quintile_annual %>%
       TRUE ~ as.character(IMD_QUINTILE)
     )
   ) %>%
-  select(1, 2, 3, 7, 4, 5, 6, 8) %>%
+  select(1, 2, 6, 3, 4, 5, 7) %>%
   rename(
     "Financial Year" = 1,
-    "Identified Patient Flag" = 2,
-    "IMD Quintile" = 3,
-    "Population" = 4,
-    "Total Identified Patients" = 5,
-    "Total Items" = 6,
-    "Total Net Ingredient Cost (GBP)" = 7,
-    "Patients per 1,000 Population" = 8
+    "IMD Quintile" = 2,
+    "Population" = 3,
+    "Total Identified Patients" = 4,
+    "Total Items" = 5,
+    "Total Net Ingredient Cost (GBP)" = 6,
+    "Patients per 1,000 Population" = 7
   )
 
 quintile_age_annual <- raw_data$quintile_age_annual %>%
@@ -450,7 +462,7 @@ quintile_age_annual <- raw_data$quintile_age_annual %>%
   left_join(imd_population_age,
             by = c("IMD_QUINTILE" = "IMD_QUINTILE",
                    "AGE_BAND" = "AGE_BAND")) %>%
-  mutate(`Patients per 1,000 Population` = sdc_PATIENT_COUNT / POPULATION * 1000) %>%
+  mutate(`Patients per 1,000 Population` = PATIENT_COUNT / POPULATION * 1000) %>%
   mutate(
     IMD_QUINTILE = case_when(
       is.na(IMD_QUINTILE) ~ as.character("Unknown"),
@@ -459,16 +471,15 @@ quintile_age_annual <- raw_data$quintile_age_annual %>%
       TRUE ~ as.character(IMD_QUINTILE)
     )
   ) %>%
-  select(1, 2, 3, 4, 8, 5, 6, 7, 9) %>%
+  select(1, 2, 3, 7, 4, 5, 6, 8) %>%
   rename(
     "Financial Year" = 1,
-    "Identified Patient Flag" = 2,
-    "Age Band" = 3,
-    "IMD Quintile" = 4,
-    "Population" = 5,
-    "Total Identified Patients" = 6,
-    "Total Items" = 7,
-    "Total Net Ingredient Cost (GBP)" = 8
+    "Age Band" = 2,
+    "IMD Quintile" = 3,
+    "Population" = 4,
+    "Total Identified Patients" = 5,
+    "Total Items" = 6,
+    "Total Net Ingredient Cost (GBP)" = 7
   )
 
 exemption_annual <- raw_data$exempt_annual %>%
@@ -569,9 +580,56 @@ chem_sub_monthly <- raw_data$chem_sub_monthly %>%
     "Total Net Ingredient Cost (GBP)" = 12
   )
 
-presentation_monthly <- raw_data$presentation_monthly %>%
-  #apply_sdc() %>%
-  #select(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 18, 19, 20) %>%
+
+presentation_monthly_raw <- raw_data$presentation_monthly %>%
+  mutate(
+    UNIT_OF_MEASURE = case_when(
+      BNF_CODE == "0702010F0AAAEAE" ~ "gram",
+      BNF_CODE == "0702010G0AAAEAE" ~ "device",
+      TRUE ~ UNIT_OF_MEASURE
+    )
+  )
+
+#build UOM lookup to impute missing values
+lookup <- presentation_annual_raw %>%
+  filter(UNIT_OF_MEASURE != "UNKNOWN") %>%
+  select(BNF_CODE, UNIT_OF_MEASURE) %>%
+  unique() %>%
+  rename("IMP_UOM" = 2)
+
+
+presentation_monthly <- presentation_monthly_raw %>%
+  left_join(
+    lookup, by = c("BNF_CODE" = "BNF_CODE")
+  ) %>%
+  mutate(
+    UNIT_OF_MEASURE = case_when(
+      UNIT_OF_MEASURE == "UNKNOWN" ~ IMP_UOM,
+      TRUE ~ UNIT_OF_MEASURE
+    )
+  ) %>%
+  select(-IMP_UOM) %>%
+  group_by(
+    FINANCIAL_YEAR, 
+    YEAR_MONTH,
+    SECTION_NAME,
+    SECTION_CODE,
+    PARAGRAPH_NAME,
+    PARAGRAPH_CODE,
+    CHEM_SUB_NAME,
+    CHEM_SUB_CODE,
+    BNF_CODE,
+    BNF_NAME,
+    GENERIC_BNF_CODE,
+    GENENRIC_BNF_NAME,
+    UNIT_OF_MEASURE
+  ) %>%
+  summarise(
+    TOTAL_QTY = sum(TOTAL_QTY, na.rm = T),
+    ITEM_COUNT = sum(ITEM_COUNT, na.rm = T),
+    ITEM_PAY_DR_NIC = sum(ITEM_PAY_DR_NIC, na.rm = T)
+  ) %>%
+  ungroup() %>%
   rename(
     "Financial Year" = 1,
     "Year Month" = 2,
@@ -595,6 +653,7 @@ presentation_monthly <- raw_data$presentation_monthly %>%
     `Cost Per Quantity (GBP)` = `Total Net Ingredient Cost (GBP)` / `Total Quantity`,
     `Quantity Per Item` = `Total Quantity` / `Total Items`
   )
+
 
 ssp_monthly <- raw_data$ssp_monthly %>%
   #apply_sdc() %>%
@@ -682,15 +741,15 @@ quintile_monthly <- raw_data$quintile_monthly %>%
       TRUE ~ as.character(IMD_QUINTILE)
     )
   ) %>%
-  select(1, 2, 4, 3, 5, 6, 7) %>%
+  #select(1, 2, 4, 3, 5, 6, 7) %>%
   rename(
     "Financial Year" = 1,
     "Year Month" = 2,
-    "Identified Patient Flag" = 4,
+    #"Identified Patient Flag" = 4,
     "IMD Quintile" = 3,
-    "Total Identified Patients" = 5,
-    "Total Items" = 6,
-    "Total Net Ingredient Cost (GBP)" = 7
+    "Total Identified Patients" = 4,
+    "Total Items" = 5,
+    "Total Net Ingredient Cost (GBP)" = 6
   )
 
 quintile_age_monthly <- raw_data$quintile_age_monthly %>%
@@ -707,12 +766,12 @@ quintile_age_monthly <- raw_data$quintile_age_monthly %>%
   rename(
     "Financial Year" = 1,
     "Year Month" = 2,
-    "Identified Patient Flag" = 5,
+    #"Identified Patient Flag" = 5,
     "Age Band" = 3,
     "IMD Quintile" = 4,
-    "Total Identified Patients" = 6,
-    "Total Items" = 7,
-    "Total Net Ingredient Cost (GBP)" = 8
+    "Total Identified Patients" = 5,
+    "Total Items" = 6,
+    "Total Net Ingredient Cost (GBP)" = 7
   )
 
 exemption_monthly <- raw_data$exempt_monthly %>%
@@ -917,9 +976,7 @@ write_sheet(
   ),
   c(
     "1. Field definitions can be found on the 'Metadata' tab.",
-    "2. The figures in this table relate to prescribing of HRT medications in England that are subsequently dispensed in the community in England, Scotland, Wales, Isle of Man or the Channel Islands by a pharmacy, appliance contractor, dispensing doctor, or have been personally administered by a GP practice. They do not include data on medicines used in secondary care, prisons, or issued by a private prescriber.",
-    "3. Statistical disclosure control has been applied to cells containing 5 or fewer patients or items. These cells will appear blank."
-  ),
+    "2. The figures in this table relate to prescribing of HRT medications in England that are subsequently dispensed in the community in England, Scotland, Wales, Isle of Man or the Channel Islands by a pharmacy, appliance contractor, dispensing doctor, or have been personally administered by a GP practice. They do not include data on medicines used in secondary care, prisons, or issued by a private prescriber."  ),
   paragraph_annual,
   30
 )
@@ -954,9 +1011,7 @@ write_sheet(
   ),
   c(
     "1. Field definitions can be found on the 'Metadata' tab.",
-    "2. The figures in this table relate to prescribing of HRT medications in England that are subsequently dispensed in the community in England, Scotland, Wales, Isle of Man or the Channel Islands by a pharmacy, appliance contractor, dispensing doctor, or have been personally administered by a GP practice. They do not include data on medicines used in secondary care, prisons, or issued by a private prescriber.",
-    "3. Statistical disclosure control has been applied to cells containing 5 or fewer patients or items. These cells will appear blank."
-  ),
+    "2. The figures in this table relate to prescribing of HRT medications in England that are subsequently dispensed in the community in England, Scotland, Wales, Isle of Man or the Channel Islands by a pharmacy, appliance contractor, dispensing doctor, or have been personally administered by a GP practice. They do not include data on medicines used in secondary care, prisons, or issued by a private prescriber."  ),
   chem_sub_annual,
   30
 )
@@ -992,8 +1047,7 @@ write_sheet(
   c(
     "1. Field definitions can be found on the 'Metadata' tab.",
     "2. The figures in this table relate to prescribing of HRT medications in England that are subsequently dispensed in the community in England, Scotland, Wales, Isle of Man or the Channel Islands by a pharmacy, appliance contractor, dispensing doctor, or have been personally administered by a GP practice. They do not include data on medicines used in secondary care, prisons, or issued by a private prescriber.",
-    "3. Statistical disclosure control has been applied to cells containing 5 or fewer items. These cells will appear blank."
-  ),
+    "3. For medications which are dispensed in Scotland no unit of measure is captured, this has been imputed from the data on medicines dispensed elsewhere"),
   presentation_annual,
   30
 )
@@ -1031,8 +1085,7 @@ write_sheet(
   c(
     "1. Field definitions can be found on the 'Metadata' tab.",
     "2. The figures in this table relate to prescribing of HRT medications in England that are subsequently dispensed in the community in England, Scotland, Wales, Isle of Man or the Channel Islands by a pharmacy, appliance contractor, dispensing doctor, or have been personally administered by a GP practice. They do not include data on medicines used in secondary care, prisons, or issued by a private prescriber.",
-    "3. Statistical disclosure control has been applied to cells containing 5 or fewer items. These cells will appear blank.",
-    "4. These figures will be included as part of the totals on the 'Presentations' tab."
+    "3. These figures will be included as part of the totals on the 'Presentations' tab."
   ),
   ssp_annual,
   30
@@ -1070,9 +1123,7 @@ write_sheet(
   ),
   c(
     "1. Field definitions can be found on the 'Metadata' tab.",
-    "2. The figures in this table relate to prescribing of HRT medications in England that are subsequently dispensed in the community in England, Scotland, Wales, Isle of Man or the Channel Islands by a pharmacy, appliance contractor, dispensing doctor, or have been personally administered by a GP practice. They do not include data on medicines used in secondary care, prisons, or issued by a private prescriber.",
-    "3. Statistical disclosure control has been applied to cells containing 5 or fewer patients or items. These cells will appear blank."
-  ),
+    "2. The figures in this table relate to prescribing of HRT medications in England that are subsequently dispensed in the community in England, Scotland, Wales, Isle of Man or the Channel Islands by a pharmacy, appliance contractor, dispensing doctor, or have been personally administered by a GP practice. They do not include data on medicines used in secondary care, prisons, or issued by a private prescriber."  ),
   icb_annual,
   30
 )
@@ -1144,9 +1195,7 @@ write_sheet(
   ),
   c(
     "1. Field definitions can be found on the 'Metadata' tab.",
-    "2. The figures in this table relate to prescribing of HRT medications in England that are subsequently dispensed in the community in England, Scotland, Wales, Isle of Man or the Channel Islands by a pharmacy, appliance contractor, dispensing doctor, or have been personally administered by a GP practice. They do not include data on medicines used in secondary care, prisons, or issued by a private prescriber.",
-    "3. Statistical disclosure control has been applied to cells containing 5 or fewer patients or items. These cells will appear blank."
-  ),
+    "2. The figures in this table relate to prescribing of HRT medications in England that are subsequently dispensed in the community in England, Scotland, Wales, Isle of Man or the Channel Islands by a pharmacy, appliance contractor, dispensing doctor, or have been personally administered by a GP practice. They do not include data on medicines used in secondary care, prisons, or issued by a private prescriber."  ),
   ageband_annual,
   30
 )
@@ -1182,9 +1231,8 @@ write_sheet(
   c(
     "1. Field definitions can be found on the 'Metadata' tab.",
     "2. The figures in this table relate to prescribing of HRT medications in England that are subsequently dispensed in the community in England, Scotland, Wales, Isle of Man or the Channel Islands by a pharmacy, appliance contractor, dispensing doctor, or have been personally administered by a GP practice. They do not include data on medicines used in secondary care, prisons, or issued by a private prescriber.",
-    "3. Statistical disclosure control has been applied to cells containing 5 or fewer patients or items. These cells will appear blank.",
-    "4. Where a patient's lower-layer super output areas (LSOA) has not been able to to be matched, is not available, or the patient has not been identified the records are reported as 'unknown' IMD decile.",
-    "5. ONS population estimates taken from https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/populationestimates/adhocs/13773populationsbyindexofmultipledeprivationimddecileenglandandwales2020/populationbyimdenglandandwales2020.xlsx"
+    "3. Where a patient's lower-layer super output areas (LSOA) has not been able to to be matched, is not available, or the patient has not been identified the records are reported as 'unknown' IMD decile.",
+    "4. ONS population estimates taken from https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/populationestimates/adhocs/13773populationsbyindexofmultipledeprivationimddecileenglandandwales2020/populationbyimdenglandandwales2020.xlsx"
   ),
   quintile_annual,
   30
@@ -1192,19 +1240,19 @@ write_sheet(
 
 format_data(wb,
             "IMD_Quintile",
-            c("A", "B", "C"),
+            c("A", "B"),
             "left",
             "")
 
 format_data(wb,
             "IMD_Quintile",
-            c("D", "E", "F"),
+            c("C", "D", "E"),
             "right",
             "#,##0")
 
 format_data(wb,
             "IMD_Quintile",
-            c("G", "H"),
+            c("F", "G"),
             "right",
             "#,##0.00")
 
@@ -1221,9 +1269,8 @@ write_sheet(
   c(
     "1. Field definitions can be found on the 'Metadata' tab.",
     "2. The figures in this table relate to prescribing of HRT medications in England that are subsequently dispensed in the community in England, Scotland, Wales, Isle of Man or the Channel Islands by a pharmacy, appliance contractor, dispensing doctor, or have been personally administered by a GP practice. They do not include data on medicines used in secondary care, prisons, or issued by a private prescriber.",
-    "3. Statistical disclosure control has been applied to cells containing 5 or fewer patients or items. These cells will appear blank.",
-    "4. Where a patient's lower-layer super output areas (LSOA) has not been able to to be matched, is not available, or the patient has not been identified the records are reported as 'unknown' IMD decile.",
-    "5. ONS population estimates taken from https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/populationestimates/adhocs/13773populationsbyindexofmultipledeprivationimddecileenglandandwales2020/populationbyimdenglandandwales2020.xlsx"
+    "3. Where a patient's lower-layer super output areas (LSOA) has not been able to to be matched, is not available, or the patient has not been identified the records are reported as 'unknown' IMD decile.",
+    "4. ONS population estimates taken from https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/populationestimates/adhocs/13773populationsbyindexofmultipledeprivationimddecileenglandandwales2020/populationbyimdenglandandwales2020.xlsx"
   ),
   quintile_age_annual,
   30
@@ -1231,19 +1278,19 @@ write_sheet(
 
 format_data(wb,
             "IMD_Quintile_Age",
-            c("A", "B", "C", "D"),
+            c("A", "B", "C"),
             "left",
             "")
 
 format_data(wb,
             "IMD_Quintile_Age",
-            c("E", "F", "G"),
+            c("D", "E", "F"),
             "right",
             "#,##0")
 
 format_data(wb,
             "IMD_Quintile_Age",
-            c("H", "I"),
+            c("G", "H"),
             "right",
             "#,##0.00")
 
@@ -1260,8 +1307,7 @@ write_sheet(
   c(
     "1. Field definitions can be found on the 'Metadata' tab.",
     "2. The figures in this table relate to prescribing of HRT medications in England that are subsequently dispensed in the community in England, Scotland, Wales, Isle of Man or the Channel Islands by a pharmacy, appliance contractor, dispensing doctor, or have been personally administered by a GP practice. They do not include data on medicines used in secondary care, prisons, or issued by a private prescriber.",
-    "3. Statistical disclosure control has been applied to cells containing 5 or fewer patients or items. These cells will appear blank.",
-    "4. A charge status is 'Unknown' when an item prescribed in England but has been dispensed in Scotland"),
+    "3. A charge status is 'Unknown' when an item prescribed in England but has been dispensed in Scotland"),
   exemption_annual,
   30
 )
@@ -1426,9 +1472,7 @@ write_sheet(
   ),
   c(
     "1. Field definitions can be found on the 'Metadata' tab.",
-    "2. The figures in this table relate to prescribing of HRT medications in England that are subsequently dispensed in the community in England, Scotland, Wales, Isle of Man or the Channel Islands by a pharmacy, appliance contractor, dispensing doctor, or have been personally administered by a GP practice. They do not include data on medicines used in secondary care, prisons, or issued by a private prescriber.",
-    "3. Statistical disclosure control has been applied to cells containing 5 or fewer patients or items. These cells will appear blank."
-  ),
+    "2. The figures in this table relate to prescribing of HRT medications in England that are subsequently dispensed in the community in England, Scotland, Wales, Isle of Man or the Channel Islands by a pharmacy, appliance contractor, dispensing doctor, or have been personally administered by a GP practice. They do not include data on medicines used in secondary care, prisons, or issued by a private prescriber."  ),
   paragraph_monthly,
   14
 )
@@ -1463,9 +1507,7 @@ write_sheet(
   ),
   c(
     "1. Field definitions can be found on the 'Metadata' tab.",
-    "2. The figures in this table relate to prescribing of HRT medications in England that are subsequently dispensed in the community in England, Scotland, Wales, Isle of Man or the Channel Islands by a pharmacy, appliance contractor, dispensing doctor, or have been personally administered by a GP practice. They do not include data on medicines used in secondary care, prisons, or issued by a private prescriber.",
-    "3. Statistical disclosure control has been applied to cells containing 5 or fewer patients or items. These cells will appear blank."
-  ),
+    "2. The figures in this table relate to prescribing of HRT medications in England that are subsequently dispensed in the community in England, Scotland, Wales, Isle of Man or the Channel Islands by a pharmacy, appliance contractor, dispensing doctor, or have been personally administered by a GP practice. They do not include data on medicines used in secondary care, prisons, or issued by a private prescriber."  ),
   chem_sub_monthly,
   14
 )
@@ -1501,8 +1543,7 @@ write_sheet(
   c(
     "1. Field definitions can be found on the 'Metadata' tab.",
     "2. The figures in this table relate to prescribing of HRT medications in England that are subsequently dispensed in the community in England, Scotland, Wales, Isle of Man or the Channel Islands by a pharmacy, appliance contractor, dispensing doctor, or have been personally administered by a GP practice. They do not include data on medicines used in secondary care, prisons, or issued by a private prescriber.",
-    "3. Statistical disclosure control has been applied to cells containing 5 or fewer items. These cells will appear blank."
-  ),
+    "3. For medications which are dispensed in Scotland no unit of measure is captured, this has been imputed from the data on medicines dispensed elsewhere"),
   presentation_monthly,
   14
 )
@@ -1540,8 +1581,7 @@ write_sheet(
   c(
     "1. Field definitions can be found on the 'Metadata' tab.",
     "2. The figures in this table relate to prescribing of HRT medications in England that are subsequently dispensed in the community in England, Scotland, Wales, Isle of Man or the Channel Islands by a pharmacy, appliance contractor, dispensing doctor, or have been personally administered by a GP practice. They do not include data on medicines used in secondary care, prisons, or issued by a private prescriber.",
-    "3. Statistical disclosure control has been applied to cells containing 5 or fewer items. These cells will appear blank.",
-    "4. These figures will be included as part of the totals on the 'Presentations' tab."
+    "3. These figures will be included as part of the totals on the 'Presentations' tab."
   ),
   ssp_monthly,
   14
@@ -1579,9 +1619,7 @@ write_sheet(
   ),
   c(
     "1. Field definitions can be found on the 'Metadata' tab.",
-    "2. The figures in this table relate to prescribing of HRT medications in England that are subsequently dispensed in the community in England, Scotland, Wales, Isle of Man or the Channel Islands by a pharmacy, appliance contractor, dispensing doctor, or have been personally administered by a GP practice. They do not include data on medicines used in secondary care, prisons, or issued by a private prescriber.",
-    "3. Statistical disclosure control has been applied to cells containing 5 or fewer patients or items. These cells will appear blank."
-  ),
+    "2. The figures in this table relate to prescribing of HRT medications in England that are subsequently dispensed in the community in England, Scotland, Wales, Isle of Man or the Channel Islands by a pharmacy, appliance contractor, dispensing doctor, or have been personally administered by a GP practice. They do not include data on medicines used in secondary care, prisons, or issued by a private prescriber."  ),
   icb_monthly,
   14
 )
@@ -1653,9 +1691,7 @@ write_sheet(
   ),
   c(
     "1. Field definitions can be found on the 'Metadata' tab.",
-    "2. The figures in this table relate to prescribing of HRT medications in England that are subsequently dispensed in the community in England, Scotland, Wales, Isle of Man or the Channel Islands by a pharmacy, appliance contractor, dispensing doctor, or have been personally administered by a GP practice. They do not include data on medicines used in secondary care, prisons, or issued by a private prescriber.",
-    "3. Statistical disclosure control has been applied to cells containing 5 or fewer patients or items. These cells will appear blank."
-  ),
+    "2. The figures in this table relate to prescribing of HRT medications in England that are subsequently dispensed in the community in England, Scotland, Wales, Isle of Man or the Channel Islands by a pharmacy, appliance contractor, dispensing doctor, or have been personally administered by a GP practice. They do not include data on medicines used in secondary care, prisons, or issued by a private prescriber."  ),
   ageband_monthly,
   14
 )
@@ -1691,8 +1727,7 @@ write_sheet(
   c(
     "1. Field definitions can be found on the 'Metadata' tab.",
     "2. The figures in this table relate to prescribing of HRT medications in England that are subsequently dispensed in the community in England, Scotland, Wales, Isle of Man or the Channel Islands by a pharmacy, appliance contractor, dispensing doctor, or have been personally administered by a GP practice. They do not include data on medicines used in secondary care, prisons, or issued by a private prescriber.",
-    "3. Statistical disclosure control has been applied to cells containing 5 or fewer patients or items. These cells will appear blank.",
-    "4. Where a patient's lower-layer super output areas (LSOA) has not been able to to be matched, is not available, or the patient has not been identified the records are reported as 'unknown' IMD decile."
+    "3. Where a patient's lower-layer super output areas (LSOA) has not been able to to be matched, is not available, or the patient has not been identified the records are reported as 'unknown' IMD decile."
   ),
   quintile_monthly,
   14
@@ -1700,19 +1735,19 @@ write_sheet(
 
 format_data(wb,
             "IMD_Quintile",
-            c("A", "B", "C", "D"),
+            c("A", "B", "C"),
             "left",
             "")
 
 format_data(wb,
             "IMD_Quintile",
-            c("E", "F"),
+            c("D", "E"),
             "right",
             "#,##0")
 
 format_data(wb,
             "IMD_Quintile",
-            c("G"),
+            c("F"),
             "right",
             "#,##0.00")
 
@@ -1729,8 +1764,7 @@ write_sheet(
   c(
     "1. Field definitions can be found on the 'Metadata' tab.",
     "2. The figures in this table relate to prescribing of HRT medications in England that are subsequently dispensed in the community in England, Scotland, Wales, Isle of Man or the Channel Islands by a pharmacy, appliance contractor, dispensing doctor, or have been personally administered by a GP practice. They do not include data on medicines used in secondary care, prisons, or issued by a private prescriber.",
-    "3. Statistical disclosure control has been applied to cells containing 5 or fewer patients or items. These cells will appear blank.",
-    "4. Where a patient's lower-layer super output areas (LSOA) has not been able to to be matched, is not available, or the patient has not been identified the records are reported as 'unknown' IMD decile."
+    "3. Where a patient's lower-layer super output areas (LSOA) has not been able to to be matched, is not available, or the patient has not been identified the records are reported as 'unknown' IMD decile."
   ),
   quintile_age_monthly,
   14
@@ -1738,19 +1772,19 @@ write_sheet(
 
 format_data(wb,
             "IMD_Quintile_Age",
-            c("A", "B", "C", "D", "E"),
+            c("A", "B", "C", "D"),
             "left",
             "")
 
 format_data(wb,
             "IMD_Quintile_Age",
-            c("F", "G"),
+            c("E", "F"),
             "right",
             "#,##0")
 
 format_data(wb,
             "IMD_Quintile_Age",
-            c("H"),
+            c("G"),
             "right",
             "#,##0.00")
 
@@ -1767,8 +1801,7 @@ write_sheet(
   c(
     "1. Field definitions can be found on the 'Metadata' tab.",
     "2. The figures in this table relate to prescribing of HRT medications in England that are subsequently dispensed in the community in England, Scotland, Wales, Isle of Man or the Channel Islands by a pharmacy, appliance contractor, dispensing doctor, or have been personally administered by a GP practice. They do not include data on medicines used in secondary care, prisons, or issued by a private prescriber.",
-    "3. Statistical disclosure control has been applied to cells containing 5 or fewer patients or items. These cells will appear blank.",
-    "4. A charge status is 'Unknown' when an item prescribed in England but has been dispensed in Scotland"),
+    "3. A charge status is 'Unknown' when an item prescribed in England but has been dispensed in Scotland"),
   exemption_monthly,
   14
 )

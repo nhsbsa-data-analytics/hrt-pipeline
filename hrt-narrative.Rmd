@@ -506,10 +506,10 @@ Between 2015/16 and 2021/22 Norethisterone (0604012P0) was the chemical substanc
 Pharmaceutical presentations can come in many forms including tablets, capsules, patches, gels, creams and more. Please see the definition of items and quantity given in section 1.2 to help interpret this table.
 
 ``` {r top_pres_fy, out.width = "100%"}
-raw_data$presentation_annual %>%
-  filter(FINANCIAL_YEAR == ltst_year) %>%
-  top_n(10, ITEM_COUNT) %>%
-  arrange(desc(ITEM_COUNT)) %>%
+presentation_annual %>%
+  filter(`Financial Year` == ltst_year) %>%
+  top_n(10, `Total Items`) %>%
+  arrange(desc(`Total Items`)) %>%
   select(9, 12, 13, 14) %>%
   rename(
     "BNF Presentation Name" = 1,
@@ -539,6 +539,7 @@ raw_data$presentation_annual %>%
                                       targets = 2:3)
                                )))
 
+
 ```
 
 Source: [Financial Year Summary Tables - Presentations table](https://nhsbsa-opendata.s3.eu-west-2.amazonaws.com/hrt/hrt_financial_year_2022_2023_YTD_June_2022_v001.xlsx)
@@ -550,10 +551,10 @@ In 2021/22 Vagifem 10 microgram vaginal tablets had the most prescribed items wi
 Pharmaceutical presentations can come in many forms including tablets, capsules, patches, gels, creams and more. Please see the definition of items and quantity given in section 1.2 to help interpret this table.
 
 ```{r top_pres_month, out.width="100%"}
-raw_data$presentation_monthly %>%
-  filter(YEAR_MONTH == ltst_month) %>%
-  top_n(10, ITEM_COUNT) %>%
-  arrange(desc(ITEM_COUNT)) %>%
+presentation_monthly %>%
+  filter(`Year Month` == ltst_month) %>%
+  top_n(10, `Total Items`) %>%
+  arrange(desc(`Total Items`)) %>%
   select(10, 13, 14, 15) %>%
   rename(
     "BNF Presentation Name" = 1,
@@ -582,6 +583,7 @@ raw_data$presentation_monthly %>%
                                  list(className = "dt-right",
                                       targets = 2:3)
                                )))
+
 ```
 
 In June 2022 Utrogestan 100mg capsules had the most prescribed items at 65,400 totals items. Utrogestan 100mg capsules have seen an upward trend in the number of items prescribed since April 2015 when 832 items were prescribed. 
