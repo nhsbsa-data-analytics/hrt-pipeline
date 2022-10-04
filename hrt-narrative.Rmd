@@ -83,7 +83,7 @@ These statistics use the BNF therapeutic classifications defined in the British 
 * 6.4.1 - female sex hormones and their modulators
 * 7.2.1 - preparations for vaginal and vulval changes
 
-There is not one singular definition of HRT medications many other products may be used in the treatment of the menopause that are not included in these statistics.
+There is not one singular definition of HRT medications and many other products may be used in the treatment of the menopause that are not included in these statistics.
 
 These medicines are classified by their primary therapeutic indication. However, it is possible that they can be prescribed for other reasons outside of this primary therapeutic indication. For example, the  treatment of gender dysphoria. The clinical indication of a prescription is not captured by NHSBSA during processing, and therefore we cannot determine the reason that a prescription was issued. 
 
@@ -633,7 +633,7 @@ chart
 
 Source: [Financial Year Summary Tables - ICB table](https://nhsbsa-opendata.s3.eu-west-2.amazonaws.com/hrt/hrt_financial_year_2022_2023_YTD_June_2022_v001.xlsx)
 
-The figures in Figure 6 have been calculated using the by joining the [Office for National Statistics (ONS) Mid-2020 Population Estimates for 2021 Clinical Commissioning Groups in England](https://www.ons.gov.uk/file?uri=%2fpeoplepopulationandcommunity%2fpopulationandmigration%2fpopulationestimates%2fdatasets%2fclinicalcommissioninggroupmidyearpopulationestimates%2fmid2020sape23dt6a/sape23dt6amid2020ccg2021estimatesunformatted.xlsx) to our data to obatain the estimated population of each ICB.
+The figures in Figure 6 have been calculated using the by joining the [Office for National Statistics (ONS) Mid-2020 Population Estimates for 2021 Clinical Commissioning Groups in England](https://www.ons.gov.uk/file?uri=%2fpeoplepopulationandcommunity%2fpopulationandmigration%2fpopulationestimates%2fdatasets%2fclinicalcommissioninggroupmidyearpopulationestimates%2fmid2020sape23dt6a/sape23dt6amid2020ccg2021estimatesunformatted.xlsx) to our data to obtain the estimated population of each ICB.
 
 In 2021/22 NHS North East London Integrated Care Board was the ICB with the lowest estimated number of identified patients who received at least one HRT item per 1,000 residents. In 2021/22 the five ICBs under the London NHS Region were all in the lowest ten ICBs in terms of identified patients per 1,000 population who received HRT prescribing. 
 
@@ -963,7 +963,7 @@ Pharmacists in the UK can now dispense the hormone replacement therapy (HRT) dru
 
 Gina 10 microgram vaginal tablets are a locally acting oestrogen HRT and the only treatment available without a prescription that is clinically proven to target and treat the cause of vaginal atrophy and its associated symptoms after the menopause.
 
-As Gina 10 microgram vaginal tablets is a proprietary equivalent of Estradiol 10microgram pessaries which is sold over the counter, the NHSBSA does not hold any data on volumes, costs, or other measures. Data when a patient has received a prescription of the generic Estradiol 10microgram pessaries are available in these statistics. 
+Gina 10 microgram vaginal tablets are a proprietary equivalent of Estradiol 10 microgram pessaries. The NHSBSA does not collect information about medicines that are sold over the counter, therefore these statistics may not be representative of the whole population taking HRT
 
 ### 3.4. Shortages {.toc-ignore}
 
