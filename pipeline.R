@@ -448,6 +448,7 @@ ageband_annual <- raw_data$ageband_annual %>%
 quintile_annual <- raw_data$quintile_annual %>%
   #apply_sdc() %>%
   #select(1, 2, 3, 8, 9, 10) %>%
+  filter(FINANCIAL_YEAR >= "2019/2020") %>%
   dplyr::mutate(
     FINANCIAL_YEAR = case_when(
       FINANCIAL_YEAR == max(FINANCIAL_YEAR) ~ paste0(FINANCIAL_YEAR, " (YTD ", ltst_month_tidy, ")"),
@@ -479,6 +480,7 @@ quintile_annual <- raw_data$quintile_annual %>%
 quintile_age_annual <- raw_data$quintile_age_annual %>%
   #apply_sdc() %>%
   #select(1, 2, 3, 4, 9, 10, 11) %>%
+  filter(FINANCIAL_YEAR >= "2019/2020") %>%
   dplyr::mutate(
     FINANCIAL_YEAR = case_when(
       FINANCIAL_YEAR == max(FINANCIAL_YEAR) ~ paste0(FINANCIAL_YEAR, " (YTD ", ltst_month_tidy, ")"),
@@ -757,6 +759,7 @@ ageband_monthly <- raw_data$ageband_monthly %>%
 quintile_monthly <- raw_data$quintile_monthly %>%
   #apply_sdc() %>%
   #select(1, 2, 3, 4, 10, 11, 12) %>%
+  filter(FINANCIAL_YEAR >= "2019/2020") %>%
   mutate(
     IMD_QUINTILE = case_when(
       is.na(IMD_QUINTILE) ~ as.character("Unknown"),
@@ -779,6 +782,7 @@ quintile_monthly <- raw_data$quintile_monthly %>%
 quintile_age_monthly <- raw_data$quintile_age_monthly %>%
   #apply_sdc() %>%
   #select(1, 2, 4, 5, 3, 11, 12, 13) %>%
+  filter(FINANCIAL_YEAR >= "2019/2020") %>%
   mutate(
     IMD_QUINTILE = case_when(
       is.na(IMD_QUINTILE) ~ as.character("Unknown"),
@@ -1257,8 +1261,9 @@ write_sheet(
     "1. Field definitions can be found on the 'Metadata' tab.",
     "2. The figures in this table relate to prescribing of HRT medications in England that are subsequently dispensed in the community in England, Scotland, Wales, Isle of Man or the Channel Islands by a pharmacy, appliance contractor, dispensing doctor, or have been personally administered by a GP practice. They do not include data on medicines used in secondary care, prisons, or issued by a private prescriber.",
     "3. Where a patient's lower-layer super output areas (LSOA) has not been able to to be matched, is not available, or the patient has not been identified the records are reported as 'unknown' IMD decile.",
-    "4. ONS population estimates taken from https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/populationestimates/adhocs/13773populationsbyindexofmultipledeprivationimddecileenglandandwales2020/populationbyimdenglandandwales2020.xlsx",
-    "5. Figures in this table are only for patients where an NHS number that has been verified by the Personal Demographics Service (PDS) "
+    "4. Patient LSOA is only available for prescriptions issued via the Electronic Prescription Service (EPS). As this service was not broadly utilised until 2019/20 figures prior to this have been omitted from this table.",
+    "5. ONS population estimates taken from https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/populationestimates/adhocs/13773populationsbyindexofmultipledeprivationimddecileenglandandwales2020/populationbyimdenglandandwales2020.xlsx",
+    "6. Figures in this table are only for patients where an NHS number that has been verified by the Personal Demographics Service (PDS) "
   ),
   quintile_annual,
   30
@@ -1296,8 +1301,9 @@ write_sheet(
     "1. Field definitions can be found on the 'Metadata' tab.",
     "2. The figures in this table relate to prescribing of HRT medications in England that are subsequently dispensed in the community in England, Scotland, Wales, Isle of Man or the Channel Islands by a pharmacy, appliance contractor, dispensing doctor, or have been personally administered by a GP practice. They do not include data on medicines used in secondary care, prisons, or issued by a private prescriber.",
     "3. Where a patient's lower-layer super output areas (LSOA) has not been able to to be matched, is not available, or the patient has not been identified the records are reported as 'unknown' IMD decile.",
-    "4. ONS population estimates taken from https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/populationestimates/adhocs/13773populationsbyindexofmultipledeprivationimddecileenglandandwales2020/populationbyimdenglandandwales2020.xlsx",
-    "5. Figures in this table are only for patients where an NHS number that has been verified by the Personal Demographics Service (PDS) "
+    "4. Patient LSOA is only available for prescriptions issued via the Electronic Prescription Service (EPS). As this service was not broadly utilised until 2019/20 figures prior to this have been omitted from this table.",
+    "5. ONS population estimates taken from https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/populationestimates/adhocs/13773populationsbyindexofmultipledeprivationimddecileenglandandwales2020/populationbyimdenglandandwales2020.xlsx",
+    "6. Figures in this table are only for patients where an NHS number that has been verified by the Personal Demographics Service (PDS) "
   ),
   quintile_age_annual,
   30
@@ -1755,7 +1761,8 @@ write_sheet(
     "1. Field definitions can be found on the 'Metadata' tab.",
     "2. The figures in this table relate to prescribing of HRT medications in England that are subsequently dispensed in the community in England, Scotland, Wales, Isle of Man or the Channel Islands by a pharmacy, appliance contractor, dispensing doctor, or have been personally administered by a GP practice. They do not include data on medicines used in secondary care, prisons, or issued by a private prescriber.",
     "3. Where a patient's lower-layer super output areas (LSOA) has not been able to to be matched, is not available, or the patient has not been identified the records are reported as 'unknown' IMD decile.",
-    "4. Figures in this table are only for patients where an NHS number that has been verified by the Personal Demographics Service (PDS) "
+    "4. Patient LSOA is only available for prescriptions issued via the Electronic Prescription Service (EPS). As this service was not broadly utilised until 2019/20 figures prior to this have been omitted from this table.",
+    "5. Figures in this table are only for patients where an NHS number that has been verified by the Personal Demographics Service (PDS) "
   ),
   quintile_monthly,
   14
@@ -1793,7 +1800,8 @@ write_sheet(
     "1. Field definitions can be found on the 'Metadata' tab.",
     "2. The figures in this table relate to prescribing of HRT medications in England that are subsequently dispensed in the community in England, Scotland, Wales, Isle of Man or the Channel Islands by a pharmacy, appliance contractor, dispensing doctor, or have been personally administered by a GP practice. They do not include data on medicines used in secondary care, prisons, or issued by a private prescriber.",
     "3. Where a patient's lower-layer super output areas (LSOA) has not been able to to be matched, is not available, or the patient has not been identified the records are reported as 'unknown' IMD decile.",
-    "4. Figures in this table are only for patients where an NHS number that has been verified by the Personal Demographics Service (PDS) "
+    "4. Patient LSOA is only available for prescriptions issued via the Electronic Prescription Service (EPS). As this service was not broadly utilised until 2019/20 figures prior to this have been omitted from this table.",
+    "5. Figures in this table are only for patients where an NHS number that has been verified by the Personal Demographics Service (PDS) "
   ),
   quintile_age_monthly,
   14

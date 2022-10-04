@@ -151,7 +151,7 @@ This is the first publication of its type to look specifically into the prescrib
 
 These statistics exclude prescriptions that were issued but not presented for dispensing and prescriptions that were not submitted to the NHSBSA for processing and reimbursement. Prescriptions issued and dispensed in prisons, hospitals and private prescriptions are also excluded.
 
-Pharmacists in the UK can now dispense the hormone replacement therapy (HRT) drug Gina 10 microgram vaginal tablets without a prescription. As Gina 10 microgram vaginal tablets are sold over the counter, the NHSBSA does not hold any data on volumes, costs or patient counts the the product.
+Pharmacists in the UK can now dispense the hormone replacement therapy (HRT) drug Gina 10 microgram vaginal tablets without a prescription. As Gina 10 microgram vaginal tablets are sold over the counter, the NHSBSA does not hold any data on volumes, costs or patient counts for the product.
 
 Additional patient information received from PDS for matched NHS numbers is not returned until after the monthly ETL process for prescription data into the NHSBSA Data & Insight Data Warehouse is complete, and so the year in progress monthly patient counts may include some unverified data and subsequently be revised in a later publication.
 
@@ -169,9 +169,9 @@ Any revisions that we make to these statistics will be made in line with our [Re
 
 ### 5.1 Useful links {.toc-ignore}
 
-An overview of the symptoms and treatment of these symptoms can be found on the [NHS website](https://www.nhs.uk/conditions/menopause/).
+You can find more information on the menopause on the [NHS website](https://www.nhs.uk/conditions/menopause/).
 
-Information around the Women’s Health Strategy for England is also available online [here](https://www.gov.uk/government/publications/womens-health-strategy-for-england).
+Information around the Women’s Health Strategy for England is also available [online](https://www.gov.uk/government/publications/womens-health-strategy-for-england).
 
 ### 5.2 NHSBSA Open Data Portal {.toc-ignore}
 

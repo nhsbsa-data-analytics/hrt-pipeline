@@ -50,9 +50,9 @@ Published 6 October 2022
 
 * There were an estimated 1.93 million identified patients that were prescribed HRT in England in 2021/22. This was a 30.5% increase from an estimated 1.48 million identified patients in 2020/21, and a 37.2% increase from 1.40 million in 2015/16.
 
-* Areas of greater deprivation had the lowest number of estimated identified patients who were being prescribed HRT in 2021/22, alomst twice as many patients receiving prescribing in the least deprived areas of the country compared to the most deprived.
+* Areas of greater deprivation had the lowest number of estimated identified patients who were being prescribed HRT in 2021/22, almost twice as many patients receiving prescribing in the least deprived areas of the country compared to the most deprived.
 
-* A greater proportion of the estimated identified patients from the most deprived areas of the country who received HRT prescribing in 2021/22 were under the age of 60. A total of 76.6% of total the estimated identified patients in the most deprived areas were under 60, 64.6% of the estimated identified patients from the least deprived areas were under 60.
+* A greater proportion of the estimated identified patients from the most deprived areas of the country who received HRT prescribing in 2021/22 were under the age of 60. A total of 76.6% of the estimated identified patients in the most deprived areas were under 60, 64.6% of the estimated identified patients from the least deprived areas were under 60.
 
 ---
 
@@ -198,7 +198,7 @@ Source: [Financial Year Summary Tables - National Totals table](https://nhsbsa-o
 
 There were 7.80 million HRT drug items prescribed in 2021/22. This was a 35.0% increase from 5.78 million items compared with the previous year. Prescribing of HRT drug items has been increasing since 2015/16, with 3.73 million more items prescribed in 2021/22 when compared to 2015/16, an increase of 91.3% over the period.
 
-There were an estimated 1.93 million identified patients who were prescribed at least one HRT item in 2021/22. This was a 30.5% increase from 1.48 million identified patients when compared with 2020/21. There were 523,000 more identified patients who received a HRT item in 2021/22 compared to 2015/16, an increase of 37.2%. However, it should be noted that this is likely to be an overestimate of the actual increase in patient numbers, as the proportion of patients who could be identified increased. In 2015/16, 93.5% of items were prescribed to identified patients, this increased by 5.24 percentage points in 2021/22 to 98.7% of items.
+There were an estimated 1.93 million identified patients who were prescribed at least one HRT item in 2021/22. This was a 30.5% increase from 1.48 million identified patients when compared with 2020/21. There were 523,000 more identified patients who received an HRT item in 2021/22 compared to 2015/16, an increase of 37.2%. However, it should be noted that this is likely to be an overestimate of the actual increase in patient numbers, as the proportion of patients who could be identified increased. In 2015/16, 93.5% of items were prescribed to identified patients, this increased by 5.24 percentage points in 2021/22 to 98.7% of items.
 
 From April 2022 to June 2022 there were 2.57 million HRT drug items prescribed. This is 920,000 more items than the same period in the previous year, a 55.8% increase.
 
@@ -503,7 +503,7 @@ Between 2015/16 and 2021/22 Norethisterone (0604012P0) was the chemical substanc
 
 ### Table 2: Top 10 presentations by prescribed items in `r ltst_year`{.toc-ignore}
 
-Pharmaceutical presentations can come in many forms including tablets, capsules, patches, gels, creams and more. Please see the definition of items and quantity given in section 1.2 to help interpret this table.
+Pharmaceutical presentations can come in many forms including tablets, capsules, patches, gels, creams and more. Please see the definition of items and quantity given in section 1.2 to help interpret tables 2 and 3.
 
 ``` {r top_pres_fy, out.width = "100%"}
 presentation_annual %>%
@@ -547,8 +547,6 @@ Source: [Financial Year Summary Tables - Presentations table](https://nhsbsa-ope
 In 2021/22 Vagifem 10 microgram vaginal tablets had the most prescribed items with 589,000 total items. This is a 79.1% increase of 260,000 items since 2015/16. Vagifem 10microgram vaginal tablets also had the most prescribed items in 2020/21 with 521,000 total items.
 
 ### Table 3: Top 10 presentations by prescribed items in `r ltst_month_tidy` {.toc-ignore}
-
-Pharmaceutical presentations can come in many forms including tablets, capsules, patches, gels, creams and more. Please see the definition of items and quantity given in section 1.2 to help interpret this table.
 
 ```{r top_pres_month, out.width="100%"}
 presentation_monthly %>%
@@ -606,7 +604,10 @@ chart_data <- raw_data$icb_annual %>%
   mutate(
     PER_1000 = round(PATIENT_COUNT / POP * 1000, 1)
   ) %>%
-  arrange(desc(PER_1000))
+  arrange(desc(PER_1000)) %>%
+  filter(
+    STP_NAME != "UNKNOWN STP"
+  )
 
 chart <- basic_chart_hc(
   chart_data,
@@ -614,13 +615,13 @@ chart <- basic_chart_hc(
   y = PER_1000,
   type = "column",
   xLab = "ICB code",
-  yLab = "Patients",
+  yLab = "Patients per 1,000 population",
   title = ""
 ) %>%
   hc_tooltip(enabled = T,
              useHTML = TRUE,
              formatter = JS("function(){
-                            var result = this.point.STP_NAME + '<br><b>Patients:</b> ' + this.point.PER_1000.toFixed(0)
+                            var result = this.point.STP_NAME + '<br><b>Patients per 1,000 population:</b> ' + this.point.PER_1000.toFixed(0)
                             return result
              }")) %>%
   hc_yAxis(
@@ -635,7 +636,7 @@ chart
 
 Source: [Financial Year Summary Tables - ICB table](https://nhsbsa-opendata.s3.eu-west-2.amazonaws.com/hrt/hrt_financial_year_2022_2023_YTD_June_2022_v001.xlsx)
 
-The figures in Figure 6 have been calculated using the by joining the [Office for National Statistics (ONS) Mid-2020 Population Estimates for 2021 Clinical Commissioning Groups in England](https://www.ons.gov.uk/file?uri=%2fpeoplepopulationandcommunity%2fpopulationandmigration%2fpopulationestimates%2fdatasets%2fclinicalcommissioninggroupmidyearpopulationestimates%2fmid2020sape23dt6a/sape23dt6amid2020ccg2021estimatesunformatted.xlsx) to our data to obtain the estimated population of each ICB.
+The figures in Figure 6 have been calculated by joining the [Office for National Statistics (ONS) Mid-2020 Population Estimates for 2021 Clinical Commissioning Groups in England](https://www.ons.gov.uk/file?uri=%2fpeoplepopulationandcommunity%2fpopulationandmigration%2fpopulationestimates%2fdatasets%2fclinicalcommissioninggroupmidyearpopulationestimates%2fmid2020sape23dt6a/sape23dt6amid2020ccg2021estimatesunformatted.xlsx) to our data to obtain the estimated population of each ICB.
 
 In 2021/22 NHS North East London Integrated Care Board was the ICB with the lowest estimated number of identified patients who received at least one HRT item per 1,000 residents. In 2021/22 the five ICBs under the London NHS Region were all in the lowest ten ICBs in terms of identified patients per 1,000 population who received HRT prescribing. 
 
@@ -849,7 +850,8 @@ group_chart_hc(
       stacking = "normal"
     )
   )%>%
-  hc_colors(c("#ED8B00", "#003087", "#41B6E6"))
+  hc_colors(c("#ED8B00", "#003087", "#41B6E6"))%>%
+  hc_yAxis(gridLineColor = "#e6e6e6")
 ```
 
 Source: [Financial Year Summary Tables - Exemption Categories table](https://nhsbsa-opendata.s3.eu-west-2.amazonaws.com/hrt/hrt_financial_year_2022_2023_YTD_June_2022_v001.xlsx)
@@ -899,7 +901,7 @@ group_chart_hc(
   x = YEAR_MONTH,
   y = PROP,
   group = CHARGE_STATUS,
-  type = "area",
+  type = "column",
   marker = FALSE,
   dlOn = FALSE,
   xLab = "Month",
@@ -915,14 +917,15 @@ group_chart_hc(
     valueSuffix = "%"
   ) %>%
   hc_plotOptions(
-    area = list(
+    column = list(
       stacking = "normal"
     )
   ) %>%
   hc_xAxis(
     type = "datetime"
   ) %>%
-  hc_colors(c("#ED8B00", "#003087", "#41B6E6"))
+  hc_colors(c("#ED8B00", "#003087", "#41B6E6"))%>%
+  hc_yAxis(gridLineColor = "#e6e6e6")
 ```
 
 Source: [Monthly Summary Tables - Exemption Categories table](https://nhsbsa-opendata.s3.eu-west-2.amazonaws.com/hrt/hrt_monthly_June_2022_v001.xlsx)
@@ -933,13 +936,13 @@ There has been a steady decline in the proportion of HRT drug items prescribed t
 
 ## 3. Background
 
-HRT, which replaces the hormones that are at low levels, is the main medicine treatment for menopause and perimenopause symptoms. More information on the menopause is available on the [NHS website](https://www.nhs.uk/conditions/menopause/). 
-
 The menopause is a biological stage in a woman's life that occurs when she stops menstruating and reaches the end of her natural reproductive life. This is not usually abrupt, but a gradual process during which women experience perimenopause before reaching postmenopause. Usually it is defined as having occurred when a woman has not had a period for 12 consecutive months (for women reaching menopause naturally).
 
 As well as a change in their menstrual cycle women may experience a variety of symptoms associated with menopause such as hot flushes and sweats, low mood, vaginal dryness, low sexual desire, and others.
 
-Most women (8 out of 10 (Source: [Menopause and me](https://www.menopauseandme.co.uk/en-gb/menopause-and-me/stages-and-symptoms-of-menopause/menopause))) experience some symptoms, typically lasting about 4 years after the last period, but continuing for up to 12 years in about 10% of women. Prolonged lack of the hormone oestrogen affects the bones and cardiovascular system and postmenopausal women are at increased risk of a number of long-term conditions, such as osteoporosis.
+Most women ([8 out of 10](https://www.menopauseandme.co.uk/en-gb/menopause-and-me/stages-and-symptoms-of-menopause/menopause) experience some symptoms, typically lasting about 4 years after the last period, but continuing for up to 12 years in about 10% of women. Prolonged lack of the hormone oestrogen affects the bones and cardiovascular system, and postmenopausal women are at increased risk of a number of long-term conditions, such as osteoporosis.
+
+HRT, which replaces the hormones that are at low levels, is the main medicine treatment for menopause and perimenopause symptoms. More information on the menopause is available on the [NHS website](https://www.nhs.uk/conditions/menopause/). 
 
 ### 3.1. Female sex hormones and their modulators {.toc-ignore}
 
