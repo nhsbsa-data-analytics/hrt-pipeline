@@ -189,16 +189,14 @@ imd_population <- imd_population_age_gender %>%
   summarise(POPULATION = sum(POPULATION, na.rm = T))
 
 # annual
-pi_data_annual <- raw_data$pi_excel_annual %>%
-  apply_sdc() %>%
-  dplyr::mutate(
+pi_data_annual <- raw_data$pi_excel_annual %>%  dplyr::mutate(
     FINANCIAL_YEAR = case_when(
       FINANCIAL_YEAR == max(FINANCIAL_YEAR) ~ paste0(FINANCIAL_YEAR, " (YTD ", ltst_month_tidy, ")"),
       TRUE ~ FINANCIAL_YEAR
     )
   ) %>%
   select(FINANCIAL_YEAR,
-         sdc_RATE) %>%
+         RATE) %>%
   rename("Financial Year" = 1,
          "Identified Patient Rate" = 2)
 
@@ -208,14 +206,14 @@ national_data <- raw_data$national_annual %>%
          PATIENT_COUNT,
          ITEM_COUNT,
          ITEM_PAY_DR_NIC) %>%
-  apply_sdc() %>%
+  #apply_sdc() %>%
   dplyr::mutate(
     FINANCIAL_YEAR = case_when(
       FINANCIAL_YEAR == max(FINANCIAL_YEAR) ~ paste0(FINANCIAL_YEAR, " (YTD ", ltst_month_tidy, ")"),
       TRUE ~ FINANCIAL_YEAR
     )
   ) %>%
-  select(1, 2, 6, 7, 8) %>%
+  #select(1, 2, 6, 7, 8) %>%
   dplyr::rename(
     "Financial Year" = 1,
     "Identified Patient Flag" = 2,
@@ -238,8 +236,8 @@ nat_pop_data <- national_data %>%
   rename("Mid-year Population Estimate" = 4)
 
 paragraph_annual <- raw_data$national_par_annual %>%
-  apply_sdc() %>%
-  select(1, 2, 3, 4, 5, 6, 10, 11, 12) %>%
+  #apply_sdc() %>%
+  #select(1, 2, 3, 4, 5, 6, 10, 11, 12) %>%
   dplyr::mutate(
     FINANCIAL_YEAR = case_when(
       FINANCIAL_YEAR == max(FINANCIAL_YEAR) ~ paste0(FINANCIAL_YEAR, " (YTD ", ltst_month_tidy, ")"),
@@ -259,8 +257,8 @@ paragraph_annual <- raw_data$national_par_annual %>%
   ) 
 
 chem_sub_annual <- raw_data$chem_sub_annual %>%
-  apply_sdc() %>%
-  select(1, 2, 3, 4, 5, 6, 7, 8, 12, 13, 14) %>%
+  #apply_sdc() %>%
+  #select(1, 2, 3, 4, 5, 6, 7, 8, 12, 13, 14) %>%
   dplyr::mutate(
     FINANCIAL_YEAR = case_when(
       FINANCIAL_YEAR == max(FINANCIAL_YEAR) ~ paste0(FINANCIAL_YEAR, " (YTD ", ltst_month_tidy, ")"),
@@ -282,8 +280,8 @@ chem_sub_annual <- raw_data$chem_sub_annual %>%
   )
 
 presentation_annual <- raw_data$presentation_annual %>%
-  apply_sdc() %>%
-  select(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 16, 17, 18) %>%
+  #apply_sdc() %>%
+  #select(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 16, 17, 18) %>%
   dplyr::mutate(
     FINANCIAL_YEAR = case_when(
       FINANCIAL_YEAR == max(FINANCIAL_YEAR) ~ paste0(FINANCIAL_YEAR, " (YTD ", ltst_month_tidy, ")"),
@@ -314,8 +312,8 @@ presentation_annual <- raw_data$presentation_annual %>%
   )
 
 ssp_annual <- raw_data$ssp_annual %>%
-  apply_sdc() %>%
-  select(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 16, 17, 18) %>%
+  #apply_sdc() %>%
+  #select(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 16, 17, 18) %>%
   dplyr::mutate(
     FINANCIAL_YEAR = case_when(
       FINANCIAL_YEAR == max(FINANCIAL_YEAR) ~ paste0(FINANCIAL_YEAR, " (YTD ", ltst_month_tidy, ")"),
@@ -346,8 +344,8 @@ ssp_annual <- raw_data$ssp_annual %>%
   )
 
 icb_annual <- raw_data$icb_annual %>%
-  apply_sdc() %>%
-  select(1, 2, 3, 4, 5, 6, 10, 11, 12) %>%
+  #apply_sdc() %>%
+  #select(1, 2, 3, 4, 5, 6, 10, 11, 12) %>%
   dplyr::mutate(
     FINANCIAL_YEAR = case_when(
       FINANCIAL_YEAR == max(FINANCIAL_YEAR) ~ paste0(FINANCIAL_YEAR, " (YTD ", ltst_month_tidy, ")"),
@@ -364,11 +362,17 @@ icb_annual <- raw_data$icb_annual %>%
     "Total Identified Patients" = 7,
     "Total Items" = 8,
     "Total Net Ingredient Cost (GBP)" = 9
+  ) %>%
+  mutate(
+    `ICB Name` = case_when(
+      `ICB Name` == "UNKNOWN STP" ~ "UNKNOWN ICB",
+      TRUE ~ `ICB Name`
+    )
   )
 
 gender_annual <- raw_data$gender_annual %>%
-  apply_sdc() %>%
-  select(1, 2, 3, 7, 8, 9) %>%
+  #apply_sdc() %>%
+  #select(1, 2, 3, 7, 8, 9) %>%
   dplyr::mutate(
     FINANCIAL_YEAR = case_when(
       FINANCIAL_YEAR == max(FINANCIAL_YEAR) ~ paste0(FINANCIAL_YEAR, " (YTD ", ltst_month_tidy, ")"),
@@ -385,8 +389,8 @@ gender_annual <- raw_data$gender_annual %>%
   )
 
 ageband_annual <- raw_data$ageband_annual %>%
-  apply_sdc() %>%
-  select(1, 2, 3, 7, 8, 9) %>%
+  #apply_sdc() %>%
+ # select(1, 2, 3, 7, 8, 9) %>%
   dplyr::mutate(
     FINANCIAL_YEAR = case_when(
       FINANCIAL_YEAR == max(FINANCIAL_YEAR) ~ paste0(FINANCIAL_YEAR, " (YTD ", ltst_month_tidy, ")"),
@@ -403,8 +407,8 @@ ageband_annual <- raw_data$ageband_annual %>%
   )
 
 quintile_annual <- raw_data$quintile_annual %>%
-  apply_sdc() %>%
-  select(1, 2, 3, 8, 9, 10) %>%
+  #apply_sdc() %>%
+  #select(1, 2, 3, 8, 9, 10) %>%
   dplyr::mutate(
     FINANCIAL_YEAR = case_when(
       FINANCIAL_YEAR == max(FINANCIAL_YEAR) ~ paste0(FINANCIAL_YEAR, " (YTD ", ltst_month_tidy, ")"),
@@ -435,8 +439,8 @@ quintile_annual <- raw_data$quintile_annual %>%
   )
 
 quintile_age_annual <- raw_data$quintile_age_annual %>%
-  apply_sdc() %>%
-  select(1, 2, 3, 4, 9, 10, 11) %>%
+  #apply_sdc() %>%
+  #select(1, 2, 3, 4, 9, 10, 11) %>%
   dplyr::mutate(
     FINANCIAL_YEAR = case_when(
       FINANCIAL_YEAR == max(FINANCIAL_YEAR) ~ paste0(FINANCIAL_YEAR, " (YTD ", ltst_month_tidy, ")"),
@@ -468,8 +472,8 @@ quintile_age_annual <- raw_data$quintile_age_annual %>%
   )
 
 exemption_annual <- raw_data$exempt_annual %>%
-  apply_sdc() %>%
-  select(1,2,3,4,5,6,10,11,12) %>%
+  #apply_sdc() %>%
+  #select(1,2,3,4,5,6,10,11,12) %>%
   dplyr::mutate(
     FINANCIAL_YEAR = case_when(
       FINANCIAL_YEAR == max(FINANCIAL_YEAR) ~ paste0(FINANCIAL_YEAR, " (YTD ", ltst_month_tidy, ")"),
@@ -501,10 +505,10 @@ exemption_annual <- raw_data$exempt_annual %>%
 
 # monthly
 pi_data_monthly <- raw_data$pi_excel_monthly %>%
-  apply_sdc() %>%
+  #apply_sdc() %>%
   select(FINANCIAL_YEAR,
          YEAR_MONTH,
-         sdc_RATE) %>%
+         RATE) %>%
   rename(
     "Financial Year" = 1,
     "Year Month" = 2,
@@ -520,8 +524,8 @@ national_data_monthly <- raw_data$national_monthly %>%
     ITEM_COUNT,
     ITEM_PAY_DR_NIC
   ) %>%
-  apply_sdc() %>%
-  select(1, 2, 3, 8, 9, 10) %>%
+  #apply_sdc() %>%
+  #select(1, 2, 3, 8, 9, 10) %>%
   dplyr::rename(
     "Financial Year" = 1,
     "Year Month" = 2,
@@ -532,8 +536,8 @@ national_data_monthly <- raw_data$national_monthly %>%
   )
 
 paragraph_monthly <- raw_data$national_par_monthly %>%
-  apply_sdc() %>%
-  select(1, 2, 3, 4, 5, 6, 7, 12, 13, 14) %>%
+  #apply_sdc() %>%
+  #select(1, 2, 3, 4, 5, 6, 7, 12, 13, 14) %>%
   rename(
     "Financial Year" = 1,
     "Year Month" = 2,
@@ -548,8 +552,8 @@ paragraph_monthly <- raw_data$national_par_monthly %>%
   )
 
 chem_sub_monthly <- raw_data$chem_sub_monthly %>%
-  apply_sdc() %>%
-  select(1, 2, 3, 4, 5, 6, 7, 8, 9, 14, 15, 16) %>%
+ # apply_sdc() %>%
+  #select(1, 2, 3, 4, 5, 6, 7, 8, 9, 14, 15, 16) %>%
   rename(
     "Financial Year" = 1,
     "Year Month" = 2,
@@ -566,8 +570,8 @@ chem_sub_monthly <- raw_data$chem_sub_monthly %>%
   )
 
 presentation_monthly <- raw_data$presentation_monthly %>%
-  apply_sdc() %>%
-  select(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 18, 19, 20) %>%
+  #apply_sdc() %>%
+  #select(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 18, 19, 20) %>%
   rename(
     "Financial Year" = 1,
     "Year Month" = 2,
@@ -593,8 +597,8 @@ presentation_monthly <- raw_data$presentation_monthly %>%
   )
 
 ssp_monthly <- raw_data$ssp_monthly %>%
-  apply_sdc() %>%
-  select(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 18, 19, 20) %>%
+  #apply_sdc() %>%
+  #select(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 18, 19, 20) %>%
   rename(
     "Financial Year" = 1,
     "Year Month" = 2,
@@ -620,8 +624,8 @@ ssp_monthly <- raw_data$ssp_monthly %>%
   )
 
 icb_monthly <- raw_data$icb_monthly %>%
-  apply_sdc() %>%
-  select(1, 2, 3, 4, 5, 6, 7, 12, 13, 14) %>%
+  #apply_sdc() %>%
+  #select(1, 2, 3, 4, 5, 6, 7, 12, 13, 14) %>%
   rename(
     "Financial Year" = 1,
     "Year Month" = 2,
@@ -633,11 +637,17 @@ icb_monthly <- raw_data$icb_monthly %>%
     "Total Identified Patients" = 8,
     "Total Items" = 9,
     "Total Net Ingredient Cost (GBP)" = 10
+  )  %>%
+  mutate(
+    `ICB Name` = case_when(
+      `ICB Name` == "UNKNOWN STP" ~ "UNKNOWN ICB",
+      TRUE ~ `ICB Name`
+    )
   )
 
 gender_monthly <- raw_data$gender_monthly %>%
-  apply_sdc() %>%
-  select(1, 2, 3, 4, 9, 10, 11) %>%
+  #apply_sdc() %>%
+  #select(1, 2, 3, 4, 9, 10, 11) %>%
   rename(
     "Financial Year" = 1,
     "Year Month" = 2,
@@ -649,8 +659,8 @@ gender_monthly <- raw_data$gender_monthly %>%
   )
 
 ageband_monthly <- raw_data$ageband_monthly %>%
-  apply_sdc() %>%
-  select(1, 2, 3, 4, 9, 10, 11) %>%
+  #apply_sdc() %>%
+  #select(1, 2, 3, 4, 9, 10, 11) %>%
   rename(
     "Financial Year" = 1,
     "Year Month" = 2,
@@ -662,8 +672,8 @@ ageband_monthly <- raw_data$ageband_monthly %>%
   )
 
 quintile_monthly <- raw_data$quintile_monthly %>%
-  apply_sdc() %>%
-  select(1, 2, 3, 4, 10, 11, 12) %>%
+  #apply_sdc() %>%
+  #select(1, 2, 3, 4, 10, 11, 12) %>%
   mutate(
     IMD_QUINTILE = case_when(
       is.na(IMD_QUINTILE) ~ as.character("Unknown"),
@@ -684,8 +694,8 @@ quintile_monthly <- raw_data$quintile_monthly %>%
   )
 
 quintile_age_monthly <- raw_data$quintile_age_monthly %>%
-  apply_sdc() %>%
-  select(1, 2, 4, 5, 3, 11, 12, 13) %>%
+  #apply_sdc() %>%
+  #select(1, 2, 4, 5, 3, 11, 12, 13) %>%
   mutate(
     IMD_QUINTILE = case_when(
       is.na(IMD_QUINTILE) ~ as.character("Unknown"),
@@ -706,8 +716,8 @@ quintile_age_monthly <- raw_data$quintile_age_monthly %>%
   )
 
 exemption_monthly <- raw_data$exempt_monthly %>%
-  apply_sdc() %>%
-  select(1,2,3,4,5,6,7,12,13,14) %>%
+  #apply_sdc() %>%
+  #select(1,2,3,4,5,6,7,12,13,14) %>%
   mutate(
     CHARGE_STATUS = case_when(
       CHARGE_STATUS == "Null Charge Status" ~ "Unknown",

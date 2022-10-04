@@ -105,7 +105,7 @@ This publication presents data from April 2015 to `r ltst_month_tidy`, the most 
 
 When the NHSBSA processes prescriptions, the NHS number of the patient is identified for most, but not all, prescriptions. The proportion of items for which a patient could be identified is shown in Table 1. This means that data relating to patient counts represents most, but not all, patients. 
 
-These statistics do not contain any personally identifiable data. More details on the statistical disclosure control applied to these statistics is available in section 5 of this summary. More information about how the NHSBSA protects personal information can be found in the [statement on confidentiality and access](https://www.nhsbsa.nhs.uk/policies-and-procedures).
+These statistics do not contain any personally identifiable data. More information about how the NHSBSA protects personal information can be found in the [statement on confidentiality and access](https://www.nhsbsa.nhs.uk/policies-and-procedures).
 
 #### Table 1: The proportion of items for which an NHS number was recorded for listed BNF paragraphs
 
@@ -1005,15 +1005,7 @@ IMD quintiles are calculated by ranking census LSOA from most deprived to least 
 
 ---
 
-## 5. Statistical disclosure control
-
-Statistical disclosure control has been applied to these statistics. Patient count, items, and net ingredient cost (NIC) have been redacted in the supporting summary tables if they relate to fewer than 5 patients. Further information about our statistical disclosure control protocol [can be found on our website](https://www.nhsbsa.nhs.uk/policies-and-procedures).
-
-The high level figures in this statistical summary have been rounded where appropriate for clarity, in most cases to three significant figures. This is to make this narrative as accessible as possible to all readers. The summary tables released with this publication allow users to investigate this data at lower levels of granularity. Figures in the supplementary tables have not been rounded.
-
----
-
-## 6. Accessibility
+## 5. Accessibility
 
 If you need information on this website in a different format like accessible PDF, large print, easy read, audio recording or braille, you can contact us by:
 
@@ -1031,7 +1023,7 @@ View our [Accessibility statement for Official Statistics Narratives](https://ww
 
 ---
 
-## 7. Feedback and contact us
+## 6. Feedback and contact us
 
 Feedback is important to us; we welcome any questions and comments relating to these statistics. 
 
