@@ -232,6 +232,8 @@ nat_pop_data <- national_data %>%
          `Total Identified Patients`) %>%
   left_join(nat_pop,
             by = c("Mid-year Population Year" = "YEAR")) %>%
+  mutate(ENPOP = case_when(`Financial Year` == "2021/2022" ~ as.numeric(56489800),
+                                                TRUE ~ as.numeric(ENPOP))) %>%
   mutate(`Patients per 1,000 Population` = `Total Identified Patients` / ENPOP * 1000) %>%
   rename("Mid-year Population Estimate" = 4)
 
@@ -356,6 +358,32 @@ presentation_annual <- presentation_annual_raw %>%
     `Quantity Per Item` = `Total Quantity` / `Total Items`
   )
 
+ssp_annual<- raw_data$ssp_annual %>%
+  #apply_sdc() %>%
+  #select(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 18, 19, 20) %>%
+  rename(
+    "Financial Year" = 1,
+    "BNF Section Name" = 2,
+    "BNF Section Code" = 3,
+    "BNF Paragraph Name" = 4,
+    "BNF Paragraph Code" = 5,
+    "Chemical Subtance" = 6,
+    "Chemical Substance Code" = 7,
+    "BNF Presentation Code" = 8,
+    "BNF Presentation Name" = 9,
+    "Generic BNF Presentation Code" = 10,
+    "Generic BNF Presentation Name" = 11,
+    "Unit of Measure" = 12,
+    "Total Quantity" = 13,
+    "Total Items" = 14,
+    "Total Net Ingredient Cost (GBP)" = 15
+  ) %>%
+  mutate(
+    `Cost Per Item (GBP)` = `Total Net Ingredient Cost (GBP)` / `Total Items`,
+    `Cost Per Quantity (GBP)` = `Total Net Ingredient Cost (GBP)` / `Total Quantity`,
+    `Quantity Per Item` = `Total Quantity` / `Total Items`
+  )
+
 icb_annual <- raw_data$icb_annual %>%
   #apply_sdc() %>%
   #select(1, 2, 3, 4, 5, 6, 10, 11, 12) %>%
@@ -367,14 +395,12 @@ icb_annual <- raw_data$icb_annual %>%
   ) %>%
   rename(
     "Financial Year" = 1,
-    "NHS England Region Name" = 2,
-    "NHS England Region Code" = 3,
-    "ICB Name" = 4,
-    "ICB Code" = 5,
-    "Identified Patient Flag" = 6,
-    "Total Identified Patients" = 7,
-    "Total Items" = 8,
-    "Total Net Ingredient Cost (GBP)" = 9
+    "ICB Name" = 2,
+    "ICB Code" = 3,
+    "Identified Patient Flag" = 4,
+    "Total Identified Patients" = 5,
+    "Total Items" = 6,
+    "Total Net Ingredient Cost (GBP)" = 7
   ) %>%
   mutate(
     `ICB Name` = case_when(
@@ -664,7 +690,7 @@ ssp_monthly <- raw_data$ssp_monthly %>%
     "BNF Section Name" = 3,
     "BNF Section Code" = 4,
     "BNF Paragraph Name" = 5,
-    "BNF Paragraph Code" = 7,
+    "BNF Paragraph Code" = 6,
     "Chemical Subtance" = 7,
     "Chemical Substance Code" = 8,
     "BNF Presentation Code" = 9,
@@ -688,14 +714,12 @@ icb_monthly <- raw_data$icb_monthly %>%
   rename(
     "Financial Year" = 1,
     "Year Month" = 2,
-    "NHS England Region Name" = 3,
-    "NHS England Region Code" = 4,
-    "ICB Name" = 5,
-    "ICB Code" = 6,
-    "Identified Patient Flag" = 7,
-    "Total Identified Patients" = 8,
-    "Total Items" = 9,
-    "Total Net Ingredient Cost (GBP)" = 10
+    "ICB Name" = 3,
+    "ICB Code" = 4,
+    "Identified Patient Flag" = 5,
+    "Total Identified Patients" = 6,
+    "Total Items" = 7,
+    "Total Net Ingredient Cost (GBP)" = 8
   )  %>%
   mutate(
     `ICB Name` = case_when(
@@ -937,8 +961,9 @@ write_sheet(
   c(
     "1. Field definitions can be found on the 'Metadata' tab.",
     "2. The figures in this table relate to prescribing of HRT medications in England that are subsequently dispensed in the community in England, Scotland, Wales, Isle of Man or the Channel Islands by a pharmacy, appliance contractor, dispensing doctor, or have been personally administered by a GP practice. They do not include data on medicines used in secondary care, prisons, or issued by a private prescriber.",
-    "3. Some cells in this table are empty because ONS population estimates for 2021/2022 were not available prior to publication.",
-    "4. ONS population estimates taken from https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/populationestimates."
+    "3. Some cells in this table are empty because ONS population estimates for 2022/2023 were not available prior to publication.",
+    "4. ONS population estimates taken from https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/populationestimates.",
+    "5. 2. ONS population estimates for 2021/2022 were not available prior to publication so the figures for 2021 are taken from the Census figures found here https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/populationestimates/bulletins/populationandhouseholdestimatesenglandandwales/census2021"
   ),
   nat_pop_data,
   30
@@ -1080,7 +1105,7 @@ write_sheet(
   paste0(
     "Hormone replacement therapy - England - 2015/2016 to ",
     ltst_year_ytd,
-    " - Yearly totals for precribing which has been flagged under Serious Shortage Protocols (SSP) split by presentation"
+    " - Yearly totals for precribing which has been issued under Serious Shortage Protocols (SSP) split by presentation"
   ),
   c(
     "1. Field definitions can be found on the 'Metadata' tab.",
@@ -1130,19 +1155,19 @@ write_sheet(
 
 format_data(wb,
             "ICB",
-            c("A", "B", "C", "D", "E", "F"),
+            c("A", "B", "C", "D"),
             "left",
             "")
 
 format_data(wb,
             "ICB",
-            c("G", "H"),
+            c("E", "F"),
             "right",
             "#,##0")
 
 format_data(wb,
             "ICB",
-            c("I"),
+            c("G"),
             "right",
             "#,##0.00")
 
@@ -1232,7 +1257,8 @@ write_sheet(
     "1. Field definitions can be found on the 'Metadata' tab.",
     "2. The figures in this table relate to prescribing of HRT medications in England that are subsequently dispensed in the community in England, Scotland, Wales, Isle of Man or the Channel Islands by a pharmacy, appliance contractor, dispensing doctor, or have been personally administered by a GP practice. They do not include data on medicines used in secondary care, prisons, or issued by a private prescriber.",
     "3. Where a patient's lower-layer super output areas (LSOA) has not been able to to be matched, is not available, or the patient has not been identified the records are reported as 'unknown' IMD decile.",
-    "4. ONS population estimates taken from https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/populationestimates/adhocs/13773populationsbyindexofmultipledeprivationimddecileenglandandwales2020/populationbyimdenglandandwales2020.xlsx"
+    "4. ONS population estimates taken from https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/populationestimates/adhocs/13773populationsbyindexofmultipledeprivationimddecileenglandandwales2020/populationbyimdenglandandwales2020.xlsx",
+    "5. Figures in this table are only for patients where an NHS number that has been verified by the Personal Demographics Service (PDS) "
   ),
   quintile_annual,
   30
@@ -1270,7 +1296,8 @@ write_sheet(
     "1. Field definitions can be found on the 'Metadata' tab.",
     "2. The figures in this table relate to prescribing of HRT medications in England that are subsequently dispensed in the community in England, Scotland, Wales, Isle of Man or the Channel Islands by a pharmacy, appliance contractor, dispensing doctor, or have been personally administered by a GP practice. They do not include data on medicines used in secondary care, prisons, or issued by a private prescriber.",
     "3. Where a patient's lower-layer super output areas (LSOA) has not been able to to be matched, is not available, or the patient has not been identified the records are reported as 'unknown' IMD decile.",
-    "4. ONS population estimates taken from https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/populationestimates/adhocs/13773populationsbyindexofmultipledeprivationimddecileenglandandwales2020/populationbyimdenglandandwales2020.xlsx"
+    "4. ONS population estimates taken from https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/populationestimates/adhocs/13773populationsbyindexofmultipledeprivationimddecileenglandandwales2020/populationbyimdenglandandwales2020.xlsx",
+    "5. Figures in this table are only for patients where an NHS number that has been verified by the Personal Demographics Service (PDS) "
   ),
   quintile_age_annual,
   30
@@ -1576,7 +1603,7 @@ write_sheet(
   paste0(
     "Hormone replacement therapy - England - April 2015 to ",
     ltst_month_tidy,
-    " - Monthly totals for precribing which has been flagged under Serious Shortage Protocols (SSP) split by presentation"
+    " - Monthly totals for precribing which has been issued under Serious Shortage Protocols (SSP) split by presentation"
   ),
   c(
     "1. Field definitions can be found on the 'Metadata' tab.",
@@ -1626,19 +1653,19 @@ write_sheet(
 
 format_data(wb,
             "ICB",
-            c("A", "B", "C", "D", "E", "F", "G"),
+            c("A", "B", "C", "D", "E"),
             "left",
             "")
 
 format_data(wb,
             "ICB",
-            c("H", "I"),
+            c("F", "G"),
             "right",
             "#,##0")
 
 format_data(wb,
             "ICB",
-            c("J"),
+            c("H"),
             "right",
             "#,##0.00")
 
@@ -1727,7 +1754,8 @@ write_sheet(
   c(
     "1. Field definitions can be found on the 'Metadata' tab.",
     "2. The figures in this table relate to prescribing of HRT medications in England that are subsequently dispensed in the community in England, Scotland, Wales, Isle of Man or the Channel Islands by a pharmacy, appliance contractor, dispensing doctor, or have been personally administered by a GP practice. They do not include data on medicines used in secondary care, prisons, or issued by a private prescriber.",
-    "3. Where a patient's lower-layer super output areas (LSOA) has not been able to to be matched, is not available, or the patient has not been identified the records are reported as 'unknown' IMD decile."
+    "3. Where a patient's lower-layer super output areas (LSOA) has not been able to to be matched, is not available, or the patient has not been identified the records are reported as 'unknown' IMD decile.",
+    "4. Figures in this table are only for patients where an NHS number that has been verified by the Personal Demographics Service (PDS) "
   ),
   quintile_monthly,
   14
@@ -1764,7 +1792,8 @@ write_sheet(
   c(
     "1. Field definitions can be found on the 'Metadata' tab.",
     "2. The figures in this table relate to prescribing of HRT medications in England that are subsequently dispensed in the community in England, Scotland, Wales, Isle of Man or the Channel Islands by a pharmacy, appliance contractor, dispensing doctor, or have been personally administered by a GP practice. They do not include data on medicines used in secondary care, prisons, or issued by a private prescriber.",
-    "3. Where a patient's lower-layer super output areas (LSOA) has not been able to to be matched, is not available, or the patient has not been identified the records are reported as 'unknown' IMD decile."
+    "3. Where a patient's lower-layer super output areas (LSOA) has not been able to to be matched, is not available, or the patient has not been identified the records are reported as 'unknown' IMD decile.",
+    "4. Figures in this table are only for patients where an NHS number that has been verified by the Personal Demographics Service (PDS) "
   ),
   quintile_age_monthly,
   14

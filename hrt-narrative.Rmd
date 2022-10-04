@@ -602,7 +602,7 @@ chart_data <- raw_data$icb_annual %>%
     stp_pop,
     by = c("STP_CODE" = "STP21CDH")
   ) %>%
-  select(1, 4,5,7,12) %>%
+  #select(1, 4,5,7,12) %>%
   mutate(
     PER_1000 = round(PATIENT_COUNT / POP * 1000, 1)
   ) %>%
