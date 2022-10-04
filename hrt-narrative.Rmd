@@ -830,7 +830,7 @@ group_chart_hc(
   x = FINANCIAL_YEAR,
   y = PROP,
   group = CHARGE_STATUS,
-  type = "area",
+  type = "column",
   marker = FALSE,
   dlOn = FALSE,
   xLab = "Financial year",
@@ -846,7 +846,7 @@ group_chart_hc(
     valueSuffix = "%"
   ) %>%
   hc_plotOptions(
-    area = list(
+    column = list(
       stacking = "normal"
     )
   )%>%
@@ -940,7 +940,7 @@ The menopause is a biological stage in a woman's life that occurs when she stops
 
 As well as a change in their menstrual cycle women may experience a variety of symptoms associated with menopause such as hot flushes and sweats, low mood, vaginal dryness, low sexual desire, and others.
 
-Most women ([8 out of 10](https://www.menopauseandme.co.uk/en-gb/menopause-and-me/stages-and-symptoms-of-menopause/menopause) experience some symptoms, typically lasting about 4 years after the last period, but continuing for up to 12 years in about 10% of women. Prolonged lack of the hormone oestrogen affects the bones and cardiovascular system, and postmenopausal women are at increased risk of a number of long-term conditions, such as osteoporosis.
+Most women ([8 out of 10](https://www.menopauseandme.co.uk/en-gb/menopause-and-me/stages-and-symptoms-of-menopause/menopause)) experience some symptoms, typically lasting about 4 years after the last period, but continuing for up to 12 years in about 10% of women. Prolonged lack of the hormone oestrogen affects the bones and cardiovascular system, and postmenopausal women are at increased risk of a number of long-term conditions, such as osteoporosis.
 
 HRT, which replaces the hormones that are at low levels, is the main medicine treatment for menopause and perimenopause symptoms. More information on the menopause is available on the [NHS website](https://www.nhs.uk/conditions/menopause/). 
 
