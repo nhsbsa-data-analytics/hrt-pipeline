@@ -59,13 +59,13 @@ Published 6 October 2022
 ## 1. Introduction
 ### 1.1. Scope {.toc-ignore} 
 
-Hormone replacement therapy (HRT) is a treatment to relieve symptoms of the menopause. It replaces hormones that are at a lower level as you approach the menopause.
+Hormone replacement therapy (HRT) is a treatment to relieve symptoms of the menopause. It replaces hormones that are at a lower level during the perimenopause, menopause, and postmenopause.
 
-Millions of women go through the menopause every year, with the majority experiencing symptoms that can be severe, such as low mood, anxiety, hot flushes and difficulty sleeping, and have a negative impact on everyday life.
+Millions of women go through the menopause every year, many women experience some symptoms, such as vaginal dryness, low mood, anxiety, hot flushes and difficulty sleeping. Some these symptoms can be severe and have a negative impact on everyday life.
 
-The menopause is a key area of the first government-led [Women's Health Strategy for England](https://www.gov.uk/government/publications/womens-health-strategy-for-england/womens-health-strategy-for-england#menopause), created to tackle the gender health gap. This publication has been released to support the work being undertaken by the UK Menopause Taskforce, the NHS Menopause Pathway Improvement Programme, and to help address HRT supply chain issues and shortages
+The menopause is a key area of the first government-led [Women's Health Strategy for England](https://www.gov.uk/government/publications/womens-health-strategy-for-england/womens-health-strategy-for-england#menopause), created to tackle the gender health gap. This Official Statistics publication has been released to support the work being undertaken by the UK Menopause Taskforce, the NHS Menopause Pathway Improvement Programme, and to help address HRT supply chain issues and shortages.
 
-The UK Menopause Taskforce will tackle issues surrounding the menopause including increasing access to treatment, and ending the taboos and stigmas that still surround conversations about the menopause, including in the workplace.
+The UK Menopause Taskforce is tackling issues surrounding the menopause including increasing access to treatment, and ending the taboos and stigmas that still surround conversations about the menopause, including in the workplace.
 
 This publication aims to describe the prescribing of HRT medications in England that are subsequently dispensed in the community in England, Scotland, Wales, Isle of Man or the Channel Islands by a pharmacy, appliance contractor, dispensing doctor, or have been personally administered by a GP practice. They do not include data on medicines used in secondary care, prisons, or issued by a private prescriber.
 
@@ -936,7 +936,7 @@ There has been a steady decline in the proportion of HRT drug items prescribed t
 
 ## 3. Background
 
-The menopause is a biological stage in a woman's life that occurs when she stops menstruating and reaches the end of her natural reproductive life. This is not usually abrupt, but a gradual process during which women experience perimenopause before reaching postmenopause. Usually it is defined as having occurred when a woman has not had a period for 12 consecutive months (for women reaching menopause naturally).
+The menopause is a biological stage in a woman's life that occurs when she stops menstruating and reaches the end of her natural reproductive life. This is not usually abrupt, but a gradual process during which women experience perimenopause before reaching postmenopause. Usually the menopause is defined as having occurred when a woman has not had a period for 12 consecutive months (for women reaching menopause naturally).
 
 As well as a change in their menstrual cycle women may experience a variety of symptoms associated with menopause such as hot flushes and sweats, low mood, vaginal dryness, low sexual desire, and others.
 
@@ -948,15 +948,17 @@ HRT, which replaces the hormones that are at low levels, is the main medicine tr
 
 Oestrogen-only HRT is usually only recommended for women who have had their womb removed during a hysterectomy. For women with a uterus, oestrogen plus progestogen HRT is recommended. A progestogen should be prescribed to reduce the risk of cystic hyperplasia of the endometrium, a thickening of the endometrium, and possible transformation to cancer. 
 
-Continuous combined preparations are not suitable for use in the perimenopause or within 12 months of the last menstrual period; women who use such preparations may bleed irregularly in the early stages of treatment
+HRT comes in several different forms such as tablets and skin patches. Treatment routine for HRT depends on whether the patient is in the early stages of the menopause or have had menopausal symptoms for some time. More information on the types and routines of HRT treatment can be found on the [NHS website](https://www.nhs.uk/conditions/hormone-replacement-therapy-hrt/types/).
 
-HRT with small doses of an oestrogen (together with a progestogen in women with a uterus) is considered appropriate for alleviating menopausal symptoms such as vaginal atrophy or vasomotor instability.
+The 2 types of routines are cyclical (or sequential) HRT and continuous combined HRT.
+
+Continuous combined preparations are not suitable for use in the perimenopause or within 12 months of the last menstrual period; women who use such preparations may bleed irregularly in the early stages of treatment.
 
 You can find out more information on [sex hormones](https://bnf.nice.org.uk/treatment-summaries/sex-hormones/) on the NICE website.
 
 ### 3.2. Preparations for vaginal and vulval changes {.toc-ignore}
 
-Preparations for vaginal and vulval changes are used to treat the symptoms of vaginal atrophy related to oestrogen deficiency in postmenopausal women. Treatment is continued for as long as needed to relieve symptoms and reviewed initially at 3 months, then at least annually.
+Preparations for vaginal and vulval changes are used to treat the symptoms of vaginal atrophy related to oestrogen deficiencies related to the menopause. 
 
 There are non-hormonal vaginal moisturisers available. Menopausal women with vaginal dryness can use vaginal moisturisers and lubricants alone or in addition to vaginal oestrogen.
 
