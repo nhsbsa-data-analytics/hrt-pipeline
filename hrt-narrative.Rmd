@@ -46,9 +46,9 @@ Published 6 October 2022
 
 ## Key findings
 
-* In 2021/22, there were 7.80 million items for HRT prescribed in England, a 91.3% increase from 2015/16.
+* In 2021/22, there were 7.80 million items for HRT prescribed in England, a 35.0% increase from 2020/21.
 
-* There were an estimated 1.93 million identified patients that were prescribed HRT in England in 2021/22. This was a 30.5% increase from an estimated 1.48 million identified patients in 2020/21, and a 37.2% increase from 1.40 million in 2015/16.
+* There were an estimated 1.93 million identified patients that were prescribed HRT in England in 2021/22. This was a 30.5% increase from an estimated 1.48 million identified patients in 2020/21.
 
 * Areas of greater deprivation had the lowest number of estimated identified patients who were being prescribed HRT in 2021/22, almost twice as many patients receiving prescribing in the least deprived areas of the country compared to the most deprived.
 
@@ -61,13 +61,11 @@ Published 6 October 2022
 
 Hormone replacement therapy (HRT) is a treatment to relieve symptoms of the menopause. It replaces hormones that are at a lower level during the perimenopause, menopause, and postmenopause.
 
-Millions of women go through the menopause every year, many women experience some symptoms, such as vaginal dryness, low mood, anxiety, hot flushes and difficulty sleeping. Some these symptoms can be severe and have a negative impact on everyday life.
+Millions of women go through the menopause every year, many women experience some symptoms, such as vaginal dryness, low mood, anxiety, hot flushes and difficulty sleeping. Some of these symptoms can be severe and have a negative impact on everyday life.
 
-The menopause is a key area of the first government-led [Women's Health Strategy for England](https://www.gov.uk/government/publications/womens-health-strategy-for-england/womens-health-strategy-for-england#menopause), created to tackle the gender health gap. This Official Statistics publication has been released to support the work being undertaken by the UK Menopause Taskforce, the NHS Menopause Pathway Improvement Programme, and to help address HRT supply chain issues and shortages.
+This Official Statistics publication has been released to support the work being undertaken by the Department of Health and Social Care, NHS England, and HRT suppliers.
 
-The UK Menopause Taskforce is tackling issues surrounding the menopause including increasing access to treatment, and ending the taboos and stigmas that still surround conversations about the menopause, including in the workplace.
-
-This publication aims to describe the prescribing of HRT medications in England that are subsequently dispensed in the community in England, Scotland, Wales, Isle of Man or the Channel Islands by a pharmacy, appliance contractor, dispensing doctor, or have been personally administered by a GP practice. They do not include data on medicines used in secondary care, prisons, or issued by a private prescriber.
+This publication aims to describe the prescribing of HRT medications in England that are subsequently dispensed in the community in England, Scotland, Wales, Isle of Man or the Channel Islands by a pharmacy, appliance contractor, dispensing doctor, or have been personally administered by a GP practice. They do not include data on medicines used in secondary care, prisons, or issued by a private prescriber. The statistics do not include prescriptions that were issued but not presented for dispensing or where there has been an unmet demand for treatment.
 
 These statistics detail:
 
@@ -196,9 +194,9 @@ raw_data$national_annual %>%
 
 Source: [Financial Year Summary Tables - National Totals table](https://nhsbsa-opendata.s3.eu-west-2.amazonaws.com/hrt/hrt_financial_year_2022_2023_YTD_June_2022_v001.xlsx)
 
-There were 7.80 million HRT drug items prescribed in 2021/22. This was a 35.0% increase from 5.78 million items compared with the previous year. Prescribing of HRT drug items has been increasing since 2015/16, with 3.73 million more items prescribed in 2021/22 when compared to 2015/16, an increase of 91.3% over the period.
+There were 7.80 million HRT drug items prescribed in 2021/22. This was a 35.0% increase from 5.78 million items compared with the previous year. 
 
-There were an estimated 1.93 million identified patients who were prescribed at least one HRT item in 2021/22. This was a 30.5% increase from 1.48 million identified patients when compared with 2020/21. There were 523,000 more identified patients who received an HRT item in 2021/22 compared to 2015/16, an increase of 37.2%. However, it should be noted that this is likely to be an overestimate of the actual increase in patient numbers, as the proportion of patients who could be identified increased. In 2015/16, 93.5% of items were prescribed to identified patients, this increased by 5.24 percentage points in 2021/22 to 98.7% of items.
+There were an estimated 1.93 million identified patients who were prescribed at least one HRT item in 2021/22. This was a 30.5% increase from 1.48 million identified patients when compared with 2020/21. 
 
 From April 2022 to June 2022 there were 2.57 million HRT drug items prescribed. This is 920,000 more items than the same period in the previous year, a 55.8% increase.
 
@@ -361,19 +359,21 @@ hw_grid(chart_1, chart_2)
 
 Source: [Financial Year Summary Tables - BNF Paragraph table](https://nhsbsa-opendata.s3.eu-west-2.amazonaws.com/hrt/hrt_financial_year_2022_2023_YTD_June_2022_v001.xlsx)
 
-There were 5.75 million female sex hormones and their modulators items prescribed in 2021/22. This was a 41.1% increase from 4.07 million items compared with the previous year. Prescribing of female sex hormones and their modulators items has been increasing since 2015/16, with 2.80 million more items prescribed in 2021/22 when compared to 2015/16, an increase of 94.7% over the period.
+There were 5.75 million female sex hormones and their modulators items prescribed in 2021/22. This was a 41.1% increase from 4.07 million items compared with the previous year. 
 
-There were an estimated 1.36 million identified patients who were prescribed at least one female sex hormones and their modulators item in 2021/22. This was a 38.8% increase from 983,000 identified patients when compared with 2020/21. There were 358,000 more identified patients who received a female sex hormones and their modulators item in 2021/22 compared to 2015/16, an increase of 35.6%. 
+There were an estimated 1.36 million identified patients who were prescribed at least one female sex hormones and their modulators item in 2021/22. This was a 38.8% increase from 983,000 identified patients when compared with 2020/21. 
 
 From April 2022 to June 2022 there were 1.98 million female sex hormones and their modulators items prescribed. This is 804,000 more items than the period April 2021 to June 2021, a 68.3% increase.
 
-There were 2.05 million preparations for vaginal and vulval changes items prescribed in 2021/22. This was a 20.4% increase from 1.71 million items compared with the previous year. Prescribing of preparations for vaginal and vulval changes items has been increasing since 2015/16, with 928,000 more items prescribed in 2021/22 when compared to 2015/16, an increase of 82.4% over the period.
+There were 2.05 million preparations for vaginal and vulval changes items prescribed in 2021/22. This was a 20.4% increase from 1.71 million items compared with the previous year. 
 
-There were an estimated 682,000 identified patients who were prescribed at least one preparations for vaginal and vulval changes item in 2021/22. This was a 22.6% increase from 556,000 identified patients when compared with 2020/21. There were 250,000 more identified patients who received a preparations for vaginal and vulval changes item in 2021/22 compared to 2015/16, an increase of 58.1%. 
+There were an estimated 682,000 identified patients who were prescribed at least one preparations for vaginal and vulval changes item in 2021/22. This was a 22.6% increase from 556,000 identified patients when compared with 2020/21. 
 
 From April 2022 to June 2022 were 587,000 million preparations for vaginal and vulval changes  items prescribed. This is 116,000 more items than the period April 2021 to June 2021, a 24.6% increase.
 
 ### Figure 4: Estimated Number of identified patients by financial year for selected BNF chemical substances {.toc-ignore}
+
+A chemical substance is the name of the main active ingredient in a drug.
 
 ```{r annual_chem_sub, out.width="100%"}
 chart_data <- raw_data$chem_sub_annual %>%
@@ -432,9 +432,7 @@ chart_data %>%
 
 Source: [Financial Year Summary Tables - Chemical Substance table](https://nhsbsa-opendata.s3.eu-west-2.amazonaws.com/hrt/hrt_financial_year_2022_2023_YTD_June_2022_v001.xlsx)
 
-Between 2015/16 and 2021/22 Estradiol (0604011G0) was the chemical substance which had the largest increase in estimated identified patients who were prescribed at least one item. This was an increase of 214% or 403,000 patients from 188,000 in 2015/16 to 592,000 in 2021/22.
-
-Between 2015/16 and 2021/22 Norethisterone (0604012P0) was the chemical substance which had the largest decrease in estimated identified patients who were prescribed at least one item. This was a decrease of 55.0% or 199,000 patients from 361,000 in 2015/16 to 162,000 in 2021/22.
+Between 2020/21 and 2021/22 Estradiol (0604011G0) was the chemical substance which had the largest increase in estimated identified patients who were prescribed at least one item. This was an increase of 59.2% or 220,000 patients from 272,000 in 2020/21 to 592,000 in 2021/22.
 
 ### Figure 5: Number of prescribed items by financial year for selected BNF chemical substances {.toc-ignore}
 
@@ -497,13 +495,13 @@ chart_data %>%
 
 Source: [Financial Year Summary Tables - Chemical Substance table](https://nhsbsa-opendata.s3.eu-west-2.amazonaws.com/hrt/hrt_financial_year_2022_2023_YTD_June_2022_v001.xlsx)
 
-Between 2015/16 and 2021/22 Estradiol (0604011G0) was the chemical substance which had the largest increase in the number of items prescribed. This was an increase of 216% or 1.59 million items from 736,000 in 2015/16 to 2.33 million in 2021/22.
-
-Between 2015/16 and 2021/22 Norethisterone (0604012P0) was the chemical substance which had the largest decrease in the number of items prescribed. This was a decrease of 50.5% or 282,000 items from 558,000 in 2015/16 to 276,000 in 2021/22.
+Between 2020/21 and 2021/22 Estradiol (0604011G0) was the chemical substance which had the largest increase in the number of items prescribed. This was an increase of 48.4% or 760,000 items from 1.57 million in 2020/21 to 2.33 million in 2021/22.
 
 ### Table 2: Top 10 presentations by prescribed items in `r ltst_year`{.toc-ignore}
 
-Pharmaceutical presentations can come in many forms including tablets, capsules, patches, gels, creams and more. Please see the definition of items and quantity given in section 1.2 to help interpret tables 2 and 3.
+Pharmaceutical presentations can come in many forms including tablets, capsules, patches, gels, creams and more. Please see the definition of items and quantity given in section 1.2 to help interpret tables 2 and 3. The chemical substance listed in figures 4 and 5 can be made up of more than one of the presentations in tables 2 and 3. For example both Vagifem 10 microgram vaginal tablets and Estradiol 10  microgram pessaries have the chemical substance of Estradiol.
+
+Tables 2 and 3 are based on the BNF presentation that has appeared on the prescription form. It is possible that products that are different brands, or generic equivalents, of the same product may appear in these tables. For example Oestrogel Pump-Pack 0.06% gel is the branded equivalent of Estradiol 0.06% gel (750 microgram per actuation) and Vagifem 10 microgram vaginal tablets is the branded equivalent of Estradiol 10 microgram pessaries.
 
 ``` {r top_pres_fy, out.width = "100%"}
 presentation_annual %>%
@@ -544,7 +542,7 @@ presentation_annual %>%
 
 Source: [Financial Year Summary Tables - Presentations table](https://nhsbsa-opendata.s3.eu-west-2.amazonaws.com/hrt/hrt_financial_year_2022_2023_YTD_June_2022_v001.xlsx)
 
-In 2021/22 Vagifem 10 microgram vaginal tablets had the most prescribed items with 589,000 total items. This is a 79.1% increase of 260,000 items since 2015/16. Vagifem 10microgram vaginal tablets also had the most prescribed items in 2020/21 with 521,000 total items.
+In 2021/22 Vagifem 10 microgram vaginal tablets had the most prescribed items with 589,000 total items. This is a 13.2% increase of 68,600 items since 2020/21.
 
 ### Table 3: Top 10 presentations by prescribed items in `r ltst_month_tidy` {.toc-ignore}
 
@@ -584,7 +582,7 @@ presentation_monthly %>%
 
 ```
 
-In June 2022 Utrogestan 100mg capsules had the most prescribed items at 65,400 totals items. Utrogestan 100mg capsules have seen an upward trend in the number of items prescribed since April 2015 when 832 items were prescribed. 
+In June 2022 Utrogestan 100mg capsules had the most prescribed items at 65,400 totals items.
 
 Source: [Financial Year Summary Tables - Presentations table](https://nhsbsa-opendata.s3.eu-west-2.amazonaws.com/hrt/hrt_financial_year_2022_2023_YTD_June_2022_v001.xlsx)
 
@@ -638,7 +636,7 @@ Source: [Financial Year Summary Tables - ICB table](https://nhsbsa-opendata.s3.e
 
 The figures in Figure 6 have been calculated by joining the [Office for National Statistics (ONS) Mid-2020 Population Estimates for 2021 Clinical Commissioning Groups in England](https://www.ons.gov.uk/file?uri=%2fpeoplepopulationandcommunity%2fpopulationandmigration%2fpopulationestimates%2fdatasets%2fclinicalcommissioninggroupmidyearpopulationestimates%2fmid2020sape23dt6a/sape23dt6amid2020ccg2021estimatesunformatted.xlsx) to our data to obtain the estimated population of each ICB.
 
-In 2021/22 NHS North East London Integrated Care Board was the ICB with the lowest estimated number of identified patients who received at least one HRT item per 1,000 residents. In 2021/22 the five ICBs under the London NHS Region were all in the lowest ten ICBs in terms of identified patients per 1,000 population who received HRT prescribing. 
+In 2021/22 NHS North East London Integrated Care Board was the ICB with the lowest estimated number of identified patients who received at least one HRT item per 1,000 residents with an estimated 17 patients per 1,000 population. 
 
 NHS Dorset Integrated Care Board was the ICB with the highest estimated number of identified patients who received at least one HRT item per 1,000 residents in 2021/22 with an estimated 50 patients per 1,000 population.
 
@@ -834,7 +832,7 @@ group_chart_hc(
   marker = FALSE,
   dlOn = FALSE,
   xLab = "Financial year",
-  yLab = "%",
+  yLab = "Proportion (%)",
   title = ""
 ) %>% 
   hc_tooltip(enabled = TRUE,
@@ -940,7 +938,7 @@ The menopause is a biological stage in a woman's life that occurs when she stops
 
 As well as a change in their menstrual cycle women may experience a variety of symptoms associated with menopause such as hot flushes and sweats, low mood, vaginal dryness, low sexual desire, and others.
 
-Most women ([8 out of 10](https://www.menopauseandme.co.uk/en-gb/menopause-and-me/stages-and-symptoms-of-menopause/menopause)) experience some symptoms, typically lasting about 4 years after the last period, but continuing for up to 12 years in about 10% of women. Prolonged lack of the hormone oestrogen affects the bones and cardiovascular system, and postmenopausal women are at increased risk of a number of long-term conditions, such as osteoporosis.
+Most women will experience some symptoms, symptoms can last for months or years, and can change with time. Prolonged lack of the hormone oestrogen affects the bones and cardiovascular system, and postmenopausal women are at increased risk of a number of long-term conditions, such as osteoporosis.
 
 HRT, which replaces the hormones that are at low levels, is the main medicine treatment for menopause and perimenopause symptoms. More information on the menopause is available on the [NHS website](https://www.nhs.uk/conditions/menopause/). 
 
@@ -974,15 +972,11 @@ Gina 10 microgram vaginal tablets are a proprietary equivalent of Estradiol 10 m
 
 ### 3.4. Shortages {.toc-ignore}
 
-[The Royal College of Obstetricians and Gynaecologists (RCOG)](https://www.rcog.org.uk/for-the-public/menopause-and-later-life/), the [British Menopause Society (BMS)](https://thebms.org.uk/) and the [Faculty of Sexual and Reproductive Healthcare (FSRH)](https://www.fsrh.org/home/) issued a [joint statement](https://patient.info/news-and-features/why-is-there-an-hrt-shortage-in-the-uk?msclkid=38fdee8ac73111ec93f0238731829617) in August 2019 highlighting concerns that some women across the UK were unable to obtain their prescriptions due to shortages of HRT products. A failure to deal with shortages, coupled with the impact of COVID-related global supply problems means that many women are extremely concerned about not being able to get access to this vital medication.
+There have been concerns that some women across the UK were unable to obtain their prescriptions due to shortages of HRT products. This coupled with the impact of COVID-related global supply problems means that many women are extremely concerned about not being able to get access to this vital medication. Action has been taken and has been successful, albeit not immediate, in addressing these shortages.
 
-Serious Shortage Protocols (SSPs) were subsequently issued for three HRT products: 
+The Department of Health and Social Care (DHSC) has worked closely with suppliers and other stakeholders, to maintain overall HRT supply to patients across the UK. This has included holding roundtables with suppliers, wholesalers, and community pharmacists to discuss the challenges they are facing and what needs to be done to address them in the short- and longer-term; working with suppliers to expedite resupply dates of the disrupted HRT products to resolve issues as soon as possible and to help fill supply gaps and prevent future shortages; and working closely with the NHS Business Service Authority to secure access to HRT dispensing data in order to improve understanding of supply, demand and what is driving shortages and Serious Shortage Protocols (SSPs) have been issued for some HRT medicines.
 
-* Oestragel
-* Ovestin Cream 
-* Premique Low Dose 
-
-All were [limited to three months dispensing](https://www.gov.uk/government/news/three-month-limit-for-three-hrt-products-to-ensure-continued-access) in response to supply issues. Patients given a prescription covering longer than this three month period will only have to pay one prescription charge. These SSPs cover a period from 29 Apr 2022 to 29 Jul 2022, and are in addition to [other HRT products under SSPs](https://www.nhsbsa.nhs.uk/pharmacies-gp-practices-and-appliance-contractors/serious-shortage-protocols-ssps).
+While the supply of HRT is improving, there is still some way to go. The Government will continue to build on the improvements in the HRT supply position tenure, including through taking forward the HRT Supply Taskforce recommendations, which the Department will ensure are implemented in full.  
 
 ## 4. About these statistics
 

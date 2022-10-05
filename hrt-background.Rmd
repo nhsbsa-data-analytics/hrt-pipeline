@@ -49,11 +49,7 @@ knitr::opts_chunk$set(echo = FALSE,
 
 Millions of women go through the menopause every year, many women experience some symptoms, such as vaginal dryness, low mood, anxiety, hot flushes and difficulty sleeping. Some these symptoms can be severe and have a negative impact on everyday life.
 
-Most women (8 out of 10 (Source: [Menopause and me](https://www.menopauseandme.co.uk/en-gb/menopause-and-me/stages-and-symptoms-of-menopause/menopause))) experience some symptoms, typically lasting about 4 years after the last period, but continuing for up to 12 years in about 10% of women. Prolonged lack of oestrogen affects the bones and cardiovascular system and postmenopausal women are at increased risk of a number of long-term conditions, such as osteoporosis.
-
-The menopause is a key area of the first government-led [Women's Health Strategy for England](https://www.gov.uk/government/publications/womens-health-strategy-for-england/womens-health-strategy-for-england#menopause), created to tackle the gender health gap. This Official Statistics publication has been released to support the work being undertaken by the UK Menopause Taskforce, the NHS Menopause Pathway Improvement Programme, and to help address HRT supply chain issues and shortages.
-
-The UK Menopause Taskforce is tackling issues surrounding the menopause including increasing access to treatment, and will try to end the taboos and stigmas that still surround conversations about the menopause, including in the workplace.
+Most women will experience some symptoms, symptoms can last for months or years, and can change with time. Prolonged lack of the hormone oestrogen affects the bones and cardiovascular system, and postmenopausal women are at increased risk of a number of long-term conditions, such as osteoporosis.
 
 This publication shows the volumes of prescription items and unique patients for a subset of drugs that have been classified as being used primarily for the treatment of menopause and perimenopause symptoms. These drugs are described by the British National Formulary (BNF) paragraphs:
 
@@ -149,7 +145,7 @@ This is the first publication of its type to look specifically into the prescrib
 
 ## 3.2. Limitations {.toc-ignore}
 
-These statistics exclude prescriptions that were issued but not presented for dispensing and prescriptions that were not submitted to the NHSBSA for processing and reimbursement. Prescriptions issued and dispensed in prisons, hospitals and private prescriptions are also excluded.
+These statistics exclude prescriptions that were issued but not presented for dispensing and prescriptions that were not submitted to the NHSBSA for processing and reimbursement. Prescriptions issued and dispensed in prisons, hospitals and private prescriptions are also excluded. The statistics do not include prescriptions that were issued but not presented for dispensing or where there has been an unmet demand for treatment.
 
 Pharmacists in the UK can now dispense the hormone replacement therapy (HRT) drug Gina 10 microgram vaginal tablets without a prescription. As Gina 10 microgram vaginal tablets are sold over the counter, the NHSBSA does not hold any data on volumes, costs or patient counts for the product.
 
