@@ -173,7 +173,7 @@ Information around the Women’s Health Strategy for England is also available [
 
 The [NHSBSA Open Data Portal](https://opendata.nhsbsa.net/) is the platform where we host our open data products, including the presentation level data tables released as part of these statistics.
 
-Items prescribed for Hormone Replacement Therapy are also available to view at presentation level through our annual [Prescription Cost Analysis (PCA) publication](https://www.nhsbsa.nhs.uk/statistical-collections/prescription-cost-analysis-england), which takes a dispensing view and covers all items prescribed throughout the UK but dispensed in the community in England only. The figures in the PCA publication are not directly comparable to this publication as the HRT publication is based around medicines prescribed in England wheras the PCA publication focuses on medicines dispended in England.
+Items prescribed for Hormone Replacement Therapy are also available to view at presentation level through our annual [Prescription Cost Analysis (PCA) publication](https://www.nhsbsa.nhs.uk/statistical-collections/prescription-cost-analysis-england), which takes a dispensing view and covers all items prescribed throughout the UK but dispensed in the community in England only. The figures in the PCA publication are not directly comparable to this publication as the HRT publication is based around medicines prescribed in England whereas the PCA publication focuses on medicines dispensed in England.
 
 ### 5.3 Code of Practice for Statistics {.toc-ignore}
 
@@ -215,7 +215,7 @@ We will be gathering feedback from users of these statistics on an on-going basi
 
 These statistics are derived from data collected during processing activities carried out by the NHSBSA to reimburse dispensing contractors for providing services to NHS patients. Prescriptions are scanned and subject to rigorous automatic and manual validation processes to ensure accurate payments are made to dispensing contractors. Where electronic prescriptions are used the scope for manual intervention and input into data is reduced dramatically.
 
-The figures used are collected as an essential part of the process of reimbursing dispensing contractors (mainly pharmacists and dispensing doctors) for medicines supplied. All prescriptions which are dispensed in England need to be submitted to the NHSBSA if the dispenser is to be reimbursed, and so coverage should be complete. Due to the manual processes involved in the processing of prescriptions there may be random inaccuracies in capturing prescription information which are then reflected in the data. NHS Prescription Services, a division of NHSBSA, internally quality assures the data that is captured from prescriptions to a 99.70% level via a statistically valid random sample of 50,000 items that are reprocessed monthly. The latest reported [Prescription Processing Information Accuracy](https://www.nhsbsa.nhs.uk/pharmacies-gp-practices-and-appliance-contractors/payments-and-pricing/how-we-process-prescriptions) from NHS Prescriptions services, which covers the 12 month period March 2021 to February 2022 is 99.92%.
+The figures used are collected as an essential part of the process of reimbursing dispensing contractors (mainly pharmacists and dispensing doctors) for medicines supplied. All prescriptions which are dispensed in England need to be submitted to the NHSBSA if the dispenser is to be reimbursed, and so coverage should be complete. Due to the manual processes involved in the processing of prescriptions there may be random inaccuracies in capturing prescription information which are then reflected in the data. NHS Prescription Services, a division of NHSBSA, internally quality assures the data that is captured from prescriptions to a 99.70% level via a statistically valid random sample of 50,000 items that are reprocessed monthly. The latest reported [Prescription Processing Information Accuracy](https://www.nhsbsa.nhs.uk/pharmacies-gp-practices-and-appliance-contractors/payments-and-pricing/how-we-process-prescriptions) from NHS Prescriptions services, which covers the 12 month period March 2021 to February 2022, is 99.92%.
 
 #### 6.2.2. Reliability {.toc-ignore}
 
@@ -225,7 +225,7 @@ As there is a manual data entry element to this system then inevitably some smal
 
 ***Timeliness refers to the time gap between publication and the reference period. Punctuality refers to the gap between planned and actual publication dates***
 
-The Hormone Replacement Therapy publication is an ad hoc publication. The date of release for the publication will be announced in advance in line with our statistical release calendar. The publication uses year-to-date figures for the 2022/23 financial year. This allows the inclusion of the most recent data available and reduces lag between the time the data is a avaiable and the publication date.
+The Hormone Replacement Therapy publication is an ad hoc publication. The date of release for the publication will be announced in advance in line with our statistical release calendar. The publication uses year-to-date figures for the 2022/23 financial year. This allows the inclusion of the most recent data available and reduces lag between the time the data is available and the publication date.
 
 ### 6.4. Accessibility and clarity {.toc-ignore}
 
@@ -243,7 +243,7 @@ A glossary of terms is included in this document.
 
 ***Coherence is the degree to which data have been derived from different sources or methods but refer to the same topic or similar. Comparability is the degree to which data can be compared over time and domain***
 
-The Hormone Replacement Therapy publication are the only publicly accessible statistics available on the prescribing of drugs used in the treatment of menopause and perimenopause symptoms that have been dispensed in the community. The statistics are all derived from the same administrative data source with the same methodology applied to all data points.
+The Hormone Replacement Therapy publication is the only publicly accessible statistics available on the prescribing of drugs used in the treatment of menopause and perimenopause symptoms that have been dispensed in the community. The statistics are all derived from the same administrative data source with the same methodology applied to all data points.
 
 The figures released in these statistics relating to item counts and total costs can be recreated from the [English Prescribing Dataset (EPD)](https://opendata.nhsbsa.net/dataset/english-prescribing-data-epd) administrative data feed, available from the NHSBSA Open Data Portal (ODP). NHSBSA Information Services provide this data feed, and this feed is not an official statistic.
 
