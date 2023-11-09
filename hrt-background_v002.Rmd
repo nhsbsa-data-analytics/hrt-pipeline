@@ -41,24 +41,23 @@ knitr::opts_chunk$set(echo = FALSE,
 
 # Background Information and Methodology {.toc-ignore}
 
-## October 2022 {.toc-ignore}
+## October 2023 {.toc-ignore}
 
 ---
 
 ## 1. Background information
 
-Millions of women go through the menopause every year, many women experience some symptoms, such as vaginal dryness, low mood, anxiety, hot flushes and difficulty sleeping. Some these symptoms can be severe and have a negative impact on everyday life.
+Menopause is when your periods stop due to lower hormone levels. It usually affects women between the ages of 45 and 55, but it can happen earlier.
+It affects anyone who has periods. Many women experience some symptoms, such as vaginal dryness, low mood, anxiety, hot flushes and difficulty sleeping. Some of these symptoms can be severe and have a negative impact on everyday life.
 
-Most women will experience some symptoms, symptoms can last for months or years, and can change with time. Prolonged lack of the hormone oestrogen affects the bones and cardiovascular system, and postmenopausal women are at increased risk of a number of long-term conditions, such as osteoporosis.
+Symptoms can last for months or years, and can change with time. Prolonged lack of the hormone oestrogen affects the bones and cardiovascular system, and postmenopausal women are at increased risk of a number of long-term conditions, such as osteoporosis.
 
-This publication shows the volumes of prescription items and unique patients for a subset of drugs that have been classified as being used primarily for the treatment of menopause and perimenopause symptoms. These drugs are described by the British National Formulary (BNF) paragraphs:
+This publication shows the volumes of prescription items and unique patients for a subset of drugs that are covered by the HRT Prescription Pre-payment Certificate (PPC). The HRT PPC exempts patients from charges for drugs licensed to treat menopause in the UK. You can find the most up to date list of drugs included in the HRT PPC on [the NHSBSA website.](https://www.nhsbsa.nhs.uk/help-nhs-prescription-costs/nhs-hormone-replacement-therapy-prescription-prepayment-certificate-hrt-ppc)
 
-* BNF paragraph 6.4.1 – Female sex hormones and their modulators
-* BNF paragraph 7.2.1 – Preparations for vaginal and vulval changes
-
-These paragraphs are held in the same structure of the BNF prior to the release of version 70.
+A list of all drugs that are included in this release, including any that are no longer listed due to classification changes or discontinuation can be found in [Appendix A](`r config$appendix_link`).
 
 This publication can have a wide range of uses including informing government or local NHS policy, and allowing public scrutiny of national and regional prescribing habits.
+
 Prescription data is a long-standing administrative source of data that has been used by commissioners, providers, government, academia, industry, and media to inform local and national policy, in academic research, to monitor medicine uptake, and allow public scrutiny of prescribing habits. It is collected by the NHS Business Services Authority (NHSBSA) for the operational purpose of reimbursing and remunerating dispensing contractors for the costs of supplying drugs and devices, along with essential and advanced services, to NHS patients. The data that forms the basis of these statistics is collected as a by-product of this process.
 
 ### 1.1. How prescription data is collected  {.toc-ignore}
@@ -91,7 +90,7 @@ The Personal Demographic Service (PDS) is a part of NHS Digital that holds infor
 
 Each month when data is loaded into the NHSBSA Data & Insight Data Warehouse, NHS numbers that have been captured are sent to PDS to verify them. That list includes all NHS numbers that were scanned in that month and previously verified NHS numbers that have a birthday in that month. Details held by PDS are returned to the NHSBSA, including updates to previously verified NHS numbers.
 
-As this process takes time new and updated verified data from PDS is loaded into the NHSBSA Data & Insight Data Warehouse the month after the NHS numbers were first scanned. For example, a new NHS number received in January and subsequently verified would be classed as ‘not verified’ in January and ‘verified’ in February. In February the additional information about that patient such as gender and age would become available.
+As this process takes time, new and updated verified data from PDS is loaded into the NHSBSA Data & Insight Data Warehouse the month after the NHS numbers were first scanned. For example, a new NHS number received in January and subsequently verified would be classed as ‘not verified’ in January and ‘verified’ in February. In February the additional information about that patient such as gender and age would become available.
 
 ## 2. Methodology
 
@@ -99,7 +98,7 @@ As this process takes time new and updated verified data from PDS is loaded into
 
 #### 2.1.1. Drug classification {.toc-ignore}
 
-In these statistics the two BNF paragraphs were chosen as they include the majority of the medications which are prescribed for the treatment for menopause and perimenopause symptoms. There is not one singular definition of HRT medications and many other products may be used in the treatment of the menopause that are not included in these statistics.
+In these statistics we have included drugs licensed to treat menopause in the UK and covered by the HRT PPC. There is no singular definition of HRT medications. Many other products may be used in the treatment of the menopause that are not included in these statistics.
 
 ### 2.2 Patient details {.toc-ignore}
 
@@ -111,7 +110,7 @@ There are some inconsistencies within the PDS data that is held within the NHSBS
 
 #### 2.2.2. Patient deprivation {.toc-ignore}
 
-[The English Indices of Deprivation 2019](https://www.gov.uk/government/statistics/english-indices-of-deprivation-2019) have been used in these statistics as a measure of the level of deprivation of the areas in which prescriptions have been issued. In particular, that headline Index of Multiple Deprivation (IMD) is included. IMD data has been joined to the lower-layer super output area (LSOA) 2011. This combined dataset has then been joined to prescription data using the LSOA of the patient that received the item. The LSOAs are analysed in groups, or ‘quintiles’ each representing 20% of the areas from the deprivation scores, from 1 as the most deprived to 5 as the least deprived. The measure of deprivation reported in these statistics is the IMD quintile of the area in which the patient lives.
+[The English Indices of Deprivation 2019](https://www.gov.uk/government/statistics/english-indices-of-deprivation-2019) have been used in these statistics as a measure of the level of deprivation of the areas in which prescriptions have been issued. In particular, the headline Index of Multiple Deprivation (IMD) is included. IMD data has been joined to the lower-layer super output area (LSOA) 2011. This combined dataset has then been joined to prescription data using the LSOA of the patient that received the item. The LSOAs are analysed in groups, or ‘quintiles’ each representing 20% of the areas from the deprivation scores, from 1 as the most deprived to 5 as the least deprived. The measure of deprivation reported in these statistics is the IMD quintile of the area in which the patient lives.
 
 Where a patient’s LSOA has not been able to be matched or was not available, the records are reported as ‘unknown’ IMD decile.
 
@@ -121,15 +120,17 @@ LSOA is only captured for prescriptions via EPS. For those patients who received
 
 The national population figures used in this publication are taken from the [ONS population estimates](https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/populationestimates). 
 
-The Integrated Care Board (ICB) level population figures have been taken from [Office for National Statistics (ONS) Mid-2020 Population Estimates for 2021 Clinical Commissioning Groups in England](https://www.ons.gov.uk/file?uri=%2fpeoplepopulationandcommunity%2fpopulationandmigration%2fpopulationestimates%2fdatasets%2fclinicalcommissioninggroupmidyearpopulationestimates%2fmid2020sape23dt6a/sape23dt6amid2020ccg2021estimatesunformatted.xlsx). This data was then joined to ours to obtain a population by ICB. 
+The Integrated Care Board (ICB) level population figures have been calculated by joining the [Office for National Statistics (ONS) Mid-2020 Population Estimates for Lower Layer Super Output Areas in England](https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/populationestimates/datasets/lowersuperoutputareamidyearpopulationestimates/mid2020sape23dt2/sape23dt2mid2020lsoasyoaestimatesunformatted.xlsx) to our data to obtain the estimated population of each ICB. 
 
-These are both used to calculate the number of patients per 1,000 of the population by dividing the estimated number of patients per financial year by the ONS population of the region and then multiplying by 1,000.
+These are both used to calculate the number of patients per 1,000 of the population. The estimated number of patients per financial year is divided by the ONS population of the region, and then multiplied by 1000. 
 
 ### 2.4. Exemption categories {.toc-ignore}
 
 Some patients are automatically entitled to free NHS prescriptions. Others can apply for certificates that entitle them to free NHS prescriptions. The exemption category of an item is self declared by the patient from a range of options. 
 
-The use of a Prescription Pre-Payment Certificate (PPC) is one of the exemption categories which patient can declare. However, this requires an up front payment by the patient.
+The use of a Prescription Pre-Payment Certificate (PPC) is one of the exemption categories which patients can declare. However, this requires an up front payment by the patient.
+
+The HRT PPC which only covers drugs licensed to treat menopause in the UK was introduced in April 2023.
 
 ### 2.5. Changes to BNF classifications {.toc-ignore}
 
@@ -137,13 +138,13 @@ These statistics use the BNF therapeutic classifications defined in the British 
 
 ## 3. Strengths and limitations
 
-## 3.1. Strengths {.toc-ignore}
+### 3.1. Strengths {.toc-ignore}
 
 The main strength of these statistics is the completeness of the dataset and accuracy of information captured during processing activities carried out by the NHSBSA. This dataset covers all prescribing in England that has subsequently been dispensed in the community in England, Scotland, Wales, and the Channel Islands, with consistency in the way data has been captured across the whole dataset. All the data has come from the same administrative source. This administrative data is required to be as accurate as possible as it is used for paying dispensing contractors for services provided to NHS patients.
 
-This is the first publication of its type to look specifically into the prescribing of HRT in England. Although the national level figures of items and costs are available via the [NHSBSA Open Data Portal](https://opendata.nhsbsa.net/) this is the first time information on patient demographics will be made available explicitly for HRT medications only.
+This is the first publication of its type to look specifically into the prescribing of HRT in England. Although the national level figures of items and costs are available via the [NHSBSA Open Data Portal](https://opendata.nhsbsa.net/), this is the first time information on patient demographics will be made available explicitly for HRT medications only.
 
-## 3.2. Limitations {.toc-ignore}
+### 3.2. Limitations {.toc-ignore}
 
 These statistics exclude prescriptions that were issued but not presented for dispensing and prescriptions that were not submitted to the NHSBSA for processing and reimbursement. Prescriptions issued and dispensed in prisons, hospitals and private prescriptions are also excluded. The statistics do not include prescriptions that were issued but not presented for dispensing or where there has been an unmet demand for treatment.
 
@@ -153,9 +154,21 @@ Additional patient information received from PDS for matched NHS numbers is not 
 
 The NHSBSA do not capture the clinical indication of a prescription and therefore do not know the reason why a prescription was issued, or the condition it is intended to treat. Many drugs have multiple uses, and although classified in the BNF by their primary therapeutic use may be issued to treat a condition outside of this. Due to this, these statistics may not give accurate estimations of prescribing to treat specific conditions. 
 
-The lower-layer super output areas (LSOA) of the patient who received the medication is only captured for prescriptions via Electronic Prescription Service (EPS). For those patients who received both paper prescribing and EPS we have imputed their LSOA from the latest available data. For patients who only received exclusively paper prescribing there will be no LSOA available and their IMD quitile will be reported as 'Unknown'.
+The lower-layer super output areas (LSOA) of the patient who received the medication is only captured for prescriptions via Electronic Prescription Service (EPS). For those patients who received both paper prescribing and EPS we have imputed their LSOA from the latest available data. For patients who only received exclusively paper prescribing there will be no LSOA available and their IMD quintile will be reported as 'Unknown'.
 
-The identification of a prescription as 'chargeable' or 'exempt' is as robust as it can be in terms of the data we hold. In reality many possible 'reasons' may apply to a specific prescription but only one can be recorded in our data. This is the case even if more than one was indicated by marks on the prescription form. In a large number of cases the NHSBSA does not record a specific exemption category. A common and increasing reason for our records stating ‘No Declaration/Declaration Not Specific’ is the increasing use of the Real Time Exemption Checking service (RTEC). This service confirms to the dispenser that a person was exempt from the charge, but no record of the reason found by RTEC is passed on to NHSBSA prescription processing systems or data warehouse. In many cases the mark(s) on the rear of the form intended to indicate one, or more, exemption reason(s) is not clear and can be misinterpreted by the NHSBSA scanners. NHSBSA performs no validation or verification of which exemption category has been marked or recorded during scanning.
+Exemption category data is not included in these statistics due to a number of known data quality issues.
+
+There are many possible exemption categories that may apply to a specific prescription but only one can be recorded in our data. This is the case even if more than one was indicated by marks on the prescription form.
+
+In a large number of cases the NHSBSA does not record a specific exemption category. A common and increasing reason for our records stating ‘No Declaration/Declaration Not Specific’ is the increasing use of the Real Time Exemption Checking service (RTEC). This service confirms to the dispenser that a person was exempt from the charge, but no record of the reason found by RTEC is passed on to NHSBSA prescription processing systems or data warehouse.
+
+In many cases the mark(s) on the rear of the form intended to indicate one, or more, exemption reason(s) is not clear and can be misinterpreted by the NHSBSA scanners.
+
+NHSBSA performs no validation or verification of which exemption category has been marked or recorded during scanning.
+
+
+
+For this reason exemption category data is released alongside this publication to complement the HRT statistics, but is management information only and is not an official statistic. 
 
 ## 4. Revisions
 
@@ -201,21 +214,21 @@ These principles guide us and are complimented by the UKSA’s regulatory standa
 
 ### 6.1. Relevance {.toc-ignore}
 
-***This dimension covers the degree to which the product meets user need in both coverage and content***
+***This dimension covers the degree to which the product meets user need in both coverage and content.***
 
-The Hormone Replacement Therapy publication, released as an ad hoc publication, summarises the number of items prescribed for drugs used in the treatment of menopause and perimenopause symptoms. The statistics also give patient breakdowns including by 5-year age band, and IMD decile. These statistics cover from financial year 2015/16 onwards, allowing the analysis of long-term trends in prescribing. We believe that they can used to inform policy decisions at a national and local level, by the public to scrutinise prescribing habits, and by academia and applied health researchers for matters relating to public health. The NHSBSA also routinely receives Freedom of Information requests and parliamentary questions about this subject matter. 
+The Hormone Replacement Therapy publication, is an an official statistic in development, summarises the number of items prescribed for drugs used in the treatment of menopause and perimenopause symptoms. The statistics also give patient breakdowns including by 5-year age band, and IMD decile. These statistics cover from financial year 2015/16 onwards, allowing the analysis of long-term trends in prescribing. We believe that they can used to inform policy decisions at a national and local level, by the public to scrutinise prescribing habits, and by academia and applied health researchers for matters relating to public health. The NHSBSA also routinely receives Freedom of Information requests and parliamentary questions about this subject matter. 
 
 We will be gathering feedback from users of these statistics on an on-going basis to help shape them and ensure that they remain relevant and of use.
 
 ### 6.2 Accuracy and Reliability {.toc-ignore}
 
-***This dimension covers the statistics proximity between an estimate and the unknown true value***
+***This dimension covers the statistics proximity between an estimate and the unknown true value.***
 
 #### 6.2.1. Accuracy  {.toc-ignore}
 
 These statistics are derived from data collected during processing activities carried out by the NHSBSA to reimburse dispensing contractors for providing services to NHS patients. Prescriptions are scanned and subject to rigorous automatic and manual validation processes to ensure accurate payments are made to dispensing contractors. Where electronic prescriptions are used the scope for manual intervention and input into data is reduced dramatically.
 
-The figures used are collected as an essential part of the process of reimbursing dispensing contractors (mainly pharmacists and dispensing doctors) for medicines supplied. All prescriptions which are dispensed in England need to be submitted to the NHSBSA if the dispenser is to be reimbursed, and so coverage should be complete. Due to the manual processes involved in the processing of prescriptions there may be random inaccuracies in capturing prescription information which are then reflected in the data. NHS Prescription Services, a division of NHSBSA, internally quality assures the data that is captured from prescriptions to a 99.70% level via a statistically valid random sample of 50,000 items that are reprocessed monthly. The latest reported [Prescription Processing Information Accuracy](https://www.nhsbsa.nhs.uk/pharmacies-gp-practices-and-appliance-contractors/payments-and-pricing/how-we-process-prescriptions) from NHS Prescriptions services, which covers the 12 month period March 2021 to February 2022, is 99.92%.
+The figures used are collected as an essential part of the process of reimbursing dispensing contractors (mainly pharmacists and dispensing doctors) for medicines supplied. All prescriptions which are dispensed in England need to be submitted to the NHSBSA if the dispenser is to be reimbursed, and so coverage should be complete. Due to the manual processes involved in the processing of prescriptions there may be random inaccuracies in capturing prescription information which are then reflected in the data. NHS Prescription Services, a division of NHSBSA, internally quality assures the data that is captured from prescriptions to a 99.85% level via a statistically valid random sample of 50,000 items that are reprocessed monthly. The latest reported [Prescription Processing Information Accuracy](https://www.nhsbsa.nhs.uk/pharmacies-gp-practices-and-appliance-contractors/payments-and-pricing/how-we-process-prescriptions) from NHS Prescriptions services, which covers the 12 month period July 2022 to June 2023, is 99.91%.
 
 #### 6.2.2. Reliability {.toc-ignore}
 
@@ -223,13 +236,13 @@ As there is a manual data entry element to this system then inevitably some smal
 
 ### 6.3. Timeliness and punctuality {.toc-ignore}
 
-***Timeliness refers to the time gap between publication and the reference period. Punctuality refers to the gap between planned and actual publication dates***
+***Timeliness refers to the time gap between publication and the reference period. Punctuality refers to the gap between planned and actual publication date.s***
 
-The Hormone Replacement Therapy publication is an ad hoc publication. The date of release for the publication will be announced in advance in line with our statistical release calendar. The publication uses year-to-date figures for the 2022/23 financial year. This allows the inclusion of the most recent data available and reduces lag between the time the data is available and the publication date.
+The Hormone Replacement Therapy publication is an official statistic in development. The date of release for the publication will be announced in advance in line with our statistical release calendar. The publication uses year-to-date figures for the 2023/24 financial year. This allows the inclusion of the most recent data available and reduces lag between the time the data is available and the publication date.
 
 ### 6.4. Accessibility and clarity {.toc-ignore}
 
-***Accessibility is the ease with which users can access the data, also reflecting the format in which the data are available and the availability of supporting information. Clarity refers to the quality and sufficiency of the metadata, illustrations, and accompanying advice***
+***Accessibility is the ease with which users can access the data, also reflecting the format in which the data are available and the availability of supporting information. Clarity refers to the quality and sufficiency of the metadata, illustrations, and accompanying advice.***
 
 The statistical summary narrative for this publication is presented as an HTML webpage, with supporting documentation also released in HTML format. Summary data and additional analysis is presented in tables in Excel files.
 
@@ -241,7 +254,7 @@ A glossary of terms is included in this document.
 
 ### 6.5. Coherence and comparability {.toc-ignore}
 
-***Coherence is the degree to which data have been derived from different sources or methods but refer to the same topic or similar. Comparability is the degree to which data can be compared over time and domain***
+***Coherence is the degree to which data have been derived from different sources or methods but refer to the same topic or similar. Comparability is the degree to which data can be compared over time and domain.***
 
 The Hormone Replacement Therapy publication is the only publicly accessible statistics available on the prescribing of drugs used in the treatment of menopause and perimenopause symptoms that have been dispensed in the community. The statistics are all derived from the same administrative data source with the same methodology applied to all data points.
 
@@ -257,21 +270,20 @@ Changes to the figures over time should be interpreted in the wider context of t
 
 **Trade-offs between output quality components**
 
-***This dimension describes the extent to which different aspects of quality are balanced against each other***
+***This dimension describes the extent to which different aspects of quality are balanced against each other.***
 
 The main trade-off in this publication is the balance between timeliness and data quality. Sufficient time is allowed from the data being made available to allow for the information to be produced and quality assured. 
 
-We are releasing this ad hoc Official Statistic to allow users to begin analysing them, however we intend to introduce further data cleansing in the future that will improve the quality and accuracy of these statistics. This will be introduced once the data cleansing can be done in a timely manner and will not impact the release of the publication. The impact expected to be a small amount of reclassification – that will not impact most of the main conclusions or user’s analysis.
 
 **Assessment of user needs and perceptions**
 
-***This dimension covers the processes for finding out about users and uses and their views on the statistical products***
+***This dimension covers the processes for finding out about users and uses and their views on the statistical products.***
 
 Alongside the release of these statistics the NHSBSA will also be releasing a continuous feedback survey, allowing users to quickly tell us their thoughts on the content and utility of these statistics. This survey can be found in the feedback and contact us section at the end of this document. This feedback, along with feedback gathered from other routes such as direct contact, will be used to shape the content and style of future Hormone Replacement Therapy publications and other statistical products from the NHSBSA.
 
 **Performance, cost and respondent burden**
 
-***This dimension describes the effectiveness, efficiency and economy of the statistical output***
+***This dimension describes the effectiveness, efficiency and economy of the statistical output.***
 
 There is no respondent burden for Hormone Replacement Therapy data, as all data are extracted from existing NHSBSA information and transactional systems.
 
@@ -279,13 +291,13 @@ This release has been developed with a reproducible analytical pipeline (RAP) in
 
 **Confidentiality, transparency and security**
 
-***The procedures and policy used to ensure sound confidentiality, security and transparent practices***
+***The procedures and policy used to ensure sound confidentiality, security and transparent practices.***
 
 Trustworthy statistics and the data behind them are an important part of well informed decision making, and are vital to support improvement across the wider health and social care system. It is accepted, however, that where statistics provide information on small numbers of individuals, the NHS Business Services Authority have a duty under data protection law to avoid directly or indirectly revealing any personal details. In addition, NHSBSA staff members are required to adhere to relevant NHS data confidentiality guidelines.
 
 The NHSBSA has robust confidentiality and security policies that were adhered to during the production of these statistics. More information on these policies and how we follow them can be found in our [Confidentiality and Access Statement](https://www.nhsbsa.nhs.uk/sites/default/files/2021-05/Confidentiality_and_Access_Statement_v002.pdf).
 
-A risk assessment around potential disclosure of personal identifiable information through these statistics was carried out during their production. In line with the NHSBSA’s Statistical Disclosure Control Policy, patient counts less than five, or item and cost information where a patient count of less than five can be inferred, have been redacted. 
+A risk assessment around potential disclosure of personal identifiable information through these statistics was carried out during their production. In line with the NHSBSA’s Statistical Disclosure Control Policy, patient counts less than five, or item and cost information where a patient count of less than five can be inferred, could be redacted. 
 
 **Quality assurance of administrative data**
 
@@ -343,8 +355,7 @@ A presentation is the name given to the specific type, strength, and pharmaceuti
 ### Total Quantity {.toc-ignore}
 
 This is the total quantity of a drug or appliance that was prescribed. This is
-calculated by multiplying Quantity by Items. For example, if 2 items of Amoxicillin
-500mg capsules with a quantity of 28 were prescribed, total quantity will be 56.
+calculated by multiplying Quantity by Items. For example, if 2 items of Estradiol 2mg tablets with a quantity of 84 were prescribed, total quantity will be 168.
 
 ## 8. Feedback and contact us
 
@@ -352,13 +363,13 @@ Feedback is important to us; we welcome any questions and comments relating to t
 
 Please quote ‘HRT – Background and Methodology Note’ in the subject title of any correspondence.
 
-You can complete a [short survey about this publication](https://online1.snapsurveys.com/Official_Statistics_Feedback) to help us improve the Official Statistics that we produce. All responses will remain anonymous and individuals will not be identifiable in any report that we produce.
+You can complete a [short survey about this publication](`r config$stats_survey_link`)  to help us improve the Official Statistics that we produce. All responses will remain anonymous and individuals will not be identifiable in any report that we produce.
 
 You can view our [privacy policy](https://www.nhsbsa.nhs.uk/our-policies/privacy) on our website to see how your data is used and stored.
 
 You can contact us by:
 
-**Email:** nhsbsa.statistics@nhs.net
+**Email:** statistics@nhsbsa.nhs.uk
 
 **You can also write to us at:**
 
