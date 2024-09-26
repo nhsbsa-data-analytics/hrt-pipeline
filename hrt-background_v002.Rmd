@@ -2,46 +2,76 @@
 title: "Hormone replacement therapy (HRT) - England"
 always_allow_html: true
 output:
-  word_document:
-    toc: yes
-    toc_depth: '3'
   html_document:
     anchor_sections: no
-    css: www/style.css
+    css: 
+      - www/style.css
+      - www/nhs-min.css
     toc: yes
     toc_depth: 3
     toc_float:
       collapsed: no
+  word_document:
+    toc: yes
+    toc_depth: '3'
 ---
+  
+<div class = "quartoheader", id = "fixed-header">
+  <header class="nhsuk-header" role="banner">
+    <div class="nhsuk-width-container nhsuk-header__container">
+      <div class="nhsuk-header__logo nhsuk-header__logo--only">
+        <a class="nhsuk-header__link" href="https://www.nhsbsa.nhs.uk/" aria-label="NHSBSA home" target="_blank">
+          <img class="nhsuk-logo" src="www/logo-nhsbsa.svg"" name="NHSBSA logo" alt="NHS Business Services Authority">
+        </a>
+      </div>
+    </div>
+</div>
 
+<!-- JS to handle hiding the header on scroll -->
 <script>
-   $(document).ready(function() {
-    $('#header').prepend('<img src=`r knitr::image_uri("www/bsa_logo.svg")` alt=\"NHSBSA logo\" style=\"position:relative; float: right; top: 0; right: 0; padding: 10px; width: 25%;\">');
-  });
+  document.addEventListener("scroll", function() {
+    var header = document.getElementById("fixed-header");
+    var toc = document.getElementById("TOC");
+    var BackTopButton = document.getElementById("backtop-button");
+    var scrollPosition = window.scrollY || document.documentElement.scrollTop;
+  if(scrollPosition > 88) {
+    header.style.top = "-200px";
+    toc.style.setProperty('margin-top', '24px', 'important');
+    BackTopButton.style.setProperty('visibility', 'visible', 'important');
+  } else
+  {
+    header.style.top = "0";
+    toc.style.setProperty('margin-top', '140px', 'important');
+    BackTopButton.style.setProperty('visibility', 'hidden', 'important');
+  }
+}
+);
 </script>
 
-  <style type="text/css">
+<!-- JS to handle back to top button -->
+<script>
+       function BackTop() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+</script>
 
-  body, td {
-    font-size: 16px;
-    font-family: sans-serif;
-  }
-</style>
+<button onclick="BackTop()" id="backtop-button" style="opacity: 0.7; pointer-events: initial; visibility: visible;"><span aria-hidden="true">▲</span>Back to top</button>
+
   <html lang="en">
-
+  
 ```{r setup, include=FALSE}
 # set code chunk options to disable echo by default
 knitr::opts_chunk$set(echo = FALSE,
                       warning = FALSE,
                       message = FALSE)
-
 ```
 
 <main>
 
 # Background Information and Methodology {.toc-ignore}
 
-## October 2023 {.toc-ignore}
+## October 2024 {.toc-ignore}
 
 ---
 
