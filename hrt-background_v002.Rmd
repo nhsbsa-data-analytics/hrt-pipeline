@@ -82,7 +82,7 @@ It affects anyone who has periods. Many women experience some symptoms, such as 
 
 Symptoms can last for months or years, and can change with time. Prolonged lack of the hormone oestrogen affects the bones and cardiovascular system, and postmenopausal women are at increased risk of a number of long-term conditions, such as osteoporosis.
 
-This publication shows the volumes of prescription items and unique patients for a subset of drugs that are covered by the HRT Prescription Pre-payment Certificate (PPC). The HRT PPC exempts patients from charges for drugs licensed to treat menopause in the UK. You can find the most up to date list of drugs included in the HRT PPC on [the NHSBSA website.](https://www.nhsbsa.nhs.uk/help-nhs-prescription-costs/nhs-hormone-replacement-therapy-prescription-prepayment-certificate-hrt-ppc)
+This publication shows the volumes of prescription items and unique patients for a subset of drugs that are covered by the HRT Prescription Pre-payment Certificate (PPC). The HRT PPC exempts patients from charges for drugs licensed to treat menopause in the UK. You can find the most up to date list of drugs included in the HRT PPC in [Medicines covered by the HRT PPC.](https://www.nhsbsa.nhs.uk/help-nhs-prescription-costs/nhs-hormone-replacement-therapy-prescription-prepayment-certificate-hrt-ppc/medicines-covered-hrt-ppc)
 
 A list of all drugs that are included in this release, including any that are no longer listed due to classification changes or discontinuation can be found in [Appendix A](`r config$appendix_link`).
 
@@ -94,7 +94,7 @@ Prescription data is a long-standing administrative source of data that has been
 
 Data is collected from the submission of prescriptions by dispensing contractors to the NHSBSA. These prescriptions can be issued by GPs and other authorised prescribers such as nurses, dentists, and allied health professionals. Prescriptions that are issued by hospitals can also be dispensed in the community and submitted for reimbursement. Prescriptions that are issued in hospitals and fulfilled by the hospital pharmacy or dispensary are not included in this data.
 
-Prescriptions can be issued as either a paper form or as an electronic message using the Electronic Prescription Service (EPS). EPS prescriptions make up most of prescribing and dispensing activity carried out in England, accounting for 88% of all prescriptions dispensed in England during 2021 (Source – NHSBSA Enterprise Data Warehouse). EPS messages are submitted by the dispensing contractor once the prescription has been fulfilled and issued to the patient. The message is initially sent to the [NHS Spine](https://digital.nhs.uk/services/spine), maintained by NHS Digital, and then sent to the NHSBSA for processing. Paper prescriptions are compiled by the dispensing contractor and sent to the NHSBSA at the end of each month by secure courier. These paper prescriptions are then scanned and transformed into digital images, which are passed through intelligent character recognition (ICR) to extract the relevant data from them. Most paper forms go through ICR without any manual intervention. However, there are cases where operator intervention is required to accurately capture information from the prescription form. This manual intervention can be required for many reasons, such as if a form is handwritten or information is obscured by a pharmacy stamp.
+Prescriptions can be issued as either a paper form or as an electronic message using the Electronic Prescription Service (EPS). EPS prescriptions make up most of prescribing and dispensing activity carried out in England, accounting for 89% of all prescriptions dispensed in England during 2023/2024 (Source – NHSBSA Enterprise Data Warehouse). EPS messages are submitted by the dispensing contractor once the prescription has been fulfilled and issued to the patient. The message is initially sent to the [NHS Spine](https://digital.nhs.uk/services/spine), maintained by NHS Digital, and then sent to the NHSBSA for processing. Paper prescriptions are compiled by the dispensing contractor and sent to the NHSBSA at the end of each month by secure courier. These paper prescriptions are then scanned and transformed into digital images, which are passed through intelligent character recognition (ICR) to extract the relevant data from them. Most paper forms go through ICR without any manual intervention. However, there are cases where operator intervention is required to accurately capture information from the prescription form. This manual intervention can be required for many reasons, such as if a form is handwritten or information is obscured by a pharmacy stamp.
 
 After this processing for the reimbursement and remuneration of dispensing contractors, data is extracted from the NHSBSA transactional systems alongside data from the NHSBSA drug and organisational databases and loaded in to the NHSBSA Enterprise Data Warehouse (EDW). During this extract, load and transform (ELT) process a series of business logic is applied to the data to make it easier to use and more useful than if it were to be kept in its raw form. The EDW is the source used by many of our reporting systems and data extracts, including ePACT2, eDEN, eOPS, the English Prescribing Dataset (EPD), and Official Statistics publications.
 
@@ -144,13 +144,13 @@ There are some inconsistencies within the PDS data that is held within the NHSBS
 
 Where a patient’s LSOA has not been able to be matched or was not available, the records are reported as ‘unknown’ IMD decile.
 
-LSOA is only captured for prescriptions via EPS. For those patients who received both paper prescribing and EPS we have imputed their LSOA from the latest available data. As EPS increased considerably during 2020/21 historical data has much higher rates of patients with a LSOA which has been reported as 'Unknown'.
+LSOA is only captured for prescriptions via EPS. For those patients who received both paper prescribing and EPS we have imputed their LSOA from the latest available data. As EPS increased considerably from 2020/21 onwards, historical data has much higher rates of patients with a LSOA which was reported as 'Unknown'.
 
 ### 2.3. Population figures {.toc-ignore}
 
 The national population figures used in this publication are taken from the [ONS population estimates](https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/populationestimates). 
 
-The Integrated Care Board (ICB) level population figures have been calculated by joining the [Office for National Statistics (ONS) Mid-2020 Population Estimates for Lower Layer Super Output Areas in England](https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/populationestimates/datasets/lowersuperoutputareamidyearpopulationestimates/mid2020sape23dt2/sape23dt2mid2020lsoasyoaestimatesunformatted.xlsx) to our data to obtain the estimated population of each ICB. 
+The Integrated Care Board (ICB) level population figures have been calculated by joining the [Office for National Statistics (ONS) mid-2022 population estimates for health geographies in England](https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/populationestimates/datasets/clinicalcommissioninggroupmidyearpopulationestimates) to our data to obtain the estimated population of each ICB. 
 
 These are both used to calculate the number of patients per 1,000 of the population. The estimated number of patients per financial year is divided by the ONS population of the region, and then multiplied by 1000. 
 
@@ -202,7 +202,7 @@ For this reason exemption category data is released alongside this publication t
 
 ## 4. Revisions
 
-Any revisions that we make to these statistics will be made in line with our [Revisions and Corrections policy](https://www.nhsbsa.nhs.uk/policies-and-procedures). Any significant errors that are identified within these statistics after their publication that would result in the contradiction of conclusions previously drawn from the data will be notified of prominently on our website and any other platforms that host these statistics, corrected as soon as possible, and communicated clearly to users and stakeholders.
+Any revisions that we make to these statistics will be made in line with our Revisions and Corrections policy, which can be downloaded from [NHSBSA Policies and Procedures](https://www.nhsbsa.nhs.uk/policies-and-procedures). Any significant errors that are identified within these statistics after their publication that would result in the contradiction of conclusions previously drawn from the data will be notified of prominently on our website and any other platforms that host these statistics, corrected as soon as possible, and communicated clearly to users and stakeholders.
 
 ## 5. Related statistics, comparability and useful resources
 
@@ -240,7 +240,7 @@ This is an assessment of the quality of these statistics against the European st
 *	Accessibility
 *	Coherence and comparability
 
-These principles guide us and are complimented by the UKSA’s regulatory standard for the Quality Assurance of Administrative Data (QAAD). You can view our QAAD assessment of prescription data on [our website](https://www.nhsbsa.nhs.uk/statistical-collections).
+These principles guide us and are complimented by the UKSA’s regulatory standard for the Quality Assurance of Administrative Data (QAAD). You can download our QAAD assessment of prescription data from the final section on this page of [our webite](https://www.nhsbsa.nhs.uk/statistical-collections).
 
 ### 6.1. Relevance {.toc-ignore}
 
@@ -258,7 +258,7 @@ We will be gathering feedback from users of these statistics on an on-going basi
 
 These statistics are derived from data collected during processing activities carried out by the NHSBSA to reimburse dispensing contractors for providing services to NHS patients. Prescriptions are scanned and subject to rigorous automatic and manual validation processes to ensure accurate payments are made to dispensing contractors. Where electronic prescriptions are used the scope for manual intervention and input into data is reduced dramatically.
 
-The figures used are collected as an essential part of the process of reimbursing dispensing contractors (mainly pharmacists and dispensing doctors) for medicines supplied. All prescriptions which are dispensed in England need to be submitted to the NHSBSA if the dispenser is to be reimbursed, and so coverage should be complete. Due to the manual processes involved in the processing of prescriptions there may be random inaccuracies in capturing prescription information which are then reflected in the data. NHS Prescription Services, a division of NHSBSA, internally quality assures the data that is captured from prescriptions to a 99.85% level via a statistically valid random sample of 50,000 items that are reprocessed monthly. The latest reported [Prescription Processing Information Accuracy](https://www.nhsbsa.nhs.uk/pharmacies-gp-practices-and-appliance-contractors/payments-and-pricing/how-we-process-prescriptions) from NHS Prescriptions services, which covers the 12 month period July 2022 to June 2023, is 99.91%.
+The figures used are collected as an essential part of the process of reimbursing dispensing contractors (mainly pharmacists and dispensing doctors) for medicines supplied. All prescriptions which are dispensed in England need to be submitted to the NHSBSA if the dispenser is to be reimbursed, and so coverage should be complete. Due to the manual processes involved in the processing of prescriptions there may be random inaccuracies in capturing prescription information which are then reflected in the data. NHS Prescription Services, a division of NHSBSA, internally quality assures the data that is captured from prescriptions to a 99.85% level via a statistically valid random sample of 50,000 items that are reprocessed monthly. The latest reported [Prescription Processing Information Accuracy](https://www.nhsbsa.nhs.uk/pharmacies-gp-practices-and-appliance-contractors/payments-and-pricing/how-we-process-prescriptions) from NHS Prescriptions services, which covers the 12 month period May 2023 to April 2024, is 99.90%.
 
 #### 6.2.2. Reliability {.toc-ignore}
 
@@ -268,7 +268,7 @@ As there is a manual data entry element to this system then inevitably some smal
 
 ***Timeliness refers to the time gap between publication and the reference period. Punctuality refers to the gap between planned and actual publication date.s***
 
-The Hormone Replacement Therapy publication is an official statistic in development. The date of release for the publication will be announced in advance in line with our statistical release calendar. The publication uses year-to-date figures for the 2023/24 financial year. This allows the inclusion of the most recent data available and reduces lag between the time the data is available and the publication date.
+The Hormone Replacement Therapy publication is an official statistic in development. The date of release for the publication will be announced in advance in line with our statistical release calendar. The publication uses year-to-date figures for the 2024/25 financial year. This allows the inclusion of the most recent data available and reduces lag between the time the data is available and the publication date.
 
 ### 6.4. Accessibility and clarity {.toc-ignore}
 
@@ -333,7 +333,7 @@ A risk assessment around potential disclosure of personal identifiable informati
 
 In addition to the assessment, we have followed the Quality Assurance of Administrative Data (QAAD) toolkit, as described by the Office for Statistics Regulation (OSR). Using the toolkit, we established the level of assurance we are seeking (or “benchmark”) for each source. The assurance levels are set as basic, enhanced, or comprehensive depending on the risk of quality concerns for that source, based on various factors.
 
-We have made a judgement about the suitability of the administrative data for use in producing this publication, this is designed to be pragmatic and proportionate. The QAAD assessment for prescription data can be found on the [NHSBSA website](https://www.nhsbsa.nhs.uk/statistical-collections).
+We have made a judgement about the suitability of the administrative data for use in producing this publication, this is designed to be pragmatic and proportionate. You can download our QAAD assessment of prescription data from the final section on this page of [our webite](https://www.nhsbsa.nhs.uk/statistical-collections).
 
 ## 7. Glossary of terms used in these statistics
 
