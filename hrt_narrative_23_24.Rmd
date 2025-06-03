@@ -1,0 +1,825 @@
+---
+title: "`r config$publication_name`"
+pagetitle: HRT England summary
+always_allow_html: true
+output:
+  word_document:
+    toc: yes
+    toc_depth: '3'
+  html_document:
+    anchor_sections: no
+    css: 
+      - www/style.css
+      - www/nhs-min.css
+    toc: yes
+    toc_depth: 3
+    toc_float:
+      collapsed: no
+---
+
+<html lang="en">
+
+```{r setup, include=FALSE}
+
+# set code chunk options to disable echo by default
+knitr::opts_chunk$set(echo = FALSE,
+                      warning = FALSE,
+                      message = FALSE)
+
+```
+
+<div class = "quartoheader", id = "fixed-header">
+  <header class="nhsuk-header" role="banner">
+    <div class="nhsuk-width-container nhsuk-header__container">
+      <div class="nhsuk-header__logo nhsuk-header__logo--only">
+        <a class="nhsuk-header__link" href="https://www.nhsbsa.nhs.uk/" aria-label="NHSBSA home" target="_blank">
+          <img class="nhsuk-logo" src="www/logo-nhsbsa.svg"" name="NHSBSA logo" alt="NHS Business Services Authority">
+        </a>
+      </div>
+    </div>
+</div>
+
+<!-- JS to handle hiding the header on scroll -->
+<script>
+  document.addEventListener("scroll", function() {
+    var header = document.getElementById("fixed-header");
+    var toc = document.getElementById("TOC");
+    var BackTopButton = document.getElementById("backtop-button");
+    var scrollPosition = window.scrollY || document.documentElement.scrollTop;
+  if(scrollPosition > 88) {
+    header.style.top = "-200px";
+    toc.style.setProperty('margin-top', '24px', 'important');
+    BackTopButton.style.setProperty('visibility', 'visible', 'important');
+  } else
+  {
+    header.style.top = "0";
+    toc.style.setProperty('margin-top', '140px', 'important');
+    BackTopButton.style.setProperty('visibility', 'hidden', 'important');
+  }
+}
+);
+</script>
+
+<!-- JS to handle back to top button -->
+<script>
+       function BackTop() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+</script>
+
+<button onclick="BackTop()" id="backtop-button" style="opacity: 0.7; pointer-events: initial; visibility: visible;"><span aria-hidden="true">▲</span>Back to top</button>
+
+<main>
+
+# `r config$publication_sub_name` {.toc-ignore}
+
+`r paste0("Published ", config$publication_date)`
+
+## Key findings
+
+In England in 2023/24:
+
+::::{.row style="display: flex; padding-bottom: 10px;"} 
+:::{.col-md-4} 
+`r infoBox_no_border(header = "", text = "<b>13 million HRT items were prescribed to an estimated 2.6 million identified patients.</b>", width = "100%")` 
+::: 
+:::{.col-md-4} 
+`r infoBox_no_border(header = "", text = "<b>The number of identified patients prescribed HRT was higher in less deprived areas.</b>", width = "100%")` 
+:::
+:::{.col-md-4} 
+`r infoBox_no_border(header = "", text = "<b>The most common age group to be prescribed HRT was patients aged 50 to 54.</b>", width = "100%")` 
+:::
+::::
+
+In England in 2023/24 there were 13 million Hormone Replacement Therapy (HRT) items prescribed, a 22% increase since 2022/23. The estimated number of identified patients increased by 12%, from 2.3 million in 2022/23 to 2.6 million in 2023/24.
+
+Utrogestan 100mg tablets was the British National Formulary (BNF) presentation with both the highest number of items prescribed and identified patients in 2023/24. Utrogestan 100mg tablets increased by 42% in 2023/24 to 1.3 million items, up from 940,000 in 2022/23.
+
+The least deprived areas in England had more than twice as many identified patients receiving HRT prescribing compared to the most deprived areas.
+
+The proportion of HRT items for which an HRT Prescription Prepayment Certificate (HRT PPC) was used was 14.5% in 2023/24. This proportion has increased to 21% in June 2024.
+
+---
+
+## 1. Things you should know
+
+### 1.1. Introduction {.toc-ignore} 
+
+This publication aims to describe the prescribing of HRT medications in England. These medications are subsequently dispensed in the community in England, Scotland, Wales, Isle of Man or the Channel Islands. 
+
+Dispensing can be done by a pharmacy, appliance contractor, dispensing doctor, or have been personally administered by a GP practice. This publication does not include data on medicines used in secondary care, prisons, or issued by a private prescriber. The statistics do not include prescriptions that were issued but not presented for dispensing or where there has been an unmet demand for treatment.
+
+### 1.2. Scope {.toc-ignore} 
+
+These statistics detail:
+
+* the total number of prescription items issued for drugs that appear on the HRT Prescription Prepayment Certificate (HRT PPC) drug list
+* the number of identified patients that have received prescribing for these drugs
+* demographic breakdowns of prescribing by age group
+* demographic breakdowns by a measure of deprivation.
+
+The costs associated with the provision of these medicines are not discussed in this summary. However, they are available within the supporting summary tables that accompany this release.
+
+There is no single definition of HRT medications. Many other products may be used in the treatment of the menopause that are not included in these statistics. This publication uses 'HRT' as a catch-all term to refer to all drugs that appear on the HRT PPC drug list. Some medications included on the list may not meet other definitions of HRT when prescribed alone instead of in combination with another medication.
+
+The release is limited to all drugs that are covered by the HRT PPC, which is intended to cover all drugs licensed to treat menopause in the UK. You can find the most up to date list of drugs included in the HRT PPC on [the NHSBSA website.](https://www.nhsbsa.nhs.uk/help-nhs-prescription-costs/nhs-hormone-replacement-therapy-prescription-prepayment-certificate-hrt-ppc)
+
+These statistics use the therapeutic classifications defined in the BNF, using the classification system prior to BNF edition 70. Each January the NHSBSA updates the classification of drugs within the BNF hierarchy, and this may involve some drugs changing classification between years of data. 
+
+Medicines are classified by their primary therapeutic indication. However, sometimes a medicine may be prescribed for a reason other than the primary therapeutic indication. For example, the  treatment of gender dysphoria. The clinical indication of a prescription is not captured by NHSBSA during processing, and therefore we cannot determine the reason that a prescription was issued. 
+
+Data in this publication does not distinguish between patients of different genders and has not been limited to agebands where menopause is common.
+
+The scope of this publication means that numbers in the statistical summary narrative and supporting summary tables may not match totals published in other reports that use different methodology.
+
+### 1.3. Background {.toc-ignore}
+
+Hormone Replacement Therapy (HRT) is a treatment to relieve symptoms of the menopause. It replaces hormones that are at a lower level during the perimenopause, menopause, and postmenopause.
+
+Menopause is when periods stop due to lower hormone levels. It usually affects women between the ages of 45 and 55, but it can happen earlier. It affects anyone who has periods. 
+
+Many women experience some symptoms, such as vaginal dryness, low mood, anxiety, hot flushes and difficulty sleeping. Some of these symptoms can be severe and have a negative impact on everyday life.
+
+### 1.4. Definitions {.toc-ignore}
+
+::::{.row style="display: flex; padding-bottom: 10px;"} 
+:::{.col-md-12} 
+`r infoBox_border(header = "Item", text = "A single unit of medication listed separately on a prescription form. In this publication, an example of an item would be Estradiol 2mg tablets x84.", width = "100%")` 
+::: 
+::::
+
+::::{.row style="display: flex; padding-bottom: 10px;"} 
+:::{.col-md-12} 
+`r infoBox_border("Patient", text = "A unique NHS number captured from a prescription form or electronic prescription service (EPS) message.", width = "100%")`
+::: 
+::::
+
+::::{.row style="display: flex; padding-bottom: 10px;"} 
+:::{.col-md-12} 
+`r infoBox_border("NIC", text = "The Net Ingredient Cost (NIC) is the basic price of the medication and the quantity prescribed. It does not include other fees incurred by dispensing contractors, such as controlled drug fees or the single activity fee. The basic price is determined by the [Drug Tariff](https://www.nhsbsa.nhs.uk/pharmacies-gp-practices-and-appliance-contractors/drug-tariff) or by the manufacturer, wholesaler, or supplier of the product.", width = "100%")`
+::: 
+::::
+
+::::{.row style="display: flex; padding-bottom: 10px;"} 
+:::{.col-md-12} 
+`r infoBox_border("Age", text = "Where patients are identified, their age is calculated on 30 September of the given financial year to assign them to a single age band. For patients where date of birth has not been captured, they have been included in a category of unknown.", width = "100%")`
+::: 
+::::
+
+### 1.5. Time periods {.toc-ignore}
+
+This publication presents data from April 2015 to `r ltst_month_tidy`, the most recent available. Data is available in the supporting summary tables at both a monthly and a financial year level.  Financial year 2023/24 covers April 2023 to March 2024. The most recent financial year, 2024/25, shows a year to date (YTD) view of the figures from April 2024 to June 2024.
+
+### 1.6. Patient identification {.toc-ignore}
+
+When the NHSBSA processes prescriptions, the NHS number of the patient is identified for most, but not all, prescriptions. The proportion of items for which a patient could be identified is shown in Table 1. This means that data relating to patient counts represents most, but not all, patients. 
+
+These statistics do not contain any personally identifiable data. More information about how the NHSBSA protects personal information can be found in the [statement on confidentiality and access](https://www.nhsbsa.nhs.uk/policies-and-procedures).
+
+#### Table 1: The proportion of items for which an NHS number was recorded for listed BNF paragraphs
+
+```{r capture_rates}
+knitr::kable(table_1, align = "lrrrrr")
+
+get_download_button(title = "Download table data", data = table_1, filename = "table_1")
+```
+
+Source: [Hormone Replacement Therapy summary tables - annual](`r config$fy_excel_link`)
+
+---
+
+## 2. Results and commentary
+
+#### Number of prescribed items and estimated identified patients by financial year {.tabset}
+
+<div class = "tabset">
+
+##### Chart
+
+###### Figure 1: The number of items prescribed and identified patients have both increased every year since 2015/16
+
+```{r}
+figure_1
+
+get_download_button(title = "Download chart data", data = figure_1_raw, filename = "figure_1")
+```
+
+##### Table
+
+###### Table 2: The number of items prescribed and identified patients have both increased every year since 2015/16
+
+```{r}
+knitr::kable(table_2, align = "lrr")
+
+get_download_button(title = "Download table data", data = figure_1_raw, filename = "table_2")
+```
+
+</div>
+  
+Source: [Hormone Replacement Therapy summary tables - annual](`r config$fy_excel_link`)
+
+::::{.row style="display: flex; padding-bottom: 10px;"} 
+:::{.col-md-4} 
+`r infoBox_no_border(header = "", text = "<b>13 million HRT items prescribed in 2023/24.</b>", width = "100%")` 
+::: 
+:::{.col-md-4} 
+`r infoBox_no_border(header = "", text = "<b>2.6 million identified patients received an HRT item in 2023/24.</b>", width = "100%")` 
+:::
+:::{.col-md-4} 
+`r infoBox_no_border(header = "", text = "<b>Items and patients have both continued to trend upwards.</b>", width = "100%")` 
+:::
+::::
+
+In 2023/24 there were 13.3 million HRT drug items prescribed, a 21.5% increase from the 10.9 million items prescribed in 2022/23.
+
+An estimated 2.63 million identified patients were prescribed at least one HRT drug item in 2023/24. This was a 12.4% increase compared to 2.34 million patients in the previous year. 
+
+Between April 2024 and June 2024 there were 3.59 million HRT drug items prescribed. This was a 17.8% increase from 3.04 million items in the same time period in the previous year.
+
+#### Number of prescribed items and estimated identified patients by month {.tabset}
+
+<div class = "tabset">
+  
+##### Chart
+  
+###### Figure 2: The number of items and identified patients is generally increasing over time but varies by month
+  
+```{r}
+figure_2
+
+get_download_button(title = "Download chart data", data = figure_2_raw, filename = "figure_2")
+```
+##### Table
+
+###### Table 3: The number of items and identified patients is generally increasing over time but varies by month
+
+```{r}
+knitr::kable(table_3, align = "lrr")
+
+get_download_button(title = "Download table data", data = figure_2_raw, filename = "table_3")
+```
+
+</div>
+
+Source: [Hormone Replacement Therapy summary tables - monthly](`r config$month_excel_link`)
+
+::::{.row style="display: flex; padding-bottom: 10px;"} 
+:::{.col-md-6} 
+`r infoBox_no_border(header = "", text = "<b>1.2 million HRT items prescribed in June 2024.</b>", width = "100%")` 
+::: 
+:::{.col-md-6} 
+`r infoBox_no_border(header = "", text = "<b>870,000 identified patients received an HRT item in June 2024.</b>", width = "100%")` 
+:::
+::::
+
+There were 1.16 million HRT drug items prescribed in June 2024. This was a decrease of 5.19% from 1.23 million items in May 2024, and a 11.9% increase from 1.04 million items in June 2023.
+
+An estimated 866,000 identified patients were prescribed at least one HRT drug item in June 2024, a 4.31% decrease from the previous month.
+
+#### Number of prescribed items and estimated identified patients by financial year and selected drug groups {.tabset}
+
+::::{.row style="display: flex; margin-bottom: 24px;"} 
+:::{.col-md-12} 
+`r infoBox_border("", text = "In 2023/24, almost 99% of all HRT items were from 2 drug groups. These drug groups were BNF paragraph 6.4.1 female sex hormones and their modulators, and BNF paragraph 7.2.1 preparations for vaginal and vulval changes. 
+
+The charts in figure 3 show a rolling five-year time series, along with the year to date for 2024/25. The data is limited to items in these BNF paragraphs that are also included in the HRT PPC drug list.", width = "100%")`
+::: 
+::::
+
+<div class = "tabset">
+  
+##### Chart
+  
+###### Figure 3: Items and identified patients in the 2 largest drug groups have increased over time
+  
+```{r}
+hw_grid(figure_3_pt_1, 
+figure_3_pt_2)
+
+get_download_button(title = "Download chart data", data = figure_3_data, filename = "figure_3")
+```
+##### Table
+
+###### Table 4: Items and identified patients in the 2 largest drug groups have increased over time
+
+```{r}
+knitr::kable(table_4, align = "llrr")
+
+get_download_button(title = "Download table data", data = figure_3_data, filename = "table_4")
+```
+
+</div>
+
+Source: [Hormone Replacement Therapy summary tables - annual](`r config$fy_excel_link`)
+
+::::{.row style="display: flex; padding-bottom: 10px;"} 
+:::{.col-md-6} 
+`r infoBox_no_border(header = "", text = "<b>10 million female sex hormones and their modulators items prescribed in 2023/24.</b>", width = "100%")` 
+::: 
+:::{.col-md-6} 
+`r infoBox_no_border(header = "", text = "<b>2.9 million preparations for vaginal and vulval changes items prescribed in 2023/24.</b>", width = "100%")` 
+:::
+::::
+
+In 2023/24 there were 10.2 million female sex hormones and their modulators items prescribed, a 24.0% increase from 8.25 million items in the previous year. 
+
+There were an estimated 1.84 million identified patients who were prescribed at least one female sex hormones and their modulators item in 2023/24. This was a 14.4% increase compared to the 1.61 million identified patients in 2022/23.
+
+In 2023/24 there were 2.90 million preparations for vaginal and vulval changes items prescribed. This was a 14.5% increase from 2.54 million items in the previous year.
+
+An estimated 941,000 identified patients were prescribed at least one preparations for vaginal and vulval changes item in 2023/24. This was a 13.0% increase from 833,000 identified patients in 2022/23.
+
+#### Estimated number of identified patients by financial year for selected BNF chemical substances {.tabset}
+
+::::{.row style="display: flex; margin-bottom: 24px;"} 
+:::{.col-md-12} 
+`r infoBox_border("Chemical substance", text = "A chemical substance is the name of the main active ingredient in a drug. The chemical substances featured in figure 4 and figure 5 are the top 5 most prescribed chemical substances for HRT prescribing. Although chemical substance is a grouping within the BNF, when a drug is available in different presentations with disparate uses it may be listed in multiple sections or paragraphs. In this case the drug will be assigned multiple chemical substances codes, one for each section it is in. 
+
+This is the case for Estradiol, which has a code for female sex hormones and their modulators, and another code for preparations for vaginal and vulval changes. The chemical substance code is included in the figures and commentary to distinguish between the prescribing for each drug group.", width = "100%")`
+::: 
+::::
+
+<div class = "tabset">
+  
+##### Chart
+  
+###### Figure 4: Estradiol (0604011G0) was the HRT chemical substance with the most identified patients in 2023/24
+  
+```{r}
+figure_4
+
+get_download_button(title = "Download chart data", data = figure_4_raw, filename = "figure_4")
+```
+##### Table
+
+###### Table 5: Estradiol (0604011G0) was the HRT chemical substance with the most identified patients in 2023/24
+
+```{r}
+knitr::kable(table_5, align = "llr")
+
+get_download_button(title = "Download table data", data = figure_4_raw, filename = "table_5")
+```
+
+</div>
+
+Source: [Hormone Replacement Therapy summary tables - annual](`r config$fy_excel_link`)
+
+::::{.row style="display: flex; padding-bottom: 10px;"} 
+:::{.col-md-6} 
+`r infoBox_no_border(header = "", text = "<b>In 2023/24 Estradiol (0604011G0) remained the chemical substance with the largest number of estimated identified patients.</b>", width = "100%")` 
+::: 
+:::{.col-md-6} 
+`r infoBox_no_border(header = "", text = "<b>1.2 million identified patients were prescribed at least one Estradiol (0604011G0) item in 2023/24.</b>", width = "100%")` 
+:::
+::::
+
+Estradiol (0604011G0) was the chemical substance with the largest increase in estimated identified patients between 2022/23 and 2023/24. 
+
+An estimated 1.18 million identified patients were prescribed at least one Estradiol (0604011G0) item in 2023/24. This was an increase of 227,000 patients, or 23.8%, from 955,000 identified patients in 2022/23. 
+
+<!-- Progesterone (0604012S0) had a smaller increase in estimated identified patients , but this was  a larger percentage increase of 28.3% -->
+
+#### Number of prescribed items by financial year for selected BNF chemical substances {.tabset}
+
+<div class = "tabset">
+  
+##### Chart
+  
+###### Figure 5: Estradiol (0604011G0) was the most prescribed HRT chemical substance by items in 2023/24
+  
+```{r}
+figure_5
+
+get_download_button(title = "Download chart data", data = figure_5_raw, filename = "figure_5")
+```
+##### Table
+
+###### Table 6: Estradiol (0604011G0) was the most prescribed HRT chemical substance by items in 2023/24
+
+```{r}
+knitr::kable(table_6, align = "llr")
+
+get_download_button(title = "Download table data", data = figure_5_raw, filename = "table_6")
+```
+
+</div>
+
+Source: [Hormone Replacement Therapy summary tables - annual](`r config$fy_excel_link`)
+
+::::{.row style="display: flex; padding-bottom: 10px;"} 
+:::{.col-md-6} 
+`r infoBox_no_border(header = "", text = "<b>In 2023/24 Estradiol (0604011G0) remained the chemical substance with the largest number of items prescribed.</b>", width = "100%")` 
+::: 
+:::{.col-md-6} 
+`r infoBox_no_border(header = "", text = "<b>5 million Estradiol (0604011G0) items were prescribed in 2023/24.</b>", width = "100%")` 
+:::
+::::
+
+Between 2022/23 and 2023/24, Estradiol (0604011G0) was the chemical substance with the largest increase in items prescribed. 
+
+There were 5.0 million items Estradiol (0604011G0) items prescribed in 2023/24, 1.08 million more items, or a 27.5% increase, from 3.92 million items in the previous year.
+
+#### Table 7: Top 10 presentations by prescribed items in `r ltst_year` {.tabset}
+
+::::{.row style="display: flex; margin-bottom: 24px;"} 
+:::{.col-md-12} 
+`r infoBox_border("Presentations", text = "Pharmaceutical presentations can come in many forms including tablets, capsules, patches, gels, creams and more. Please see the definition of items and quantity given in section 1.2 to help interpret table 7.
+
+The chemical substance listed in figures 4 and 5 can be made up of more than one of the presentations in table 7. For example, both Vagifem 10 microgram vaginal tablets and Estradiol 10  microgram pessaries have the chemical substance of Estradiol.", width = "100%")`
+::: 
+::::
+
+Table 7 includes the BNF presentation that appeared on the prescription form. It is possible that products that are different brands, or generic equivalents, of the same product may appear separately in these tables. For example, Oestrogel Pump-Pack 0.06% gel is the branded equivalent of Estradiol 0.06% gel (750 microgram per actuation) and Vagifem 10 microgram vaginal tablets is the branded equivalent of Estradiol 10 microgram pessaries.
+<!-- #### **`r paste0("Table 7: Utrogestan 100mg capsules was the HRT presentation with the most items prescribed in 2023/24")`** -->
+
+```{r}
+table_7
+
+get_download_button(title = "Download table data", data = table_7_data, filename = "table_7")
+```
+
+Source: [Hormone Replacement Therapy summary tables - annual](`r config$fy_excel_link`)
+
+Utrogestan 100mg capsules had the largest number of items prescribed in 2023/24, with 1.33 million items. This was a 41.7% increase from 935,000 items in 2022/23.
+
+#### Estimated number of identified patients per 1,000 population by Integrated Care Board (ICB) in `r ltst_year` {.tabset}
+
+<div class = "tabset">
+  
+##### Chart
+  
+###### Figure 6: The number of identified patients prescribed HRT items per 1,000 population varied by ICB
+  
+```{r}
+figure_6
+
+get_download_button(title = "Download chart data", data = figure_6_raw, filename = "figure_6")
+```
+##### Table
+
+###### Table 8: The number of identified patients prescribed HRT items per 1,000 population varied by ICB
+
+```{r}
+knitr::kable(table_9, align = "lllr")
+
+get_download_button(title = "Download table data", data = figure_6_raw, filename = "table_8")
+```
+
+</div>
+
+Source: [Hormone Replacement Therapy summary tables - annual](`r config$fy_excel_link`) | [Office for National Statistics - Mid-2022 ICB Mid-year population estimates](https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/populationestimates/datasets/clinicalcommissioninggroupmidyearpopulationestimates)
+
+NHS North East London ICB had the lowest estimated number of identified patients who received at least one HRT item per 1,000 residents. It had an estimated 19 patients per 1,000 population in 2023/24. 
+
+NHS Cornwall and the Isles of Scilly ICB had the highest estimated number of identified patients who received at least one HRT item per 1,000 residents. It had an estimated 68 patients per 1,000 population in 2023/23.
+
+In England in 2023/24, the estimated number of identified patients who received at least one HRT item per 1,000 population was 46. 
+
+#### Estimated number of identified patients by age band in `r ltst_year` {.tabset}
+
+<div class = "tabset">
+  
+##### Chart
+  
+###### Figure 7: Patients aged 50 to 54 were the largest prescribing group for HRT in 2023/24
+  
+```{r}
+figure_7
+
+get_download_button(title = "Download chart data", data = figure_7_raw, filename = "figure_7")
+```
+##### Table
+
+###### Table 9: Patients aged 50 to 54 were the largest prescribing group for HRT in 2023/24
+
+```{r}
+knitr::kable(table_10, align = "llr")
+
+get_download_button(title = "Download table data", data = figure_7_raw, filename = "table_9")
+```
+
+</div>
+
+Source: [Hormone Replacement Therapy summary tables - annual](`r config$fy_excel_link`)
+
+::::{.row style="display: flex; padding-bottom: 10px;"} 
+:::{.col-md-6} 
+`r infoBox_no_border(header = "", text = "<b>In 2023/24 patients aged 50 to 54 were the largest group of identified patients.</b>", width = "100%")` 
+::: 
+:::{.col-md-6} 
+`r infoBox_no_border(header = "", text = "<b>640,000 identified patients were aged 50 to 54, almost a quarter of all identified patients in 2023/34.</b>", width = "100%")` 
+:::
+::::
+
+In 2023/24 patients aged 50 to 54 were the most common group to receive prescribing for HRT, with an estimated 637,000 identified patients. This was 24.1% of all identified patients who received an HRT item in 2023/24. The second most common group was patients aged 55 to 59 with 531,000 patients, 20.1% of all identified patients who received an HRT item in 2023/24.
+
+#### Estimated number of identified patients by IMD quintile in `r ltst_year` {.tabset}
+
+<div class = "tabset">
+  
+##### Chart
+  
+###### Figure 8: More people were prescribed HRT in less deprived areas in 2023/24
+  
+```{r}
+figure_8
+
+get_download_button(title = "Download chart data", data = figure_8_data, filename = "figure_8")
+```
+##### Table
+
+###### Table 10: More people were prescribed HRT in less deprived areas in 2023/24
+
+```{r}
+knitr::kable(table_11, align = "llr")
+
+get_download_button(title = "Download table data", data = figure_8_data, filename = "table_10")
+```
+
+</div>
+
+Source: [Hormone Replacement Therapy summary tables - annual](`r config$fy_excel_link`)
+
+::::{.row style="display: flex; padding-bottom: 10px;"} 
+:::{.col-md-6} 
+`r infoBox_no_border(header = "", text = "<b>740,000 patients prescribed HRT items in the least deprived areas in England in 2023/24.</b>", width = "100%")` 
+:::
+:::{.col-md-6} 
+`r infoBox_no_border(header = "", text = "<b>320,000 patients prescribed HRT items in the most deprived areas in England in 2023/24.</b>", width = "100%")` 
+:::
+::::
+
+An estimated 740,000 identified patients were prescribed HRT items in the least deprived areas in England in 2023/24. This was more than double the estimated 325,000 identified patients in the most deprived areas. In general more people were prescribed HRT in less deprived areas in 2023/24, and this pattern has been consistent since 2015/16.
+
+The English Indices of Deprivation have been used to provide a measure of patient deprivation. The deprivation quintiles reported are those of the patient's registered address. More information on this measure can be found in section 4 of this summary.
+
+#### Proportion of chargeable items by financial year {.tabset}
+
+<!-- ::::{.row style="display: flex; margin-bottom: 24px;"}  -->
+<!-- :::{.col-md-12}  -->
+<!-- `r infoBox_border("Prescription prepayment certificates (PPCs)", text = "Items where patients have not paid a prescription charge due to having a valid PPC or HRT PPC have been included in the 'other exemption' category. However a patient must pay for a PPC or HRT PPC, which may then save them money if they require multiple items over a set time period. More information on [PPCs](https://www.nhsbsa.nhs.uk/help-nhs-prescription-costs/nhs-prescription-prepayment-certificate-ppc) and [HRT PPCs](https://www.nhsbsa.nhs.uk/help-nhs-prescription-costs/nhs-hormone-replacement-therapy-prescription-prepayment-certificate-hrt-ppc) is available on the NHSBSA website. -->
+
+<!-- For example, a patient who usually pays for their prescriptions may save money with an HRT PPC if they receive 3 or more HRT prescription items in 12 months. A regular PPC may save the patient money if they receive 3 or more prescription items in a 3 month period, or 11 or more items in a 12 month period. -->
+
+<!-- You can find more information on HRT PPC data in the [NHS Help with Help Costs England publication](https://www.nhsbsa.nhs.uk/statistical-collections/help-health-costs).", width = "100%")` -->
+<!-- :::  -->
+<!-- :::: -->
+
+::::{.row style="display: flex; margin-bottom: 24px;"} 
+:::{.col-md-12} 
+`r infoBox_border("Prescription charges", text = "In England, a charge applies to NHS prescriptions unless a valid exemption is held. Items dispensed to non exempt patients are counted as chargeable. Certain groups are exempt from paying for their NHS prescriptions, for example those over the age of 60. Some prescribed items are always free, including contraceptives. 
+
+If a patient regularly pays prescription charges, a Prescription Prepayment certificate (PPC) could save them money by paying one upfront cost annually or for a 3 month period. 
+
+An annual HRT PPC was introduced in April 2023 that covers medicines licensed to treat the menopause in the UK. 
+
+Prescriptions covered by either a PPC or HRT PPC are classed as exempt in the data, because the patient does not pay when collecting the medication. PPC has been included in the 'Other exemptions' category.
+
+Patients aged under 16 or 60 and over are eligible to claim free prescriptions. Patients do not need to provide proof of age when claiming prescriptions under the age exemption if their date of birth is printed electronically on the prescription. Therefore support with prescription costs, such as exemptions or PPCs, is generally only applicable to patients aged between 16 and 59.
+
+It is not possible to break exempt prescriptions down by category, as this data is not always recorded. More information can be found in section 3 of this summary. You can find more information on HRT PPC data in the [NHS Help with Help Costs England publication](https://www.nhsbsa.nhs.uk/statistical-collections/help-health-costs).", width = "100%")`
+::: 
+::::
+
+<div class = "tabset">
+  
+##### Chart
+  
+###### Figure 9: The proportion of HRT items exempt from prescription charges has increased since 2021/22
+  
+```{r}
+figure_10
+
+get_download_button(title = "Download chart data", data = figure_10_raw, filename = "figure_9")
+```
+##### Table
+
+###### Table 11: The proportion of HRT items exempt from prescription charges has increased since 2021/22
+
+```{r}
+knitr::kable(table_13, align = "llrr")
+
+get_download_button(title = "Download table data", data = figure_10_raw, filename = "table_11")
+```
+
+</div>
+
+Source: [Hormone Replacement Therapy summary tables - annual](`r config$fy_excel_link`) | [Hormone Replacement Therapy tables - exemption category management information](https://nhsbsa-opendata.s3.eu-west-2.amazonaws.com/hrt/hrt_management_information_June_2024_v001.xlsx)
+
+In 2023/24, 85.7% of HRT items were exempt from prescription charges at the point of dispensing, an increase from 70.0% in 2022/23. This trend has continued into the first financial quarter of 2024/25, increasing to 89.5% of HRT items for quarter 1 which covers April to June 2024.
+
+In 2023/24, the proportion of HRT items for which an HRT PPC was used was 14.5%. This was the first financial year where the HRT PPC was available. For the first financial quarter of 2024/25 covering April to June 2024, this increased to 20.7% of HRT items.
+
+#### Proportion of chargeable items by month April 2023 to June 2024 {.tabset}
+
+<div class = "tabset">
+  
+##### Chart
+  
+###### Figure 10: The overall proportion of HRT items exempt from prescription charges increased every month since April 2023
+  
+```{r}
+figure_11
+
+get_download_button(title = "Download chart data", data = figure_11_raw, filename = "figure_11")
+```
+##### Table
+
+###### Table 12: The proportion of HRT items exempt from prescription charges increased every month since April 2023
+
+```{r}
+knitr::kable(table_14, align = "llrr")
+
+get_download_button(title = "Download table data", data = figure_11_raw, filename = "table_12")
+```
+
+</div>
+
+Source: [Hormone Replacement Therapy summary tables - monthly](`r config$month_excel_link`) | [Hormone Replacement Therapy tables - exemption category management information](https://nhsbsa-opendata.s3.eu-west-2.amazonaws.com/hrt/hrt_management_information_June_2024_v001.xlsx)
+
+The overall proportion of HRT prescribing that is exempt from prescription charges has increased every month from April 2023 to June 2024. In June 2024, 89.6% of HRT prescribing was exempt from prescription charges, compared to 82.9% in June 2023.
+
+Since HRT PPCs were introduced in April 2023, the proportion of HRT prescribing that is exempt from prescription charges at the point of dispensing due to use of an HRT PPC increased in most months. The only decrease was small, from 20.7% in April 2024 to 20.6% in May 2024. In June 2024, 20.9% of HRT prescribing was exempt from prescription charges due to use of an HRT PPC, compared to 9.7% in June 2023.
+
+Between September 2023 and June 2024, a higher proportion of HRT items were exempt from prescription charges due to use of an HRT PPC than were charged.
+
+## 3. Background
+
+The menopause is a biological stage in a woman's life that occurs when she stops menstruating and reaches the end of her natural reproductive life. This is not usually abrupt, but a gradual process during which women experience perimenopause before reaching postmenopause. Usually the menopause is defined as having occurred when a woman has not had a period for 12 consecutive months (for women reaching menopause naturally).
+
+As well as a change in their menstrual cycle women may experience a variety of symptoms associated with menopause such as hot flushes and sweats, low mood, vaginal dryness, low sexual desire, and others.
+
+Most women will experience some symptoms. Symptoms can last for months or years, and can change with time. Prolonged lack of the hormone oestrogen affects the bones and cardiovascular system, and postmenopausal women are at increased risk of a number of long-term conditions, such as osteoporosis.
+
+HRT, which replaces the hormones that are at low levels, is the main medicine treatment for menopause and perimenopause symptoms. More information on the menopause is available on the [NHS website](https://www.nhs.uk/conditions/menopause/). 
+
+### 3.1. Included drugs {.toc-ignore}
+
+This publication includes all drugs that have been covered by an HRT PPC. The HRT PPC exempts patients from charges for drugs licensed to treat menopause in the UK. You can find the most up to date list of drugs included in the HRT PPC on [the NHSBSA website.](https://www.nhsbsa.nhs.uk/help-nhs-prescription-costs/nhs-hormone-replacement-therapy-prescription-prepayment-certificate-hrt-ppc)
+
+A list of all drugs that are included in this release, including any that are no longer listed due to classification changes or discontinuation can be found in [Appendix A](`r config$appendix_link`).
+
+#### 3.1.1. Female sex hormones and their modulators {.toc-ignore}
+
+Oestrogen-only HRT is usually only recommended for women who have had their womb removed during a hysterectomy. For women with a uterus, oestrogen plus progestogen HRT is recommended. A progestogen item should be prescribed to reduce the risk of cystic hyperplasia of the endometrium, a thickening of the endometrium, and possible transformation to cancer. 
+
+HRT comes in several different forms such as tablets and skin patches. The treatment routine for HRT depends on whether the patient is in the early stages of the menopause or has had menopausal symptoms for some time. More information on the types and routines of HRT treatment can be found on the [NHS website](https://www.nhs.uk/conditions/hormone-replacement-therapy-hrt/types/).
+
+The 2 types of routines are cyclical (or sequential) HRT and continuous combined HRT.
+
+Continuous combined preparations are not suitable for use in the perimenopause or within 12 months of the last menstrual period. Women who use such preparations may bleed irregularly in the early stages of treatment.
+
+You can find out more information on [sex hormones](https://bnf.nice.org.uk/treatment-summaries/sex-hormones/) on the NICE website.
+
+#### 3.1.2. Preparations for vaginal and vulval changes {.toc-ignore}
+
+Preparations for vaginal and vulval changes are used to treat the symptoms of vaginal atrophy related to oestrogen deficiencies related to the menopause. 
+
+There are non-hormonal vaginal moisturisers available. Menopausal women with vaginal dryness can use vaginal moisturisers and lubricants alone or in addition to vaginal oestrogen.
+
+You can find out more information on [vaginal and vulval conditions](https://bnf.nice.org.uk/treatment-summaries/vaginal-and-vulval-conditions/) on the NICE website.
+
+#### 3.1.3. Anabolic steroids {.toc-ignore}
+
+#### Prasterone
+
+Prasterone is biochemically and biologically identical to endogenous dehydroepiandrosterone (DHEA), and is converted to oestrogens and androgens. It is used to treat vulvar and vaginal atrophy in postmenopausal women.
+
+You can find out more information on [prasterone](https://bnf.nice.org.uk/drugs/prasterone/) on the NICE website.
+
+#### 3.1.4. Progesterone only contraception {.toc-ignore}
+
+#### Intrauterine system (IUS), or Mirena coil
+
+For patients who have a womb and are taking or using oestrogen tablets, patches, gel or spray, the Mirena coil, an intrauterine system (IUS), may be a suitable way to deliver the progestogen they need.
+
+The Mirena coil is inserted into the womb and it gradually releases a form of progestogen (levonorgestrel) into the body.
+
+You can find out more information on [levonorgestrel](https://bnf.nice.org.uk/drugs/levonorgestrel/) on the NICE website.
+
+### 3.2. Gina 10 microgram vaginal tablets {.toc-ignore}
+
+Pharmacists in the UK can now dispense the HRT drug Gina 10 microgram vaginal tablets without a prescription.
+
+Gina 10 microgram vaginal tablets are a locally acting oestrogen HRT and the only treatment available without a prescription. It has been clinically proven to target and treat the cause of vaginal atrophy and its associated symptoms after the menopause.
+
+Gina 10 microgram vaginal tablets are a proprietary equivalent of Estradiol 10 microgram pessaries. The NHSBSA does not collect information about medicines that are sold over the counter. These statistics therefore may not be representative of the whole population taking HRT.
+
+### 3.3. Exemption categories {.toc-ignore}
+
+Exemption category data for most exemptions is not included in these statistics due to a number of known data quality issues. Exemption category data is released alongside this publication to complement the HRT statistics, but is management information only. Users should exercise caution when using the exemption category data provided alongside these statistics.
+
+It is possible for a patient to have multiple valid exemptions, including holding multiple exemption certificates. However, within NHS prescription data processed by the NHSBSA, only a single exemption category is identified against any individual form/item.
+
+In a large number of cases the NHSBSA does not record a specific exemption category. A common reason for our records stating ‘No Declaration/Declaration Not Specific’ is the increasing use of the Real Time Exemption Checking service (RTEC). This service confirms to the dispenser that a person was exempt from the charge, but no record of the reason found by RTEC is passed on to NHSBSA prescription processing systems.
+
+For paper prescriptions, the mark(s) on the rear of the form intended to indicate one, or more, exemption reason(s) is not clear and can be misinterpreted by the NHSBSA scanners.
+
+NHSBSA performs no validation or verification of which exemption category has been marked or recorded during scanning.
+
+The reported exemption category will represent the data as submitted by dispensing accounts and processed by NHSBSA to inform reimbursement.
+
+#### 3.3.1 Charge status {.toc-ignore}
+
+The charge status categories included in this narrative are:
+
+* age exempt
+* used HRT PPC
+* other exemptions
+* charged
+
+NHS prescriptions are free to all patients aged under 16 or 60 or over. Although these may be claimed as separate exemption categories, they have been combined for reporting purposes within this article. Patients aged under 16 or over 59 do not need to provide proof of age when claiming prescriptions under the age exemption if their date of birth is printed electronically on the prescription. Students aged 16-18 in full time education are also eligible for free prescriptions but must provide proof, and have been included in the 'other exemptions' charge status category instead.
+
+An HRT PPC can be purchased by patients to cover all their NHS prescriptions for applicable medicines licensed to treat menopause in the UK. The HRT PPC was introduced in April 2023. Certificates are valid for a period of 12-months and are purchased via a single up-front payment. Although this category is separate to 'Charge Paid', it should be noted that patients with these certificates are not receiving NHS prescribing free of charge. Instead, patients pay for a certificate to help with health costs rather than paying for prescriptions at the point of dispensing.
+
+All other prescription charge exemptions, once age-related exemptions and HRT PPC have been removed, have been combined as a single other exemptions reporting group. This group includes prescriptions claimed using a regular PPC, where the patient buys a 3 or 12-month certificate to cover all their NHS prescriptions. 
+
+Patients without any valid payment exemption will pay a prescription charge for each prescription item they receive. This prescription charge is paid at the point of dispensing. The charged category covers items which were paid for at the point of dispensing and will not include items for patients who have purchased a PPC or HRT PPC.
+
+## 4. About these statistics
+
+These statistics are an official statistics in development publication by the NHSBSA. To learn more about how this publication compares to our other publications, you can view the Official Statistics guidance table on our [statistical collections page](https://www.nhsbsa.nhs.uk/statistical-collections). 
+
+Further information on the methodology used in this publication and further background information is available in our [Background Information and Methodology](`r config$background_link`) supporting document.
+
+### 4.1. Changes to these statistics {.toc-ignore}
+
+This release includes all drugs that are covered by the HRT PPC, introduced in April 2023. The HRT PPC provides exemption from prescription charges for drugs licensed to treat menopause in the UK. The list of drugs is subject to change and the following changes have happened during the time period covered in the data for this release:
+
+* Tibolone 2.5mg tablets (Livial) and Prasterone 6.5mg pessaries (Intrarosa) were added to the list from June 2023
+* Gepretix – Progesterone micronised 100mg capsules were added to the list from November 2023
+
+As a result of these changes, some data for historical years may have changed from the previous release in this publication series. You should always use the latest data available.
+
+### 4.2. Patient counts {.toc-ignore}
+
+The patient counts shown in these statistics should only be analysed at the level at which they are presented. Adding together any patient counts is likely to result in an overestimate of the number of patients. A patient will be included, or counted, in each category or time period in which they received relevant prescriptions. For example, if a patient received a prescription item for HRT in January 2024, and another in February 2024, then adding together those totals would count that patient twice. For the same reason, data on patient counts for different BNF sections should not be added together.
+
+### 4.3. Patient age {.toc-ignore}
+
+The age of patients used in these statistics is derived from data provided by the NHS Personal Demographics Service (PDS) for NHS numbers that have been successfully verified by them. A patient’s age, used to assign them to an age group, has been calculated on 30 September for the given financial year. It is possible that a patient’s PDS information may change over the course of the year. In these cases patients may be subject to multiple counting in these analyses.
+
+### 4.4. Averages {.toc-ignore}
+
+Where this document refers to 'average', this is the mean unless otherwise stated. This is calculated by adding the number of items/patients/months together and dividing this by the number of items/patients/months.
+
+### 4.5. Index of deprivation {.toc-ignore}
+
+The English Indices of Deprivation 2019 have been used to provide a measure of patient deprivation. The English Indices of Deprivation are an official national measure of deprivation that follows an established methodological framework to capture a wide range of individuals’ living conditions.
+
+The reported  Index of Multiple Deprivation (IMD) quintile, where 1 is the most deprived and 5 the least deprived, is derived from the lower-layer super output areas (LSOA) of the registered address of the patient who received the medication. There are a number of items each year that we have reported as having an unknown IMD quintile. These are items that have been attributed to an patient who exclusively received their prescriptions via paper prescribing and not via the Electronic Prescription Service (EPS). LSOA is only captured for prescriptions via EPS. For those patients who received both paper prescribing and EPS we have imputed their LSOA from the latest available data. The use of EPS increased considerably during 2020/21. Therefore historical data has much higher rates of patients with a LSOA which has been reported as 'Unknown'.
+
+IMD quintiles are calculated by ranking census LSOA from most deprived to least deprived and dividing them into 5 equal groups. These range from the most deprived 20% (quintile 1) of small areas nationally to the least deprived 20% (quintile 5) of small areas nationally.
+
+### 4.6. Related statistics {.toc-ignore}
+
+The NHSBSA Data Analytics Learning Lab (DALL) have published an [interactive HRT report](https://nhsbsa-data-analytics.shinyapps.io/hrt-inequalities/) to provide insights into HRT prescribing in menopause to women aged 40 years and over. Insights are provided by age, deprivation, region, Integrated Care System (ICS), Primary Care Network (PCN), Local Authority, Electoral Ward and Core20 levels. The report also includes specific medication level analyses. 
+
+The interactive report is not an official statistic. Data and findings in the interactive HRT report cannot be compared to the HRT England April 2015 to June 2024 statistics publication due to differences in methodology and scope.
+
+---
+
+## 5. Accessibility
+
+If you need information on this website in a different format such as accessible PDF, large print, easy read, audio recording or braille, you can contact us by:
+
+**Email**: accessibility@nhsbsa.nhs.uk
+
+**Phone**: 0191 203 5318
+
+[Find out about call charges](https://www.nhsbsa.nhs.uk/contact-us/call-charges-and-phone-numbers)
+
+We’ll consider your request and get back to you in 5 working days.
+
+These contact details are only for accessibility queries. This inbox is not for technical queries or IT problems. If you have a query that is not about accessibility, go to the ‘Contact us’ section of this page.
+
+View our [Accessibility statement for Official Statistics Narratives](https://www.nhsbsa.nhs.uk/accessibility-statement-official-statistics-narratives).
+
+---
+
+## 6. Feedback and contact us
+
+Feedback is important to us; we welcome any questions and comments relating to these statistics. 
+
+You can complete a [short survey about this publication](`r config$stats_survey_link`) to help us improve the Official Statistics that we produce. All responses will remain anonymous and individuals will not be identifiable in any report that we produce.
+
+You can view our [privacy policy](https://www.nhsbsa.nhs.uk/our-policies/privacy) on our website to see how your data is used and stored.
+
+You can contact us by:
+
+**Email:** statistics@nhsbsa.nhs.uk
+
+**You can also write to us at:**
+
+NHSBSA - Statistics  
+NHS Business Services Authority  
+Stella House  
+Goldcrest Way  
+Newburn Riverside  
+Newcastle upon Tyne  
+NE15 8NY
+
+**Responsible statistician:** `r config$responsible_statistician`
+
+</main>
