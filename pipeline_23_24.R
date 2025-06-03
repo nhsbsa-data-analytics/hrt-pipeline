@@ -108,6 +108,9 @@ config <- yaml::yaml.load_file("config.yml")
 
 # 3. Extract data tables from fact table ---------------------------------------
 
+# To Do: amend config file to allow table name to be updated there instead of 
+# repeated entering of table name in code for individual extracts 
+
 con <- nhsbsaR::con_nhsbsa(dsn = "FBS_8192k",
                            driver = "Oracle in OraClient19Home1",
                            "DWCP")
@@ -381,6 +384,9 @@ raw_data$charge_monthly <- charge_extract(
 DBI::dbDisconnect(con)
 
 # 5. Data manipulation ---------------------------------------------------------
+
+#Update population data each year from ONS
+#Population code below will need updating as new data becomes available
 
 # get icb population
 # icb_lsoa_lookup <- nhsbsaExternalData::icb_lsoa_lookup()
@@ -2164,6 +2170,7 @@ openxlsx::saveWorkbook(wb,
                          "_v001.xlsx"
                        ),
                        overwrite = TRUE)
+
 #Management Information Exemption Excel
 
 # FY Excel
@@ -2355,8 +2362,6 @@ accessibleTables::write_sheet(
   30
 )
 
-
-
 #create cover sheet
 accessibleTables::makeCoverSheet(
   "Hormone Replacement Therapy - England April 2015 to June 2024",
@@ -2383,6 +2388,9 @@ openxlsx::saveWorkbook(wb,
                        overwrite = TRUE)
 
 # 7. Chart data for markdown narrative------------------------------------------
+
+#multiple datasets for each figure to account for the differences in rounding and 
+#presentation between chart data, table data, and data download button data.
 
 #table of patient ID rates by paragraph
 
@@ -3417,6 +3425,10 @@ table_14 <- figure_11_raw |>
   mutate(`Total items` = format(`Total items`, big.mark = ",")) |>
   dplyr::mutate(`Proportion of items (%)` = signif(`Proportion of items (%)`, 3)) 
 
+### render outputs
+#html files for final outputs
+#word files for adding comments during QR
+
 rmarkdown::render("hrt_narrative_23_24.Rmd",
                   output_format = "html_document",
                   output_file = paste0("outputs/hrt_",
@@ -3438,6 +3450,7 @@ rmarkdown::render("hrt_background_v001.Rmd",
                   output_file = "hrt_background_v001.docx")
 
 ### Accessibility checking 
+# need to improve accessibility and accessibility testing before next release
 
 devtools::install_github("matt-dray/coloratio")
 library(coloratio)
